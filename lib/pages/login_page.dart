@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               const Image(
                 image: AssetImage('assets/logoPemilu.png'),
                 height: 120,
