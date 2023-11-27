@@ -36,9 +36,14 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.red, Colors.white],
+            colors: [
+              Colors.red.shade400,
+              Colors.red.shade200,
+              Colors.red.shade50,
+              Colors.white
+            ],
             begin: Alignment.center,
             end: Alignment.bottomCenter
           ),
