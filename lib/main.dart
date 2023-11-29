@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/landing_page.dart';
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       //home: MyHeader(),
-      home: LandingPage(),
+      home: HomePage(),
     );
   }
 }
