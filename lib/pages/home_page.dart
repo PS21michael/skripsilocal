@@ -10,22 +10,22 @@ class HomePage extends StatelessWidget {
 
   List calon = [
     Calon(
-        nomorUrut: '#1',
-        namaCapres: 'AAAA',
-        namaCawapres: 'bbbb',
-        keterangan: 'ccccc'
+        nomorUrut: 'Pasangan Nomor Urut #1',
+        namaCapres: 'Anies Baswedan',
+        namaCawapres: 'Muhaimin Iskandar',
+        imagePath: 'assets/1246755_720.jpg'
     ),
     Calon(
-        nomorUrut: '#2',
-        namaCapres: 'AAAA',
-        namaCawapres: 'bbbb',
-        keterangan: 'ccccc'
+        nomorUrut: 'Pasangan Nomor Urut #2',
+        namaCapres: 'Prabowo Subianto',
+        namaCawapres: 'Gibran Rakabuming',
+        imagePath: 'assets/Didukung-Banyak-Tokoh-Berpengaruh-Prabowo-Gibran-Makin-Kuat-di-Jabar.jpg'
     ),
     Calon(
-        nomorUrut: '#3',
-        namaCapres: 'AAAA',
-        namaCawapres: 'bbbb',
-        keterangan: 'ccccc'
+        nomorUrut: 'Pasangan Nomor Urut #3',
+        namaCapres: 'Ganjar Pranowo',
+        namaCawapres: 'Mahmud MD',
+        imagePath: 'assets/rakernas-iv-pdip-5_169-1.jpeg'
     ),
   ];
 
@@ -58,11 +58,11 @@ class HomePage extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(20.0),
               child: ListView.builder(
                 itemCount: calon.length,
                 itemBuilder: (context, index) => myTile(
-                    calon: calon[index],
+                  calon: calon[index],
                 ),
               ),
             ),

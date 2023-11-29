@@ -13,11 +13,11 @@ class myTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 360,
       decoration: BoxDecoration(
+        border: Border.all(width: 1),
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(30),
-
       ),
       margin: EdgeInsets.only(bottom: 25),
       //padding: EdgeInsets.all(25),
@@ -26,52 +26,49 @@ class myTile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              Icons.lock,
-              size: 20,
-            ),
             Text(
               calon.nomorUrut,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 30,
+                fontSize: 25,
               ),
             ),
+            SizedBox(height: 10),
+            Image.asset(
+              calon.imagePath,
+            ),
+            SizedBox(height: 10),
             SizedBox(
               child: Column(
                 children: [
+                  SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      calon.namaCawapres
+                      calon.namaCapres,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
+                  SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                        calon.namaCawapres
+                      calon.namaCawapres,
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                  Text(
-                    calon.namaCapres,
-                  ),
-                  Text(
-                    calon.namaCawapres,
-                  ),
                 ],
-              ),
-            ),
-            Text(
-              calon.keterangan,
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
               ),
             ),
           ],
         ),
       ),
-
     );
   }
 }

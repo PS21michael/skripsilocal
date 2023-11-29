@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/login_page.dart';
 
 class LandingPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
     Future.delayed(Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => LoginPage(),
+          builder: (_) => HomePage(),
         ),
       );
     });
