@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: ListView.builder(
                 itemCount: calon.length,
-                itemBuilder: (context, index) => myTile(
+                itemBuilder: (context, index) => MyTile(
                   calon: calon[index],
                 ),
               ),
