@@ -20,7 +20,7 @@ class _myNavBarState extends State<myNavBar> {
           vertical: 6,
         ),
         child: GNav(
-          backgroundColor: Colors.red.shade400,
+          backgroundColor: Colors.red.shade500,
           color: Colors.white,
           tabBackgroundColor: Colors.red.shade200,
           gap : 10,

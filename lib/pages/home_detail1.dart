@@ -15,7 +15,7 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: myNavBar(),
+      appBar: MyHeader(),
     );
   }
 }

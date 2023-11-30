@@ -24,7 +24,10 @@ class MyTile extends StatelessWidget {
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(30),
         ),
-        margin: const EdgeInsets.only(bottom: 25),
+        margin: const EdgeInsets.only(
+          bottom: 10,
+          top: 10,
+        ),
         //padding: EdgeInsets.all(25),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
