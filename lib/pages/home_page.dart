@@ -4,7 +4,7 @@ import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
 import 'package:skripsilocal/pages/home_detail2.dart';
-import 'package:skripsilocal/pages/home_detail1.dart';
+import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3.dart';
 import 'components/my_header.dart';
 import 'package:provider/provider.dart';
