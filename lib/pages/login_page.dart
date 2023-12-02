@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'components/my_textfield.dart';
 import 'components/button.dart';
 
@@ -52,7 +53,51 @@ class LoginPage extends StatelessWidget {
                   text: 'Sign In',
                   onTap: SignInUser,
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 20,
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.blueGrey.shade400,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                        ),
+                        child: Text(
+                          'Atau lanjutkan dengan',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 0.5,
+                          color: Colors.blueGrey.shade400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SquareTile(
+                        //onTap: ()=> ,
+                        imagePath: 'assets/google.png'
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -69,7 +114,7 @@ class LoginPage extends StatelessWidget {
                     )
                   ],
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 const Image(
                   image: AssetImage('assets/logoPemilu.png'),
                   height: 120,
