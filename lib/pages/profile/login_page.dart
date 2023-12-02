@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'components/my_textfield.dart';
-import 'components/button.dart';
+import '../components/my_textfield.dart';
+import '../components/button.dart';
 
 class LoginPage extends StatelessWidget {
 

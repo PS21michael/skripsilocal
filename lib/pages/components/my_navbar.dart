@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:skripsilocal/pages/news/news_page.dart';
+
+import '../home_page.dart';
 
 class myNavBar extends StatefulWidget {
   const myNavBar ({super.key});
@@ -10,6 +13,8 @@ class myNavBar extends StatefulWidget {
 }
 
 class _myNavBarState extends State<myNavBar> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,6 +30,10 @@ class _myNavBarState extends State<myNavBar> {
           tabBackgroundColor: Colors.red.shade200,
           gap : 10,
           padding: EdgeInsets.all(10),
+          selectedIndex: _selectedIndex,
+          onTabChange: (index){
+            _tabChange(index);
+          },
           tabs: const [
             GButton(
               icon: Icons.home,
@@ -43,4 +52,32 @@ class _myNavBarState extends State<myNavBar> {
       ),
     );
   }
+
+  void _tabChange (int index){
+    setState(() {
+      _selectedIndex = index;
+      // You can use Navigator to push/pop pages based on the index
+      switch (index) {
+        case 0:
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => HomePage()
+              )
+          );
+          break;
+        case 1:
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => NewsPage()
+              )
+          );
+          break;
+        case 2:
+        // Navigate to Profile page
+        // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          break;
+      }
+    });
+  }
 }
+

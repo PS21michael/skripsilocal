@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/login_page.dart';
+import 'package:skripsilocal/pages/profile/login_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
