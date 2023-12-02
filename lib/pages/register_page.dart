@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'components/my_textfield.dart';
 import 'components/button.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
 
   RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
-  final nameController = TextEditingController();
+
   final emailController = TextEditingController();
+
   final repasswordController = TextEditingController();
-  final birthdayController = TextEditingController();
-  final provinsicontroller = TextEditingController();
 
   void SignUpUser(){
 
@@ -32,28 +38,18 @@ class RegisterPage extends StatelessWidget {
                   Icons.lock,
                   size: 100,
                 ),
-                const SizedBox(height: 30),
-                MyTextField(
-                  controller: nameController,
-                  hintText: 'Nama Lengkap',
-                  obscureText: false,
-                ),
                 const SizedBox(height: 10),
+                const Text(
+                  'Daftar dulu yuk !',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(height: 20),
                 MyTextField(
                   controller: emailController,
                   hintText: 'Email',
-                  obscureText: true,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: provinsicontroller,
-                  hintText: 'Provinsi',
-                  obscureText: true,
-                ),
-                const SizedBox(height: 10),
-                MyTextField(
-                  controller: birthdayController,
-                  hintText: 'Tanggal Lahir',
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),

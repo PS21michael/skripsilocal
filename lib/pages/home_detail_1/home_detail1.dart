@@ -30,14 +30,15 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
               children: const [
                 Post1(),
                 Post2(),
+                Post1(),
               ],
             ),
           ),
           SizedBox(height: 5),
           SmoothPageIndicator(
             controller: _controller,
-            count: 2,
-            effect: JumpingDotEffect(
+            count: 3,
+            effect: const JumpingDotEffect(
               dotColor: Colors.grey,
               activeDotColor: Colors.black,
               dotHeight: 10,
