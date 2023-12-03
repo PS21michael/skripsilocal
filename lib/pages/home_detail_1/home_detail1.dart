@@ -50,7 +50,7 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
           SizedBox(height: 10),
         ],
       ),
-      bottomNavigationBar: myNavBar(index: 0),
+      bottomNavigationBar: MyNavBar(index: 0),
     );
   }
 }

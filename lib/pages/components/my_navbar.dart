@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:skripsilocal/pages/news/news_page.dart';
 
 import '../home_page.dart';
 
-class myNavBar extends StatefulWidget {
+class MyNavBar extends StatefulWidget {
   final int index;
 
-  const myNavBar ({
+  const MyNavBar ({
     super.key,
     required this.index,
   });
 
   @override
-  State<myNavBar> createState() => _myNavBarState();
+  State<MyNavBar> createState() => _MyNavBarState();
 }
 
-class _myNavBarState extends State<myNavBar> {
+class _MyNavBarState extends State<MyNavBar> {
   late int _selectedIndex;
 
+  @override
   void initState(){
     super.initState();
     _selectedIndex = widget.index;
@@ -39,7 +39,7 @@ class _myNavBarState extends State<myNavBar> {
           color: Colors.white,
           tabBackgroundColor: Colors.red.shade200,
           gap : 10,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
           onTabChange: (index){
             _tabChange(index);
