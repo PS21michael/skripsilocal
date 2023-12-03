@@ -6,19 +6,29 @@ import 'package:skripsilocal/pages/news/news_page.dart';
 import '../home_page.dart';
 
 class myNavBar extends StatefulWidget {
-  const myNavBar ({super.key});
+  final int index;
+
+  const myNavBar ({
+    super.key,
+    required this.index,
+  });
 
   @override
   State<myNavBar> createState() => _myNavBarState();
 }
 
 class _myNavBarState extends State<myNavBar> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  void initState(){
+    super.initState();
+    _selectedIndex = widget.index;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red.shade400,
+      color: Colors.red.shade500,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,

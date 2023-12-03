@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: myNavBar(),
+      bottomNavigationBar: myNavBar(index: 0),
     );
   }
 }

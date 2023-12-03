@@ -12,7 +12,7 @@ class NewsPage extends StatelessWidget {
       body: Container(
         color: Colors.orange,
       ),
-      bottomNavigationBar: myNavBar(),
+      bottomNavigationBar: myNavBar(index: 1),
     );
   }
 }
