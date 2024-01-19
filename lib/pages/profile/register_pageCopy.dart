@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/src/features/authentication/controller/signup_controller.dart';
 import '../../src/features/authentication/models/user_model.dart';
 import '../components/my_textfield.dart';
@@ -17,8 +16,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  var randomNames = RandomNames(Zone.us);
-
   final controller = Get.put(SignUpController());
   final _formKey = GlobalKey<FormState>();
 
@@ -26,16 +23,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final repasswordController = TextEditingController();
-
-  static String generateUserName(fullName){
-    List<String> nameParts = fullName.split("");
-    String firstName = nameParts[0].toLowerCase();
-    String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
-
-    String camelCaseUsername = "$firstName$lastName";
-    String usernameWithPrefix = "User_$camelCaseUsername";
-    return usernameWithPrefix;
-  }
 
   void SignUpUser(){}
 
@@ -63,6 +50,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontSize: 20,
                   ),
                 ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: controller.fullName,
+                  hintText: 'Full Name',
+                  obscureText: false,
+                ),
                 const SizedBox(height: 10),
                 MyTextField(
                   controller: controller.email,
@@ -71,13 +64,38 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
+                  controller: controller.userName,
+                  hintText: 'User Name',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  controller: controller.province,
+                  hintText: 'Provinsi',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  controller: controller.dateOfBirth,
+                  hintText: 'Tanggal Lahir',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  controller: controller.phoneNo,
+                  hintText: 'Phone Number',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+
+                MyTextField(
                   controller: controller.password,
                   hintText: 'Password',
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
-                  controller: controller.confirmPassword,
+                  controller: repasswordController,
                   hintText: 'Konfirmasi Password',
                   obscureText: true,
                 ),
@@ -85,20 +103,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 theButton(
                   text: 'Sign Up',
                   onTap: (){
-
-                    // Data yg akan di assign untuk pertama kali
+                    // Create User Collection
+                    print('Fullname : ${controller.fullName.text.trim()}');
                     final user = UserModel(
-                        fullName: randomNames.manFullName(),
+                        fullName: controller.fullName.text.trim(),
                         email: controller.email.text.trim(),
-                        userName: generateUserName(randomNames.manFullName()),
-                        province: "ProvinsiUtama",
-                        dateOfBirth: "01-01-1900",
+                        userName: controller.userName.text.trim(),
+                        province: controller.province.text.trim(),
+                        dateOfBirth: controller.dateOfBirth.text.trim(),
                         password: controller.password.text.trim(),
-                        joinDate: DateTime.now().toString(),
-                        profilePicture: 'https://firebasestorage.googleapis.com/v0/b/indonesia-memilih-c26b0.appspot.com/o/Users%2FImages%2FProfile%2FDefaultImageProject.jpg?alt=media&token=6b2e46b5-a2f6-4377-ade1-7a1046724b8c');
+                        joinDate: "",
+                        profilePicture: controller.profilePicture.text.trim());
 
-                    SignUpController.instace.registerAndCreateUser(controller.email.text.trim(), controller.password.text.trim(),
-                        controller.confirmPassword.text.trim(), user);
+                    SignUpController.instace.createUser(user);
                   },
                 ),
                 const SizedBox(height: 30),

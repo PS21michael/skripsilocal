@@ -1,10 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:skripsilocal/firebase_options.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/landing_page.dart';
+import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 import 'pages/profile/login_page.dart';
 import 'pages/profile/register_page.dart';
 
-void main(){
+Future<void> main() async {
+
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  await GetStorage.init();
+
+  // WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).
+  then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -13,10 +27,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build (BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //home: MyHeader(),
-      home: HomePage(),
+      // home: HomePage(),
+      // home: RegisterPage(),
+      home : LoginPage(),
     );
   }
 }
