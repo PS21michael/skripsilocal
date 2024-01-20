@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
 import 'package:skripsilocal/pages/home_detail2/home_detail2.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
+import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
+import '../src/features/authentication/controller/signup_controller.dart';
+import '../src/repository/authentication_repository/authentication_repository.dart';
 import 'components/my_header.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +21,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final controller = Get.put(SignUpController());
+
   List calon = [
     Calon(
         nomorUrut: 'Pasangan Nomor Urut #1',
@@ -89,6 +97,29 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>ProfileScreen());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("SO/Profile",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          )
+
         ],
       ),
       bottomNavigationBar: MyNavBar(index: 0),

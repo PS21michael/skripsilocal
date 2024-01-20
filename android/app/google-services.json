@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "859508151204",
+    "project_id": "indonesia-memilih-c26b0",
+    "storage_bucket": "indonesia-memilih-c26b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859508151204:android:64866f2b04c772a9b1e731",
+        "android_client_info": {
+          "package_name": "com.example.skripsilocal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859508151204-rhlvceej2g0rt0rdjhiuk24i04c966d6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.skripsilocal",
+            "certificate_hash": "335dddae6d73bd38b6c387280c62b31bb5f656d4"
+          }
+        },
+        {
+          "client_id": "859508151204-g9g31044c9i8prtsmd61d6ntlcukvhmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDInkXqQcM9u3kpy5ca_P09pDs0VUUNQZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859508151204-g9g31044c9i8prtsmd61d6ntlcukvhmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
