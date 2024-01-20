@@ -22,18 +22,21 @@ class _HomePageState extends State<HomePage> {
         namaCapres: 'Anies Baswedan',
         namaCawapres: 'Muhaimin Iskandar',
         imagePath: 'assets/1246755_720.jpg',
+        koalisi: 'Koalisi Perubahan'
     ),
     Calon(
         nomorUrut: 'Pasangan Nomor Urut #2',
         namaCapres: 'Prabowo Subianto',
         namaCawapres: 'Gibran Rakabuming',
-        imagePath: 'assets/Didukung-Banyak-Tokoh-Berpengaruh-Prabowo-Gibran-Makin-Kuat-di-Jabar.jpg'
+        imagePath: 'assets/Didukung-Banyak-Tokoh-Berpengaruh-Prabowo-Gibran-Makin-Kuat-di-Jabar.jpg',
+        koalisi : 'Koalisi Indonesia Maju'
     ),
     Calon(
         nomorUrut: 'Pasangan Nomor Urut #3',
         namaCapres: 'Ganjar Pranowo',
         namaCawapres: 'Mahmud MD',
-        imagePath: 'assets/rakernas-iv-pdip-5_169-1.jpeg'
+        imagePath: 'assets/rakernas-iv-pdip-5_169-1.jpeg',
+        koalisi: ''
     ),
   ];
 

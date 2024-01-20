@@ -45,7 +45,14 @@ class MyTile extends StatelessWidget {
                 Image.asset(
                   calon.imagePath,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
+                Text(
+                  calon.koalisi,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 23,
+                  ),
+                ),
                 SizedBox(
                   child: Column(
                     children: [
