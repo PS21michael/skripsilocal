@@ -1,7 +1,4 @@
-import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +10,7 @@ import 'package:skripsilocal/src/features/authentication/screens/mail_verificati
 import 'package:skripsilocal/src/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
 
-import '../../../pages/profile/core/update_screen_profile_advanced.dart';
+import '../../../pages/profile/core/update_profile_new.dart';
 import '../user_repository/user_repository.dart';
 
 class AuthenticationRepository extends GetxController{
@@ -50,7 +47,7 @@ class AuthenticationRepository extends GetxController{
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     // screenRedirect();
-    setInitialScreen(_firebaseUser.value);
+    // setInitialScreen(_firebaseUser.value);
     // ever(_firebaseUser, _setInitialScreen);
   }
 
@@ -72,10 +69,10 @@ class AuthenticationRepository extends GetxController{
     //   }
     // }
 
-    user == null ? Get.offAll(()=> RegisterPage())
+    user == null ? Get.offAll(()=> const RegisterPage())
         : user.emailVerified ?
-    Get.offAll(HomePage()) :
-        Get.offAll(MailVerification());
+    Get.offAll(const HomePage()) :
+        Get.offAll(const MailVerification());
     print('user authenticated : ${user?.emailVerified}');
   }
 
@@ -87,10 +84,10 @@ class AuthenticationRepository extends GetxController{
       // if the user logged in
       if(user.emailVerified){
         // if the user's email is verified, navigate to the main menu
-        Get.offAll(HomePage());
+        Get.offAll(const HomePage());
       } else {
         // if the user's email is not verified, navigate to verification menu
-        Get.offAll(MailVerification());
+        Get.offAll(const MailVerification());
       }
     } else{
       // local storage
@@ -98,16 +95,16 @@ class AuthenticationRepository extends GetxController{
 
       // check if it's first time launching app
       deviceStorage.read('isFirstTime') != true ?
-      Get.offAll(LoginPage()) :
+      Get.offAll(const LoginPage()) :
           // TODO
           // Nanti ubah ke onboarding screen atau splash screen
-      Get.offAll(MailVerification());
+      Get.offAll(const MailVerification());
     }
 
 
     //Local storage
     deviceStorage.writeIfNull('isFirstTime', true);
-    deviceStorage.read('isFirstTime') != true ? Get.offAll(()=> RegisterPage()) : Get.offAll(()=> RegisterPage());
+    deviceStorage.read('isFirstTime') != true ? Get.offAll(()=> const RegisterPage()) : Get.offAll(()=> const RegisterPage());
 }
 
 
@@ -131,9 +128,9 @@ class AuthenticationRepository extends GetxController{
       final ex = SigninEmailAndPasswordFailure.code(e.code);
       throw ex.message;
     } on FormatException catch (e){
-      throw 'Something went wrong Format exception : ${e}';
+      throw 'Something went wrong Format exception : $e';
     } on PlatformException catch (e){
-      throw 'Something went wrong Platform exception : ${e}';
+      throw 'Something went wrong Platform exception : $e';
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
       throw ex.message;
@@ -165,7 +162,7 @@ class AuthenticationRepository extends GetxController{
 
   Future<bool> verifyOTP(String otp) async{
     var credentials = await _auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: this.verificationId.value,
+        verificationId: verificationId.value,
         smsCode: otp));
 
     return credentials.user != null ? true : false;
@@ -224,10 +221,10 @@ class AuthenticationRepository extends GetxController{
       try{
         await _auth.createUserWithEmailAndPassword(email: email, password: password);
         isSuccessCreateUser = "True";
-        _firebaseUser.value == null ? Get.offAll(()=>RegisterPage())
+        _firebaseUser.value == null ? Get.offAll(()=>const RegisterPage())
             : _firebaseUser.value?.emailVerified == true
-        ? Get.to(()=>LoginPage()) :
-        Get.to(()=>MailVerification());
+        ? Get.to(()=>const LoginPage()) :
+        Get.to(()=>const MailVerification());
 
       } on FirebaseAuthException catch(e){
         final ex = SignupEmailAndPasswordFailure.code(e.code);
@@ -249,18 +246,18 @@ class AuthenticationRepository extends GetxController{
     try{
 
       print("Firebase usser : ${_firebaseUser.value}");
-      print("Email given : ${email}");
-      print("Password given : ${password}");
+      print("Email given : $email");
+      print("Password given : $password");
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       //Sekarang di comment untuk menentukan apakah user udah pernah dafar atau belum
       if(_firebaseUser.value != null){
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
-          Get.to(()=>UpdateScreenProfilePage());
+          Get.to(()=>const UpdateProfile_New());
         } else{
-          Get.offAll(()=>HomePage());
+          Get.offAll(()=>const HomePage());
         }
       } else{
-        Get.to(()=>LoginPage());
+        Get.to(()=>const LoginPage());
       }
       // _firebaseUser.value != null ? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
     } on FirebaseAuthException catch(e){
@@ -294,7 +291,7 @@ class AuthenticationRepository extends GetxController{
     } catch(e){
       print('checkError2 : ');
       // isGoogleLoading.value=false;
-      print('Error Happend : ${e}');
+      print('Error Happend : $e');
 
     }
   }
@@ -315,7 +312,7 @@ class AuthenticationRepository extends GetxController{
         );
 
         await _firebaseAuth.signInWithCredential(credential);
-        Get.offAll(()=>HomePage());
+        Get.offAll(()=>const HomePage());
 
       }
 
@@ -336,7 +333,7 @@ class AuthenticationRepository extends GetxController{
     final GoogleSignIn googleSignIn = GoogleSignIn();
     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     emailGoogleSignIn = googleSignInAccount!.email;
-    print('CheckPointGoogle 1, Email udah di assign ${emailGoogleSignIn}');
+    print('CheckPointGoogle 1, Email udah di assign $emailGoogleSignIn');
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount.authentication;
@@ -359,7 +356,7 @@ class AuthenticationRepository extends GetxController{
   }
 
   String getEmailGoogleSingIn(){
-    print('Email yg dikirim repo : ${emailGoogleSignIn}');
+    print('Email yg dikirim repo : $emailGoogleSignIn');
     return emailGoogleSignIn;
   }
 
@@ -369,7 +366,7 @@ class AuthenticationRepository extends GetxController{
   Future<void> logout() async {
     // await GoogleSignIn().signOut();
     await _auth.signOut();
-    Get.to(()=>LoginPage());
+    Get.to(()=>const LoginPage());
 
     // firebaseUser != null? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
 

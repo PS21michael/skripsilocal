@@ -9,12 +9,11 @@ import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import '../src/features/authentication/controller/signup_controller.dart';
-import '../src/repository/authentication_repository/authentication_repository.dart';
 import 'components/my_header.dart';
 
 class HomePage extends StatefulWidget {
 
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -53,7 +52,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeDetail_1(),
+          builder: (context) => const HomeDetail_1(),
         ),
       );
     }
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeDetail_2(),
+          builder: (context) => const HomeDetail_2(),
         ),
       );
     }
@@ -69,7 +68,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeDetail_3(),
+          builder: (context) => const HomeDetail_3(),
         ),
       );
     }
@@ -79,7 +78,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: MyHeader(),
+      appBar: const MyHeader(),
       body: Column(
         children: [
           Expanded(
@@ -99,7 +98,7 @@ class _HomePageState extends State<HomePage> {
           ),
           GestureDetector(
             onTap: (){
-              Get.to(()=>ProfileScreen());
+              Get.to(()=>const ProfileScreen());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -122,7 +121,7 @@ class _HomePageState extends State<HomePage> {
 
         ],
       ),
-      bottomNavigationBar: MyNavBar(index: 0),
+      bottomNavigationBar: const MyNavBar(index: 0),
     );
   }
 }

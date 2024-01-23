@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
-import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/landing_page.dart';
+import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
+import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
+import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 import 'pages/profile/login_page.dart';
-import 'pages/profile/register_page.dart';
 
 Future<void> main() async {
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       //home: MyHeader(),
       // home: HomePage(),
       // home: RegisterPage(),
-      home : LoginPage(),
+      home : ProfilePage(),
     );
   }
 }

@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/pages/profile/core/widget/profile_menu.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
 import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
 
-import '../../components/my_textfield.dart';
 
 class ManageUserScreen extends StatefulWidget{
 
@@ -31,7 +28,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: ()=> Get.back(), icon: const Icon(LineAwesomeIcons.arrow_circle_left),),
-        title: Text("Edit Profile", style: Theme.of(context).textTheme.headline4,),
+        title: Text("Edit Profile", style: Theme.of(context).textTheme.headlineMedium,),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(isDark? LineAwesomeIcons.sun : LineAwesomeIcons.moon),),
         ],
@@ -43,7 +40,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
             future : controller.getAllUser(),
             builder: (context, snapshot){
               // done means data completly fetch
-              print('Checkpoint 2: '+ snapshot.connectionState.toString());
+              print('Checkpoint 2: ${snapshot.connectionState}');
 
               if(snapshot.connectionState == ConnectionState.done){
                 if(snapshot.hasData){
@@ -164,7 +161,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                   return const Center(child: Text("Something Went Wrong"),);
                 }
               } else{
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

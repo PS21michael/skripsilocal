@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OTPScreen extends StatelessWidget{
@@ -10,7 +9,7 @@ class OTPScreen extends StatelessWidget{
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(

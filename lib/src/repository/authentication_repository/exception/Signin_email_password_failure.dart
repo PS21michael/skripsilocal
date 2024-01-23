@@ -19,7 +19,7 @@ class SigninEmailAndPasswordFailure{
         return const SigninEmailAndPasswordFailure('This user has been disabled. Please contact support for help.');
       case 'wrong-password' :
         return const SigninEmailAndPasswordFailure('Wrong Password.');
-      default: return SigninEmailAndPasswordFailure();
+      default: return const SigninEmailAndPasswordFailure();
     }
 
   }

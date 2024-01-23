@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -36,7 +35,7 @@ class ProfileMenuWidget extends StatelessWidget {
         ),
         child: Icon(icon, color: Colors.blue,),
       ),
-      title: Text(title, style: Theme.of(context).textTheme.bodyText1?.apply(color: textColor),),
+      title: Text(title, style: Theme.of(context).textTheme.bodyLarge?.apply(color: textColor),),
       trailing :endIcon? Container(
         width: 30, height: 30,
         decoration: BoxDecoration(

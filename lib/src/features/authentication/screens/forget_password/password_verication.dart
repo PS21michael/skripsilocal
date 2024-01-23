@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -7,7 +6,6 @@ import 'package:skripsilocal/src/repository/authentication_repository/authentica
 
 import '../../../../../pages/components/my_textfield.dart';
 import '../../../../../pages/profile/login_page.dart';
-import '../../controller/mail_verification_controller.dart';
 
 class PasswordVerification extends StatelessWidget{
   const PasswordVerification ({Key? key});
@@ -46,7 +44,7 @@ class PasswordVerification extends StatelessWidget{
               SizedBox(
                 width: 200,
                 child: OutlinedButton(child: Text("Continue".tr),
-                  onPressed: (){Get.to(()=>LoginPage());},),
+                  onPressed: (){Get.to(()=>const LoginPage());},),
               ),
               const SizedBox(height: 20,),
               TextButton(onPressed: ()=> ForgetPasswordController.instance.resendPasswordResetEmail(),

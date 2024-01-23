@@ -20,16 +20,18 @@ class _theButtonState extends State<theButton> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        padding: EdgeInsets.all(25),
-        margin: EdgeInsets.symmetric(horizontal: 120),
+        padding: const EdgeInsets.all(25),
+        margin: const EdgeInsets.symmetric(horizontal: 120),
+        width: 200,
+        height: 80,
         decoration: BoxDecoration(
           color : Colors.black,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(25),
         ),
         child: Center(
           child: Text(
             widget.text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,

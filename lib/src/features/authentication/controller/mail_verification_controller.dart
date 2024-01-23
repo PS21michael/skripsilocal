@@ -22,7 +22,7 @@ class MailVerificationController extends GetxController{
     }catch(e){
       // Helper.errorSncakBar();
       print(e);
-      throw e;
+      rethrow;
     }
 
   }

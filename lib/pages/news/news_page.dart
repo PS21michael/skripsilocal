@@ -8,11 +8,11 @@ class NewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyHeader(),
+      appBar: const MyHeader(),
       body: Container(
         color: Colors.orange,
       ),
-      bottomNavigationBar: MyNavBar(index: 1),
+      bottomNavigationBar: const MyNavBar(index: 1),
     );
   }
 }

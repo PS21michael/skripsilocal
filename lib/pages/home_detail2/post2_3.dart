@@ -9,7 +9,7 @@ class Post2_3 extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: ListView(
         children: [
-          Text(
+          const Text(
             'Gibran Rakabuming Raka',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -22,7 +22,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Tempat Lahir : ',
@@ -47,7 +47,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Tanggal Lahir : ',
@@ -72,7 +72,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Usia : ',
@@ -97,7 +97,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Agama : ',
@@ -122,7 +122,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Istri : ',
@@ -147,7 +147,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Anak :\n',
@@ -173,7 +173,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Riwayat Pendidikan :\n',
@@ -201,7 +201,7 @@ class Post2_3 extends StatelessWidget {
           Card(
             child: ListTile(
               title: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Riwayat Pekerjaan :\n',
