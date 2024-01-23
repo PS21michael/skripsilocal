@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skripsilocal/pages/news/news_page.dart';
+import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 
 import '../home_page.dart';
 
@@ -71,20 +72,23 @@ class _MyNavBarState extends State<MyNavBar> {
         case 0:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => HomePage()
+                  (context) => const HomePage()
               )
           );
           break;
         case 1:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => NewsPage()
+                  (context) => const NewsPage()
               )
           );
           break;
         case 2:
-        // Navigate to Profile page
-        // Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => const ProfileScreen()
+              )
+          );
           break;
       }
     });

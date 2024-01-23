@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 
 import '../../features/authentication/models/user_model.dart';
 
@@ -113,16 +112,16 @@ class UserRepository extends GetxController{
     // getSingelUserDetails(email);
     print('User Id yang mau di update : ${user.id}');
     print('Email yang mau di update : ${user.email}');
-    print('Email yang mau di update2 : ${Id}');
+    print('Email yang mau di update2 : $Id');
 
     print('CaraKedua : Id yang mau diupdate : ${user.id}');
     print('CaraKedua : Id yang mau dikirm : ${UserRepository.instance.getUserModelId()}');
     // await _db.collection("/Users").doc(email).update(user.toJson()).catchError((error, stackTrice){
     await _db.collection("/Users").doc(Id).update(user.toJson()).catchError((error, stackTrice){
-      print('Thi1 the error : ${error}');
+      print('Thi1 the error : $error');
       print('Thi2 the error : ${stackTrice.message}');
       print(error.toString());
-    });;
+    });
   }
 
   Future<void> updateSingelRecord(Map<String, dynamic> json) async{
@@ -131,11 +130,11 @@ class UserRepository extends GetxController{
 
 
   Future<String> uploadImage (String path, XFile image) async{
-    print('Path yang diterima : ${path}');
+    print('Path yang diterima : $path');
     final ref = FirebaseStorage.instance.ref(path).child(image.name);
     await ref.putFile(File(image.path));
     final url = await ref.getDownloadURL();
-    print('Url yang dibalikin : ${url}');
+    print('Url yang dibalikin : $url');
     return url;
   }
 

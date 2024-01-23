@@ -9,7 +9,7 @@ import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
 
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -105,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Sudah punya akun?'
                     ),
                     const SizedBox(width: 4),
@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       onTap: (){
                         Navigator.push(context,
                             MaterialPageRoute(builder:
-                                (context)=> LoginPage()));
+                                (context)=> const LoginPage()));
                       },
                       child : const Text(
                         'Login yuk!',
@@ -124,11 +124,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 40),
-                const Image(
-                  image: AssetImage('assets/logoPemilu.png'),
-                  height: 120,
                 ),
                 const SizedBox(height: 40),
               ],

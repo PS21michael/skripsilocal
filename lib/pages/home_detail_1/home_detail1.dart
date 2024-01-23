@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:skripsilocal/pages/components/my_header.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
-import 'package:skripsilocal/pages/home_detail_1/post_1.dart';
-import 'package:skripsilocal/pages/home_detail_1/post_2.dart';
+import 'package:skripsilocal/pages/home_detail_1/post1_1.dart';
+import 'package:skripsilocal/pages/home_detail_1/post1_2.dart';
+import 'package:skripsilocal/pages/home_detail_1/post1_3.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeDetail_1 extends StatefulWidget {
-  HomeDetail_1({Key? key}) : super(key: key);
+  const HomeDetail_1({Key? key}) : super(key: key);
 
   @override
   State<HomeDetail_1> createState() => _HomeDetail_1State();
@@ -20,7 +19,7 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyHeader(),
+      appBar: const MyHeader(),
       body: Column(
         children: [
           Expanded(
@@ -28,13 +27,13 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
               controller: _controller,
               scrollDirection: Axis.horizontal,
               children: const [
-                Post1(),
-                Post2(),
-                Post1(),
+                Post1_1(),
+                Post1_2(),
+                Post1_3(),
               ],
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           SmoothPageIndicator(
             controller: _controller,
             count: 3,
@@ -47,10 +46,10 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
               verticalOffset: 5,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
-      bottomNavigationBar: MyNavBar(index: 0),
+      bottomNavigationBar: const MyNavBar(index: 0),
     );
   }
 }

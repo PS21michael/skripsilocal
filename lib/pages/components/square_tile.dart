@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class SquareTile extends StatefulWidget {
   final String imagePath;
+  final Function()? onTap;
   //final Function()? onTap;
 
   const SquareTile({
     super.key,
     required this.imagePath,
+    required this.onTap,
     //required this.onTap,
   });
 
@@ -18,9 +20,9 @@ class _SquareTileState extends State<SquareTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //onTap: widget.onTap,
+      onTap: widget.onTap,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.grey.shade400,

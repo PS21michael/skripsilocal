@@ -16,7 +16,7 @@ class SignupEmailAndPasswordFailure{
         return const SignupEmailAndPasswordFailure('Operation is not allowed. Please contact support.');
       case 'user-disabled' :
         return const SignupEmailAndPasswordFailure('This user has been disabled. Please contact support for help.');
-      default: return SignupEmailAndPasswordFailure();
+      default: return const SignupEmailAndPasswordFailure();
     }
   }
 

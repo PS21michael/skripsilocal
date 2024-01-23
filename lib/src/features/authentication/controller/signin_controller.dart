@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 
-import '../../../../pages/profile/core/update_screen_profile_advanced.dart';
 import '../../../repository/user_repository/user_repository.dart';
-import '../models/user_model.dart';
 
 class SignInController extends GetxController{
 
@@ -32,12 +30,12 @@ class SignInController extends GetxController{
   Future<void> googleSignIn()async{
     try{
       emailGoogle = AuthenticationRepository.instance.getEmailGoogleSingIn();
-      print('CheckPointGoogle 2, Email udah di assign ${emailGoogle}');
+      print('CheckPointGoogle 2, Email udah di assign $emailGoogle');
       await AuthenticationRepository.instance.signup();
 
       // await userRepo.createUer(user);
     }catch (e){
-      print('Error In Sign In With Google : ${e}');
+      print('Error In Sign In With Google : $e');
     }
   }
 
@@ -52,7 +50,7 @@ class SignInController extends GetxController{
       await auth.loginUserWithEmailAndPassword(email, password);
     } catch(e){
       isLoading.value = false;
-      print('Error In Login : ${e}');
+      print('Error In Login : $e');
     }
   }
 

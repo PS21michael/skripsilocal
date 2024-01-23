@@ -30,10 +30,10 @@ class ProfileController extends GetxController{
     final email = _authRepo.firebaseUser?.email;
     if(email != null){
       print('Checkpint 22');
-      print('Test  1 '+ _userRepo.getSingelUserDetails(email).toString());
+      print('Test  1 ${_userRepo.getSingelUserDetails(email)}');
       return await _userRepo.getSingelUserDetails(email);
     } else{
-      print('Error' + "Login to continue");
+      print('Error' "Login to continue");
     }
 
   }
@@ -81,14 +81,12 @@ class ProfileController extends GetxController{
 
   uploadImageByLink(String link) async{
     final image = link;
-    if(image != null){
-      final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
-      Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
-      await _userRepo.updateSingelRecord(json);
-      user.value.profilePicture = imageUrl;
-      print("CheckPoint Upload Image Baru");
+    final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
+    Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
+    await _userRepo.updateSingelRecord(json);
+    user.value.profilePicture = imageUrl;
+    print("CheckPoint Upload Image Baru");
     }
-  }
 
   String getprofileUrl(){
     getUserData();

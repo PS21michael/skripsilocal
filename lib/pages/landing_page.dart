@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/profile/login_page.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -16,10 +15,10 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => HomePage(),
+          builder: (_) => const HomePage(),
         ),
       );
     });
@@ -49,7 +48,7 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
             end: Alignment.bottomCenter
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(

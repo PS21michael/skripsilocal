@@ -13,20 +13,20 @@ class ForgetPasswordController extends GetxController{
   sendPasswordResetEmail()async{
     try{
       await AuthenticationRepository.instance.sendEmailForgetPassword(email.text.trim());
-      print('Email Sent' + 'Email link sent to reset your password');
+      print('Email Sent' 'Email link sent to reset your password');
     } catch (e){
-      print('Error di controller send password : ${e}');
-      throw e;
+      print('Error di controller send password : $e');
+      rethrow;
     }
   }
 
   resendPasswordResetEmail() async{
     try{
       await AuthenticationRepository.instance.sendEmailForgetPassword(email.text.trim());
-      print('Email has been Sent' + 'Email link sent to reset your password');
+      print('Email has been Sent' 'Email link sent to reset your password');
     } catch (e){
-      print('Error di controller send password : ${e}');
-      throw e;
+      print('Error di controller send password : $e');
+      rethrow;
     }
   }
 

@@ -1,29 +1,25 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/pages/profile/core/update_screen_profile_advanced.dart';
-import 'package:skripsilocal/pages/profile/core/widget/profile_menu.dart';
+import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
 import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
-import 'package:skripsilocal/src/repository/user_repository/user_repository.dart';
 
 import '../../components/button.dart';
 import '../../components/my_textfield.dart';
 
-class UpdateProfileScreen extends StatefulWidget{
+class UpdateProfile extends StatefulWidget{
 
-  const UpdateProfileScreen ({Key? key}) : super (key: key);
+  const UpdateProfile ({Key? key}) : super (key: key);
 
   @override
-  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
+  State<UpdateProfile> createState() => _UpdateProfileScreenState();
 }
 
-class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+class _UpdateProfileScreenState extends State<UpdateProfile> {
 
   var ctr = 0;
   var tempString = "";
@@ -36,13 +32,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   @override
   Widget build(BuildContext context){
     var localtime = DateTime.timestamp();
-    print('Waktu sekarang : ${localtime}');
+    print('Waktu sekarang : $localtime');
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: ()=> Get.back(), icon: const Icon(LineAwesomeIcons.arrow_circle_left),),
-        title: Text("Edit Profile", style: Theme.of(context).textTheme.headline4,),
+        title: Text("Edit Profile", style: Theme.of(context).textTheme.headlineMedium,),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(isDark? LineAwesomeIcons.sun : LineAwesomeIcons.moon),),
         ],
@@ -54,7 +50,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             future : controller.getUserData(),
             builder: (context, snapshot){
               // done means data completly fetch
-              print('Checkpoint 2: '+ snapshot.connectionState.toString());
+              print('Checkpoint 2: ${snapshot.connectionState}');
 
               if(snapshot.connectionState == ConnectionState.done){
                 print('Pemanggilan ke ${ctr+=1}');
@@ -68,7 +64,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   final dateOfBirth = TextEditingController(text: userData.dateOfBirth);
                   final userName = TextEditingController(text: userData.userName);
 
-                  print('Check User data '+userData.email);
+                  print('Check User data ${userData.email}');
                   return Column(
                     children: [
                       Stack(
@@ -85,7 +81,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                               await controller.uploadProfilePicture();
                               Timer(const Duration(seconds: 5),() {
                                 print("This code executes after 15 seconds");
-                                Get.to(()=>ProfileScreen());
+                                Get.to(()=>const ProfileScreen());
                               });
 
                               // Get.to(()=>ProfileScreen());
@@ -133,12 +129,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
                           SizedBox(width : double.infinity,
                             child: ElevatedButton(
-                              onPressed: ()=> Get.to(()=>UpdateScreenProfilePage()),
+                              onPressed: ()=> Get.to(()=>const UpdateProfile_New()), style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.yellow, side: BorderSide.none,
+                              shape: const StadiumBorder(),),
                               child: const Text("Edit Profile",
                                   style: TextStyle(color: Colors.black))
-                              , style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.yellow, side: BorderSide.none,
-                              shape: StadiumBorder(),),
+                              ,
                             ),
                           ),
                           const SizedBox(height: 10,),
@@ -146,7 +142,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                             text: 'Back',
                             onTap: (){
                               // controller.updateRecord(user);
-                              Get.to(()=>ProfileScreen());
+                              Get.to(()=>const ProfileScreen());
                               // if(_formkey.currentState!.validate()){
                               // print("Password given page level: ${controller.email.text.trim()}");
                               // print("Email given page level: ${controller.password.text.trim()}");
@@ -158,7 +154,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                           ),
                           const SizedBox(height: 20),
 
-                          Row(
+                          const Row(
                             children: [
                               Text.rich(
                                 TextSpan(
@@ -186,10 +182,10 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   return const Center(child: Text("Something Went Wrong"),);
                 }
               } else{
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
-              };
+              }
               print('CheckPoint 456');
             },
 
