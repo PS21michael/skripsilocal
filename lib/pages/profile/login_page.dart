@@ -168,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                     //   FirebaseAuth.instance.currentUser?.reload();
                     //   print("Yeah, this line is printed after 3 seconds");
                     // });
-                    FirebaseAuth.instance.currentUser?.reload();
+                    // FirebaseAuth.instance.currentUser?.reload();
                     if(emailTemp == "") {
                       print('Email null, silahkan coba lagi ${i+=1}');
                     } else{
