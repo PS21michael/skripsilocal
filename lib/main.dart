@@ -7,7 +7,6 @@ import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
-import 'package:skripsilocal/pages/profile/register_page.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 import 'pages/profile/login_page.dart';
 
@@ -34,8 +33,7 @@ class MyApp extends StatelessWidget {
       //home: MyHeader(),
       // home: HomePage(),
       // home: RegisterPage(),
-      // home : ProfilePage(),
-      home: UpdateProfile_New(),
+      home : ProfilePage(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -21,9 +22,16 @@ class UpdateProfile_New extends StatefulWidget {
 }
 
 class _UpdateProfile_NewState extends State<UpdateProfile_New> {
+
+  _UpdateProfile_NewState() {
+    _provinsiVal = _provinsiList[0];
+  }
+
   final controller = Get.put(SignInController());
   final _formkey = GlobalKey<FormState>();
   final _authRepo = Get.put(AuthenticationRepository());
+  final _provinsiList = ["JawaTimur", "JawaBarat", "JawaTengah", "Banten"];
+  String? _provinsiVal = "";
 
   final emailController = TextEditingController();
   final fullNameController = TextEditingController();
@@ -37,169 +45,214 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
 
   @override
   Widget build(BuildContext context) {
-    var i =0;
+    var i = 0;
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
     String userNameCustomer = UserRepository.instance.getUserModelUserName();
     String provinceCustomer = UserRepository.instance.getUserModelProvince();
-    String dateOfBirthCustomer = UserRepository.instance.getUserModelDateOfBirth();
+    String dateOfBirthCustomer = UserRepository.instance
+        .getUserModelDateOfBirth();
     String passwordCustomer = UserRepository.instance.getUserModelPassword();
     String joinDateCustomer = UserRepository.instance.getUserModelJoinDate();
-    String profilePictureCustomer = UserRepository.instance.getUserModelProfilePicture();
+    String profilePictureCustomer = UserRepository.instance
+        .getUserModelProfilePicture();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Container(
-            key : _formkey,
-            child: Align(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 50),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Isi field yang mau di update',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                        ),
+        child: Container(
+          key: _formkey,
+          child: Align(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 50),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Isi field yang mau di update',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 25,
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text(
-                        'Nama Lengkap :',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                  ),
+                  const SizedBox(height: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Nama Lengkap :',
+                      style: TextStyle(
+                        fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    MyTextField(
-                      controller: fullNameController,
-                      hintText: fullNameCustomer,
-                      obscureText: false,
-                    ),
-                    const SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text(
-                        'Username :',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                  ),
+                  const SizedBox(height: 10),
+                  MyTextField(
+                    controller: fullNameController,
+                    hintText: fullNameCustomer,
+                    obscureText: false,
+                  ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Username :',
+                      style: TextStyle(
+                        fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    MyTextField(
-                      controller: userNameController,
-                      hintText: userNameCustomer,
-                      obscureText: false,
-                    ),
-                    const SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text(
-                        'Provinsi Tempat Tinggal :',
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
+                  ),
+                  const SizedBox(height: 10),
+                  MyTextField(
+                    controller: userNameController,
+                    hintText: userNameCustomer,
+                    obscureText: false,
+                  ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Provinsi Tempat Tinggal :',
+                      style: TextStyle(
+                        fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    MyTextField(
-                      controller: provinceController,
-                      hintText: provinceCustomer,
-                      obscureText: false,
-                    ),
-                    const SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: Text(
-                        'Tanggal Lahir :',
-                        style: TextStyle(
-                          fontSize: 15,
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: DropdownButtonFormField(
+                      value: _provinsiVal,
+                      items: _provinsiList.map(
+                            (e) => DropdownMenuItem(child: Text(e), value: e,)
+                        ).toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          _provinsiVal = val as String;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.arrow_drop_down_circle_outlined,
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          CupertinoIcons.home
                         ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black87),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        fillColor: Colors.grey[300],
+                        filled: true,
                       ),
                     ),
-                    // const SizedBox(height: 10),
-                    // MyTextField(
-                    //   controller: dateOfBirthController,
-                    //   hintText: dateOfBirthCustomer,
-                    //   obscureText: false,
-                    // ),
-                    const SizedBox(height: 25),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
-                        controller: _date,
-                        decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black54),
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black87),
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          fillColor: Colors.grey[300],
-                          filled: true,
-                          icon : Icon(Icons.calendar_today_rounded),
-                          labelText: "Pilih Tanggal",
-                        ),
-                        onTap: () async{
-                          DateTime? pickDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(1945),
-                              lastDate: DateTime(2100));
-                          if (pickDate != null){
-                            setState(() {
-                              _date.text = DateFormat('dd-MM-yyyy').format(pickDate);
-                            });
-                          }
-                        },
+                  ),
+                  // MyTextField(
+                  //   controller: provinceController,
+                  //   hintText: provinceCustomer,
+                  //   obscureText: false,
+                  // ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Tanggal Lahir :',
+                      style: TextStyle(
+                        fontSize: 15,
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    theButton(
-                      text: 'Update Data',
-                      onTap: (){
-                        final user = UserModel(
-                            fullName: fullNameController.text.trim() == "" ? fullNameCustomer : fullNameController.text.trim(),
-                            email: emailCustomer,
-                            userName: userNameController.text.trim() == "" ? userNameCustomer : userNameController.text.trim(),
-                            province: provinceController.text.trim() == "" ? provinceCustomer : provinceController.text.trim(),
-                            dateOfBirth: dateOfBirthController.text.trim() == "" ? dateOfBirthCustomer : dateOfBirthController.text.trim(),
-                            password: passwordCustomer,
-                            joinDate: joinDateCustomer,
-                            profilePicture : profilePictureCustomer);
-
-                        print('fullName yg di input: ${user.fullName}');
-                        print('email yg di input: ${user.email}');
-                        print('userName yg di input: ${user.userName}');
-                        print('province yg di input: ${user.province}');
-                        print('dateOfBirth yg di input: ${user.dateOfBirth}');
-                        print('password yg di input: ${user.password}');
-
-                        UserRepository.instance.updateUserRecord(user, idCustomer);
-                        // controller.updateRecord(user);
-                        Get.to(()=>const UpdateProfile());
+                  ),
+                  // const SizedBox(height: 10),
+                  // MyTextField(
+                  //   controller: dateOfBirthController,
+                  //   hintText: dateOfBirthCustomer,
+                  //   obscureText: false,
+                  // ),
+                  const SizedBox(height: 25),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: TextField(
+                      controller: _date,
+                      decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black87),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        fillColor: Colors.grey[300],
+                        filled: true,
+                        icon: Icon(Icons.calendar_today_rounded),
+                        labelText: "Pilih Tanggal",
+                      ),
+                      onTap: () async {
+                        DateTime? pickDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1945),
+                            lastDate: DateTime(2100));
+                        if (pickDate != null) {
+                          setState(() {
+                            _date.text =
+                                DateFormat('dd-MM-yyyy').format(pickDate);
+                          });
+                        }
                       },
                     ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 30),
+                  theButton(
+                    text: 'Update Data',
+                    onTap: () {
+                      final user = UserModel(
+                          fullName: fullNameController.text.trim() == ""
+                              ? fullNameCustomer
+                              : fullNameController.text.trim(),
+                          email: emailCustomer,
+                          userName: userNameController.text.trim() == ""
+                              ? userNameCustomer
+                              : userNameController.text.trim(),
+                          province: provinceController.text.trim() == ""
+                              ? provinceCustomer
+                              : provinceController.text.trim(),
+                          dateOfBirth: dateOfBirthController.text.trim() == ""
+                              ? dateOfBirthCustomer
+                              : dateOfBirthController.text.trim(),
+                          password: passwordCustomer,
+                          joinDate: joinDateCustomer,
+                          profilePicture: profilePictureCustomer);
+
+                      print('fullName yg di input: ${user.fullName}');
+                      print('email yg di input: ${user.email}');
+                      print('userName yg di input: ${user.userName}');
+                      print('province yg di input: ${user.province}');
+                      print('dateOfBirth yg di input: ${user.dateOfBirth}');
+                      print('password yg di input: ${user.password}');
+
+                      UserRepository.instance.updateUserRecord(
+                          user, idCustomer);
+                      // controller.updateRecord(user);
+                      Get.to(() => const UpdateProfile());
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
             ),
           ),
+        ),
       ),
     );
   }
