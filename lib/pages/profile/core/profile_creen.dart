@@ -50,7 +50,7 @@ class ProfileScreen extends StatelessWidget{
                     controller.getUserData();
                     final networkImage = controller.getprofileUrl();
 
-                    print('Gambar kosong : ${networkImage.isNotEmpty }');
+                    print('Gambar kosong : ${networkImage.isEmpty }');
                     print('Url gambarnya : ${controller.getprofileUrl()}');
                     final image = networkImage.isNotEmpty ? controller.getprofileUrl() : 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400';
                     return
@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget{
                   theButton(
                     text: 'Reload',
                     onTap: (){
-                      FirebaseAuth.instance.currentUser?.reload();
+                      // FirebaseAuth.instance.currentUser?.reload();
                       // Timer(const Duration(seconds: 15),() {
                       //   print("This code executes after 15 seconds");
                       Get.to(()=>const UpdateProfile_New());

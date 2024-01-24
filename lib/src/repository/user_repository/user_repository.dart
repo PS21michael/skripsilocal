@@ -49,10 +49,13 @@ class UserRepository extends GetxController{
 
 
   Future<UserModel> getSingelUserDetails(String email) async{
+    print('CheckPoint login 2');
     print('DB telah dipanggil ke ${ctr+=1}');
     final snapshot = await _db.collection("/Users").where("Email", isEqualTo: email).get();
+    print('CheckPoint login 3');
     // final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).elementAt(0);
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    print('CheckPoint login 4');
 
     // Setter Data from snapshot
     userModelID = userData.id!;
