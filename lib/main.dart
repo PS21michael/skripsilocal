@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //home: MyHeader(),
-      // home: HomePage(),
+      // home: ProfilePage(),
       // home: RegisterPage(),
       home : UpdateProfile_New(),
     );

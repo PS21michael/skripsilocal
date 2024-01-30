@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:random_name_generator/random_name_generator.dart';
@@ -30,7 +34,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
   final controller = Get.put(SignInController());
   final _formkey = GlobalKey<FormState>();
   final _authRepo = Get.put(AuthenticationRepository());
-  final _provinsiList = ["JawaTimur", "JawaBarat", "JawaTengah", "Banten"];
+  final _provinsiList = ["Nanggroe Aceh Darussalam", "Sumatera Utara", "Sumatera Selatan", "Sumatera Barat","Bengkulu", "Riau", "Kepulauan Riau", "Jambi", "Lampung", "Bangka Belitung", "Kalimantan Barat", "Kalumantan Timur", "Kalimantan Selatan" , "Kalimantan Tengah", "Kalimantan Utara", "Banten", "DKI Jakarta", "Jawa Barat", "Jawa Timur", "JawaTengah", "Daerah Istimewa Yogyakarta", "Bali", "Nusa Tenggara Timur", "Nusa Tenggara Barat", "Gorontalo", "Sulawesi Barat", "Sulawesi Tengah", "Sulawesi Utara", "Sulawesi Tenggara", "Sulawesi Selatan", "Maluku Utara", "Maluku", "Papua Barat", "Papua", "Papua Tengah", "Papua Pegunungan", "Papua Selatan", "Papua Barat Daya"];
   String? _provinsiVal = "";
 
   final emailController = TextEditingController();
@@ -83,67 +87,10 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                   ),
                   const SizedBox(height: 30),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Nama Lengkap :',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  MyTextField(
-                    controller: fullNameController,
-                    hintText: fullNameCustomer,
-                    obscureText: false,
-                  ),
-                  const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Username :',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  MyTextField(
-                    controller: userNameController,
-                    hintText: userNameCustomer,
-                    obscureText: false,
-                  ),
-                  const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Provinsi Tempat Tinggal :',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: DropdownButtonFormField(
-                      value: _provinsiVal,
-                      items: _provinsiList.map(
-                            (e) => DropdownMenuItem(child: Text(e), value: e,)
-                        ).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _provinsiVal = val as String;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.arrow_drop_down_circle_outlined,
-                        color: Colors.black,
-                      ),
+                    child: TextField(
+                      controller: fullNameController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          CupertinoIcons.home
-                        ),
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black54),
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -154,24 +101,128 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         ),
                         fillColor: Colors.grey[300],
                         filled: true,
+                        icon: Icon(CupertinoIcons.person),
+                        labelText: "Nama Lengkap",
                       ),
                     ),
                   ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 30),
+                  //   child: Text(
+                  //     'Nama Lengkap :',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 10),
+                  // MyTextField(
+                  //   controller: fullNameController,
+                  //   hintText: fullNameCustomer,
+                  //   obscureText: false,
+                  // ),
+                  const SizedBox(height: 25),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 30),
+                  //   child: Text(
+                  //     'Username :',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: TextField(
+                      controller: userNameController,
+                      decoration: InputDecoration(
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black87),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        fillColor: Colors.grey[300],
+                        filled: true,
+                        icon: Icon(CupertinoIcons.person_alt_circle_fill),
+                        labelText: "Username",
+                      ),
+                    ),
+                  ),
+                  // const SizedBox(height: 10),
+                  // MyTextField(
+                  //   controller: userNameController,
+                  //   hintText: userNameCustomer,
+                  //   obscureText: false,
+                  // ),
+                  const SizedBox(height: 25),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 30),
+                  //   child: Text(
+                  //     'Provinsi Tempat Tinggal :',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 10),
+                  //
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: TypeAheadFormField(
+                      textFieldConfiguration: TextFieldConfiguration(
+                        controller: TextEditingController(text: _provinsiVal),
+                        decoration: InputDecoration(
+                          icon: Icon(CupertinoIcons.home),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black54),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black87),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Colors.grey[300],
+                          filled: true,
+                          labelText: "Provinsi Tempat Tinggal",
+                        ),
+                      ),
+                      suggestionsCallback: (pattern) {
+                        var filteredSuggestions = _provinsiList.where(
+                              (provinsi) => provinsi.toLowerCase().contains(pattern.toLowerCase()),
+                        ); // Limit the suggestions to the first 5
+                        return filteredSuggestions.toList();
+                      },
+                      itemBuilder: (context, suggestion) {
+                        return ListTile(
+                          title: Text(suggestion),
+                        );
+                      },
+                      onSuggestionSelected: (suggestion) {
+                        setState(() {
+                          _provinsiVal = suggestion as String;
+                        });
+                      },
+                    ),
+                  ),
+
                   // MyTextField(
                   //   controller: provinceController,
                   //   hintText: provinceCustomer,
                   //   obscureText: false,
                   // ),
-                  const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Text(
-                      'Tanggal Lahir :',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
+                  // const SizedBox(height: 25),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 30),
+                  //   child: Text(
+                  //     'Tanggal Lahir :',
+                  //     style: TextStyle(
+                  //       fontSize: 15,
+                  //     ),
+                  //   ),
+                  // ),
                   // const SizedBox(height: 10),
                   // MyTextField(
                   //   controller: dateOfBirthController,
@@ -194,8 +245,8 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         ),
                         fillColor: Colors.grey[300],
                         filled: true,
-                        icon: Icon(Icons.calendar_today_rounded),
-                        labelText: "Pilih Tanggal",
+                        icon: Icon(CupertinoIcons.calendar),
+                        labelText: "Tanggal Lahir",
                       ),
                       onTap: () async {
                         DateTime? pickDate = await showDatePicker(
@@ -247,7 +298,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                       Get.to(() => const UpdateProfile());
                     },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 350),
                 ],
               ),
             ),
