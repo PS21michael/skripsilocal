@@ -99,34 +99,34 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
-                        onTap: (){
-                          Get.to(()=>const ResetPasswordScreen());
-                        },
-                        // onTap: (){
-                        //   showModalBottomSheet(
-                        //       context: context,
-                        //       builder: (context) => Container(
-                        //         padding: const EdgeInsets.all(30.0),
-                        //         child: Column(
-                        //           crossAxisAlignment: CrossAxisAlignment.start,
-                        //           children: [
-                        //             Text('Make Selection', style: Theme.of(context).textTheme.headline2,),
-                        //             Text('Select one of the options given below to reset your password.',
-                        //               style: Theme.of(context).textTheme.bodyText2,),
-                        //             const SizedBox(height: 10.0,),
-                        //             Container(
-                        //               padding: const EdgeInsets.all(20.0),
-                        //               decoration: BoxDecoration(
-                        //                 borderRadius: BorderRadius.circular(10.0),
-                        //                 color: Colors.grey.shade200,
-                        //               ),
-                        //             ),
-                        //
-                        //           ],
-                        //         ),
-                        //       ),
-                        //   );
-                        // },
+                          onTap: (){
+                            Get.to(()=>const ResetPasswordScreen());
+                          },
+                          // onTap: (){
+                          //   showModalBottomSheet(
+                          //       context: context,
+                          //       builder: (context) => Container(
+                          //         padding: const EdgeInsets.all(30.0),
+                          //         child: Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           children: [
+                          //             Text('Make Selection', style: Theme.of(context).textTheme.headline2,),
+                          //             Text('Select one of the options given below to reset your password.',
+                          //               style: Theme.of(context).textTheme.bodyText2,),
+                          //             const SizedBox(height: 10.0,),
+                          //             Container(
+                          //               padding: const EdgeInsets.all(20.0),
+                          //               decoration: BoxDecoration(
+                          //                 borderRadius: BorderRadius.circular(10.0),
+                          //                 color: Colors.grey.shade200,
+                          //               ),
+                          //             ),
+                          //
+                          //           ],
+                          //         ),
+                          //       ),
+                          //   );
+                          // },
 
                           // onTap: (){
                           //   Navigator.push(context,
@@ -148,72 +148,73 @@ class _LoginPageState extends State<LoginPage> {
                 theButton(
                   text: 'Sign In',
                   onTap: (){
-                      UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
-                      SignInController.instance.loginUser(controller.email.text.trim(), controller.password.text.trim());
-                    },
+                    print('CheckPoint login 1');
+                    UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
+                    SignInController.instance.loginUser(controller.email.text.trim(), controller.password.text.trim());
+                  },
                 ),
                 //const SizedBox(height: 20),
                 // theButton(
                 //   text: 'Login Google',
 
-                  // onTap: () async {
-                  //   var i=0;
-                  //   var j=0;
-                  //   String emailTemp = "";
-                  //   SignInController.instance.googleSignIn();
-                  //   emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
-                  //   // Timer(Duration(seconds: 3), () {
-                  //   //   FirebaseAuth.instance.currentUser?.reload();
-                  //   //   print("Yeah, this line is printed after 3 seconds");
-                  //   // });
-                  //   FirebaseAuth.instance.currentUser?.reload();
-                  //   if(emailTemp == "") {
-                  //     print('Email null, silahkan coba lagi ${i+=1}');
-                  //   } else{
-                  //     print('Email sudah tidak null ${j+=1}');
-                  //     try{
-                  //       print('ChekpointGoogle 1');
-                  //       UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getEmailGoogleSingIn());
-                  //       print('ChekpointGoogle 2');
-                  //     } catch (e){
-                  //       print('ChekpointGoogle 3');
-                  //       print('Ada error $e');
-                  //     }
-                  //
-                  //     if(UserRepository.instance.getIsSuccessGetData() == "True"){
-                  //       print('ChekpointGoogle 4');
-                  //       if(UserRepository.instance.getUserModelEmail() == ""){
-                  //         print('ChekpointGoogle 5');
-                  //         Map<String, dynamic> json = {'Email' : AuthenticationRepository.instance.getEmailGoogleSingIn()};
-                  //         userRepo.updateSingelRecord(json);
-                  //       }
-                  //       if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
-                  //         print('ChekpointGoogle 6');
-                  //         Get.to(()=>const UpdateScreenProfilePage());
-                  //       } else{
-                  //         print('ChekpointGoogle 7');
-                  //         Get.to(()=>const HomePage());
-                  //       }
-                  //     } else{
-                  //       print('ChekpointGoogle 8');
-                  //       print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
-                  //       final user = UserModel(
-                  //           fullName: randomNames.manFullName(),
-                  //           email: AuthenticationRepository.instance.getEmailGoogleSingIn(),
-                  //           userName: generateUserName(randomNames.manFullName()),
-                  //           province: "ProvinsiUtama",
-                  //           dateOfBirth: "01-01-1900",
-                  //           password: "Login with Google",
-                  //           joinDate: DateTime.now().toString(),
-                  //           profilePicture: 'https://firebasestorage.googleapis.com/v0/b/indonesia-memilih-c26b0.appspot.com/o/Users%2FImages%2FProfile%2FDefaultImageProject.jpg?alt=media&token=6b2e46b5-a2f6-4377-ade1-7a1046724b8c');
-                  //       print('ChekpointGoogle 9');
-                  //       await userRepo.createUer(user);
-                  //       print('ChekpointGoogle 10');
-                  //       Get.to(()=>const UpdateScreenProfilePage());
-                  //       print('ChekpointGoogle 11');
-                  //     }
-                  //   }
-                  // },
+                // onTap: () async {
+                //   var i=0;
+                //   var j=0;
+                //   String emailTemp = "";
+                //   SignInController.instance.googleSignIn();
+                //   emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
+                //   // Timer(Duration(seconds: 3), () {
+                //   //   FirebaseAuth.instance.currentUser?.reload();
+                //   //   print("Yeah, this line is printed after 3 seconds");
+                //   // });
+                //   FirebaseAuth.instance.currentUser?.reload();
+                //   if(emailTemp == "") {
+                //     print('Email null, silahkan coba lagi ${i+=1}');
+                //   } else{
+                //     print('Email sudah tidak null ${j+=1}');
+                //     try{
+                //       print('ChekpointGoogle 1');
+                //       UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getEmailGoogleSingIn());
+                //       print('ChekpointGoogle 2');
+                //     } catch (e){
+                //       print('ChekpointGoogle 3');
+                //       print('Ada error $e');
+                //     }
+                //
+                //     if(UserRepository.instance.getIsSuccessGetData() == "True"){
+                //       print('ChekpointGoogle 4');
+                //       if(UserRepository.instance.getUserModelEmail() == ""){
+                //         print('ChekpointGoogle 5');
+                //         Map<String, dynamic> json = {'Email' : AuthenticationRepository.instance.getEmailGoogleSingIn()};
+                //         userRepo.updateSingelRecord(json);
+                //       }
+                //       if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
+                //         print('ChekpointGoogle 6');
+                //         Get.to(()=>const UpdateScreenProfilePage());
+                //       } else{
+                //         print('ChekpointGoogle 7');
+                //         Get.to(()=>const HomePage());
+                //       }
+                //     } else{
+                //       print('ChekpointGoogle 8');
+                //       print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
+                //       final user = UserModel(
+                //           fullName: randomNames.manFullName(),
+                //           email: AuthenticationRepository.instance.getEmailGoogleSingIn(),
+                //           userName: generateUserName(randomNames.manFullName()),
+                //           province: "ProvinsiUtama",
+                //           dateOfBirth: "01-01-1900",
+                //           password: "Login with Google",
+                //           joinDate: DateTime.now().toString(),
+                //           profilePicture: 'https://firebasestorage.googleapis.com/v0/b/indonesia-memilih-c26b0.appspot.com/o/Users%2FImages%2FProfile%2FDefaultImageProject.jpg?alt=media&token=6b2e46b5-a2f6-4377-ade1-7a1046724b8c');
+                //       print('ChekpointGoogle 9');
+                //       await userRepo.createUer(user);
+                //       print('ChekpointGoogle 10');
+                //       Get.to(()=>const UpdateScreenProfilePage());
+                //       print('ChekpointGoogle 11');
+                //     }
+                //   }
+                // },
                 // ),
                 const SizedBox(height: 20),
                 Padding(
@@ -321,7 +322,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Belum punya akun?'
+                        'Belum punya akun?'
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
