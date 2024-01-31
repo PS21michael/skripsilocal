@@ -47,7 +47,7 @@ class AuthenticationRepository extends GetxController{
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     // screenRedirect();
-    // setInitialScreen(_firebaseUser.value);
+    setInitialScreen(_firebaseUser.value);
     // ever(_firebaseUser, _setInitialScreen);
   }
 

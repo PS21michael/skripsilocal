@@ -12,6 +12,7 @@ import '../../../src/features/authentication/models/user_model.dart';
 import '../../../src/repository/authentication_repository/authentication_repository.dart';
 import '../../components/button.dart';
 import '../../components/my_textfield.dart';
+import '../profile_page.dart';
 
 class UpdateProfile_New extends StatefulWidget {
 
@@ -244,7 +245,8 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                       UserRepository.instance.updateUserRecord(
                           user, idCustomer);
                       // controller.updateRecord(user);
-                      Get.to(() => const UpdateProfile());
+                      // Get.to(() => const UpdateProfile());
+                      Get.to(() => const ProfilePage());
                     },
                   ),
                   const SizedBox(height: 20),

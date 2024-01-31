@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
 import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
 
@@ -81,7 +82,8 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                               await controller.uploadProfilePicture();
                               Timer(const Duration(seconds: 5),() {
                                 print("This code executes after 15 seconds");
-                                Get.to(()=>const ProfileScreen());
+                                // Get.to(()=>const ProfileScreen());
+                                Get.to(()=>const ProfilePage());
                               });
 
                               // Get.to(()=>ProfileScreen());
@@ -142,7 +144,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                             text: 'Back',
                             onTap: (){
                               // controller.updateRecord(user);
-                              Get.to(()=>const ProfileScreen());
+                              Get.to(()=>const ProfilePage());
                               // if(_formkey.currentState!.validate()){
                               // print("Password given page level: ${controller.email.text.trim()}");
                               // print("Email given page level: ${controller.password.text.trim()}");
