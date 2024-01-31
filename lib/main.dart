@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       //home: MyHeader(),
       // home: ProfilePage(),
       // home: RegisterPage(),
-      home : ProfilePage(),
+      home : UpdateProfile_New(),
     );
   }
 }
