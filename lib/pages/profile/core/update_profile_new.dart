@@ -249,6 +249,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         filled: true,
                         icon: Icon(CupertinoIcons.calendar),
                         labelText: "Tanggal Lahir",
+                        hintText: dateOfBirthCustomer,
                       ),
                       onTap: () async {
                         DateTime? pickDate = await showDatePicker(
