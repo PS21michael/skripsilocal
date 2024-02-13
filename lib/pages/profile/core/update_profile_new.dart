@@ -104,6 +104,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         filled: true,
                         icon: Icon(CupertinoIcons.person),
                         labelText: "Nama Lengkap",
+                        hintText: fullNameCustomer,
                       ),
                     ),
                   ),
@@ -149,6 +150,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         filled: true,
                         icon: Icon(CupertinoIcons.person_alt_circle_fill),
                         labelText: "Username",
+                        hintText: userNameCustomer,
                       ),
                     ),
                   ),
@@ -248,6 +250,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         filled: true,
                         icon: Icon(CupertinoIcons.calendar),
                         labelText: "Tanggal Lahir",
+                        hintText: dateOfBirthCustomer,
                       ),
                       onTap: () async {
                         DateTime? pickDate = await showDatePicker(
