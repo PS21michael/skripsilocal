@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
+import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
 import 'package:skripsilocal/src/features/authentication/controller/signin_controller.dart';
@@ -150,7 +151,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                         filled: true,
                         icon: Icon(CupertinoIcons.person_alt_circle_fill),
                         labelText: "Username",
-                        hintText: userNameCustomer,
+                        // hintText: userNameCustomer,
                       ),
                     ),
                   ),
@@ -236,7 +237,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: TextField(
-                      controller: _date,
+                      controller: dateOfBirthController,
                       decoration: InputDecoration(
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black54),
@@ -260,7 +261,7 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                             lastDate: DateTime(2100));
                         if (pickDate != null) {
                           setState(() {
-                            _date.text =
+                            dateOfBirthController.text =
                                 DateFormat('dd-MM-yyyy').format(pickDate);
                           });
                         }
@@ -281,13 +282,96 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                               : userNameController.text.trim(),
                           province: provinceController.text.trim() == ""
                               ? provinceCustomer
-                              : provinceController.text.trim(),
+                              : _provinsiVal.toString(),
                           dateOfBirth: dateOfBirthController.text.trim() == ""
                               ? dateOfBirthCustomer
                               : dateOfBirthController.text.trim(),
                           password: passwordCustomer,
                           joinDate: joinDateCustomer,
-                          profilePicture: profilePictureCustomer);
+                          profilePicture: profilePictureCustomer,
+
+                        // Adding
+                        kategori1: 'nasional',
+                        scoreKategori1: 0,
+                        kategori2: 'bisnis',
+                        scoreKategori2: 0,
+                        kategori3: 'politik',
+                        scoreKategori3: 0,
+                        kategori4: 'hukum',
+                        scoreKategori4: 0,
+                        kategori5: 'ekonomi',
+                        scoreKategori5: 0,
+                        kategori6: 'olahraga',
+                        scoreKategori6: 0,
+                        kategori7: 'teknologi',
+                        scoreKategori7: 0,
+                        kategori8: 'otomotif',
+                        scoreKategori8: 0,
+                        kategori9: 'internasional',
+                        scoreKategori9: 0,
+                        kategori10: 'bola',
+                        scoreKategori10: 0,
+                        kategori11: 'selebritis',
+                        scoreKategori11: 0,
+                        kategori12: 'lifestyle',
+                        scoreKategori12: 0,
+                        kategori13: 'hiburan',
+                        scoreKategori13: 0,
+                        kategori14: 'jakarta',
+                        scoreKategori14: 0,
+                        kategori15: 'market',
+                        scoreKategori15: 0,
+                        kategori16: 'news',
+                        scoreKategori16: 0,
+                        kategori17: 'cantik',
+                        scoreKategori17: 0,
+                        kategori18: 'travel',
+                        scoreKategori18: 0,
+                        kategori19: 'syariah',
+                        scoreKategori19: 0,
+                        kategori20: 'islam',
+                        scoreKategori20: 0,
+                        kategori21: 'sains',
+                        scoreKategori21: 0,
+                        kategori22: 'edukasi',
+                        scoreKategori22: 0,
+                        kategori23: 'kesehatan',
+                        scoreKategori23: 0,
+                        kategori24: 'humaniora',
+                        scoreKategori24: 0,
+                        kategori25: 'entrepreneur',
+                        scoreKategori25: 0,
+                        kategori26: 'opini',
+                        scoreKategori26: 0,
+                        kategori27: 'khas',
+                        scoreKategori27: 0,
+                        kategori28: 'jateng',
+                        scoreKategori28: 0,
+                        kategori29: 'daerah',
+                        scoreKategori29: 0,
+                        kategori30: 'khazanah',
+                        scoreKategori30: 0,
+                        kategori31: 'leisure',
+                        scoreKategori31: 0,
+                        kategori32: 'metro',
+                        scoreKategori32: 0,
+                        kategori33: 'ekbis',
+                        scoreKategori33: 0,
+                        kategori34: 'kalam',
+                        scoreKategori34: 0,
+                        kategori35: 'difabel',
+                        scoreKategori35: 0,
+                        kategori36: 'creativelab',
+                        scoreKategori36: 0,
+                        kategori37: 'inforial',
+                        scoreKategori37: 0,
+                        kategori38: 'event',
+                        scoreKategori38: 0,
+                        //Adding
+
+
+
+                      );
 
                       print('fullName yg di input: ${user.fullName}');
                       print('email yg di input: ${user.email}');
@@ -300,7 +384,9 @@ class _UpdateProfile_NewState extends State<UpdateProfile_New> {
                           user, idCustomer);
                       // controller.updateRecord(user);
                       // Get.to(() => const UpdateProfile());
-                      Get.to(() => const ProfilePage());
+                      UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
+                      // Get.to(() => const ProfilePage());
+                      Get.to(() => const HomePage());
                     },
                   ),
                   const SizedBox(height: 350),

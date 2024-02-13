@@ -549,6 +549,7 @@ class UserRepository extends GetxController{
       print('Thi2 the error : ${stackTrice.message}');
       print(error.toString());
     });
+    getSingelUserDetails(user.email);
   }
 
   Future<void> updateSingelRecord(Map<String, dynamic> json) async{
