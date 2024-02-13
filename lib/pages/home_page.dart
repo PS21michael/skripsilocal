@@ -8,8 +8,10 @@ import 'package:skripsilocal/pages/home_detail2/home_detail2.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
+import 'package:skripsilocal/src/apifetching/CNN/Humaniora.dart';
 import '../src/features/authentication/controller/signup_controller.dart';
 import 'components/my_header.dart';
+import 'dummyNews.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -117,7 +119,59 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          )
+          ),
+
+          // Batas
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>const DummyNewsScreen());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("News",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          // Batas
+
+          // PENTING
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>const Humaniora());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("Inquiry News",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+
+          // PENTING
+
 
         ],
       ),

@@ -53,6 +53,9 @@ dependencies:
   flutter_typeahead: ^3.1.2
   dropdown_textfield: ^1.0.3
   autocomplete_textfield: ^2.0.1
+  url_launcher: ^6.2.4
+  fluttertoast: ^8.2.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +85,7 @@ flutter:
     - assets/1246755_720.jpg
     - assets/Didukung-Banyak-Tokoh-Berpengaruh-Prabowo-Gibran-Makin-Kuat-di-Jabar.jpg
     - assets/rakernas-iv-pdip-5_169-1.jpeg
-    - assets/desktop-wallpaper-abstract-square-blue-aesthetic-square-thumbnail.jpg
+#    - assets/desktop-wallpaper-abstract-square-blue-aesthetic-square-thumbnail.jpg
     - assets/google.png
   #   - images/a_dot_ham.jpeg
 

@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: MyHeader(),
       // home: ProfilePage(),
-      // home: RegisterPage(),
-      home : ProfilePage(),
+      home: RegisterPage(),
+      // home : ProfilePage(),
     );
   }
 }
