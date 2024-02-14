@@ -58,6 +58,7 @@ class SignUpController extends GetxController{
       if(AuthenticationRepository.instance.getisSuccessCreateUser() == 'True'){
         await userRepo.createUer(user);
       }
+      UserRepository.instance.getSingelUserDetails(email);
     } catch(e){
       isLoading.value = false;
       print('Errror in Register $e');

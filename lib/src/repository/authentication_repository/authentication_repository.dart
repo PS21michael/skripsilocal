@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/login_page.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
+import 'package:skripsilocal/src/features/authentication/screens/error_toast/show_toast.dart';
 import 'package:skripsilocal/src/features/authentication/screens/mail_verification/mail_verification.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
@@ -47,7 +48,7 @@ class AuthenticationRepository extends GetxController{
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     // screenRedirect();
-    // setInitialScreen(_firebaseUser.value);
+    setInitialScreen(_firebaseUser.value);
     // ever(_firebaseUser, _setInitialScreen);
   }
 
@@ -202,20 +203,21 @@ class AuthenticationRepository extends GetxController{
   Future<void> createUserWithEmailAndPassword(String email, String password, String confirmPassword) async {
     if(!isEmailValid(email)){
       print('Email must be valid');
+      showToast(message:'Email must be valid');
     } else if(password.length<8){
-      print('Password should at least 8 character');
+      showToast(message:'Password should at least 8 character');
     } else if(password.length>16){
-      print('Password should maksimum 8 character');
+      showToast(message:'Password should maksimum 8 character');
     } else if (!isHasUpperCase(password)){
-      print('Password should have at least one upper case');
+      showToast(message:'Password should have at least one upper case');
     }else if (!isHasLowerCase(password)){
-      print('Password should have at least one Lower case');
+      showToast(message:'Password should have at least one Lower case');
     }else if (!isHasDigit(password)){
-      print('Password should have at least one Number');
+      showToast(message:'Password should have at least one Number');
     }else if (!isHasSpecialCharacter(password)){
-      print('Password should have at least one Special Character');
+      showToast(message:'Password should have at least one Special Character');
     } else if(password != confirmPassword){
-      print('Confirm Password Should be same with Passowrd');
+      showToast(message:'Confirm Password Should be same with Passowrd');
 
     } else {
       try{
@@ -229,7 +231,8 @@ class AuthenticationRepository extends GetxController{
       } on FirebaseAuthException catch(e){
         final ex = SignupEmailAndPasswordFailure.code(e.code);
         isSuccessCreateUser = "False";
-        print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+
+        showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
         print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
@@ -262,7 +265,7 @@ class AuthenticationRepository extends GetxController{
       // _firebaseUser.value != null ? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
       print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
@@ -291,7 +294,7 @@ class AuthenticationRepository extends GetxController{
     } catch(e){
       print('checkError2 : ');
       // isGoogleLoading.value=false;
-      print('Error Happend : $e');
+      showToast(message:'Error Happend : $e');
 
     }
   }

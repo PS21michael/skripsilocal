@@ -4,13 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
+import '../../src/features/authentication/controller/profile_controller.dart';
+import '../../src/features/authentication/models/user_model.dart';
+import '../../src/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
+import 'core/update_profile_new.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  // const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super (key: key);
+
 
   @override
   Widget build(BuildContext context) {
+    String fullNameCustomer = UserRepository.instance.getUserModelFullName();
+    String emailCustomer = UserRepository.instance.getUserModelEmail();
+    String userNameCustomer = UserRepository.instance.getUserModelUserName();
+    String provinceCustomer = UserRepository.instance.getUserModelProvince();
+    String dateOfBirthCustomer = UserRepository.instance
+        .getUserModelDateOfBirth();
+    String profilePictureCustomer = UserRepository.instance
+        .getUserModelProfilePicture();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -24,7 +39,7 @@ class ProfilePage extends StatelessWidget {
                     height: 200,
                     child: ClipRRect(
                       child: Image(
-                        image: AssetImage('assets/desktop-wallpaper-abstract-square-blue-aesthetic-square-thumbnail.jpg'),
+                        image: NetworkImage(profilePictureCustomer==""?'assets/desktop-wallpaper-abstract-square-blue-aesthetic-square-thumbnail.jpg':profilePictureCustomer),
                       ),
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -62,19 +77,20 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 15),
-              itemCard('Username', 'Try11222', CupertinoIcons.person_alt_circle_fill),
+              itemCard('Username', userNameCustomer, CupertinoIcons.person_alt_circle_fill),
               SizedBox(height: 20),
-              itemCard('Nama Lengkap', 'Bob', CupertinoIcons.person),
+              itemCard('Nama Lengkap', fullNameCustomer, CupertinoIcons.person),
               SizedBox(height: 20),
-              itemCard('Provinsi Tempat Tinggal', 'Jakarta', CupertinoIcons.home),
+              itemCard('Provinsi Tempat Tinggal', provinceCustomer, CupertinoIcons.home),
               SizedBox(height: 20),
-              itemCard('Tanggal Lahir', '11-4-2002', CupertinoIcons.calendar),
+              itemCard('Tanggal Lahir', dateOfBirthCustomer, CupertinoIcons.calendar),
               SizedBox(height: 20),
               theButton(
                 text: 'Edit Profile',
-                onTap: (){
-
-                },
+                  onTap: ()=> Get.to(()=>const UpdateProfile_New()),
+                // onTap: (){
+                //
+                // },
               ),
               SizedBox(height: 10),
               const Divider(),
