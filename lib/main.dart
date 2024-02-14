@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
+import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
       //home: MyHeader(),
       // home: ProfilePage(),
       // home: RegisterPage(),
-      home : UpdateProfile_New(),
+      // home : UpdateProfile_New(),
+      home: HomePage(),
     );
   }
 }
