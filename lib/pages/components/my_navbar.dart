@@ -4,6 +4,7 @@ import 'package:skripsilocal/pages/news/news_page.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 
 import '../home_page.dart';
+import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
   final int index;
@@ -95,11 +96,11 @@ class _MyNavBarState extends State<MyNavBar> {
           // );
           break;
         case 3:
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder:
-          //         (context) => const ProfileScreen()
-          //     )
-          // );
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => const ProfilePage()
+              )
+          );
           break;
       }
     });

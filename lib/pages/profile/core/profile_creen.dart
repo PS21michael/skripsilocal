@@ -70,6 +70,7 @@ class ProfileScreen extends StatelessWidget{
                     // ),
                   ),
                   const SizedBox(height: 40,),
+                  const SizedBox(height: 40,),
                   theButton(
                     text: 'Update Profile Picture',
                     onTap: () async {
@@ -77,6 +78,8 @@ class ProfileScreen extends StatelessWidget{
                       // Get.to(()=>ProfileScreen());
                     },
                   ),
+                  const SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   theButton(
                     text: 'Reload',
                     onTap: (){

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -48,7 +50,7 @@ class AuthenticationRepository extends GetxController{
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
     // screenRedirect();
-    setInitialScreen(_firebaseUser.value);
+    // setInitialScreen(_firebaseUser.value);
     // ever(_firebaseUser, _setInitialScreen);
   }
 
@@ -200,24 +202,33 @@ class AuthenticationRepository extends GetxController{
   }
 
 
+
   Future<void> createUserWithEmailAndPassword(String email, String password, String confirmPassword) async {
     if(!isEmailValid(email)){
       print('Email must be valid');
-      showToast(message:'Email must be valid');
+      // showToast(message:'Email must be valid');
+      showCustomSnackbar("Error", "Email must be valid");
     } else if(password.length<8){
-      showToast(message:'Password should at least 8 character');
+      // showToast(message:'Password should at least 8 character');
+      showCustomSnackbar("Error", "Password should at least 8 character");
     } else if(password.length>16){
-      showToast(message:'Password should maksimum 8 character');
+      // showToast(message:'Password should maksimum 8 character');
+      showCustomSnackbar("Error", "Password can't more than 16 character");
     } else if (!isHasUpperCase(password)){
-      showToast(message:'Password should have at least one upper case');
+      // showToast(message:'Password should have at least one upper case');
+      showCustomSnackbar("Error", "Password should have at least one upper case");
     }else if (!isHasLowerCase(password)){
-      showToast(message:'Password should have at least one Lower case');
+      // showToast(message:'Password should have at least one Lower case');
+      showCustomSnackbar("Error", "Password should have at least one Lower case");
     }else if (!isHasDigit(password)){
-      showToast(message:'Password should have at least one Number');
+      // showToast(message:'Password should have at least one Number');
+      showCustomSnackbar("Error", "Password should have at least one Number");
     }else if (!isHasSpecialCharacter(password)){
-      showToast(message:'Password should have at least one Special Character');
+      // showToast(message:'Password should have at least one Special Character');
+      showCustomSnackbar("Error", "Password should have at least one Special Character");
     } else if(password != confirmPassword){
-      showToast(message:'Confirm Password Should be same with Passowrd');
+      // showToast(message:'Confirm Password Should be same with Passowrd');
+      showCustomSnackbar("Error", "Confirm Password Should be same with Passowrd");
 
     } else {
       try{
@@ -232,7 +243,8 @@ class AuthenticationRepository extends GetxController{
         final ex = SignupEmailAndPasswordFailure.code(e.code);
         isSuccessCreateUser = "False";
 
-        showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
+        // showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
+        showCustomSnackbar("Error", "FIREBASE AUTH EXCEPTION - ${ex.message}");
         print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
@@ -265,7 +277,8 @@ class AuthenticationRepository extends GetxController{
       // _firebaseUser.value != null ? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
-      showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
+      // showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
+      showCustomSnackbar("Error", "FIREBASE AUTH EXCEPTION - ${ex.message}");
       print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
@@ -294,8 +307,8 @@ class AuthenticationRepository extends GetxController{
     } catch(e){
       print('checkError2 : ');
       // isGoogleLoading.value=false;
-      showToast(message:'Error Happend : $e');
-
+      // showToast(message:'Error Happend : $e');
+      showCustomSnackbar("Error", "Error Happend : $e");
     }
   }
 
@@ -376,6 +389,22 @@ class AuthenticationRepository extends GetxController{
     // AuthenticationRepository.instance.logout();
   }
 
-
+  void showCustomSnackbar(String title, String message, {bool isError = true}) {
+    Get.snackbar(
+      title,
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: isError ? Colors.red : Colors.green,
+      borderRadius: 10.0,
+      duration: Duration(seconds: 3),
+      messageText: Text(
+        message,
+        style: TextStyle(
+          fontSize: 18.0,
+          color: Colors.black, // Ganti sesuai keinginan Anda
+        ),
+      ),
+    );
+  }
 
 }

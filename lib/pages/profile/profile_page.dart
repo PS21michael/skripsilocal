@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
+import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 import '../../src/features/authentication/controller/profile_controller.dart';
 import '../../src/features/authentication/models/user_model.dart';
 import '../../src/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
+import '../components/my_navbar.dart';
 import 'core/update_profile_new.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,6 +18,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProfileController());
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
     String userNameCustomer = UserRepository.instance.getUserModelUserName();
@@ -47,21 +49,26 @@ class ProfilePage extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     right: 20,
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.white,
-                        border: Border.all(
+                    child: InkWell(
+                      onTap: () async {
+                        await controller.uploadProfilePicture();
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.white,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          )
+                        ),
+                        child: Icon(
+                          LineAwesomeIcons.camera,
                           color: Colors.black,
-                          width: 2,
-                        )
-                      ),
-                      child: Icon(
-                        LineAwesomeIcons.camera,
-                        color: Colors.black,
-                        size: 20,
+                          size: 20,
+                        ),
                       ),
                     ),
                   ),
@@ -69,7 +76,7 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'Hi, Username',
+                'Hi, ${userNameCustomer}',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -88,9 +95,6 @@ class ProfilePage extends StatelessWidget {
               theButton(
                 text: 'Edit Profile',
                   onTap: ()=> Get.to(()=>const UpdateProfile_New()),
-                // onTap: (){
-                //
-                // },
               ),
               SizedBox(height: 10),
               const Divider(),
@@ -99,6 +103,9 @@ class ProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: ListTile(
                   // onTap: ,
+                  onTap: () {
+                    AuthenticationRepository.instance.logout();
+                  },
                   leading: Container(
                     width: 40,
                     height: 40,
@@ -129,6 +136,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: const MyNavBar(index: 3),
     );
   }
 }
