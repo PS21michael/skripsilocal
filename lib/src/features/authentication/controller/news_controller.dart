@@ -19,6 +19,15 @@ class NewsController extends GetxController{
     return await _newsRepo.getSingelNewsDetails(title1);
   }
 
+  getSingleNewsDetail(String title) async{
+    return await _newsRepo.getSingelNewsDetails(title);
+  }
+
+  String getTitle(){
+    String titile = _newsRepo.getTitle();
+    return titile;
+  }
+
   Future<List<NewsModel>> getAllNews() async{
     return await _newsRepo.getAllNews();
   }
@@ -27,8 +36,16 @@ class NewsController extends GetxController{
     await _newsRepo.insertNews(news);
   }
 
-  Future<List<NewsModel>> getAllNewsAntaraHumaniora() async{
-    return await _newsRepo.getAllNewsANTARAHumaniora();
+  Future<List<NewsModel>> getAllNewsAntaraHumaniora(int time) async{
+    return await _newsRepo.getAllNewsANTARAHumaniora(time);
+  }
+
+  Future<void> updateFlagDislikeNews(int dislike, String id) async{
+    await _newsRepo.updateDislikeRecord(dislike, id);
+  }
+
+  Future<void> updateFlagLikeNews(int like, String id) async{
+    await _newsRepo.updateLikeRecord(like, id);
   }
 
 

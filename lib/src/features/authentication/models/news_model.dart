@@ -15,6 +15,7 @@ class NewsModel{
   final String category;
   final int like;
   final int dislike;
+  final int saveDate;
 
   NewsModel({
     this.id,
@@ -28,6 +29,7 @@ class NewsModel{
   required this.category,
   required this.like,
   required this.dislike,
+  required this.saveDate
   });
 
   static NewsModel empty() => NewsModel(
@@ -40,7 +42,8 @@ class NewsModel{
       publishedTime: '',
       category: '',
       like: 0,
-      dislike: 0
+      dislike: 0,
+      saveDate: 0
   );
 
   // Json parse To
@@ -55,7 +58,8 @@ class NewsModel{
       "PublishedTime" : publishedTime,
       "Category" : category,
       "Like" : like,
-      "Dislike" : dislike
+      "Dislike" : dislike,
+      "SaveDate" : saveDate,
     };
   }
 
@@ -72,7 +76,8 @@ class NewsModel{
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
         like: data?["Like"],
-        dislike: data?["Dislike"]
+        dislike: data?["Dislike"],
+        saveDate: data?["SaveDate"]
     );
   }
 }

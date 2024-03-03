@@ -14,9 +14,7 @@ class CommentController extends GetxController{
   final _authRepo     = Get.put(AuthenticationRepository());
   final _commentRepo  = Get.put(CommentRepository());
 
-  String idNews = "5NGzmetvv9TbT1lMadwC";
-
-  getCommentData() async{
+  getCommentData(String idNews) async{
     return await _commentRepo.getSingelCommentDetails(idNews);
   }
 
@@ -24,9 +22,18 @@ class CommentController extends GetxController{
     return await _commentRepo.getAllComment();
   }
 
+  Future<List<CommentModel>> getAllCommentbasedOnIdNews(String idNews) async{
+    return await _commentRepo.getAllCommentBasedOnIdNews(idNews);
+  }
+
   List<CommentModel>? getAllDataList(){
     getAllComment();
     return _commentRepo.getLstComment();
+  }
+
+  Future<void>createComment(CommentModel commentModel) async{
+    print('Comment Akan Dibuat');
+    await _commentRepo.insertComment(commentModel);
   }
 
   launchURL() async {

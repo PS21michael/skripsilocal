@@ -27,6 +27,8 @@ class UserRepository extends GetxController{
 
   String isSuccesGetData = "False";
 
+  List<int> listScore = [0];
+
   // ADDING
   String kategori1="";
   int scoreKategori1=0;
@@ -224,6 +226,46 @@ class UserRepository extends GetxController{
     kategori38 = userData.kategori38;
     scoreKategori38 = userData.scoreKategori38;
 
+    listScore.add(scoreKategori1);
+    listScore.add(scoreKategori2);
+    listScore.add(scoreKategori3);
+    listScore.add(scoreKategori4);
+    listScore.add(scoreKategori5);
+    listScore.add(scoreKategori6);
+    listScore.add(scoreKategori7);
+    listScore.add(scoreKategori8);
+    listScore.add(scoreKategori9);
+    listScore.add(scoreKategori10);
+    listScore.add(scoreKategori11);
+    listScore.add(scoreKategori12);
+    listScore.add(scoreKategori13);
+    listScore.add(scoreKategori14);
+    listScore.add(scoreKategori15);
+    listScore.add(scoreKategori16);
+    listScore.add(scoreKategori17);
+    listScore.add(scoreKategori18);
+    listScore.add(scoreKategori19);
+    listScore.add(scoreKategori20);
+    listScore.add(scoreKategori21);
+    listScore.add(scoreKategori22);
+    listScore.add(scoreKategori23);
+    listScore.add(scoreKategori24);
+    listScore.add(scoreKategori25);
+    listScore.add(scoreKategori26);
+    listScore.add(scoreKategori27);
+    listScore.add(scoreKategori28);
+    listScore.add(scoreKategori29);
+    listScore.add(scoreKategori30);
+    listScore.add(scoreKategori31);
+    listScore.add(scoreKategori32);
+    listScore.add(scoreKategori33);
+    listScore.add(scoreKategori34);
+    listScore.add(scoreKategori35);
+    listScore.add(scoreKategori36);
+    listScore.add(scoreKategori37);
+    listScore.add(scoreKategori38);
+    // listScore.sort();
+
     isSuccesGetData = "True";
     print('Data profil url udah di assign');
     return userData;
@@ -264,6 +306,14 @@ class UserRepository extends GetxController{
   }
   String getIsSuccessGetData(){
     return isSuccesGetData;
+  }
+
+  List<int> getListScore(){
+    return listScore;
+  }
+
+  void resetListScore(){
+    listScore.clear();
   }
 
 // ADDING

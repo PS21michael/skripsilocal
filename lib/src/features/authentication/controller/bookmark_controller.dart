@@ -19,5 +19,10 @@ class BookmarkController extends GetxController{
   }
 
 
+  Future<void> createBookMark(BookmarkModel bookmarkModel)async{
+    print('Bookmark Akan Dibuat');
+    await _bookmarkRepo.insertBookmark(bookmarkModel);
+  }
+
 
 }

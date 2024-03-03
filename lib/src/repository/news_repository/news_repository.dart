@@ -19,13 +19,19 @@ class NewsRepository extends GetxController{
   String publisher="";
   String author="";
   String url="";
+  int dislikeCount=0;
+  int likeCount=0;
+  String idNews="";
 
   String judul = "";
   String link = "";
   String linkGambar = "";
+  String newsCategory="";
 
   // PENTING
   List<String> listJudul = ["null"];
+
+  int TanggalDisimpan=0;
 
   insertNews(NewsModel newsModel) async{
     await _db.collection("/News").add(newsModel.toJson())
@@ -43,8 +49,15 @@ class NewsRepository extends GetxController{
     title11 = newsData.title;
     author = newsData.author;
     url = newsData.urlNews;
+    dislikeCount = newsData.dislike;
+    likeCount = newsData.like;
+    idNews = newsData.id!;
+    linkGambar = newsData.urlImage!;
+    newsCategory = newsData.category!;
     print('Data terisi ');
     print('salah satu data : ${title} ');
+    print('salah satu data1 : ${likeCount} ');
+    print('salah satu data2 : ${dislikeCount} ');
     return newsData;
   }
 
@@ -54,6 +67,34 @@ class NewsRepository extends GetxController{
 
   String getTitle(){
     return title11;
+  }
+
+  String getidNews(){
+    return idNews;
+  }
+
+  String getNewsPicture(){
+    return linkGambar;
+  }
+
+  String getNewsCategory(){
+    return newsCategory;
+  }
+
+  int getDislikeCount(){
+    return dislikeCount;
+  }
+
+  int getlikeCount(){
+    return likeCount;
+  }
+
+  int getTanggalDisimpan(){
+    return TanggalDisimpan;
+  }
+
+  void setTanggalDisimpan(int tanggal){
+    TanggalDisimpan = tanggal;
   }
 
   String getPublisher(){
@@ -70,7 +111,7 @@ class NewsRepository extends GetxController{
 
 
   Future<List<NewsModel>> getAllNews() async{
-    final snapshot = await _db.collection("/News").get();
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "humaniora").get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
@@ -79,12 +120,28 @@ class NewsRepository extends GetxController{
   }
 
   // PENTING
-  Future<List<NewsModel>> getAllNewsANTARAHumaniora() async{
-    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "humaniora").get();
+  Future<List<NewsModel>> getAllNewsANTARAHumaniora(int time) async{
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "humaniora").where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
+      if(48 == newsData[i].saveDate){
+        print("Data yang ke 48 : ${newsData[i].title}");
+      }
     }
+    for(int i=0; i<newsData.length;i++){
+      listJudul.add(newsData[i].title);
+      if(47 == newsData[i].saveDate){
+        print("Data yang ke 47 : ${newsData[i].title}");
+      }
+    }
+    for(int i=0; i<newsData.length;i++){
+      listJudul.add(newsData[i].title);
+      if(46 == newsData[i].saveDate){
+        print("Data yang ke 46 : ${newsData[i].title}");
+      }
+    }
+
     return newsData;
   }
 
@@ -102,5 +159,31 @@ class NewsRepository extends GetxController{
     final url = await ref.getDownloadURL();
     return url;
   }
-  
+
+  Future<void> updateDislikeRecord(int dislike, String id) async{
+    Map<String, dynamic> json = {'Dislike' : dislike};
+    await _db.collection("/News").doc(id).update(json).catchError((error, stacktrice){
+      print(error.toString());
+    });
+  }
+
+  Future<void> updateLikeRecord(int like, String id) async{
+    Map<String, dynamic> json = {'Like' : like};
+    await _db.collection("/News").doc(id).update(json).catchError((error, stacktrice){
+      print(error.toString());
+    });
+  }
+
+  List<String> listJudulPolitik =[];
+  String categoryPolitik = "politik";
+  Future<List<NewsModel>> getAllNewsAntaraPolitik(int time) async{
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).where("SaveDate", isEqualTo: time).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    for(int i=0; i<newsData.length; i++){
+      listJudulPolitik.add(newsData[i].title);
+    }
+    return newsData;
+  }
+
+
 }

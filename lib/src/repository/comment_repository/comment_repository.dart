@@ -61,6 +61,12 @@ class CommentRepository extends GetxController{
     return commentData;
   }
 
+  Future<List<CommentModel>> getAllCommentBasedOnIdNews(String idNews) async{
+    final snapshot = await _db.collection("/Comment").where("IdNews", isEqualTo: idNews).get();
+    final commentData = snapshot.docs.map((e) => CommentModel.fromSnapshot(e)).toList();
+    return commentData;
+  }
+
   List<CommentModel>? getLstComment(){
     return listCommentData;
   }

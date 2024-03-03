@@ -4,17 +4,20 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
 
-import '../../features/authentication/models/Berita/berita_model.dart';
-import '../../repository/news_repository/news_repository.dart';
+import '../../../../repository/news_repository/news_repository.dart';
+import '../../../authentication/models/Berita/berita_model.dart';
 
-class Humaniora extends StatefulWidget {
-  const Humaniora({Key? key}) : super(key: key);
+class InquiryHumanioraNews extends StatefulWidget {
+
+  const InquiryHumanioraNews({Key? key}) : super(key: key);
+
 
   @override
-  State<Humaniora> createState() => _HumanioraState();
+  State<InquiryHumanioraNews> createState() => _InquiryHumanioraNews();
 }
 
-class _HumanioraState extends State<Humaniora> {
+class _InquiryHumanioraNews extends State<InquiryHumanioraNews> {
+
 
   String timeFetch = "15 Februari 2024";
   int savedTime = 0;
@@ -61,35 +64,42 @@ class _HumanioraState extends State<Humaniora> {
         _isLoading = false;
         setState(() {});
       }
-      await NewsRepository.instance.getAllNewsANTARAHumaniora(0);
+      int tempCtr = NewsRepository.instance.getTanggalDisimpan();
+      await NewsRepository.instance.getAllNewsANTARAHumaniora(tempCtr);
+      await NewsRepository.instance.getAllNewsANTARAHumaniora(tempCtr-1);
+      await NewsRepository.instance.getAllNewsANTARAHumaniora(tempCtr-2);
+      await NewsRepository.instance.getAllNewsANTARAHumaniora(tempCtr-3);
       List<String> listJudul = NewsRepository.instance.getlistTitle();
       for(int i=0; i<dataFetching!.data!.posts.length;i++){
         if(listJudul.contains(dataFetching!.data!.posts![i].title)){
-              print('Data yang duplikat ada sebanyak ${i}');
-              continue;
+          print('Data yang duplikat ada sebanyak ${i}');
+          continue;
         }
-        if(timeFetch == "15 Februari 2024"){
-          savedTime = 46;
-        }
+        // if(timeFetch == "15 Februari 2024"){
+        //   savedTime = 46;
+        // }
         // for(int j=1; j<listJudul.length;j++){
         //   if(dataFetching!.data!.posts![i].title == listJudul[j]){
         //     print('Data yang duplikat ada sebanyak ${i}');
         //     continue;
         //   }
         // }
-        final news = NewsModel(
-            publisher: "ANTARA News",
-            author: "Humaniora - ANTARA News",
-            title: dataFetching!.data!.posts![i].title.toString(),
-            description: dataFetching!.data!.posts![i].description.toString(),
-            urlImage: dataFetching!.data!.posts![i].thumbnail.toString(),
-            urlNews: dataFetching!.data!.posts![i].link.toString(),
-            publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
-            category: "humaniora",
-            like: 0,
-            dislike: 0,
-           saveDate: savedTime);
-        await newsRepo.insertNews(news);
+        if(i==5){
+          final news = NewsModel(
+              publisher: "ANTARA News",
+              author: "Humaniora - ANTARA News",
+              title: dataFetching!.data!.posts![i].title.toString(),
+              description: dataFetching!.data!.posts![i].description.toString(),
+              urlImage: dataFetching!.data!.posts![i].thumbnail.toString(),
+              urlNews: dataFetching!.data!.posts![i].link.toString(),
+              publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
+              category: "humaniora",
+              like: 0,
+              dislike: 0,
+              saveDate: tempCtr);
+          await newsRepo.insertNews(news);
+        }
+
       }
     } catch (e) {
       debugPrint(e.toString());

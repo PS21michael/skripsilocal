@@ -93,5 +93,22 @@ class ProfileController extends GetxController{
     return _userRepo.userModelProfilePicture;
   }
 
+  String getUserFoto(){
+    getUserData();
+    return _userRepo.getUserModelProfilePicture();
+  }
+
+  String getUserEmail(){
+    return _userRepo.getUserModelEmail();
+  }
+
+  String getUserName(){
+    return _userRepo.getUserModelUserName();
+  }
+
+  String getidUser(){
+    return _userRepo.getUserModelId();
+  }
+
 
 }

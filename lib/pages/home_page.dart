@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
@@ -9,6 +10,9 @@ import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/src/apifetching/CNN/Humaniora.dart';
+import '../src/NewsDirect/Antara/Core/inquiryNewsAntara.dart';
+import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
+import '../src/features/Dummy/InquiryAllBookmark.dart';
 import '../src/features/authentication/controller/signup_controller.dart';
 import 'components/my_header.dart';
 import 'dummyNews.dart';
@@ -22,6 +26,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int aa=0;
+
+  final dateTimecontroller = Get.put(TimeSavedParser());
 
   final controller = Get.put(SignUpController());
 
@@ -149,7 +157,7 @@ class _HomePageState extends State<HomePage> {
           // PENTING
           GestureDetector(
             onTap: (){
-              Get.to(()=>const Humaniora());
+              Get.to(()=>const InquiryNews());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -170,7 +178,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          // PENTING
+          // PENTING -- Inquiry All BookMark
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>const DummyBookmarkScreen());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("Inquiry BookMark",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
 
 
         ],
