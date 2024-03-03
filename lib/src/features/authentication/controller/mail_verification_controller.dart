@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:skripsilocal/src/features/authentication/controller/signin_controller.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
 
-import '../../../../pages/profile/core/update_profile_new.dart';
+import '../../../../pages/profile/core/fill_profile.dart';
 import '../../../repository/user_repository/user_repository.dart';
 
 class MailVerificationController extends GetxController{
@@ -17,8 +17,8 @@ class MailVerificationController extends GetxController{
     super.onInit();
     sendVerificationEmail();
     setTimerForAutoRedirect();
-
   }
+
   Future<void> sendVerificationEmail() async {
     final controller = Get.put(SignInController());
     try{
@@ -48,7 +48,7 @@ class MailVerificationController extends GetxController{
     if(user!.emailVerified){
       if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
         print('ChekpointGoogle 6');
-        Get.to(()=>const UpdateProfile_New());
+        Get.to(()=>const FillProfile());
       }
       //
       //

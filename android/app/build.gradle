@@ -24,8 +24,9 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.skripsilocal"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
+//    compileSdkVersion 34
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

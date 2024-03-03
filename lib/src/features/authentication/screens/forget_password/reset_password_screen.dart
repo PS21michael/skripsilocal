@@ -7,7 +7,6 @@ import '../../../../../pages/components/my_textfield.dart';
 import '../../../../repository/authentication_repository/authentication_repository.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
-
   const ResetPasswordScreen({super.key});
 
   @override
@@ -18,9 +17,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final controller = Get.put(ForgetPasswordController());
   final _formkey = GlobalKey<FormState>();
   final _authRepo = Get.put(AuthenticationRepository());
-
   final emailController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +27,25 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
-          key : _formkey,
-          child: SingleChildScrollView(
+          child: Form(
+            key: _formkey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Untuk menyusun elemen secara vertikal di tengah halaman
               children: [
-                const SizedBox(height: 50),
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 20),
                 const Text(
-                  'Please Fill Your email here',
+                  'Isi email untuk melakukan mengganti password!',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 50),
-                // TextFormField(
-                //   controller: controller.email,
-                //   validator: Validation.validateEmail(value),
-                //   decoration: InputDecoration(
-                //     hintText: "Fill your email",
-                //   ),
-                // ),
+                const SizedBox(height: 20),
                 MyTextField(
                   controller: controller.email,
                   hintText: 'Email',
@@ -62,53 +53,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
                 const SizedBox(height: 30),
                 theButton(
-                  text: 'Send Email verification',
-                  onTap: (){
+                  text: 'Send Email',
+                  onTap: () {
                     controller.sendPasswordResetEmail();
-                    Get.to(()=>const PasswordVerification());
+                    Get.to(() => const PasswordVerification());
                   },
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 20,
-                    left: 20,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.blueGrey.shade400,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 15,
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.blueGrey.shade400,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const SizedBox(height: 10),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 4),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                const Image(
-                  image: AssetImage('assets/logoPemilu.png'),
-                  height: 120,
-                ),
               ],
             ),
           ),

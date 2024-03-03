@@ -4,6 +4,7 @@ import 'package:skripsilocal/pages/news/news_page.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 
 import '../home_page.dart';
+import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
   final int index;
@@ -29,16 +30,16 @@ class _MyNavBarState extends State<MyNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red.shade500,
+      color: Colors.grey.shade200,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 6,
         ),
         child: GNav(
-          backgroundColor: Colors.red.shade500,
-          color: Colors.white,
-          tabBackgroundColor: Colors.red.shade200,
+          backgroundColor: Colors.grey.shade200,
+          color: Colors.black87,
+          tabBackgroundColor: Colors.grey.shade500,
           gap : 10,
           padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
@@ -47,12 +48,16 @@ class _MyNavBarState extends State<MyNavBar> {
           },
           tabs: const [
             GButton(
-              icon: Icons.home,
-              text: 'Home',
+              icon: Icons.explore,
+              text: 'Explore',
             ),
             GButton(
               icon: IconData(0xf0541, fontFamily: 'MaterialIcons'),
               text: 'News',
+            ),
+            GButton(
+              icon: Icons.archive,
+              text: 'Saved',
             ),
             GButton(
               icon: IconData(0xe043, fontFamily: 'MaterialIcons'),
@@ -84,9 +89,16 @@ class _MyNavBarState extends State<MyNavBar> {
           );
           break;
         case 2:
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder:
+          //         (context) => const ProfileScreen()
+          //     )
+          // );
+          break;
+        case 3:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const ProfileScreen()
+                  (context) => const ProfilePage()
               )
           );
           break;

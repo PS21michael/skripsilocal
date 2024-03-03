@@ -16,7 +16,7 @@ import '../../src/features/authentication/screens/error_toast/show_toast.dart';
 import '../../src/repository/user_repository/user_repository.dart';
 import '../components/my_textfield.dart';
 import '../components/button.dart';
-import 'core/update_profile_new.dart';
+import 'core/fill_profile.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -63,12 +63,13 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 50),
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                const SizedBox(height: 30),
+                Image.asset(
+                  'assets/logo.jpg',
+                  width: 200,
+                  height: 200,
                 ),
-                const SizedBox(height: 20),
+                // const SizedBox(height: 10),
                 const Text(
                   'Selamat datang kembali!',
                   style: TextStyle(
@@ -289,7 +290,7 @@ class _LoginPageState extends State<LoginPage> {
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
                                 print('ChekpointGoogle 6');
-                                Get.to(()=>const UpdateProfile_New());
+                                Get.to(()=>const FillProfile());
                               } else{
                                 print('ChekpointGoogle 7');
                                 Get.to(()=>const HomePage());
@@ -388,7 +389,7 @@ class _LoginPageState extends State<LoginPage> {
                               print('ChekpointGoogle 9');
                               await userRepo.createUer(user);
                               print('ChekpointGoogle 10');
-                              Get.to(()=>const UpdateProfile_New());
+                              Get.to(()=>const FillProfile());
                               print('ChekpointGoogle 11');
                             }
                           }
