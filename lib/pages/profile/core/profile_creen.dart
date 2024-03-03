@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
+import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/core/widget/profile_menu.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
 
@@ -86,9 +86,9 @@ class ProfileScreen extends StatelessWidget{
                       // FirebaseAuth.instance.currentUser?.reload();
                       // Timer(const Duration(seconds: 15),() {
                       //   print("This code executes after 15 seconds");
-                      Get.to(()=>const UpdateProfile_New());
+                      Get.to(()=>const FillProfile());
                       Get.to(()=>const ProfileScreen());
-                      Get.to(()=>const UpdateProfile_New());
+                      Get.to(()=>const FillProfile());
                       Get.to(()=>const ProfileScreen());
                       // });
 
@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget{
               const SizedBox(height: 20,),
               SizedBox(width : 200,
                 child: ElevatedButton(
-                  onPressed: ()=> Get.to(()=>const UpdateProfile_New()), style: ElevatedButton.styleFrom(
+                  onPressed: ()=> Get.to(()=>const FillProfile()), style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.yellow, side: BorderSide.none,
                   shape: const StadiumBorder(),),
                   child: const Text("Edit Profile",

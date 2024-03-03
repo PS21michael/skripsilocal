@@ -50,12 +50,12 @@ class _RegisterPageState extends State<RegisterPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 50),
-                const Icon(
-                  Icons.lock,
-                  size: 100,
+                const SizedBox(height: 30),
+                Image.asset(
+                  'assets/logo.jpg',
+                  width: 200,
+                  height: 200,
                 ),
-                const SizedBox(height: 10),
                 const Text(
                   'Daftar dulu yuk !',
                   style: TextStyle(

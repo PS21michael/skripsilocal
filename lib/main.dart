@@ -6,7 +6,7 @@ import 'package:skripsilocal/firebase_options.dart';
 import 'package:skripsilocal/pages/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
+import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //home: MyHeader(),
       // home: MyHomePage(),
-      home: ProfilePage(),
+      // home: RegisterPage(),
       // home: UpdateProfile_New(),
-      // home : ProfileScreen(),
+      home : ProfilePage(),
     );
   }
 }

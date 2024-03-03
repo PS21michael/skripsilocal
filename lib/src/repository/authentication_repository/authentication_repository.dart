@@ -13,7 +13,7 @@ import 'package:skripsilocal/src/features/authentication/screens/mail_verificati
 import 'package:skripsilocal/src/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/exception/signup_email_password_failure.dart';
 
-import '../../../pages/profile/core/update_profile_new.dart';
+import '../../../pages/profile/core/fill_profile.dart';
 import '../user_repository/user_repository.dart';
 
 class AuthenticationRepository extends GetxController{
@@ -267,7 +267,7 @@ class AuthenticationRepository extends GetxController{
       //Sekarang di comment untuk menentukan apakah user udah pernah dafar atau belum
       if(_firebaseUser.value != null){
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
-          Get.to(()=>const UpdateProfile_New());
+          Get.to(()=>const FillProfile());
         } else{
           Get.offAll(()=>const HomePage());
         }

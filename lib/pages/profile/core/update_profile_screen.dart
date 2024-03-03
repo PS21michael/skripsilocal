@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_new.dart';
+import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
 import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
@@ -131,7 +131,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
 
                           SizedBox(width : double.infinity,
                             child: ElevatedButton(
-                              onPressed: ()=> Get.to(()=>const UpdateProfile_New()), style: ElevatedButton.styleFrom(
+                              onPressed: ()=> Get.to(()=>const FillProfile()), style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.yellow, side: BorderSide.none,
                               shape: const StadiumBorder(),),
                               child: const Text("Edit Profile",

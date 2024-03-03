@@ -20,17 +20,17 @@ import '../../components/button.dart';
 import '../../components/my_textfield.dart';
 import '../profile_page.dart';
 
-class UpdateProfile_New extends StatefulWidget {
+class FillProfile extends StatefulWidget {
 
-  const UpdateProfile_New({super.key});
+  const FillProfile({super.key});
 
   @override
-  State<UpdateProfile_New> createState() => _UpdateProfile_NewState();
+  State<FillProfile> createState() => _FillProfileState();
 }
 
-class _UpdateProfile_NewState extends State<UpdateProfile_New> {
+class _FillProfileState extends State<FillProfile> {
 
-  _UpdateProfile_NewState() {
+  _FillProfileState() {
     _provinsiVal = _provinsiList[0];
   }
 
