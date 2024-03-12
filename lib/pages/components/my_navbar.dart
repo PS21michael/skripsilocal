@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/dummyNews.dart';
 import '../profile/profile_page.dart';
 
@@ -72,11 +73,11 @@ class _MyNavBarState extends State<MyNavBar> {
       // You can use Navigator to push/pop pages based on the index
       switch (index) {
         case 0:
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder:
-          //         (context) => const DummyNewsScreen()
-          //     )
-          // );
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => const HomePage()
+              )
+          );
           break;
         case 1:
           Navigator.push(context,
