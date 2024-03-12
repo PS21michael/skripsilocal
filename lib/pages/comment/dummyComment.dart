@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-<<<<<<< HEAD
+import 'package:skripsilocal/pages/news/dummyNews.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../Utils/Helper/TimeSavedNews.dart';
@@ -16,16 +16,7 @@ import '../../repository/bookmark_repository/bookmark_repository.dart';
 import '../../repository/news_repository/news_repository.dart';
 import '../components/button.dart';
 import '../components/my_textfield.dart';
-import '../dummyNews.dart';
 
-=======
-import 'package:skripsilocal/controller/comment_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../components/button.dart';
-import '../news/dummyNews.dart';
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
 
 
 class DummyCommentScreen extends StatefulWidget{
@@ -40,7 +31,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
 
 
   String title = NewsRepository.instance.getTitle();
-<<<<<<< HEAD
   String idNews = NewsRepository.instance.getidNews();
   String publisher = NewsRepository.instance.getPublisher();
   String author = NewsRepository.instance.getAuthor();
@@ -54,16 +44,10 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
 
   int count=0;
   int count1=0;
-=======
-  String publisher = NewsRepository.instance.getPublisher();
-  String author = NewsRepository.instance.getAuthor();
-  String url1 = NewsRepository.instance.getUrl();
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
 
   final fullnameController = TextEditingController();
   final provinsiController = TextEditingController();
   final emailController = TextEditingController();
-<<<<<<< HEAD
   final DetailComment = TextEditingController();
 
   final dateTimecontroller = Get.put(TimeSavedParser());
@@ -91,26 +75,12 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
     //   Get.to(()=>DummyCommentScreen());
     // }
     print("title yang ada : "+controller2.getTitle());
-=======
-  final passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context){
-    if(title ==""){
-      FirebaseAuth.instance.currentUser?.reload();
-      title = NewsRepository.instance.getTitle();
-    }
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     final controller = Get.put(CommentController());
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: ()=> Get.back(), icon: const Icon(LineAwesomeIcons.arrow_circle_left),),
-<<<<<<< HEAD
         title: Text("News Detail", style: Theme.of(context).textTheme.headlineMedium,),
-=======
-        title: Text("News", style: Theme.of(context).textTheme.headlineMedium,),
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
         actions: [
           IconButton(onPressed: (){}, icon: Icon(isDark? LineAwesomeIcons.sun : LineAwesomeIcons.moon),),
         ],
@@ -119,7 +89,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
         child: Container(
           padding: const EdgeInsets.all(20.0),
           child: FutureBuilder<List<CommentModel>>(
-<<<<<<< HEAD
             future : controller.getAllCommentbasedOnIdNews(idNews),
             // future : controller.getAllComment(),
             builder: (context, snapshot){
@@ -128,17 +97,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
 
               if(snapshot.connectionState == ConnectionState.done){
                 if(snapshot.hasData){
-=======
-            future : controller.getAllComment(),
-            builder: (context, snapshot){
-              // done means data completly fetch
-              print('Checkpoint Comment1: ${snapshot.connectionState}');
-
-              if(snapshot.connectionState == ConnectionState.done){
-                if(snapshot.hasData){
-                  // UserModel userData = snapshot.data as UserModel;
-                  // print('Check User data '+userData.email);
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                   return ListView.builder(
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
@@ -149,7 +107,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                               iconColor: Colors.blue,
                               tileColor: Colors.blue.withOpacity(0.1),
                               leading: const Icon(LineAwesomeIcons.user_1),
-<<<<<<< HEAD
                               // title: Text("Title : ${snapshot.data![index].userNamePengguna}"),
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,14 +115,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                                   Text(snapshot.data![index].emailPengguna),
                                   Text(snapshot.data![index].komen),
                                   // Fetch News
-=======
-                              title: Text("Title : ${snapshot.data![index].userNamePengguna}"),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(snapshot.data![index].emailPengguna),
-                                  Text(snapshot.data![index].komen),
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                                   Text("ID : ${snapshot.data![index].id!}"),
                                   Text("title : ${title}"),
                                   Text("author : ${author}"),
@@ -179,7 +128,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                                 ],
                               ),
                             ),
-<<<<<<< HEAD
                             // Add Comment
                             const SizedBox(height: 20),
 
@@ -214,8 +162,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                                 Get.to(()=>DummyCommentScreen());
                               },
                             ),
-=======
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                             const SizedBox(height: 10,),
 
                             theButton(
@@ -223,10 +169,7 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                               onTap: () async {
                                 Get.to(()=>DummyNewsScreen());
                                 FirebaseAuth.instance.currentUser?.reload();
-<<<<<<< HEAD
                                 controller2.getUserData(title);
-=======
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                                 Get.to(()=>DummyCommentScreen());
 
                                 // Get.to(()=>ProfileScreen());
@@ -247,7 +190,6 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                               },
                             ),
 
-<<<<<<< HEAD
                             theButton(
                               text: 'Save Bookmark',
                               onTap: () async {
@@ -336,95 +278,12 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                             //     Get.to(()=>DummyNewsScreen());
                             //   },
                             // ),
-=======
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
 
 
                           ],
                         );
                       });
 
-<<<<<<< HEAD
-=======
-                  // return Column(
-                  //   children: [
-                  //     Stack(
-                  //       children: [
-                  //         SizedBox(
-                  //           width: 120,
-                  //           height: 120,
-                  //           child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400')),
-                  //         ),
-                  //         Positioned(
-                  //           bottom: 0,
-                  //           right: 0,
-                  //           child: Container(
-                  //             width: 35, height: 35,
-                  //             decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(100),
-                  //               color: Colors.yellow.withOpacity(0.1),
-                  //             ),
-                  //             child: const Icon(LineAwesomeIcons.camera, size : 20.0,color: Colors.black,),
-                  //           ),
-                  //         )
-                  //       ],
-                  //     ),
-                  //     const SizedBox(height: 10,),
-                  //     Form(child: Column(
-                  //       children: [
-                  //         MyTextField(
-                  //           controller: fullnameController,
-                  //           hintText: userData.fullName,
-                  //           obscureText: false,
-                  //         ),
-                  //         MyTextField(
-                  //           controller: provinsiController,
-                  //           hintText: userData.province,
-                  //           obscureText: false,
-                  //         ),
-                  //         MyTextField(
-                  //           controller: emailController,
-                  //           hintText: userData.email,
-                  //           obscureText: false,
-                  //         ),
-                  //         MyTextField(
-                  //           controller: passwordController,
-                  //           hintText: userData.password,
-                  //           obscureText: false,
-                  //         ),
-                  //         const SizedBox(height: 30,),
-                  //         SizedBox(width : double.infinity,
-                  //           child: ElevatedButton(
-                  //             onPressed: ()=> Get.to(()=>ManageUserScreen()),
-                  //             child: const Text("Edit Profile",
-                  //                 style: TextStyle(color: Colors.black))
-                  //             , style: ElevatedButton.styleFrom(
-                  //             backgroundColor: Colors.yellow, side: BorderSide.none,
-                  //             shape: StadiumBorder(),),
-                  //           ),
-                  //         ),
-                  //         const SizedBox(height: 10,),
-                  //         Row(
-                  //           children: [
-                  //             Text.rich(
-                  //               TextSpan(
-                  //                 text: "Joined",
-                  //                 style: TextStyle(fontSize: 12.0),
-                  //                 children: [
-                  //                   TextSpan(
-                  //                     text: "1 Desember 2024",
-                  //                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
-                  //                   ),
-                  //                 ],
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),),
-                  //   ],
-                  // );
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                 } else if(snapshot.hasError){
                   return Center(
                     child: Text(snapshot.error.toString()),

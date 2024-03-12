@@ -19,17 +19,17 @@ class NewsModel{
 
   NewsModel({
     this.id,
-  required this.publisher,
-  required this.author,
-  required this.title,
-  required this.description,
-  required this.urlImage,
-  required this.urlNews,
-  required this.publishedTime,
-  required this.category,
-  required this.like,
-  required this.dislike,
-  required this.saveDate
+    required this.publisher,
+    required this.author,
+    required this.title,
+    required this.description,
+    required this.urlImage,
+    required this.urlNews,
+    required this.publishedTime,
+    required this.category,
+    required this.like,
+    required this.dislike,
+    required this.saveDate
   });
 
   static NewsModel empty() => NewsModel(
@@ -76,7 +76,8 @@ class NewsModel{
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
         like: data?["Like"],
-        dislike: data?["Dislike"]
+        dislike: data?["Dislike"],
+        saveDate: data?["SaveDate"]
     );
   }
 }

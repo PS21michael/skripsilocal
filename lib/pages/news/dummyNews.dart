@@ -36,11 +36,7 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
           child: FutureBuilder<List<NewsModel>>(
-<<<<<<< HEAD
             future: controller.getAllNews(),
-=======
-            future: controller.getAllNewsAntaraHumaniora(),
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
             builder: (context, snapshot) {
               print('Checkpoint News1: ${snapshot.connectionState}');
               print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
@@ -54,10 +50,10 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                           children: [
                             Material(
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                                side: BorderSide(
-                                  color: Colors.black,
-                                )
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: BorderSide(
+                                    color: Colors.black,
+                                  )
                               ),
                               color: index.isOdd ? Colors.grey.shade200 : Colors.grey.shade400,
                               child: ListTile(
@@ -98,11 +94,7 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                             children: [
                                               Expanded(
                                                 child: Text(
-<<<<<<< HEAD
                                                   snapshot.data![index].publishedTime,
-=======
-                                                  snapshot.data![index].publisher,
->>>>>>> eab78cf13d271290eb618b5432cabb21df0a6976
                                                   style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.normal,

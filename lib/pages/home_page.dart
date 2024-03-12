@@ -4,14 +4,20 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
-import 'package:skripsilocal/pages/home_detail2/home_detail2.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
-import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
+import 'package:skripsilocal/pages/news/dummyNews.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/src/apifetching/CNN/Humaniora.dart';
-import '../src/features/authentication/controller/signup_controller.dart';
+import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/updateCategory.dart';
+import '../Utils/Helper/CategoryUtils.dart';
+import '../Utils/Helper/TimeSavedNews.dart';
+import '../controller/signup_controller.dart';
+import '../repository/authentication_repository/authentication_repository.dart';
+import '../repository/user_repository/user_repository.dart';
+import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
+import '../src/features/Dummy/InquiryAllBookmark.dart';
+import '../src/features/Dummy/check_username_page.dart';
 import 'components/my_header.dart';
-import 'dummyNews.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -63,36 +69,19 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-    else if(index == 1){
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeDetail_2(),
-        ),
-      );
-    }
-    else{
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeDetail_3(),
-        ),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: const MyHeader(),
       body: Column(
         children: [
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(
-                  left: 15,
-                  right: 15,
+                left: 15,
+                right: 15,
               ),
               child: ListView.builder(
                 itemCount: calon.length,
@@ -181,7 +170,7 @@ class _HomePageState extends State<HomePage> {
           // PENTING
           GestureDetector(
             onTap: (){
-              Get.to(()=>const Humaniora());
+              Get.to(()=>const InquiryNews());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -202,7 +191,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-          // PENTING
+          // PENTING -- Inquiry All BookMark
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>const DummyBookmarkScreen());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("Inquiry BookMark",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
 
           // Check Username Never Used
           GestureDetector(
