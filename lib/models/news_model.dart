@@ -76,8 +76,7 @@ class NewsModel{
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
         like: data?["Like"],
-        dislike: data?["Dislike"],
-        saveDate: data?["SaveDate"]
+        dislike: data?["Dislike"]
     );
   }
 }

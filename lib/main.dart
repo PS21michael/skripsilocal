@@ -10,6 +10,7 @@ import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
@@ -35,12 +36,12 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // home: HomePage(),
       // home: FillProfile(),
       // home: PickCategory(),
       // home: UpdateProfile_New(),
       // home : PasswordVerification(),
-      // home: DummyNewsScreen(),
+      home: DummyNewsScreen(),
     );
   }
 }

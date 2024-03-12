@@ -11,9 +11,9 @@ import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
+import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import '../../../pages/profile/fill_profile.dart';
 import '../user_repository/user_repository.dart';
-import 'exception/signup_email_password_failure.dart';
 
 class AuthenticationRepository extends GetxController{
   static AuthenticationRepository get instance => Get.find();

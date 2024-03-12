@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:skripsilocal/controller/signin_controller.dart';
-import 'package:skripsilocal/models/user_model.dart';
-import 'package:skripsilocal/pages/components/snackbar_utils.dart';
+import 'package:random_name_generator/random_name_generator.dart';
+import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
-import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-import '../components/button.dart';
+import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
+import 'package:skripsilocal/pages/profile/register_page.dart';
+import 'package:skripsilocal/src/features/authentication/controller/signin_controller.dart';
+import 'package:skripsilocal/src/features/authentication/screens/error_toast/show_toast.dart';
+import 'package:skripsilocal/src/repository/user_repository/user_repository.dart';
+import '../../../src/features/authentication/models/user_model.dart';
+import '../../../src/repository/authentication_repository/authentication_repository.dart';
+import '../../components/button.dart';
+import '../../components/my_textfield.dart';
+import '../profile_page.dart';
 
 class FillProfile extends StatefulWidget {
 
@@ -59,6 +66,7 @@ class _FillProfileState extends State<FillProfile> {
   final _authRepo = Get.put(AuthenticationRepository());
   final _provinsiList = ["Nanggroe Aceh Darussalam", "Sumatera Utara", "Sumatera Selatan", "Sumatera Barat","Bengkulu", "Riau", "Kepulauan Riau", "Jambi", "Lampung", "Bangka Belitung", "Kalimantan Barat", "Kalumantan Timur", "Kalimantan Selatan" , "Kalimantan Tengah", "Kalimantan Utara", "Banten", "DKI Jakarta", "Jawa Barat", "Jawa Timur", "JawaTengah", "Daerah Istimewa Yogyakarta", "Bali", "Nusa Tenggara Timur", "Nusa Tenggara Barat", "Gorontalo", "Sulawesi Barat", "Sulawesi Tengah", "Sulawesi Utara", "Sulawesi Tenggara", "Sulawesi Selatan", "Maluku Utara", "Maluku", "Papua Barat", "Papua", "Papua Tengah", "Papua Pegunungan", "Papua Selatan", "Papua Barat Daya"];
   String? _provinsiVal = "";
+
   final emailController = TextEditingController();
   final fullNameController = TextEditingController();
   final userNameController = TextEditingController();
@@ -66,6 +74,7 @@ class _FillProfileState extends State<FillProfile> {
   final dateOfBirthController = TextEditingController();
   final joinDateController = TextEditingController();
   final passwordController = TextEditingController();
+
   TextEditingController _date = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -149,61 +158,36 @@ class _FillProfileState extends State<FillProfile> {
                     const SizedBox(height: 25),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: Stack(
-                        children: [
-                          FormField(
-                            builder: (FormFieldState<String> state) {
-                              return TextField(
-                                controller: userNameController,
-                                decoration: InputDecoration(
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black54),
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black87),
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  fillColor: Colors.grey[300],
-                                  filled: true,
-                                  icon: Icon(CupertinoIcons.person_alt_circle_fill),
-                                  labelText: "Username",
-                                  // hintText: userNameCustomer,
-                                ),
-                                onChanged: (value) {
-                                  state.didChange(value);
-                                },
-                              );
-                            },
-                            validator: (value) {
-                              if (value == null) {
-                                return 'Nama Lengkap harus diisi';
-                              }
-                              return null;
-                            },
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: InkWell(
-                              // onTap: () {
-                              //   String inputUsername = userNameController.text.trim();
-                              //   print("Username yang diinput: $inputUsername");
-                              // },
-                              onTap: _validateUsername,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Cek username',
-                                  style: TextStyle(
-                                    color: Colors.blue, // Ganti warna sesuai keinginan Anda
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
+                      child: FormField(
+                        builder: (FormFieldState<String> state) {
+                          return TextField(
+                            controller: userNameController,
+                            decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black54),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black87),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                              ),
+                              fillColor: Colors.grey[300],
+                              filled: true,
+                              icon: Icon(CupertinoIcons.person_alt_circle_fill),
+                              labelText: "Username",
+                              // hintText: userNameCustomer,
                             ),
-                          ),
-                        ],
+                            onChanged: (value) {
+                              state.didChange(value);
+                            },
+                          );
+                        },
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Nama Lengkap harus diisi';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(height: 25),
@@ -310,29 +294,7 @@ class _FillProfileState extends State<FillProfile> {
                     theButton(
                       text: 'Isi Data',
                       onTap: () {
-                        if(!_usernameValidated){
-                          showCustomSnackbar(
-                            "Error!",
-                            "Please validate the username first!",
-                            isError: true,
-                          );
-                          // Get.snackbar(
-                          //   "Error!",
-                          //   "Please validate the username first!",
-                          //   snackPosition: SnackPosition.BOTTOM,
-                          //   backgroundColor: Colors.red,
-                          //   borderRadius: 10.0,
-                          //   duration: Duration(seconds: 3),
-                          //   messageText: Text(
-                          //     'Please validate the username first.',
-                          //     style: TextStyle(
-                          //       fontSize: 18.0,
-                          //       color: Colors.black,
-                          //     ),
-                          //   ),
-                          // );
-                        }
-                        else if(_formKey.currentState!.validate()) {
+                        if(_formKey.currentState!.validate()) {
                           final user = UserModel(
                             fullName: fullNameController.text.trim() == ""
                                 ? fullNameCustomer
@@ -447,26 +409,21 @@ class _FillProfileState extends State<FillProfile> {
                           Get.to(() => const HomePage());
                         }
                         else{
-                          showCustomSnackbar(
-                            "Error!",
-                            "Please fill in all required fields!",
-                            isError: true,
-                          );
-                          // Get.snackbar(
-                          //   "Error!",
-                          //   "Please fill in all required fields!",
-                          //   snackPosition: SnackPosition.BOTTOM,
-                          //   backgroundColor: Colors.red,
-                          //   borderRadius: 10.0,
-                          //   duration: Duration(seconds: 3),
-                          //   messageText: Text(
-                          //     'Please fill in all required fields.',
-                          //     style: TextStyle(
-                          //       fontSize: 18.0,
-                          //       color: Colors.black,// Ganti ukuran sesuai keinginan Anda
-                          //     ),
-                          //   ),
-                          // );
+                            Get.snackbar(
+                              "Error!",
+                              "Please fill in all required fields!",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              borderRadius: 10.0,
+                              duration: Duration(seconds: 3),
+                              messageText: Text(
+                                'Please fill in all required fields.',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.black,// Ganti ukuran sesuai keinginan Anda
+                                ),
+                              ),
+                            );
                         }
                       },
                     ),
@@ -480,9 +437,4 @@ class _FillProfileState extends State<FillProfile> {
       ),
     );
   }
-
-  void showCustomSnackbar(String title, String message, {bool isError = true}) {
-    SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
-  }
-
 }
