@@ -1,18 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/controller/profile_controller.dart';
-import 'package:skripsilocal/models/user_model.dart';
+import 'package:skripsilocal/controller/comment_controller.dart';
+import 'package:skripsilocal/models/comment_model.dart';
+import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 
-class ManageUserScreen extends StatefulWidget{
+class DummyCommentScreen1 extends StatefulWidget{
 
-  const ManageUserScreen ({Key? key}) : super (key: key);
+  DummyCommentScreen1 (String idBerita, {Key? key}) : super (key: key);
 
   @override
-  State<ManageUserScreen> createState() => _ManageUserScreenState();
+  State<DummyCommentScreen1> createState() => _DummyCommentScreen1State();
 }
 
-class _ManageUserScreenState extends State<ManageUserScreen> {
+class _DummyCommentScreen1State extends State<DummyCommentScreen1> {
 
   final fullnameController = TextEditingController();
   final provinsiController = TextEditingController();
@@ -21,58 +23,70 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
 
   @override
   Widget build(BuildContext context){
+
+    String title = NewsRepository.instance.getTitle();
+    String publisher = NewsRepository.instance.getPublisher();
+    String author = NewsRepository.instance.getAuthor();
+
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    final controller = Get.put(ProfileController());
+    final controller = Get.put(CommentController());
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=> Get.back(), icon: const Icon(LineAwesomeIcons.arrow_circle_left),),
-        title: Text("Edit Profile", style: Theme.of(context).textTheme.headlineMedium,),
+        leading: IconButton(onPressed: ()=> Get.back(), icon: Icon(LineAwesomeIcons.arrow_circle_left),),
+        title: Text("News", style: Theme.of(context).textTheme.headlineMedium,),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(isDark? LineAwesomeIcons.sun : LineAwesomeIcons.moon),),
         ],
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: FutureBuilder<List<UserModel>>(
-            future : controller.getAllUser(),
+          padding: EdgeInsets.all(20.0),
+          child: FutureBuilder<List<CommentModel>>(
+            future : controller.getAllComment(),
             builder: (context, snapshot){
               // done means data completly fetch
-              print('Checkpoint 2: ${snapshot.connectionState}');
+              print('Checkpoint Comment1: ${snapshot.connectionState}');
 
               if(snapshot.connectionState == ConnectionState.done){
                 if(snapshot.hasData){
                   // UserModel userData = snapshot.data as UserModel;
                   // print('Check User data '+userData.email);
                   return ListView.builder(
-                    shrinkWrap: true,
+                      shrinkWrap: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (c, index){
-                      return Column(
-                        children: [
-                          ListTile(
-                            iconColor: Colors.blue,
-                            tileColor: Colors.blue.withOpacity(0.1),
-                            leading: const Icon(LineAwesomeIcons.user_1),
-                            title: Text("Name : ${snapshot.data![index].fullName}"),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(snapshot.data![index].province),
-                                Text(snapshot.data![index].email),
-                                SizedBox(
-                                  width: 120,
-                                  height: 120,
-                                  child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network(snapshot.data![index].profilePicture)),
-                                ),
+                        return Column(
+                          children: [
+                            ListTile(
+                              iconColor: Colors.blue,
+                              tileColor: Colors.blue.withOpacity(0.1),
+                              leading: Icon(LineAwesomeIcons.user_1),
+                              title: Text("Title : ${snapshot.data![index].userNamePengguna}"),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(snapshot.data![index].emailPengguna),
+                                  Text(snapshot.data![index].komen),
+                                  Text("ID : ${snapshot.data![index].id!}"),
+                                  Text("Judul berita : ${publisher}"),
+                                  Text("penerbit : ${title}"),
+                                  Text("penulis : ${author}"),
+                                  SizedBox(
+                                    width: 120,
+                                    height: 120,
+                                    child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network(snapshot.data![index].pathFoto)),
+                                  ),
 
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 10,),
-                        ],
-                      );
+                            SizedBox(height: 10,),
+
+
+                          ],
+                        );
                       });
+
                   // return Column(
                   //   children: [
                   //     Stack(
@@ -156,10 +170,10 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                     child: Text(snapshot.error.toString()),
                   );
                 } else{
-                  return const Center(child: Text("Something Went Wrong"),);
+                  return Center(child: Text("Something Went Wrong"),);
                 }
               } else{
-                return const Center(
+                return Center(
                   child: CircularProgressIndicator(),
                 );
               }
@@ -167,6 +181,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
 
           ),
         ),
+
       ),
     );
   }

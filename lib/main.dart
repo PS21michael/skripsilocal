@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
-import 'package:skripsilocal/pages/pickCategory.dart';
+import 'package:skripsilocal/pages/authentication/mail_verification.dart';
+import 'package:skripsilocal/pages/news/dummyNews.dart';
+import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
-import 'package:skripsilocal/pages/profile/register_page.dart';
-import 'package:skripsilocal/src/features/authentication/screens/forget_password/reset_password_screen.dart';
-import 'package:skripsilocal/src/features/authentication/screens/mail_verification/mail_verification.dart';
-import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
-import 'pages/profile/login_page.dart';
+import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/src/features/authentication/screens/forget_password/password_verication.dart';
 
 Future<void> main() async {
 
@@ -35,11 +36,12 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      //home: MyHeader(),
-      // home: MyHomePage(),
-      // home: RegisterPage(),
+      // home: HomePage(),
+      // home: FillProfile(),
+      // home: PickCategory(),
       // home: UpdateProfile_New(),
-      home : ProfilePage(),
+      // home : PasswordVerification(),
+      home: DummyNewsScreen(),
     );
   }
 }

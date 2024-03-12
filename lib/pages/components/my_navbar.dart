@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:skripsilocal/pages/news/news_page.dart';
-import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-
-import '../home_page.dart';
+import 'package:skripsilocal/pages/news/dummyNews.dart';
 import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -30,14 +27,14 @@ class _MyNavBarState extends State<MyNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade200,
+      color: Colors.grey.shade600,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 6,
         ),
         child: GNav(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: Colors.grey.shade600,
           color: Colors.black87,
           tabBackgroundColor: Colors.grey.shade500,
           gap : 10,
@@ -75,16 +72,16 @@ class _MyNavBarState extends State<MyNavBar> {
       // You can use Navigator to push/pop pages based on the index
       switch (index) {
         case 0:
-          Navigator.push(context,
-              MaterialPageRoute(builder:
-                  (context) => const HomePage()
-              )
-          );
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder:
+          //         (context) => const DummyNewsScreen()
+          //     )
+          // );
           break;
         case 1:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const NewsPage()
+                  (context) => const DummyNewsScreen()
               )
           );
           break;
@@ -98,7 +95,7 @@ class _MyNavBarState extends State<MyNavBar> {
         case 3:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const ProfilePage()
+                  (context) => ProfilePage()
               )
           );
           break;

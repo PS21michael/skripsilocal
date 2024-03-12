@@ -1,14 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
-import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
-import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
-
 import '../../components/button.dart';
 import '../../components/my_textfield.dart';
 
@@ -83,7 +81,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                               Timer(const Duration(seconds: 5),() {
                                 print("This code executes after 15 seconds");
                                 // Get.to(()=>const ProfileScreen());
-                                Get.to(()=>const ProfilePage());
+                                Get.to(()=> ProfilePage());
                               });
 
                               // Get.to(()=>ProfileScreen());
@@ -144,7 +142,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                             text: 'Back',
                             onTap: (){
                               // controller.updateRecord(user);
-                              Get.to(()=>const ProfilePage());
+                              Get.to(()=> ProfilePage());
                               // if(_formkey.currentState!.validate()){
                               // print("Password given page level: ${controller.email.text.trim()}");
                               // print("Email given page level: ${controller.password.text.trim()}");
