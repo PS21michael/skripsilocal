@@ -7,7 +7,7 @@ import 'package:skripsilocal/pages/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
+import 'package:skripsilocal/pages/profile/core/XXX-update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
 import 'package:skripsilocal/src/features/authentication/screens/forget_password/reset_password_screen.dart';

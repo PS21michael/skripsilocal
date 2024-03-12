@@ -23,7 +23,7 @@ import '../../../../Utils/Helper/TimeSavedNews.dart';
 import '../../../../pages/components/my_textfield.dart';
 import 'antara_news_repository.dart';
 import '../politik/InquiryAntaraNewsPolitik.dart';
-import '../../../features/Dummy/Inquiry News/ANTARA/InquirynewsAntaraHumaniora.dart';
+import '../../../features/Dummy/Inquiry News/ANTARA/XXX-InquirynewsAntaraHumaniora.dart';
 // import '../../src/features/authentication/models/user_model.dart';
 // import '../../src/features/authentication/screens/error_toast/show_toast.dart';
 // import '../components/my_textfield.dart';

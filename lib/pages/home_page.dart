@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
 import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
@@ -8,12 +9,16 @@ import 'package:skripsilocal/pages/data/calon.dart';
 import 'package:skripsilocal/pages/home_detail2/home_detail2.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
+import 'package:skripsilocal/pages/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/src/apifetching/CNN/Humaniora.dart';
+import 'package:skripsilocal/src/apifetching/CNN/XXX-Humaniora.dart';
 import '../src/NewsDirect/Antara/Core/inquiryNewsAntara.dart';
 import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
 import '../src/features/Dummy/InquiryAllBookmark.dart';
+import '../src/features/Dummy/check_username_page.dart';
 import '../src/features/authentication/controller/signup_controller.dart';
+import '../src/repository/authentication_repository/authentication_repository.dart';
+import '../src/repository/user_repository/user_repository.dart';
 import 'components/my_header.dart';
 import 'dummyNews.dart';
 
@@ -30,6 +35,8 @@ class _HomePageState extends State<HomePage> {
   int aa=0;
 
   final dateTimecontroller = Get.put(TimeSavedParser());
+
+  final listCategoryController = Get.put(CategoryListParser());
 
   final controller = Get.put(SignUpController());
 
@@ -86,7 +93,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     return Scaffold(
       appBar: const MyHeader(),
       body: Column(
@@ -108,7 +115,30 @@ class _HomePageState extends State<HomePage> {
           ),
           GestureDetector(
             onTap: (){
-              Get.to(()=>const ProfileScreen());
+              UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+              List<int> daftarScore = UserRepository.instance.getListScore();
+              List<int> scoreSecure = [];
+              for(int i=0; i<38; i++){
+                scoreSecure.add(daftarScore[i]);
+              }
+
+              listCategoryController.parseScoreToList(scoreSecure);
+
+              print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
+
+
+
+              if(daftarScore.length != 38){
+                UserRepository.instance.resetListScore();
+              }
+              print("Total score Awal : ${daftarScore.length}");
+              if(daftarScore.length.isLowerThan(1)){
+                UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+              }
+              print("Total score Akhir : ${daftarScore.length}");
+              UserRepository.instance.resetListScore();
+
+              // Get.to(()=> MyHomePage());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -202,6 +232,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
+          // Check Username Never Used
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>const checkUsernamePage());
+              // SignUpController.instace.logout();
+              // AuthenticationRepository.instance.logout();
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("CheckUsername",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
 
         ],
       ),

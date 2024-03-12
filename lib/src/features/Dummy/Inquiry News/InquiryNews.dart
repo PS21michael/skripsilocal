@@ -8,7 +8,14 @@ import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
+import 'package:skripsilocal/src/NewsDirect/CNBC/core/inquiryNewsCNBC.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/core/inquiryNewsCNN.dart';
+import 'package:skripsilocal/src/NewsDirect/Merdeka/core/inquiryNewsMerdeka.dart';
+import 'package:skripsilocal/src/NewsDirect/Okezone/core/inquiryNewsOkezone.dart';
+import 'package:skripsilocal/src/NewsDirect/Republika/core/inquiryNewsRepublika.dart';
+import 'package:skripsilocal/src/NewsDirect/SindoNews/core/inquiryNewsSindoNews.dart';
+import 'package:skripsilocal/src/NewsDirect/Suara/core/inquiryNewsSuara.dart';
+import 'package:skripsilocal/src/NewsDirect/Tempo/core/inquiryNewsTempo.dart';
 import 'package:skripsilocal/src/features/authentication/controller/signin_controller.dart';
 import 'package:skripsilocal/src/features/authentication/screens/forget_password/reset_password_screen.dart';
 import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
@@ -132,6 +139,174 @@ class _InquiryNews extends State<InquiryNews> {
                   ),
                 ),
                 const SizedBox(height: 10),
+
+                // 3. CNBC
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsCNBC());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("CNBC",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 4. Merdeka
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsMerdeka());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Merdeka",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 5. Okezone
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsOkezone());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Okezone",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 6. Republika
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsRepublika());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Republika",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 7. Sindo News
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsSindoNews());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Sindo News",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 8. Suara
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsSuara());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Suara",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
+
+                // 9. Tempo
+                GestureDetector(
+                  onTap: (){
+
+                    Get.to(()=>const InquiryNewsTempo());
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.blue[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Center(
+                      child: Text("Tempo",
+                        style: TextStyle(
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+
 
 
                 // Forget Password

@@ -16,7 +16,7 @@ import '../../../../../Utils/Helper/TimeSavedNews.dart';
 import '../../../../../pages/components/my_textfield.dart';
 import '../../../../NewsDirect/Antara/politik/InquiryAntaraNewsPolitik.dart';
 import '../../../../repository/news_repository/news_repository.dart';
-import 'InquiryHumanioraNews.dart';
+import 'XXX-InquiryHumanioraNews.dart';
 // import '../../src/features/authentication/models/user_model.dart';
 // import '../../src/features/authentication/screens/error_toast/show_toast.dart';
 // import '../../src/repository/user_repository/user_repository.dart';

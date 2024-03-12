@@ -18,6 +18,10 @@ class BookmarkController extends GetxController{
     return await _bookmarkRepo.getAllBookmarks();
   }
 
+  Future<List<BookmarkModel>> getAllBookmarkfromSingleUser(String userId) async{
+    return await _bookmarkRepo.getAllBookmarksFromSingleUser(userId);
+  }
+
 
   Future<void> createBookMark(BookmarkModel bookmarkModel)async{
     print('Bookmark Akan Dibuat');

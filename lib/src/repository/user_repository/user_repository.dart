@@ -129,6 +129,29 @@ class UserRepository extends GetxController{
   }
 
 
+  // Username
+  String isUserNull = "";
+  List<String> listUsernameRegistered = [];
+  String isUsernameAvail = "";
+  Future<List<UserModel>> checkListUserName(String username) async{
+    final snapshot = await _db.collection("/Users").where("UserName", isEqualTo: username).get();
+    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+    if(userData.length != 0){
+      for (int i=0; i<userData.length;i++){
+        listUsernameRegistered.add(userData[i].userName);
+      }
+      isUsernameAvail = "NO";
+    } else{
+      isUsernameAvail = "YES";
+    }
+    return userData;
+  }
+
+  String getUsernameAvail(){
+    return isUsernameAvail;
+  }
+
+
   Future<UserModel> getSingelUserDetails(String email) async{
     print('CheckPoint login 2');
     print('DB telah dipanggil ke ${ctr+=1}');

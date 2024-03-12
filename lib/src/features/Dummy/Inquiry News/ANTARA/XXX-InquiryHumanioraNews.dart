@@ -84,7 +84,7 @@ class _InquiryHumanioraNews extends State<InquiryHumanioraNews> {
         //     continue;
         //   }
         // }
-        if(i==5){
+        else {
           final news = NewsModel(
               publisher: "ANTARA News",
               author: "Humaniora - ANTARA News",

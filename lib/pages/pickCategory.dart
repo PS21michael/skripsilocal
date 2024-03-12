@@ -78,14 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       onTap: (){},
                       text: "Submit"),
                   SizedBox(height: 20),
-                  // Text('Kategori yang Dipilih:'),
-                  // SizedBox(height: 10),
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: selectedCategories
-                  //       .map((category) => Text(category, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))
-                  //       .toList(),
-                  // ),
+                  Text('Kategori yang Dipilih:'),
+                  SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: selectedCategories
+                        .map((category) => Text(category, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))
+                        .toList(),
+                  ),
                 ],
               ),
             ),

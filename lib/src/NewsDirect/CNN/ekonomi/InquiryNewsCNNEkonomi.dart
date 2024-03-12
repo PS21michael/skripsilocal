@@ -57,8 +57,7 @@ class _InquiryCNNNewsEkonomi extends State<InquiryCNNNewsEkonomi> {
         if(listJudul.contains(dataFetching!.data!.posts![i].title)){
           print('Data yang duplikat ada sebanyak ${i}');
           continue;
-        }
-        if(i==5){
+        }else {
           final news = NewsModel(
               publisher: publisher,
               author: author,

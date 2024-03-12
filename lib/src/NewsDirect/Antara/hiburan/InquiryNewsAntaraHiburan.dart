@@ -57,8 +57,7 @@ class _InquiryAntaraNewsHiburan extends State<InquiryAntaraNewsHiburan> {
         if(listJudul.contains(dataFetching!.data!.posts![i].title)){
           print('Data yang duplikat ada sebanyak ${i}');
           continue;
-        }
-        if(i==5){
+        } else {
           final news = NewsModel(
               publisher: publisher,
               author: author,
@@ -72,6 +71,7 @@ class _InquiryAntaraNewsHiburan extends State<InquiryAntaraNewsHiburan> {
               dislike: 0,
               saveDate: tempCtr);
           await newsRepo.saveNewsAntara(news);
+
         }
       }
     } catch (e) {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skripsilocal/pages/news/news_page.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 
+import '../../src/features/authentication/controller/profile_controller.dart';
 import '../home_page.dart';
 import '../profile/profile_page.dart';
 
@@ -70,6 +73,7 @@ class _MyNavBarState extends State<MyNavBar> {
   }
 
   void _tabChange (int index){
+    // final controller = Get.put(ProfileController());
     setState(() {
       _selectedIndex = index;
       // You can use Navigator to push/pop pages based on the index
@@ -96,6 +100,7 @@ class _MyNavBarState extends State<MyNavBar> {
           // );
           break;
         case 3:
+          // controller.getUserData();
           Navigator.push(context,
               MaterialPageRoute(builder:
                   (context) => const ProfilePage()

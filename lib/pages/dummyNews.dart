@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
-import 'package:skripsilocal/pages/dummyComment1.dart';
+import 'package:skripsilocal/pages/XXX-dummyComment1.dart';
 import 'package:skripsilocal/src/features/authentication/controller/comment_controller.dart';
 import 'package:skripsilocal/src/features/authentication/controller/like_dislike_news_controller.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
+import 'package:skripsilocal/pages/profile/core/XXX-update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/core/widget/profile_menu.dart';
 import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';

@@ -44,6 +44,10 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulPolitikAntaraNews(){
     return listJudulPolitik;
   }
+  void setNullListJudulPolitikAntaraNews(){
+    listJudulPolitik = [];
+  }
+
 
 
   // HUKUM - Antara
@@ -60,6 +64,9 @@ class AntaraNewsRepository extends GetxController{
   }
   List<String> getListJudulHukumAntaraNews(){
     return listJudulHukum;
+  }
+  void setNullListJudulHukumAntaraNews(){
+    listJudulHukum = [];
   }
 
 
@@ -80,6 +87,10 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulEkonomiAntaraNews(){
     return listJudulEkonomi;
   }
+  void setNullListJudulEkonomiAntaraNews(){
+    listJudulEkonomi = [];
+  }
+
 
 
 
@@ -98,6 +109,9 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulBolaAntaraNews(){
     return listJudulBola;
   }
+  void setNullListJudulBolaAntaraNews(){
+    listJudulBola = [];
+  }
 
 
   // OLAHRAGA - Antara
@@ -115,6 +129,10 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulOlahragaAntaraNews(){
     return listJudulOlahraga;
   }
+  void setNullListJudulOlahragaAntaraNews(){
+    listJudulOlahraga = [];
+  }
+
 
 
 
@@ -133,6 +151,9 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulHumanioraAntaraNews(){
     return listJudulHumaniora;
   }
+  void setNullListJudulHumanioraAntaraNews(){
+    listJudulHumaniora = [];
+  }
 
 
 
@@ -150,6 +171,9 @@ class AntaraNewsRepository extends GetxController{
   }
   List<String> getListJudulLifeStyleAntaraNews(){
     return listJudulLifeStyle;
+  }
+  void setNullListJudulLifeStyleAntaraNews(){
+    listJudulLifeStyle = [];
   }
 
 
@@ -170,7 +194,9 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulHiburanAntaraNews(){
     return listJudulHiburan;
   }
-
+  void setNullListJudulHiburanAntaraNews(){
+    listJudulHiburan = [];
+  }
 
 
   // INTERNASIONAL/DUNIA - Antara
@@ -188,7 +214,9 @@ class AntaraNewsRepository extends GetxController{
   List<String> getListJudulInternasionalAntaraNews(){
     return listJudulInternasional;
   }
-
+  void setNullListJudulInternasionalAntaraNews(){
+    listJudulInternasional = [];
+  }
 
 
   // TEKNOLOGI - Antara
@@ -205,6 +233,9 @@ class AntaraNewsRepository extends GetxController{
   }
   List<String> getListJudulTeknologiAntaraNews(){
     return listJudulTeknologi;
+  }
+  void setNullListJudulTeknologiAntaraNews(){
+    listJudulTeknologi = [];
   }
 
 
@@ -223,6 +254,9 @@ class AntaraNewsRepository extends GetxController{
   }
   List<String> getListJudulOtomotifAntaraNews(){
     return listJudulOtomotif;
+  }
+  void setNullListJudulOtomotifAntaraNews(){
+    listJudulOtomotif = [];
   }
 
 

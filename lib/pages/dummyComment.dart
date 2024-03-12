@@ -9,6 +9,7 @@ import 'package:skripsilocal/src/features/authentication/controller/profile_cont
 import 'package:skripsilocal/src/features/authentication/models/bookmark_model.dart';
 import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
 import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
+import 'package:skripsilocal/src/repository/bookmark_repository/bookmark_repository.dart';
 // import 'package:skripsilocal/src/repository/like_dislike_repository/like_dislike_news_repository.dart';
 import 'package:skripsilocal/src/repository/news_repository/news_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -196,18 +197,44 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                               text: 'Save Bookmark',
                               onTap: () async {
 
-                                final bookmark = BookmarkModel(
-                                    idNews: idNews,
-                                    idPengguna: idUser,
-                                    title: title,
-                                    urlData: url1,
-                                    urlGambar: newsPicture,
-                                    kategori: kategori);
+                                await bookMarkController.getAllBookmarkfromSingleUser(idUser);
+                                print("Title-nya " + title);
+                                print("Data ada : " + BookmarkRepository.instance.isDataAvail());
+                                if(BookmarkRepository.instance.isDataAvail() == "NO"){
+                                  final bookmark = BookmarkModel(
+                                      idNews: idNews,
+                                      idPengguna: idUser,
+                                      title: title,
+                                      urlData: url1,
+                                      urlGambar: newsPicture,
+                                      kategori: kategori);
 
-                                await bookMarkController.createBookMark(bookmark);
+                                  await bookMarkController.createBookMark(bookmark);
+                                } else{
+                                  List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
+                                  for(int i=0; i<listTitleSave.length;i++){
+                                    if(listTitleSave.contains(title)){
+                                      print("Data sudah pernah ada");
+                                    }
+                                    else{
+                                      final bookmark = BookmarkModel(
+                                          idNews: idNews,
+                                          idPengguna: idUser,
+                                          title: title,
+                                          urlData: url1,
+                                          urlGambar: newsPicture,
+                                          kategori: kategori);
+
+                                      await bookMarkController.createBookMark(bookmark);
+                                    }
+                                  }
+                                }
+
+
                                 // controller.cr
                                 Get.to(()=>DummyNewsScreen());
                                 FirebaseAuth.instance.currentUser?.reload();
+                                BookmarkRepository.instance.setNullListTitleBookmark();
                                 Get.to(()=>DummyCommentScreen());
                               },
                             ),

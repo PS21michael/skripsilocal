@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/profile/core/update_profile_screen.dart';
+import 'package:skripsilocal/pages/profile/core/XXX-update_profile_screen.dart';
 import 'package:skripsilocal/pages/profile/register_page.dart';
 import 'package:skripsilocal/src/features/authentication/controller/signin_controller.dart';
 import 'package:skripsilocal/src/features/authentication/screens/error_toast/show_toast.dart';

@@ -154,6 +154,8 @@ itemCard(String title, String subtitle, IconData){
 class UpdateProfileController extends GetxController {
 
   Future<void> reloadProfileData() async {
+    final controller = Get.put(ProfileController());
+    controller.getUserData();
     //Butuh logika untuk memperbarui data
     update();
   }
