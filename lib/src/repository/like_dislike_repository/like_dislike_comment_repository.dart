@@ -1,7 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/features/authentication/models/like_dislike_comment_model.dart';
+
+import '../../../models/like_dislike_comment_model.dart';
 
 class LikeDislikeCommentRepository extends GetxController{
 

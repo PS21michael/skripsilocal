@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/features/authentication/controller/signup_controller.dart';
 
+import '../../../controller/signup_controller.dart';
 import '../../../pages/components/button.dart';
 import '../../../pages/components/my_textfield.dart';
 import '../../../pages/home_page.dart';
-import '../../repository/user_repository/user_repository.dart';
-import '../authentication/screens/error_toast/show_toast.dart';
+import '../../../repository/user_repository/user_repository.dart';
 
 class checkUsernamePage extends StatefulWidget {
 
@@ -64,9 +63,9 @@ class _checkUsernamePage extends State<checkUsernamePage> {
                     print("Checkpoint username");
                     String usernameAvail = UserRepository.instance.isUsernameAvail;
                     if(usernameAvail == "NO"){
-                      showToast(message: "Username tidak bisa digunakan");
+                      print("Username tidak bisa digunakan");
                     } else if(usernameAvail == "YES"){
-                      showToast(message: "Username bisa digunakan");
+                      print( "Username bisa digunakan");
                     }
                     // Get.to(()=>const HomePage());
                   },

@@ -2,7 +2,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../features/authentication/models/news_model.dart';
+import '../../../../models/news_model.dart';
+
+
 
 class MerdekaNewsRepository extends GetxController{
 

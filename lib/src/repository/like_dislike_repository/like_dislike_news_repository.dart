@@ -1,7 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/features/authentication/models/like_dislike_news_model.dart';
+
+import '../../../models/like_dislike_news_model.dart';
 
 class LikeDislikeNewsRepository extends GetxController{
 

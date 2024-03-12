@@ -3,17 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
-import 'package:skripsilocal/pages/XXX-dummyComment1.dart';
-import 'package:skripsilocal/src/features/authentication/controller/bookmark_controller.dart';
-import 'package:skripsilocal/src/features/authentication/controller/comment_controller.dart';
-import 'package:skripsilocal/src/features/authentication/controller/like_dislike_news_controller.dart';
-import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
-import 'package:skripsilocal/src/features/authentication/models/bookmark_model.dart';
-import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
-import 'package:skripsilocal/src/features/authentication/models/user_model.dart';
 import 'package:skripsilocal/src/repository/like_dislike_repository/like_dislike_news_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../controller/bookmark_controller.dart';
+import '../../../models/bookmark_model.dart';
 import '../../../pages/components/button.dart';
 
 

@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
-import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
-import 'package:skripsilocal/pages/home_detail2/home_detail2.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
-import 'package:skripsilocal/pages/home_detail3/home_detail3.dart';
-import 'package:skripsilocal/pages/pickCategory.dart';
+import 'package:skripsilocal/pages/news/dummyNews.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-import 'package:skripsilocal/src/apifetching/CNN/XXX-Humaniora.dart';
-import '../src/NewsDirect/Antara/Core/inquiryNewsAntara.dart';
+import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/updateCategory.dart';
+import '../Utils/Helper/CategoryUtils.dart';
+import '../Utils/Helper/TimeSavedNews.dart';
+import '../controller/signup_controller.dart';
+import '../repository/authentication_repository/authentication_repository.dart';
+import '../repository/user_repository/user_repository.dart';
 import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
 import '../src/features/Dummy/InquiryAllBookmark.dart';
 import '../src/features/Dummy/check_username_page.dart';
-import '../src/features/authentication/controller/signup_controller.dart';
-import '../src/repository/authentication_repository/authentication_repository.dart';
-import '../src/repository/user_repository/user_repository.dart';
 import 'components/my_header.dart';
-import 'dummyNews.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -32,7 +29,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int aa=0;
 
   final dateTimecontroller = Get.put(TimeSavedParser());
 
@@ -73,29 +69,12 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-    else if(index == 1){
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeDetail_2(),
-        ),
-      );
-    }
-    else{
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HomeDetail_3(),
-        ),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+
     return Scaffold(
-      appBar: const MyHeader(),
       body: Column(
         children: [
           Expanded(
@@ -114,14 +93,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GestureDetector(
-            onTap: (){
-              UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            onTap: () async{
+              await Future.delayed(Duration(seconds: 2));
+              await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
               List<int> daftarScore = UserRepository.instance.getListScore();
               List<int> scoreSecure = [];
+              List<String> listKategory = listCategoryController.parseScoreToList(scoreSecure);
               for(int i=0; i<38; i++){
                 scoreSecure.add(daftarScore[i]);
               }
 
+              //ARRAY KIRIMAN KE PAGE SELANJUTNYA
               listCategoryController.parseScoreToList(scoreSecure);
 
               print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
@@ -133,12 +115,13 @@ class _HomePageState extends State<HomePage> {
               }
               print("Total score Awal : ${daftarScore.length}");
               if(daftarScore.length.isLowerThan(1)){
-                UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+                await Future.delayed(Duration(seconds: 2));
+                await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
               }
               print("Total score Akhir : ${daftarScore.length}");
               UserRepository.instance.resetListScore();
 
-              // Get.to(()=> MyHomePage());
+              // Get.to(()=> UpdateCategory());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -235,7 +218,10 @@ class _HomePageState extends State<HomePage> {
           // Check Username Never Used
           GestureDetector(
             onTap: (){
-              Get.to(()=>const checkUsernamePage());
+              DateTime test = DateTime.now();
+              print("Tanggal yang dikirim : " + test.toString());
+              // Get.to(()=>const FillProfile());
+              // Get.to(()=>const checkUsernamePage());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },

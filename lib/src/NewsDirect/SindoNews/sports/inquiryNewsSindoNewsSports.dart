@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:skripsilocal/src/NewsDirect/SindoNews/core/sindo_news_repository.dart';
-import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
 
-import '../../../features/authentication/models/Berita/berita_model.dart';
+import '../../../../models/Berita/berita_model.dart';
+import '../../../../models/news_model.dart';
 
 class InquirySindoNewsSports extends StatefulWidget {
 

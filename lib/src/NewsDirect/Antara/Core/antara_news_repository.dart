@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/repository/news_repository/news_repository.dart';
 
-import '../../../features/authentication/models/news_model.dart';
+import '../../../../models/news_model.dart';
+
 
 class AntaraNewsRepository extends GetxController{
 

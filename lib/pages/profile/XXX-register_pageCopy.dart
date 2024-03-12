@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/features/authentication/controller/signup_controller.dart';
-import '../../src/features/authentication/models/user_model.dart';
+import 'package:skripsilocal/controller/signup_controller.dart';
+import 'package:skripsilocal/models/user_model.dart';
+import 'package:skripsilocal/pages/authentication/login_page.dart';
 import '../components/my_textfield.dart';
 import '../components/button.dart';
-import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
 

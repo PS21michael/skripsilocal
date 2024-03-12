@@ -1,15 +1,11 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
-import 'package:skripsilocal/pages/profile/core/XXX-update_profile_screen.dart';
-import 'package:skripsilocal/pages/profile/core/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/core/widget/profile_menu.dart';
-import 'package:skripsilocal/src/features/authentication/controller/profile_controller.dart';
-
-import '../../../src/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import '../../components/button.dart';
 
 class ProfileScreen extends StatelessWidget{

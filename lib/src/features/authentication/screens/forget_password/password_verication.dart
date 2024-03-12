@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/src/features/authentication/controller/forget_password_controller.dart';
-import 'package:skripsilocal/src/repository/authentication_repository/authentication_repository.dart';
-
+import 'package:skripsilocal/controller/forget_password_controller.dart';
+import 'package:skripsilocal/pages/authentication/login_page.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import '../../../../../pages/components/my_textfield.dart';
-import '../../../../../pages/profile/login_page.dart';
 
 class PasswordVerification extends StatelessWidget{
   const PasswordVerification ({Key? key});

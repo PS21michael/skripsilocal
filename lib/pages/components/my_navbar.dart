@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:skripsilocal/pages/news/news_page.dart';
-import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
-
-import '../../src/features/authentication/controller/profile_controller.dart';
-import '../home_page.dart';
+import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/news/dummyNews.dart';
 import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -33,14 +28,14 @@ class _MyNavBarState extends State<MyNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade200,
+      color: Colors.grey.shade600,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 6,
         ),
         child: GNav(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: Colors.grey.shade600,
           color: Colors.black87,
           tabBackgroundColor: Colors.grey.shade500,
           gap : 10,
@@ -73,7 +68,6 @@ class _MyNavBarState extends State<MyNavBar> {
   }
 
   void _tabChange (int index){
-    // final controller = Get.put(ProfileController());
     setState(() {
       _selectedIndex = index;
       // You can use Navigator to push/pop pages based on the index
@@ -88,7 +82,7 @@ class _MyNavBarState extends State<MyNavBar> {
         case 1:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const NewsPage()
+                  (context) => const DummyNewsScreen()
               )
           );
           break;
@@ -100,10 +94,9 @@ class _MyNavBarState extends State<MyNavBar> {
           // );
           break;
         case 3:
-          // controller.getUserData();
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const ProfilePage()
+                  (context) => ProfilePage()
               )
           );
           break;

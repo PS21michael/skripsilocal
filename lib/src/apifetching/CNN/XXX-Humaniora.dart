@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
-
-import '../../features/authentication/models/Berita/berita_model.dart';
-import '../../repository/news_repository/news_repository.dart';
+import 'package:skripsilocal/models/Berita/berita_model.dart';
+import 'package:skripsilocal/models/news_model.dart';
+import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 
 class Humaniora extends StatefulWidget {
   const Humaniora({Key? key}) : super(key: key);
@@ -30,7 +29,6 @@ class _HumanioraState extends State<Humaniora> {
   }
 
   BeritaModel ? dataFetching;
-
 
   // UnUse
   Future<BeritaModel> getRecords() async {

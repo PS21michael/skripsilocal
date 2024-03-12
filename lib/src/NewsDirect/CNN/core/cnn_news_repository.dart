@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/src/features/authentication/models/news_model.dart';
+
+import '../../../../models/news_model.dart';
+
 
 class CNNNewsRepository extends GetxController{
 
