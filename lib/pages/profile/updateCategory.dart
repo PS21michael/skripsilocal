@@ -123,7 +123,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
           removeCategories.add(category);
         }
       }
-      //updateScore disini
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);

@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
-      home: FillProfile(),
-      // home: UpdateProfile(),
+      // home: PickCategory(),
+      home: UpdateProfile(),
       // home: UpdateProfile_New(),
       // home : PasswordVerification(),
       // home: DummyNewsScreen(),

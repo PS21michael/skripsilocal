@@ -97,7 +97,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
-    String userNameCustomer = "BBBB";
+    String userNameCustomer = UserRepository.instance.getUserModelUserName();
     String provinceCustomer = UserRepository.instance.getUserModelProvince();
     String dateOfBirthCustomer = UserRepository.instance
         .getUserModelDateOfBirth();

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 
 class PickCategory extends StatefulWidget {
   @override
@@ -107,6 +104,7 @@ class _PickCategoryState extends State<PickCategory> {
           selectedCategories.contains(category)).toList();
       print(filteredCategories);
       // Get.to(() => HomePage(selectedCategories: filteredCategories));
+
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
