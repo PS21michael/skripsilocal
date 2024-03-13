@@ -97,7 +97,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                   ),
                   SizedBox(height: 20),
                   theButton(
-                      onTap: (){
+                      onTap: () async{
                         handleSubmit(userCategory);
                       },
                       text: "Submit"

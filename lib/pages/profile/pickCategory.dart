@@ -66,7 +66,7 @@ class _PickCategoryState extends State<PickCategory> {
                       // List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList();
                       // Get.to(() => HomePage(selectedCategories: filteredCategories));
                       // print('filteredCategories');
-                      onTap: (){
+                      onTap: () async{
                         handleSubmit();
                       },
                       text: "Submit"
