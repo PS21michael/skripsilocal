@@ -13,19 +13,19 @@ import 'package:skripsilocal/repository/authentication_repository/authentication
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
 
-class FillProfile extends StatefulWidget {
+class UpdateProfile extends StatefulWidget {
 
-  const FillProfile({super.key});
+  const UpdateProfile({super.key});
 
   @override
-  State<FillProfile> createState() => _FillProfileState();
+  State<UpdateProfile> createState() => _UpdateProfileState();
 }
 
-class _FillProfileState extends State<FillProfile> {
+class _UpdateProfileState extends State<UpdateProfile> {
 
-  _FillProfileState() {
-    _provinsiVal = _provinsiList[0];
-  }
+  // _UpdateProfileState() {
+  //   _provinsiVal = "AAAA";
+  // }
 
   Future<void> _validateUsername() async {
     String inputUsername = userNameController.text.trim();
@@ -49,7 +49,6 @@ class _FillProfileState extends State<FillProfile> {
     } else if(usernameAvail == "YES"){
       return true;
     }
-    // logika validasi username di sini
     return false;
   }
 
@@ -70,12 +69,35 @@ class _FillProfileState extends State<FillProfile> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    getUserData();
+  }
+
+  @override
+  void didUpdateWidget(covariant UpdateProfile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget != widget) {
+      getUserData();
+    }
+  }
+
+  void getUserData() async {
+    setState(() {
+      fullNameController.text = UserRepository.instance.getUserModelFullName();
+      userNameController.text = "BBB";
+      _provinsiVal = UserRepository.instance.getUserModelProvince();
+      dateOfBirthController.text = UserRepository.instance.getUserModelDateOfBirth();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     var i = 0;
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
-    String userNameCustomer = UserRepository.instance.getUserModelUserName();
+    String userNameCustomer = "BBBB";
     String provinceCustomer = UserRepository.instance.getUserModelProvince();
     String dateOfBirthCustomer = UserRepository.instance
         .getUserModelDateOfBirth();
@@ -102,7 +124,7 @@ class _FillProfileState extends State<FillProfile> {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Isi data diri anda!',
+                        'Update data diri anda!',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 25,
@@ -112,38 +134,29 @@ class _FillProfileState extends State<FillProfile> {
                     const SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: FormField(
-                        builder: (FormFieldState<String> state) {
-                          return TextField(
-                            controller: fullNameController,
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black54),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black87),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              fillColor: Colors.grey[300],
-                              filled: true,
-                              icon: Icon(CupertinoIcons.person),
-                              labelText: "Nama Lengkap",
-                              // hintText: fullNameCustomer,
-                            ),
-                            onChanged: (value) {
-                              state.didChange(value);
-                            },
-                          );
-                        },
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Nama Lengkap harus diisi';
-                          }
-                          return null;
-                        },
+                      child: TextField(
+                        controller: fullNameController,
+                        decoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black54),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black87),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          fillColor: Colors.grey[300],
+                          filled: true,
+                          icon: Icon(CupertinoIcons.person),
+                          labelText: "Nama Lengkap",
+                          hintText: "Masukkan nama lengkap Anda",
+                        ),
+                        // Tambahkan initialValue di sini
+                        // initialValue: "AAAA",
+                        // onChanged: (value) {
+                        //   // Lakukan sesuatu ketika nilai berubah
+                        //   state.didChange(value);
+                        // },
                       ),
                     ),
                     const SizedBox(height: 25),
@@ -168,7 +181,7 @@ class _FillProfileState extends State<FillProfile> {
                                   filled: true,
                                   icon: Icon(CupertinoIcons.person_alt_circle_fill),
                                   labelText: "Username",
-                                  // hintText: userNameCustomer,
+                                  hintText: "bbbb",
                                 ),
                                 onChanged: (value) {
                                   state.didChange(value);
@@ -310,16 +323,23 @@ class _FillProfileState extends State<FillProfile> {
                     ),
                     const SizedBox(height: 30),
                     theButton(
-                      text: 'Isi Data',
+                      text: 'Update Data',
                       onTap: () {
-                        if(_formKey.currentState!.validate()) {
-                          if(!_usernameValidated) {
+                        if (userNameController.text.trim() != userNameCustomer) {
+                          // print("KETANGKAP DISINI");
+                          if (!_usernameValidated) {
                             showCustomSnackbar(
                               "Error!",
                               "Please validate the username first!",
                               isError: true,
                             );
-                          } else {
+                            return;
+                          }
+                          else {
+                            // print("+++++++++++");
+                            // print(userNameController.text.trim());
+                            // print("LLLLLL");
+                            // print(userNameCustomer);
                             final user = UserModel(
                               fullName: fullNameController.text.trim() == ""
                                   ? fullNameCustomer
@@ -335,7 +355,6 @@ class _FillProfileState extends State<FillProfile> {
                               password: passwordCustomer,
                               joinDate: joinDateCustomer,
                               profilePicture: profilePictureCustomer,
-
                               kategori1: 'nasional',
                               scoreKategori1: 0,
                               kategori2: 'bisnis',
@@ -413,28 +432,12 @@ class _FillProfileState extends State<FillProfile> {
                               kategori38: 'event',
                               scoreKategori38: 0,
                             );
-                            print('fullName yg di input: ${user.fullName}');
-                            print('email yg di input: ${user.email}');
-                            print('userName yg di input: ${user.userName}');
-                            print('province yg di input: ${user.province}');
-                            print('dateOfBirth yg di input: ${user.dateOfBirth}');
-                            print('password yg di input: ${user.password}');
-
-                            UserRepository.instance.updateUserRecord(
-                                user, idCustomer);
-                            UserRepository.instance.getSingelUserDetails(
-                                controller.email.text.trim());
-
+                            UserRepository.instance.updateUserRecord(user, idCustomer);
+                            UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
                             Get.to(() => const HomePage());
                           }
-                        } else {
-                          showCustomSnackbar(
-                            "Error!",
-                            "Please fill in all required fields!",
-                            isError: true,
-                          );
                         }
-                      },
+                      }
                     ),
                     const SizedBox(height: 350),
                   ],

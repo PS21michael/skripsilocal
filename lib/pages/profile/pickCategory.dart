@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/pages/components/button.dart';
+import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 
 class PickCategory extends StatefulWidget {
@@ -74,14 +75,14 @@ class _PickCategoryState extends State<PickCategory> {
                       text: "Submit"
                   ),
                   SizedBox(height: 20),
-                  Text('Kategori yang Dipilih:'),
-                  SizedBox(height: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: selectedCategories
-                        .map((category) => Text(category, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))
-                        .toList(),
-                  ),
+                  // Text('Kategori yang Dipilih:'),
+                  // SizedBox(height: 10),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: selectedCategories
+                  //       .map((category) => Text(category, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)))
+                  //       .toList(),
+                  // ),
                 ],
               ),
             ),
@@ -101,9 +102,19 @@ class _PickCategoryState extends State<PickCategory> {
     //   }
     // }
     // print('Nilai yang tidak ada di tempCategories2: $resultCategories');
-
-    List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList();
-    print(filteredCategories);
-    // Get.to(() => HomePage(selectedCategories: filteredCategories));
+    if (selectedCategories.length >= 3) {
+      List<String> filteredCategories = categories.where((category) =>
+          selectedCategories.contains(category)).toList();
+      print(filteredCategories);
+      // Get.to(() => HomePage(selectedCategories: filteredCategories));
+    }
+    else{
+      showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
+    }
   }
+
+  void showCustomSnackbar(String title, String message, {bool isError = true}) {
+    SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
+  }
+
 }

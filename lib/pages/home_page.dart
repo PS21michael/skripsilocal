@@ -29,11 +29,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-
   final dateTimecontroller = Get.put(TimeSavedParser());
-
   final listCategoryController = Get.put(CategoryListParser());
-
   final controller = Get.put(SignUpController());
 
   List calon = [
@@ -141,33 +138,28 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-
-          // Batas
-          GestureDetector(
-            onTap: (){
-              Get.to(()=>const DummyNewsScreen());
-              // SignUpController.instace.logout();
-              // AuthenticationRepository.instance.logout();
-            },
-
-            child: Container(
-              height: 45,
-              width: 100,
-              decoration: BoxDecoration(
-                color: Colors.blue[200],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Center(
-                child: Text("News",
-                  style: TextStyle(
-                      color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-          // Batas
-
-          // PENTING
+          // GestureDetector(
+          //   onTap: (){
+          //     Get.to(()=>const DummyNewsScreen());
+          //     // SignUpController.instace.logout();
+          //     // AuthenticationRepository.instance.logout();
+          //   },
+          //   child: Container(
+          //     height: 45,
+          //     width: 100,
+          //     decoration: BoxDecoration(
+          //       color: Colors.blue[200],
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //     child: const Center(
+          //       child: Text("News",
+          //         style: TextStyle(
+          //             color: Colors.white),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          //
           GestureDetector(
             onTap: (){
               Get.to(()=>const InquiryNews());

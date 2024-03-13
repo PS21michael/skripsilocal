@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/components/custom_list_tile.dart';
+import 'package:skripsilocal/pages/profile/core/XXX-update_profile_screen.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
@@ -82,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onTap: () async {
                   await controller.uploadProfilePicture();
                   updateController.reloadProfileData();
-                  setState(() {}); // Update widget dengan setState
+                  setState(() {});
                 },
                 child: Container(
                   width: 40,
@@ -127,10 +128,8 @@ class _ProfilePageState extends State<ProfilePage> {
           text: 'Edit Profile',
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const FillProfile()),
+            MaterialPageRoute(builder: (context) => const UpdateProfile()),
           ).then((value) {
-            // Handle jika diperlukan
-            // Misalnya, panggil setState() jika ada perubahan setelah kembali dari halaman FillProfile
           }),
         ),
         SizedBox(height: 10),
