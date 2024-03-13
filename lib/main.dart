@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home: HomePage(),
       // home: PickCategory(),
-      home: UpdateProfile(),
+      home: UpdateCategory(),
       // home: UpdateProfile_New(),
       // home : PasswordVerification(),
       // home: DummyNewsScreen(),

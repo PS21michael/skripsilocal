@@ -9,6 +9,7 @@ import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
@@ -355,6 +356,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               password: passwordCustomer,
                               joinDate: joinDateCustomer,
                               profilePicture: profilePictureCustomer,
+                              // ToDO Update Score (ambil value lama)
                               kategori1: 'nasional',
                               scoreKategori1: 0,
                               kategori2: 'bisnis',
@@ -431,10 +433,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               scoreKategori37: 0,
                               kategori38: 'event',
                               scoreKategori38: 0,
+                              //ToDO
                             );
                             UserRepository.instance.updateUserRecord(user, idCustomer);
                             UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
-                            Get.to(() => const HomePage());
+                            Get.to(() => UpdateCategory());
                           }
                         }
                       }

@@ -101,9 +101,10 @@ class _PickCategoryState extends State<PickCategory> {
     // print('Nilai yang tidak ada di tempCategories2: $resultCategories');
     if (selectedCategories.length >= 3) {
       List<String> filteredCategories = categories.where((category) =>
-          selectedCategories.contains(category)).toList();
+          selectedCategories.contains(category)).toList(); //TODO HASIL CATEGORY
       print(filteredCategories);
       // Get.to(() => HomePage(selectedCategories: filteredCategories));
+      //ToDO NAMBAH SKOR
 
     }
     else{

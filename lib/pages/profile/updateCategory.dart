@@ -71,7 +71,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                     children: categories.map((category) {
                       return ChoiceChip(
                         label: Text(category),
-                        selected: TempselectedCategories.contains(category), // Periksa apakah kategori ada di dalam TempselectedCategories
+                        selected: userCategory.contains(category), // Periksa apakah kategori ada di dalam TempselectedCategories
                         onSelected: (bool selected) {
                           setState(() {
                             if (selected) {
@@ -114,8 +114,8 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
   void handleSubmit(List<String> listKategory) {
     // List<String> tempCategories2 = ['Bisnis', 'Politik', 'Hukum'];
-    List<String> removeCategories = [];
-    List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList();
+    List<String> removeCategories = []; //ToDO Data Hilang
+    List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList(); //ToDO Data baru
     print(filteredCategories);
     if (selectedCategories.length >= 3) {
       for (String category in userCategory) {
@@ -123,6 +123,8 @@ class _UpdateCategoryState extends State<UpdateCategory> {
           removeCategories.add(category);
         }
       }
+      // ToDO
+      //diproses disini
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
