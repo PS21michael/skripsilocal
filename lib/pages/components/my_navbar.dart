@@ -28,16 +28,16 @@ class _MyNavBarState extends State<MyNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.shade600,
+      color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 6,
         ),
         child: GNav(
-          backgroundColor: Colors.grey.shade600,
-          color: Colors.black87,
-          tabBackgroundColor: Colors.grey.shade500,
+          backgroundColor: Colors.black87,
+          // color: Colors.black87,
+          tabBackgroundColor: Colors.white,
           gap : 10,
           padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
@@ -48,18 +48,22 @@ class _MyNavBarState extends State<MyNavBar> {
             GButton(
               icon: Icons.explore,
               text: 'Explore',
+              iconColor: Colors.white,
             ),
             GButton(
               icon: IconData(0xf0541, fontFamily: 'MaterialIcons'),
               text: 'News',
+              iconColor: Colors.white,
             ),
             GButton(
               icon: Icons.archive,
-              text: 'Saved',
+              text: 'Bookmark',
+              iconColor: Colors.white,
             ),
             GButton(
               icon: IconData(0xe043, fontFamily: 'MaterialIcons'),
               text: 'Profile',
+              iconColor: Colors.white,
             ),
           ],
         ),

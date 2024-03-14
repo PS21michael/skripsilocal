@@ -15,6 +15,7 @@ import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/src/features/Dummy/InquiryAllBookmark.dart';
 import 'package:skripsilocal/src/features/authentication/screens/forget_password/password_verication.dart';
 
 Future<void> main() async {
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
+      home: DummyBookmarkScreen(),
       // home: PickCategory(),
-      home: UpdateCategory(),
+      // home: UpdateCategory(),
       // home: UpdateProfile_New(),
       // home : PasswordVerification(),
       // home: DummyNewsScreen(),
