@@ -11,6 +11,7 @@ class BookmarkModel{
   final String urlData;
   final String urlGambar;
   final String kategori;
+  final String publisher;
 
   BookmarkModel({
     this.id,
@@ -20,6 +21,7 @@ class BookmarkModel{
     required this.urlData,
     required this.urlGambar,
     required this.kategori,
+    required this.publisher,
   });
 
   static BookmarkModel empty() => BookmarkModel(
@@ -28,7 +30,8 @@ class BookmarkModel{
       title: '',
       urlData: '',
       urlGambar: '',
-      kategori: ''
+      kategori: '',
+    publisher: '',
   );
 
   // Json Parser
@@ -40,6 +43,7 @@ class BookmarkModel{
       "UrlData" : urlData,
       "UrlGambar" : urlGambar,
       "Kategori" : kategori,
+      "Publisher" : publisher,
     };
   }
 
@@ -52,7 +56,8 @@ class BookmarkModel{
         title: data?["Title"],
         urlData: data?["UrlData"],
         urlGambar: data?["UrlGambar"],
-        kategori: data?["Kategori"]
+        kategori: data?["Kategori"],
+      publisher: data?["Publisher"],
     );
   }
 

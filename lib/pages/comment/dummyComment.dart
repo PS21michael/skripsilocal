@@ -204,7 +204,8 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                                       title: title,
                                       urlData: url1,
                                       urlGambar: newsPicture,
-                                      kategori: kategori);
+                                      kategori: kategori,
+                                      publisher: publisher);
 
                                   await bookMarkController.createBookMark(bookmark);
                                 } else{
@@ -220,7 +221,8 @@ class _DummyCommentScreenState extends State<DummyCommentScreen> {
                                           title: title,
                                           urlData: url1,
                                           urlGambar: newsPicture,
-                                          kategori: kategori);
+                                          kategori: kategori,
+                                          publisher: publisher);
 
                                       await bookMarkController.createBookMark(bookmark);
                                     }

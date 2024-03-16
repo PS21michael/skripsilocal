@@ -24,7 +24,7 @@ class UserRepository extends GetxController{
 
   String isSuccesGetData = "False";
 
-  List<int> listScore = [0];
+  List<int> listScore = [];
 
   // ADDING
   String kategori1="";
@@ -334,7 +334,7 @@ class UserRepository extends GetxController{
   }
 
   void resetListScore(){
-    listScore.clear();
+    listScore = [];
   }
 
 // ADDING
@@ -624,6 +624,21 @@ class UserRepository extends GetxController{
   }
 
   Future<void> updateSingelRecord(Map<String, dynamic> json) async{
+    await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
+  }
+
+  // Inc News Read
+  Future<void> updateSingelScore(String kategori) async{
+    Map<String, dynamic> json = {'scoreKategori1' : FieldValue.increment(0)};
+    if(kategori == "nasional"){
+      json = {'scoreKategori1' : FieldValue.increment(1)};
+    } else if(kategori == "bisnis"){
+      json = {'scoreKategori2' : FieldValue.increment(1)};
+    }else if(kategori == "politik"){
+      json = {'scoreKategori3' : FieldValue.increment(1)};
+    }else if(kategori == "bola"){
+      json = {'scoreKategori10' : FieldValue.increment(1)};
+    }
     await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
   }
 

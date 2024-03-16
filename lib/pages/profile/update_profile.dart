@@ -86,7 +86,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   void getUserData() async {
     setState(() {
       fullNameController.text = UserRepository.instance.getUserModelFullName();
-      userNameController.text = "BBB";
+      userNameController.text = UserRepository.instance.getUserModelUserName();
       _provinsiVal = UserRepository.instance.getUserModelProvince();
       dateOfBirthController.text = UserRepository.instance.getUserModelDateOfBirth();
     });
@@ -106,6 +106,46 @@ class _UpdateProfileState extends State<UpdateProfile> {
     String joinDateCustomer = UserRepository.instance.getUserModelJoinDate();
     String profilePictureCustomer = UserRepository.instance
         .getUserModelProfilePicture();
+
+    // List Score
+    int kategoriCustomer1 = UserRepository.instance.getScoreKategori1();
+    int kategoriCustomer2 = UserRepository.instance.getScoreKategori2();
+    int kategoriCustomer3 = UserRepository.instance.getScoreKategori3();
+    int kategoriCustomer4 = UserRepository.instance.getScoreKategori4();
+    int kategoriCustomer5 = UserRepository.instance.getScoreKategori5();
+    int kategoriCustomer6 = UserRepository.instance.getScoreKategori6();
+    int kategoriCustomer7 = UserRepository.instance.getScoreKategori7();
+    int kategoriCustomer8 = UserRepository.instance.getScoreKategori8();
+    int kategoriCustomer9 = UserRepository.instance.getScoreKategori9();
+    int kategoriCustomer10 = UserRepository.instance.getScoreKategori10();
+    int kategoriCustomer11 = UserRepository.instance.getScoreKategori11();
+    int kategoriCustomer12 = UserRepository.instance.getScoreKategori12();
+    int kategoriCustomer13 = UserRepository.instance.getScoreKategori13();
+    int kategoriCustomer14 = UserRepository.instance.getScoreKategori14();
+    int kategoriCustomer15 = UserRepository.instance.getScoreKategori15();
+    int kategoriCustomer16 = UserRepository.instance.getScoreKategori16();
+    int kategoriCustomer17 = UserRepository.instance.getScoreKategori17();
+    int kategoriCustomer18 = UserRepository.instance.getScoreKategori18();
+    int kategoriCustomer19 = UserRepository.instance.getScoreKategori19();
+    int kategoriCustomer20 = UserRepository.instance.getScoreKategori20();
+    int kategoriCustomer21 = UserRepository.instance.getScoreKategori21();
+    int kategoriCustomer22 = UserRepository.instance.getScoreKategori22();
+    int kategoriCustomer23 = UserRepository.instance.getScoreKategori23();
+    int kategoriCustomer24 = UserRepository.instance.getScoreKategori24();
+    int kategoriCustomer25 = UserRepository.instance.getScoreKategori25();
+    int kategoriCustomer26 = UserRepository.instance.getScoreKategori26();
+    int kategoriCustomer27 = UserRepository.instance.getScoreKategori27();
+    int kategoriCustomer28 = UserRepository.instance.getScoreKategori28();
+    int kategoriCustomer29 = UserRepository.instance.getScoreKategori29();
+    int kategoriCustomer30 = UserRepository.instance.getScoreKategori30();
+    int kategoriCustomer31 = UserRepository.instance.getScoreKategori31();
+    int kategoriCustomer32 = UserRepository.instance.getScoreKategori32();
+    int kategoriCustomer33 = UserRepository.instance.getScoreKategori33();
+    int kategoriCustomer34 = UserRepository.instance.getScoreKategori34();
+    int kategoriCustomer35 = UserRepository.instance.getScoreKategori35();
+    int kategoriCustomer36 = UserRepository.instance.getScoreKategori36();
+    int kategoriCustomer37 = UserRepository.instance.getScoreKategori37();
+    int kategoriCustomer38 = UserRepository.instance.getScoreKategori38();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -325,7 +365,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     const SizedBox(height: 30),
                     theButton(
                       text: 'Update Data',
-                      onTap: () {
+                      onTap: () async {
                         if (userNameController.text.trim() != userNameCustomer) {
                           // print("KETANGKAP DISINI");
                           if (!_usernameValidated) {
@@ -356,87 +396,87 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               password: passwordCustomer,
                               joinDate: joinDateCustomer,
                               profilePicture: profilePictureCustomer,
-                              // ToDO Update Score (ambil value lama)
                               kategori1: 'nasional',
-                              scoreKategori1: 0,
+                              scoreKategori1: kategoriCustomer1,
                               kategori2: 'bisnis',
-                              scoreKategori2: 0,
+                              scoreKategori2: kategoriCustomer2,
                               kategori3: 'politik',
-                              scoreKategori3: 0,
+                              scoreKategori3: kategoriCustomer3,
                               kategori4: 'hukum',
-                              scoreKategori4: 0,
+                              scoreKategori4: kategoriCustomer4,
                               kategori5: 'ekonomi',
-                              scoreKategori5: 0,
+                              scoreKategori5: kategoriCustomer5,
                               kategori6: 'olahraga',
-                              scoreKategori6: 0,
+                              scoreKategori6: kategoriCustomer6,
                               kategori7: 'teknologi',
-                              scoreKategori7: 0,
+                              scoreKategori7: kategoriCustomer7,
                               kategori8: 'otomotif',
-                              scoreKategori8: 0,
+                              scoreKategori8: kategoriCustomer8,
                               kategori9: 'internasional',
-                              scoreKategori9: 0,
-                              kategori10: 'bola',
-                              scoreKategori10: 0,
-                              kategori11: 'selebritis',
-                              scoreKategori11: 0,
-                              kategori12: 'lifestyle',
-                              scoreKategori12: 0,
-                              kategori13: 'hiburan',
-                              scoreKategori13: 0,
-                              kategori14: 'jakarta',
-                              scoreKategori14: 0,
-                              kategori15: 'market',
-                              scoreKategori15: 0,
-                              kategori16: 'news',
-                              scoreKategori16: 0,
-                              kategori17: 'cantik',
-                              scoreKategori17: 0,
-                              kategori18: 'travel',
-                              scoreKategori18: 0,
-                              kategori19: 'syariah',
-                              scoreKategori19: 0,
-                              kategori20: 'islam',
-                              scoreKategori20: 0,
-                              kategori21: 'sains',
-                              scoreKategori21: 0,
-                              kategori22: 'edukasi',
-                              scoreKategori22: 0,
-                              kategori23: 'kesehatan',
-                              scoreKategori23: 0,
-                              kategori24: 'humaniora',
-                              scoreKategori24: 0,
-                              kategori25: 'entrepreneur',
-                              scoreKategori25: 0,
-                              kategori26: 'opini',
-                              scoreKategori26: 0,
-                              kategori27: 'khas',
-                              scoreKategori27: 0,
-                              kategori28: 'jateng',
-                              scoreKategori28: 0,
-                              kategori29: 'daerah',
-                              scoreKategori29: 0,
-                              kategori30: 'khazanah',
-                              scoreKategori30: 0,
-                              kategori31: 'leisure',
-                              scoreKategori31: 0,
-                              kategori32: 'metro',
-                              scoreKategori32: 0,
-                              kategori33: 'ekbis',
-                              scoreKategori33: 0,
-                              kategori34: 'kalam',
-                              scoreKategori34: 0,
-                              kategori35: 'difabel',
-                              scoreKategori35: 0,
-                              kategori36: 'creativelab',
-                              scoreKategori36: 0,
-                              kategori37: 'inforial',
-                              scoreKategori37: 0,
-                              kategori38: 'event',
-                              scoreKategori38: 0,
-                              //ToDO
+                              scoreKategori9: kategoriCustomer9,
+                                kategori10: 'bola',
+                                scoreKategori10: kategoriCustomer10,
+                                kategori11: 'selebritis',
+                                scoreKategori11: kategoriCustomer11,
+                                kategori12: 'lifestyle',
+                                scoreKategori12: kategoriCustomer12,
+                                kategori13: 'hiburan',
+                                scoreKategori13: kategoriCustomer13,
+                                kategori14: 'jakarta',
+                                scoreKategori14: kategoriCustomer14,
+                                kategori15: 'market',
+                                scoreKategori15: kategoriCustomer15,
+                                kategori16: 'news',
+                                scoreKategori16: kategoriCustomer16,
+                                kategori17: 'cantik',
+                                scoreKategori17: kategoriCustomer17,
+                                kategori18: 'travel',
+                                scoreKategori18: kategoriCustomer18,
+                                kategori19: 'syariah',
+                                scoreKategori19: kategoriCustomer19,
+                                kategori20: 'islam',
+                                scoreKategori20: kategoriCustomer20,
+                                kategori21: 'sains',
+                                scoreKategori21: kategoriCustomer21,
+                                kategori22: 'edukasi',
+                                scoreKategori22: kategoriCustomer22,
+                                kategori23: 'kesehatan',
+                                scoreKategori23: kategoriCustomer23,
+                                kategori24: 'humaniora',
+                                scoreKategori24: kategoriCustomer24,
+                                kategori25: 'entrepreneur',
+                                scoreKategori25: kategoriCustomer25,
+                                kategori26: 'opini',
+                                scoreKategori26: kategoriCustomer26,
+                                kategori27: 'khas',
+                                scoreKategori27: kategoriCustomer27,
+                                kategori28: 'jateng',
+                                scoreKategori28: kategoriCustomer28,
+                                kategori29: 'daerah',
+                                scoreKategori29: kategoriCustomer29,
+                                kategori30: 'khazanah',
+                                scoreKategori30: kategoriCustomer30,
+                                kategori31: 'leisure',
+                                scoreKategori31: kategoriCustomer31,
+                                kategori32: 'metro',
+                                scoreKategori32: kategoriCustomer32,
+                                kategori33: 'ekbis',
+                                scoreKategori33: kategoriCustomer33,
+                                kategori34: 'kalam',
+                                scoreKategori34: kategoriCustomer34,
+                                kategori35: 'difabel',
+                                scoreKategori35: kategoriCustomer35,
+                                kategori36: 'creativelab',
+                                scoreKategori36: kategoriCustomer36,
+                                kategori37: 'inforial',
+                                scoreKategori37: kategoriCustomer37,
+                                kategori38: 'event',
+                                scoreKategori38: kategoriCustomer38,                              //ToDO
                             );
-                            UserRepository.instance.updateUserRecord(user, idCustomer);
-                            UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
+                            await Future.delayed(Duration(seconds: 1));
+                            await UserRepository.instance.updateUserRecord(user, idCustomer);
+                            await Future.delayed(Duration(seconds: 2));
+                            await UserRepository.instance.getSingelUserDetails(emailCustomer);
                             Get.to(() => UpdateCategory());
                           }
                         }

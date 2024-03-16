@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
+      home: HomePage(),
       // home: PickCategory(),
-      home: UpdateCategory(),
+      // home: UpdateCategory(),
       // home: UpdateProfile_New(),
       // home : PasswordVerification(),
       // home: DummyNewsScreen(),

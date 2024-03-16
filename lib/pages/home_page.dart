@@ -8,6 +8,7 @@ import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
 import 'package:skripsilocal/pages/news/dummyNews.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import '../Utils/Helper/CategoryUtils.dart';
 import '../Utils/Helper/TimeSavedNews.dart';
@@ -18,6 +19,7 @@ import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
 import '../src/features/Dummy/InquiryAllBookmark.dart';
 import '../src/features/Dummy/check_username_page.dart';
 import 'components/my_header.dart';
+import 'news/DummyPages/inquiryNewsDBFavorit.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -90,35 +92,41 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GestureDetector(
+            // onTap: () async{
+            //   await Future.delayed(Duration(seconds: 2));
+            //   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            //   List<int> daftarScore = UserRepository.instance.getListScore();
+            //   List<int> scoreSecure = [];
+            //   List<String> listKategory = listCategoryController.parseScoreToList(scoreSecure);
+            //   for(int i=0; i<38; i++){
+            //     scoreSecure.add(daftarScore[i]);
+            //   }
+            //
+            //   //ARRAY KIRIMAN KE PAGE SELANJUTNYA
+            //   listCategoryController.parseScoreToList(scoreSecure);
+            //
+            //   print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
+            //
+            //
+            //
+            //   if(daftarScore.length != 38){
+            //     UserRepository.instance.resetListScore();
+            //   }
+            //   print("Total score Awal : ${daftarScore.length}");
+            //   if(daftarScore.length.isLowerThan(1)){
+            //     await Future.delayed(Duration(seconds: 2));
+            //     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            //   }
+            //   print("Total score Akhir : ${daftarScore.length}");
+            //   UserRepository.instance.resetListScore();
+            //
+            //   // Get.to(()=> UpdateCategory());
+            //   // SignUpController.instace.logout();
+            //   // AuthenticationRepository.instance.logout();
+            // },
             onTap: () async{
-              await Future.delayed(Duration(seconds: 2));
-              await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-              List<int> daftarScore = UserRepository.instance.getListScore();
-              List<int> scoreSecure = [];
-              List<String> listKategory = listCategoryController.parseScoreToList(scoreSecure);
-              for(int i=0; i<38; i++){
-                scoreSecure.add(daftarScore[i]);
-              }
-
-              //ARRAY KIRIMAN KE PAGE SELANJUTNYA
-              listCategoryController.parseScoreToList(scoreSecure);
-
-              print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
-
-
-
-              if(daftarScore.length != 38){
-                UserRepository.instance.resetListScore();
-              }
-              print("Total score Awal : ${daftarScore.length}");
-              if(daftarScore.length.isLowerThan(1)){
-                await Future.delayed(Duration(seconds: 2));
-                await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-              }
-              print("Total score Akhir : ${daftarScore.length}");
-              UserRepository.instance.resetListScore();
-
-              // Get.to(()=> UpdateCategory());
+              Get.to(()=> UpdateCategory());
+              // Get.to(()=> PickCategory());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },
@@ -227,6 +235,29 @@ class _HomePageState extends State<HomePage> {
               ),
               child: const Center(
                 child: Text("CheckUsername",
+                  style: TextStyle(
+                      color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+
+
+          GestureDetector(
+            onTap: (){
+              UserRepository.instance.updateSingelScore("bola");
+              Get.to(()=>const InquiryNewsDBFavoritScreen());
+            },
+
+            child: Container(
+              height: 45,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Center(
+                child: Text("Favorit News",
                   style: TextStyle(
                       color: Colors.white),
                 ),

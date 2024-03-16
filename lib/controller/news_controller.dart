@@ -31,6 +31,10 @@ class NewsController extends GetxController{
     return await _newsRepo.getAllNews();
   }
 
+  Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
+    return await _newsRepo.getAllNewsFavorit(listFavorit);
+  }
+
   Future<void> createNews(NewsModel news) async{
     await _newsRepo.insertNews(news);
   }

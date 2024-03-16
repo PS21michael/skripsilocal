@@ -44,6 +44,130 @@ class CategoryListParser extends GetxController{
   String kategori37 = "inforial";
   String kategori38 = "event";
 
+  int index1 = 1;
+  int index2 = 2;
+  int index3 = 3;
+  int index4 = 4;
+  int index5 = 5;
+  int index6 = 6;
+  int index7 = 7;
+  int index8 = 8;
+  int index9 = 9;
+  int index10 = 10;
+  int index11 = 11;
+  int index12 = 12;
+  int index13 = 13;
+  int index14 = 14;
+  int index15 = 15;
+  int index16 = 16;
+  int index17 = 17;
+  int index18 = 18;
+  int index19 = 19;
+  int index20 = 20;
+  int index21 = 21;
+  int index22 = 22;
+  int index23 = 23;
+  int index24 = 24;
+  int index25 = 25;
+  int index26 = 26;
+  int index27 = 27;
+  int index28 = 28;
+  int index29 = 29;
+  int index30 = 30;
+  int index31 = 31;
+  int index32 = 32;
+  int index33 = 33;
+  int index34 = 34;
+  int index35 = 35;
+  int index36 = 36;
+  int index37 = 37;
+  int index38 = 38;
+
+  int listToScore (String list){
+    if(list == kategori1){
+      return index1;
+    } else if(list == kategori2){
+      return index2;
+    }else if(list == kategori3){
+      return index3;
+    }else if(list == kategori4){
+      return index4;
+    }else if(list == kategori5){
+      return index5;
+    }else if(list == kategori6){
+      return index6;
+    }else if(list == kategori7){
+      return index7;
+    }else if(list == kategori8){
+      return index8;
+    }else if(list == kategori9){
+      return index9;
+    }else if(list == kategori10){
+      return index10;
+    } else if(list == kategori11){
+      return index11;
+    } else if(list == kategori12){
+      return index12;
+    }else if(list == kategori13){
+      return index13;
+    }else if(list == kategori14){
+      return index14;
+    }else if(list == kategori15){
+      return index15;
+    }else if(list == kategori16){
+      return index6;
+    }else if(list == kategori17){
+      return index17;
+    }else if(list == kategori18){
+      return index18;
+    }else if(list == kategori19){
+      return index19;
+    }else if(list == kategori20){
+      return index20;
+    } else if(list == kategori21){
+      return index21;
+    } else if(list == kategori22){
+      return index22;
+    }else if(list == kategori23){
+      return index23;
+    }else if(list == kategori24){
+      return index24;
+    }else if(list == kategori25){
+      return index25;
+    }else if(list == kategori26){
+      return index26;
+    }else if(list == kategori27){
+      return index27;
+    }else if(list == kategori28){
+      return index28;
+    }else if(list == kategori29){
+      return index29;
+    }else if(list == kategori30){
+      return index30;
+    } else if(list == kategori31){
+      return index31;
+    } else if(list == kategori32){
+      return index32;
+    }else if(list == kategori33){
+      return index33;
+    }else if(list == kategori34){
+      return index34;
+    }else if(list == kategori35){
+      return index35;
+    }else if(list == kategori36){
+      return index36;
+    }else if(list == kategori37){
+      return index37;
+    }else if(list == kategori38){
+      return index38;
+    } else {
+      return 0;
+    }
+
+
+  }
+
+
   String scoreToList(int index){
     index+=1;
     if(index == 1 ){

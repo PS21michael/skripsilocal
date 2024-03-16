@@ -63,6 +63,7 @@ class _DummyBookmarkScreen extends State<DummyBookmarkScreen> {
                                   Text("Title : ${snapshot.data![index].title}"),
                                   Text("Url News : ${snapshot.data![index].urlData}"),
                                   Text("Url Gambar : ${snapshot.data![index].urlGambar}"),
+                                  Text("Publisher : ${snapshot.data![index].publisher}"),
                                   SizedBox(
                                     width: 120,
                                     height: 120,

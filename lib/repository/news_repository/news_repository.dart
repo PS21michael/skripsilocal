@@ -117,6 +117,86 @@ class NewsRepository extends GetxController{
     return newsData;
   }
 
+  // Rentang waktu
+  Future<List<NewsModel>> getAllNewsBasedOnDate(String periode) async{
+    if(periode == "DESC"){
+      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    } else{
+      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: false).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    }
+  }
+
+  // List Favorit + Rentang waktu
+  Future<List<NewsModel>> getAllNewsBasedOnDateAndListFavorit(List<String> listFavorit, String periode) async{
+    if(periode == "DESC"){
+      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: true).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    } else{
+      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: false).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    }
+  }
+
+  // List Favorit
+  Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
+    final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+
+    return newsData;
+  }
+
+  // Publisher
+  Future<List<NewsModel>> getAllNewsOnChosenPublisher(String publisher) async{
+    final snapshot = await _db.collection("/News").where("Publisher", isEqualTo: publisher).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+
+    return newsData;
+  }
+
+
+  // Kategori
+  Future<List<NewsModel>> getAllNewsOnChosenCategory(String category) async{
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: category).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+
+    return newsData;
+  }
+
+  // Kategori + Rentang Waktu
+  Future<List<NewsModel>> getAllNewsOnChosenCategoryAndDate(String category, String periode) async{
+    if(periode == "DESC"){
+      final snapshot = await _db.collection("/News").where("Category", isEqualTo: category).orderBy("PublishedTime", descending: true).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    } else{
+      final snapshot = await _db.collection("/News").where("Category", isEqualTo: category).orderBy("PublishedTime", descending: false).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    }
+  }
+
+
+  // Publisher + Rentang Waktu
+  Future<List<NewsModel>> getAllNewsOnChosenPublisherAndDate(String publisher, String periode) async{
+    if(periode == "DESC"){
+      final snapshot = await _db.collection("/News").where("Publisher", isEqualTo: publisher).orderBy("PublishedTime", descending: true).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    } else{
+      final snapshot = await _db.collection("/News").where("Publisher", isEqualTo: publisher).orderBy("PublishedTime", descending: false).get();
+      final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+    }
+  }
+
+
+
   // PENTING
   Future<List<NewsModel>> getAllNewsANTARAHumaniora(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: "humaniora").where("SaveDate", isEqualTo: time).get();
