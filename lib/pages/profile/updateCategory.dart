@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
+import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
@@ -14,9 +15,11 @@ class UpdateCategory extends StatefulWidget {
 class _UpdateCategoryState extends State<UpdateCategory> {
   List<String> categories = ['Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahrga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Enterpreneur', 'Event'];
   List<String> selectedCategories = [];
+  // List<String> lowercaseCategories = categories.map((category) => category.toLowerCase()).toList();
   final listCategoryController = Get.put(CategoryListParser());
-  List<String> TempselectedCategories = ['Nasional', 'Bisnis'];
+  // List<String> TempselectedCategories = ['Nasional', 'Bisnis'];
   List<String> userCategory = [];
+  List<String> tempCategory = [];
 
   @override
   void initState() {
@@ -25,7 +28,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
   }
 
   Future<void> fetchData() async {
-    await Future.delayed(Duration(seconds: 2));
+    // await Future.delayed(Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     List<int> daftarScore = UserRepository.instance.getListScore();
     List<int> scoreSecure = [];
@@ -35,12 +38,13 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     listCategoryController.parseScoreToList(scoreSecure);
     print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
     this.userCategory = listCategoryController.parseScoreToList(scoreSecure);
+    this.tempCategory = listCategoryController.parseScoreToList(scoreSecure);
     if(daftarScore.length != 38){
       UserRepository.instance.resetListScore();
     }
     print("Total score Awal : ${daftarScore.length}");
     if(daftarScore.length.isLowerThan(1)){
-      await Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(Duration(seconds: 2));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     }
     print("Total score Akhir : ${daftarScore.length}");
@@ -69,15 +73,24 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: categories.map((category) {
+                      final lowercaseCategory = category.toLowerCase();
                       return ChoiceChip(
                         label: Text(category),
-                        selected: userCategory.contains(category), // Periksa apakah kategori ada di dalam TempselectedCategories
-                        onSelected: (bool selected) {
+                        selected: tempCategory.contains(lowercaseCategory),
+                        onSelected: (bool selected) async {
                           setState(() {
                             if (selected) {
-                              selectedCategories.add(category);
+                              if (!tempCategory.contains(category.toLowerCase())) {
+                                setState(() {
+                                  tempCategory.add(category.toLowerCase());
+                                  selectedCategories.add(category.toLowerCase());
+                                });
+                              }
                             } else {
-                              selectedCategories.remove(category);
+                              setState(() {
+                                tempCategory.remove(category.toLowerCase());
+                                selectedCategories.remove(category.toLowerCase());
+                              });
                             }
                           });
                         },
@@ -114,10 +127,16 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
   void handleSubmit(List<String> listKategory) {
     // List<String> tempCategories2 = ['Bisnis', 'Politik', 'Hukum'];
+    print("User Category");
+    print(listKategory);
+    print("Selected Category");
+    print(selectedCategories);
+    print("Temp Category");
+    print(tempCategory);
     List<String> removeCategories = []; //ToDO Data Hilang
-    List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList(); //ToDO Data baru
-    print(filteredCategories);
-    if (selectedCategories.length >= 3) {
+    List<String> filteredCategories = categories.where((category) => tempCategory.contains(category)).toList(); //ToDO Data baru
+    // print(filteredCategories);
+    if (tempCategory.length >= 3) {
       for (String category in userCategory) {
         if (!filteredCategories.contains(category)) {
           removeCategories.add(category);

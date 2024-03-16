@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
+import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/news/dummyNews.dart';
 import 'package:skripsilocal/pages/home_page.dart';
@@ -15,6 +16,7 @@ import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/src/features/Dummy/Inquiry%20News/CopyInquiryNews.dart';
 import 'package:skripsilocal/src/features/Dummy/InquiryAllBookmark.dart';
 import 'package:skripsilocal/src/features/authentication/screens/forget_password/password_verication.dart';
 
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DummyBookmarkScreen(),
+      home: LoginPage(),
       // home: PickCategory(),
       // home: UpdateCategory(),
       // home: UpdateProfile_New(),

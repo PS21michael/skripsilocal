@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
               print("Total score Akhir : ${daftarScore.length}");
               UserRepository.instance.resetListScore();
 
-              // Get.to(()=> UpdateCategory());
+              Get.to(()=> UpdateCategory());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },

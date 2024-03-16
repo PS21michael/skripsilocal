@@ -32,11 +32,10 @@ class _MyNavBarState extends State<MyNavBar> {
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: 6,
+          vertical: 8,
         ),
         child: GNav(
-          backgroundColor: Colors.black87,
-          // color: Colors.black87,
+          backgroundColor: Colors.black,
           tabBackgroundColor: Colors.white,
           gap : 10,
           padding: const EdgeInsets.all(10),
