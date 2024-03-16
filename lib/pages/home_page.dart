@@ -92,41 +92,35 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           GestureDetector(
-            // onTap: () async{
-            //   await Future.delayed(Duration(seconds: 2));
-            //   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            //   List<int> daftarScore = UserRepository.instance.getListScore();
-            //   List<int> scoreSecure = [];
-            //   List<String> listKategory = listCategoryController.parseScoreToList(scoreSecure);
-            //   for(int i=0; i<38; i++){
-            //     scoreSecure.add(daftarScore[i]);
-            //   }
-            //
-            //   //ARRAY KIRIMAN KE PAGE SELANJUTNYA
-            //   listCategoryController.parseScoreToList(scoreSecure);
-            //
-            //   print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
-            //
-            //
-            //
-            //   if(daftarScore.length != 38){
-            //     UserRepository.instance.resetListScore();
-            //   }
-            //   print("Total score Awal : ${daftarScore.length}");
-            //   if(daftarScore.length.isLowerThan(1)){
-            //     await Future.delayed(Duration(seconds: 2));
-            //     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            //   }
-            //   print("Total score Akhir : ${daftarScore.length}");
-            //   UserRepository.instance.resetListScore();
-            //
-            //   // Get.to(()=> UpdateCategory());
-            //   // SignUpController.instace.logout();
-            //   // AuthenticationRepository.instance.logout();
-            // },
             onTap: () async{
-              Get.to(()=> UpdateCategory());
-              // Get.to(()=> PickCategory());
+              await Future.delayed(Duration(seconds: 2));
+              await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+              List<int> daftarScore = UserRepository.instance.getListScore();
+              List<int> scoreSecure = [];
+              List<String> listKategory = listCategoryController.parseScoreToList(scoreSecure);
+              for(int i=0; i<38; i++){
+                scoreSecure.add(daftarScore[i]);
+              }
+
+              //ARRAY KIRIMAN KE PAGE SELANJUTNYA
+              listCategoryController.parseScoreToList(scoreSecure);
+
+              print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
+
+
+
+              if(daftarScore.length != 38){
+                UserRepository.instance.resetListScore();
+              }
+              print("Total score Awal : ${daftarScore.length}");
+              if(daftarScore.length.isLowerThan(1)){
+                await Future.delayed(Duration(seconds: 2));
+                await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+              }
+              print("Total score Akhir : ${daftarScore.length}");
+              UserRepository.instance.resetListScore();
+
+              // Get.to(()=> UpdateCategory());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },

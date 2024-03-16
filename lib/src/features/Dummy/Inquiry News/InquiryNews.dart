@@ -36,9 +36,10 @@ class InquiryNews extends StatefulWidget {
 
 class _InquiryNews extends State<InquiryNews> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
-
-  final controller = Get.put(SignInController());
+  List<String> categories = ['Antara', 'CNN', 'CNBC', 'Merdeka', 'Okezone', 'Republika', 'Sindo News', 'Suara', 'Tempo'];
+  List<String> selectedCategories = [];
+  // final dateTimecontroller = Get.put(TimeSavedParser());
+  // final controller = Get.put(SignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,33 +69,8 @@ class _InquiryNews extends State<InquiryNews> {
                 // 1. ANTARA
                 GestureDetector(
                   onTap: (){
-
-                    /// Untuk dapetin list favorit
-                    // print("email yang didapat ${AuthenticationRepository.instance.getUserEmail}");
-                    // List<int> daftarScore = [0];
-                    // daftarScore = UserRepository.instance.getListScore();
-                    // if(daftarScore.length.isLowerThan(2)){
-                    //   UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-                    // }
-                    // print("Total score ${daftarScore.length}");
-                    // for(int i=0; i<daftarScore.length; i++){
-                    //   print("List Score yang di dapat adalah : ${daftarScore[i]}");
-                    //   if(daftarScore[i].isGreaterThan(900)){
-                    //     print("List Score yang favorit ada di index ${i}");
-                    //   }
-                    // }
-                    // if(daftarScore.length != 38){
-                    //   UserRepository.instance.resetListScore();
-                    // }
-                    // UserRepository.instance.get
-
-
-
                     Get.to(()=>const InquiryNewsAnatara());
-                    
-                    // SignUpController.instace.logout();
-                    // AuthenticationRepository.instance.logout();
-                  },
+                    },
 
                   child: Container(
                     height: 45,
@@ -139,7 +115,6 @@ class _InquiryNews extends State<InquiryNews> {
                 // 3. CNBC
                 GestureDetector(
                   onTap: (){
-
                     Get.to(()=>const InquiryNewsCNBC());
                   },
                   child: Container(
@@ -158,8 +133,6 @@ class _InquiryNews extends State<InquiryNews> {
                   ),
                 ),
                 const SizedBox(height: 10),
-
-
                 // 4. Merdeka
                 GestureDetector(
                   onTap: (){

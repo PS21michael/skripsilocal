@@ -18,10 +18,10 @@ class DummyNewsScreen extends StatefulWidget {
 }
 
 class _DummyNewsScreenState extends State<DummyNewsScreen> {
-  final fullnameController = TextEditingController();
-  final provinsiController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  // final fullnameController = TextEditingController();
+  // final provinsiController = TextEditingController();
+  // final emailController = TextEditingController();
+  // final passwordController = TextEditingController();
   String idBer = "";
 
   @override

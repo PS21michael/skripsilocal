@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/Utils/Helper/TimeSavedNews.dart';
-import 'package:skripsilocal/src/repository/like_dislike_repository/like_dislike_news_repository.dart';
+import 'package:skripsilocal/models/news_model.dart';
+import 'package:skripsilocal/pages/comment/dummyComment.dart';
+import 'package:skripsilocal/pages/components/my_navbar.dart';
+import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../controller/bookmark_controller.dart';
 import '../../../models/bookmark_model.dart';
 import '../../../pages/components/button.dart';
-
 
 class DummyBookmarkScreen extends StatefulWidget{
 
@@ -23,103 +23,139 @@ class _DummyBookmarkScreen extends State<DummyBookmarkScreen> {
 
   @override
   Widget build(BuildContext context){
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     final controller = Get.put(BookmarkController());
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: ()=> Get.back(), icon: const Icon(LineAwesomeIcons.arrow_circle_left),),
-        title: Text("BookMark", style: Theme.of(context).textTheme.headlineMedium,),
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(isDark? LineAwesomeIcons.sun : LineAwesomeIcons.moon),),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: FutureBuilder<List<BookmarkModel>>(
-            future : controller.getAllBookmark(),
-            builder: (context, snapshot){
-              // done means data completly fetch
-              print('Checkpoint BookMark: ${snapshot.connectionState}');
-              if(snapshot.connectionState == ConnectionState.done){
-                if(snapshot.hasData){
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (c, index){
-                        return Column(
-                          children: [
-                            ListTile(
-                              iconColor: Colors.blue,
-                              tileColor: Colors.blue.withOpacity(0.1),
-                              leading: const Icon(LineAwesomeIcons.user_1),
-                              title: Text("Title : ${snapshot.data![index].title}"),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("ID News: ${snapshot.data![index].idNews!}"),
-                                  Text("ID Pengguna: ${snapshot.data![index].idPengguna!}"),
-                                  Text("Title : ${snapshot.data![index].title}"),
-                                  Text("Url News : ${snapshot.data![index].urlData}"),
-                                  Text("Url Gambar : ${snapshot.data![index].urlGambar}"),
-                                  Text("Publisher : ${snapshot.data![index].publisher}"),
-                                  SizedBox(
-                                    width: 120,
-                                    height: 120,
-                                    child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network(snapshot.data![index].urlGambar)),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            child: FutureBuilder<List<BookmarkModel>>(
+              future: controller.getAllBookmark(),
+              builder: (context, snapshot) {
+                // print('Checkpoint News1: ${snapshot.connectionState}');
+                // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (var index = 0; index < snapshot.data!.length; index++)
+                          Column(
+                            children: [
+                              Material(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    side: BorderSide(
+                                      color: Colors.black,
+                                    )
+                                ),
+                                color: index.isOdd ? Colors.grey.shade200 : Colors.grey.shade400,
+                                child: ListTile(
+                                  title: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 80,
+                                        height: 80,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10), // Atur sesuai keinginan Anda
+                                            border: Border.all(
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(8), // Atur sesuai keinginan Anda
+                                            child: Image.network(
+                                              snapshot.data![index].urlGambar,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              snapshot.data![index].title,
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Row(
+                                              children: [
+                                                // Expanded(
+                                                //   child: Text(
+                                                //     snapshot.data![index].,
+                                                //     style: TextStyle(
+                                                //       fontSize: 14,
+                                                //       fontWeight: FontWeight.normal,
+                                                //     ),
+                                                //   ),
+                                                // ),
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.bookmark_border_rounded, // You can replace this with your love icon
+                                                      // color: Colors.white, // Customize the color as needed
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  theButton(
-                                    text: 'Launch',
-                                    onTap: () async {
-                                      // const url = 'https://www.geeksforgeeks.org/';
-                                      String url = snapshot.data![index].urlData;
-                                      if (await canLaunch(url)) {
-                                        await launch(url, forceWebView: true, enableJavaScript: true);
-                                      } else {
-                                        throw 'Could not launch $url';
-                                      }
-                                      // Get.to(()=>ProfileScreen());
-                                    },
-                                  ),
+                                  onTap: () async {
+                                    String url = snapshot.data![index].urlData;
+                                    if (await canLaunch(url)) {
+                                    await launch(url, forceWebView: true, enableJavaScript: true);
+                                    } else {
+                                    throw 'Could not launch $url';
+                                    }
+                                  },
+                                ),
 
-                                ],
                               ),
-                            ),
-                            const SizedBox(height: 10,),
-                            // theButton(
-                            //   text: 'Comment',
-                            //   onTap: () async {
-                            //     controller.getUserData(snapshot.data![index].title!);
-                            //
-                            //     Get.to(()=>DummyNewsScreen());
-                            //     FirebaseAuth.instance.currentUser?.reload();
-                            //     Get.to(()=>DummyCommentScreen());
-                            //   },
-                            // ),
-
-                          ],
-                        );
-                      });
-
-
-                } else if(snapshot.hasError){
-                  return Center(
-                    child: Text(snapshot.error.toString()),
+                              const SizedBox(height: 20),
+                              // theButton(
+                              //   text: 'Comment',
+                              //   onTap: () async {
+                              //     controller.getUserData(snapshot.data![index].title!);
+                              //     Get.to(() => DummyNewsScreen());
+                              //     FirebaseAuth.instance.currentUser?.reload();
+                              //     Get.to(() => DummyCommentScreen());
+                              //   },
+                              // ),
+                            ],
+                          ),
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error.toString()),
+                    );
+                  } else {
+                    return const Center(
+                      child: Text("Something Went Wrong"),
+                    );
+                  }
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
-                } else{
-                  return const Center(child: Text("Something Went Wrong"),);
                 }
-              } else{
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-
+              },
+            ),
           ),
         ),
-
+        bottomNavigationBar: const MyNavBar(index: 1),
       ),
     );
   }
