@@ -31,9 +31,8 @@ class _UpdateCategoryState extends State<UpdateCategory> {
   }
 
   Future<void> fetchData() async {
-    UserRepository.instance.resetListScore();
-    await Future.delayed(Duration(seconds: 1));
-    await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    // Terima list string
+
     List<int> daftarScore = UserRepository.instance.getListScore();
     List<int> scoreSecure = [];
     for(int i=0; i<38; i++){
@@ -43,16 +42,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
     this.userCategory = listCategoryController.parseScoreToList(scoreSecure);
     this.tempCategory = listCategoryController.parseScoreToList(scoreSecure);
-    if(daftarScore.length != 38){
-      UserRepository.instance.resetListScore();
-    }
-    print("Total score Awal : ${daftarScore.length}");
-    if(daftarScore.length.isLowerThan(1)){
-      // await Future.delayed(Duration(seconds: 2));
-      await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-    }
-    print("Total score Akhir : ${daftarScore.length}");
-    UserRepository.instance.resetListScore();
   }
 
   @override
@@ -77,23 +66,23 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: categories.map((category) {
-                      final lowercaseCategory = category.toLowerCase();
+                      final lowercaseCategory = category;
                       return ChoiceChip(
                         label: Text(category),
-                        selected: tempCategory.contains(lowercaseCategory),
+                        selected: tempCategory.contains(category),
                         onSelected: (bool selected) async {
                           setState(() {
                             if (selected) {
-                              if (!tempCategory.contains(category.toLowerCase())) {
+                              if (!tempCategory.contains(category)) {
                                 setState(() {
-                                  tempCategory.add(category.toLowerCase());
-                                  selectedCategories.add(category.toLowerCase());
+                                  tempCategory.add(category);
+                                  selectedCategories.add(category);
                                 });
                               }
                             } else {
                               setState(() {
-                                tempCategory.remove(category.toLowerCase());
-                                selectedCategories.remove(category.toLowerCase());
+                                tempCategory.remove(category);
+                                selectedCategories.remove(category);
                               });
                             }
                           });
@@ -206,7 +195,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
       // List nambah
       for(int i=0; i<filteredCategories.length; i++){
-        tempIndexFavorit = listCategoryController.listToScore(filteredCategories[i].toLowerCase());
+        tempIndexFavorit = listCategoryController.listToScore(filteredCategories[i]);
         if(tempIndexFavorit == 1){
           kategoriCustomer1 = kategoriCustomer1>=10000?kategoriCustomer1:10000;
         } else if(tempIndexFavorit == 2){
@@ -291,7 +280,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
       // List hilang
       for(int i=0; i<removeCategories.length; i++){
-        tempIndexRemover = listCategoryController.listToScore(removeCategories[i].toLowerCase());
+        tempIndexRemover = listCategoryController.listToScore(removeCategories[i]);
         if(tempIndexRemover == 1){
           kategoriCustomer1-=10000;
         } else if(tempIndexRemover == 2){
