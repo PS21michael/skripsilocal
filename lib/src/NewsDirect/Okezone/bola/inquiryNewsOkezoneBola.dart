@@ -25,7 +25,7 @@ class _InquiryOkezoneNewsBola extends State<InquiryOkezoneNewsBola> {
 
   final String author = "Sindikasi bola.okezone.com";
   final String publisher = "Okezone.com";
-  final String category = "bola";
+  final String category = "Bola";
 
 
   bool _isLoading = true;

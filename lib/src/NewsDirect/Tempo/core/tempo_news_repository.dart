@@ -27,7 +27,7 @@ class TempoNewsRepository extends GetxController{
   // Title List
   // NASIONAL - Tempo
   List<String> listJudulNasional =[];
-  String categoryNasional = "nasional";
+  String categoryNasional = "Nasional";
   Future<List<NewsModel>> getAllNewsTempoNasional(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNasional).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -47,7 +47,7 @@ class TempoNewsRepository extends GetxController{
 
   // BISNIS - Tempo
   List<String> listJudulBisnis =[];
-  String categoryBisnis = "bisnis";
+  String categoryBisnis = "Bisnis";
   Future<List<NewsModel>> getAllNewsTempoBisnis(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBisnis).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -67,7 +67,7 @@ class TempoNewsRepository extends GetxController{
 
   // BISNIS - Tempo
   List<String> listJudulMetro =[];
-  String categoryMetro = "metro";
+  String categoryMetro = "Metro";
   Future<List<NewsModel>> getAllNewsTempoMetro(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryMetro).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -87,7 +87,7 @@ class TempoNewsRepository extends GetxController{
 
   // DUNIA - Tempo
   List<String> listJudulDunia =[];
-  String categoryDunia = "internasional";
+  String categoryDunia = "Internasional";
   Future<List<NewsModel>> getAllNewsTempoDunia(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDunia).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -107,7 +107,7 @@ class TempoNewsRepository extends GetxController{
 
   // BOLA - Tempo
   List<String> listJudulBola =[];
-  String categoryBola = "bola";
+  String categoryBola = "Bola";
   Future<List<NewsModel>> getAllNewsTempoBola(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -127,7 +127,7 @@ class TempoNewsRepository extends GetxController{
 
   // CANTIK - Tempo
   List<String> listJudulCantik =[];
-  String categoryCantik = "cantik";
+  String categoryCantik = "Cantik";
   Future<List<NewsModel>> getAllNewsTempoCantik(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCantik).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -140,14 +140,14 @@ class TempoNewsRepository extends GetxController{
   List<String> getListJudulCantikTempoNews(){
     return listJudulCantik;
   }
-  void setNullListJudulcantikTempoNews(){
+  void setNullListJudulCantikTempoNews(){
     listJudulCantik = [];
   }
 
 
   // TEKNO - Tempo
   List<String> listJudulTekno =[];
-  String categoryTekno = "teknologi";
+  String categoryTekno = "Teknologi";
   Future<List<NewsModel>> getAllNewsTempoTekno(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTekno).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -167,7 +167,7 @@ class TempoNewsRepository extends GetxController{
 
   // OTOMOTIF - Tempo
   List<String> listJudulOtomotif =[];
-  String categoryOtomotif = "otomotif";
+  String categoryOtomotif = "Otomotif";
   Future<List<NewsModel>> getAllNewsTempoOtomotif(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -186,7 +186,7 @@ class TempoNewsRepository extends GetxController{
 
   // SELEB - Tempo
   List<String> listJudulSeleb =[];
-  String categorySeleb = "selebritis";
+  String categorySeleb = "Selebritis";
   Future<List<NewsModel>> getAllNewsTempoSeleb(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySeleb).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -206,7 +206,7 @@ class TempoNewsRepository extends GetxController{
 
   // GAYA - Tempo
   List<String> listJudulGaya =[];
-  String categoryGaya = "lifestyle";
+  String categoryGaya = "Lifestyle";
   Future<List<NewsModel>> getAllNewsTempoGaya(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryGaya).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -225,7 +225,7 @@ class TempoNewsRepository extends GetxController{
 
   // TRAVEL - Tempo
   List<String> listJudulTravel =[];
-  String categoryTravel = "travel";
+  String categoryTravel = "Travel";
   Future<List<NewsModel>> getAllNewsTempoTravel(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTravel).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -244,7 +244,7 @@ class TempoNewsRepository extends GetxController{
 
   // DIFABEL - Tempo
   List<String> listJudulDifabel =[];
-  String categoryDifabel = "difabel";
+  String categoryDifabel = "Difabel";
   Future<List<NewsModel>> getAllNewsTempoDifabel(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDifabel).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -264,7 +264,7 @@ class TempoNewsRepository extends GetxController{
 
   // CREATIVE LAB - Tempo
   List<String> listJudulCreativeLab =[];
-  String categoryCreativeLab = "creativelab";
+  String categoryCreativeLab = "Creativelab";
   Future<List<NewsModel>> getAllNewsTempoCreativeLab(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCreativeLab).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -284,7 +284,7 @@ class TempoNewsRepository extends GetxController{
 
   // INFORIAL - Tempo
   List<String> listJudulInforial =[];
-  String categoryInforial = "inforial";
+  String categoryInforial = "Inforial";
   Future<List<NewsModel>> getAllNewsTempoInforial(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInforial).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -303,7 +303,7 @@ class TempoNewsRepository extends GetxController{
 
   // EVENT - Tempo
   List<String> listJudulEvent =[];
-  String categoryEvent = "event";
+  String categoryEvent = "Event";
   Future<List<NewsModel>> getAllNewsTempoEvent(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEvent).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

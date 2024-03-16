@@ -27,7 +27,7 @@ class SuaraNewsRepository extends GetxController {
   // Title List
   // BISNIS - SUARA
   List<String> listJudulBisnis =[];
-  String categoryBisnis = "bisnis";
+  String categoryBisnis = "Bisnis";
   Future<List<NewsModel>> getAllNewsSuaraBisnis(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBisnis).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -47,7 +47,7 @@ class SuaraNewsRepository extends GetxController {
 
   // BOLA - SUARA
   List<String> listJudulBola =[];
-  String categoryBola = "bola";
+  String categoryBola = "Bola";
   Future<List<NewsModel>> getAllNewsSuaraBola(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -67,7 +67,7 @@ class SuaraNewsRepository extends GetxController {
 
   // LIFE STYLE - SUARA
   List<String> listJudulLifeStyle =[];
-  String categoryLifeStyle = "lifestyle";
+  String categoryLifeStyle = "Lifestyle";
   Future<List<NewsModel>> getAllNewsSuaraLifeStyle(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLifeStyle).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -87,7 +87,7 @@ class SuaraNewsRepository extends GetxController {
 
   // ENTERTAINMENT - SUARA
   List<String> listJudulEntertainment =[];
-  String categoryEntertainment = "hiburan";
+  String categoryEntertainment = "Hiburan";
   Future<List<NewsModel>> getAllNewsSuaraEntertainment(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEntertainment).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -107,7 +107,7 @@ class SuaraNewsRepository extends GetxController {
 
   // OTOMOTIF - SUARA
   List<String> listJudulOtomotif =[];
-  String categoryOtomotif = "otomotif";
+  String categoryOtomotif = "Otomotif";
   Future<List<NewsModel>> getAllNewsSuaraOtomotif(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -127,7 +127,7 @@ class SuaraNewsRepository extends GetxController {
 
   // TEKNO - SUARA
   List<String> listJudulTekno =[];
-  String categoryTekno = "teknologi";
+  String categoryTekno = "Teknologi";
   Future<List<NewsModel>> getAllNewsSuaraTekno(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTekno).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -147,7 +147,7 @@ class SuaraNewsRepository extends GetxController {
 
   // HEALTH - SUARA
   List<String> listJudulHealth =[];
-  String categoryHealth = "kesehatan";
+  String categoryHealth = "Kesehatan";
   Future<List<NewsModel>> getAllNewsSuaraHealth(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryHealth).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

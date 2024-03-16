@@ -25,7 +25,7 @@ class _InquirySindoNewsInternational extends State<InquirySindoNewsInternational
 
   final String author = "Berita Internasional Mancanegara Terkini dan Terbaru - SINDOnews";
   final String publisher = "SINDOnews";
-  final String category = "internasional";
+  final String category = "Internasional";
 
 
   bool _isLoading = true;

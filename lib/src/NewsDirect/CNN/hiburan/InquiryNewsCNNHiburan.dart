@@ -25,7 +25,7 @@ class _InquiryCNNNewsHiburan extends State<InquiryCNNNewsHiburan> {
 
   final String author = "CNN Indonesia | Berita Terkini Hiburan";
   final String publisher = "CNN Indonesia";
-  final String category = "hiburan";
+  final String category = "Hiburan";
 
 
   bool _isLoading = true;

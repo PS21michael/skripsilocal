@@ -25,7 +25,7 @@ class _InquiryOkezoneNewsCelebrity extends State<InquiryOkezoneNewsCelebrity> {
 
   final String author = "Sindikasi celebrity.okezone.com";
   final String publisher = "Okezone.com";
-  final String category = "selebritis";
+  final String category = "Selebritis";
 
 
   bool _isLoading = true;

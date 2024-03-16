@@ -28,7 +28,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Celebrity - Okezone
   List<String> listJudulCelebrity =[];
-  String categoryCelebrity = "selebritis";
+  String categoryCelebrity = "Selebritis";
   Future<List<NewsModel>> getAllNewsOkezoneCelebrity(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCelebrity).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -48,7 +48,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Sports - Okezone
   List<String> listJudulSports =[];
-  String categorySports = "olahraga";
+  String categorySports = "Olahraga";
   Future<List<NewsModel>> getAllNewsOkezoneSports(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySports).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -68,7 +68,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Otomotif - Okezone
   List<String> listJudulOtomotif =[];
-  String categoryOtomotif = "otomotif";
+  String categoryOtomotif = "Otomotif";
   Future<List<NewsModel>> getAllNewsOkezoneOtomotif(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -88,7 +88,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Economy - Okezone
   List<String> listJudulEconomy =[];
-  String categoryEconomy = "ekonomi";
+  String categoryEconomy = "Ekonomi";
   Future<List<NewsModel>> getAllNewsOkezoneEconomy(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEconomy).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -108,7 +108,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Techno - Okezone
   List<String> listJudulTechno =[];
-  String categoryTechno = "teknologi";
+  String categoryTechno = "Teknologi";
   Future<List<NewsModel>> getAllNewsOkezoneTechno(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTechno).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -128,7 +128,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Lifestyle - Okezone
   List<String> listJudulLifestyle =[];
-  String categoryLifestyle = "lifestyle";
+  String categoryLifestyle = "Lifestyle";
   Future<List<NewsModel>> getAllNewsOkezoneLifestyle(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLifestyle).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -147,7 +147,7 @@ class OkezoneNewsRepository extends GetxController{
 
   // Bola - Okezone
   List<String> listJudulBola =[];
-  String categoryBola = "bola";
+  String categoryBola = "Bola";
   Future<List<NewsModel>> getAllNewsOkezoneBola(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

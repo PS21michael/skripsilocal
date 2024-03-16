@@ -25,7 +25,7 @@ class _InquirySuaraBisnis extends State<InquirySuaraNewsBisnis> {
 
   final String author = "Suara News | Berita Terbaru Bisnis, Ekonomi, Investasi Indonesia";
   final String publisher = "Suara News";
-  final String category = "bisnis";
+  final String category = "Bisnis";
 
 
   bool _isLoading = true;

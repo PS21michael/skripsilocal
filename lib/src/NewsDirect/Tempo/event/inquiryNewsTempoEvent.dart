@@ -25,7 +25,7 @@ class _InquiryTempoNewsEvent extends State<InquiryTempoNewsEvent> {
 
   final String author = "Event Tempo";
   final String publisher = "Tempo News";
-  final String category = "event";
+  final String category = "Event";
 
 
   bool _isLoading = true;

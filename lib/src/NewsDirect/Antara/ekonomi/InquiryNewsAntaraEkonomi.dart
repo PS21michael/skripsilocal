@@ -25,7 +25,7 @@ class _InquiryAntaraNewsEkonomi extends State<InquiryAntaraNewsEkonomi> {
 
   final String author = "Ekonomi - ANTARA News";
   final String publisher = "ANTARA News";
-  final String category = "ekonomi";
+  final String category = "Ekonomi";
 
 
   bool _isLoading = true;

@@ -25,7 +25,7 @@ class _InquirySindoNewsOtomotif extends State<InquirySindoNewsOtomotif> {
 
   final String author = "Berita Otomotif, Motor, Mobil Terkini dan Terbaru - SINDOnews";
   final String publisher = "SINDOnews";
-  final String category = "otomotif";
+  final String category = "Otomotif";
 
 
   bool _isLoading = true;

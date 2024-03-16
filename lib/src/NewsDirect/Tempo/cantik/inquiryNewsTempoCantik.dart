@@ -25,7 +25,7 @@ class _InquiryTempoNewsCantik extends State<InquiryTempoNewsCantik> {
 
   final String author = "Tempo Cantik - Berita Terkini dan Tips Seputar Dunia Wanita";
   final String publisher = "Tempo News";
-  final String category = "cantik";
+  final String category = "Cantik";
 
 
   bool _isLoading = true;

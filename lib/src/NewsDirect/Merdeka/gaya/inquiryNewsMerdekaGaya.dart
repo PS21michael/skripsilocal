@@ -25,7 +25,7 @@ class _InquiryMerdekaNewsGaya extends State<InquiryMerdekaNewsGaya> {
 
   final String author = "Merdeka News | Life Style";
   final String publisher = "Merdeka News";
-  final String category = "lifestyle";
+  final String category = "Lifestyle";
 
 
   bool _isLoading = true;

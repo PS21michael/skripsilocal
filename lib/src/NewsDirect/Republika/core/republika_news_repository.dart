@@ -27,7 +27,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // NEWS - Republika
   List<String> listJudulNews =[];
-  String categoryNews = "news";
+  String categoryNews = "News";
   Future<List<NewsModel>> getAllNewsRepublikaNews(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNews).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -49,7 +49,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // DAERAH - Republika
   List<String> listJudulDaerah =[];
-  String categoryDaerah = "daerah";
+  String categoryDaerah = "Daerah";
   Future<List<NewsModel>> getAllNewsRepublikaDaerah(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDaerah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -71,7 +71,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // KHAZANAH - Republika
   List<String> listJudulKhazanah =[];
-  String categoryKhazanah = "khazanah";
+  String categoryKhazanah = "Khazanah";
   Future<List<NewsModel>> getAllNewsRepublikaKhazanah(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryKhazanah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -93,7 +93,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // ISLAM - Republika
   List<String> listJudulIslam =[];
-  String categoryIslam = "islam";
+  String categoryIslam = "Islam";
   Future<List<NewsModel>> getAllNewsRepublikaIslam(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryIslam).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -115,7 +115,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // INTERNASIONAL - Republika
   List<String> listJudulInternasional =[];
-  String categoryInternasional = "internasional";
+  String categoryInternasional = "Internasional";
   Future<List<NewsModel>> getAllNewsRepublikaInternasional(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInternasional).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -137,7 +137,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // BOLA - Republika
   List<String> listJudulBola =[];
-  String categoryBola = "bola";
+  String categoryBola = "Bola";
   Future<List<NewsModel>> getAllNewsRepublikaBola(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -159,7 +159,7 @@ class RepublikaNewsRepository extends GetxController{
 
   // LEISURE - Republika
   List<String> listJudulLeisure =[];
-  String categoryLeisure = "leisure";
+  String categoryLeisure = "Leisure";
   Future<List<NewsModel>> getAllNewsRepublikaLeisure(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLeisure).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

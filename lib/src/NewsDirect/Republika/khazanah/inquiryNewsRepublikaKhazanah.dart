@@ -25,7 +25,7 @@ class _InquiryRepublikaNewsKhazanah extends State<InquiryRepublikaNewsKhazanah> 
 
   final String author = "Republika Online - Khazanah Feed";
   final String publisher = "Republika Online";
-  final String category = "khazanah";
+  final String category = "Khazanah";
 
 
   bool _isLoading = true;

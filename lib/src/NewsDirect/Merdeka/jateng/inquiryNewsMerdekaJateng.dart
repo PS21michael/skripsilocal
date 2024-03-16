@@ -25,7 +25,7 @@ class _InquiryMerdekaNewsJateng extends State<InquiryMerdekaNewsJateng> {
 
   final String author = "Merdeka News | Jawa Tengah";
   final String publisher = "Merdeka News";
-  final String category = "jateng";
+  final String category = "Jateng";
 
 
   bool _isLoading = true;

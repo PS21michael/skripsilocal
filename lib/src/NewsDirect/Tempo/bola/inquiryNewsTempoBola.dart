@@ -25,7 +25,7 @@ class _InquiryTempoNewsBola extends State<InquiryTempoNewsBola> {
 
   final String author = "Tempo Bola - Berita Sepak Bola Terkini Indonesia dan Dunia";
   final String publisher = "Tempo News";
-  final String category = "bola";
+  final String category = "Bola";
 
 
   bool _isLoading = true;

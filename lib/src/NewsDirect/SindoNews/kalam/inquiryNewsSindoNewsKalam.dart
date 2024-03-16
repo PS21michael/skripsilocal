@@ -25,7 +25,7 @@ class _InquirySindoNewsKalam extends State<InquirySindoNewsKalam> {
 
   final String author = "Kajian Islam, Hikmah, Fiqih, Aqidah dan Kisah Seputar Islam - SINDOnews Kalam";
   final String publisher = "SINDOnews";
-  final String category = "kalam";
+  final String category = "Kalam";
 
 
   bool _isLoading = true;

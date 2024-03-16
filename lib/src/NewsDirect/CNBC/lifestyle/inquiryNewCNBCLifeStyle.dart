@@ -25,7 +25,7 @@ class _InquiryCNBCNewsLifeStyle extends State<InquiryCNBCNewsLifeStyle> {
 
   final String author = "Lifestyle - Berita Terkini Gaya Hidup dan Travel - CNBC Indonesia";
   final String publisher = "CNBC Indonesia";
-  final String category = "lifestyle";
+  final String category = "Lifestyle";
 
 
   bool _isLoading = true;

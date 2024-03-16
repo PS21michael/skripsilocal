@@ -25,7 +25,7 @@ class _InquiryMerdekaNewsKhas extends State<InquiryMerdekaNewsKhas> {
 
   final String author = "Merdeka News | Khas Indonesia";
   final String publisher = "Merdeka News";
-  final String category = "khas";
+  final String category = "Khas";
 
 
   bool _isLoading = true;

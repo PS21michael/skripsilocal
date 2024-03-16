@@ -25,7 +25,7 @@ class _InquiryTempoNewsDifabel extends State<InquiryTempoNewsDifabel> {
 
   final String author = "Difabel Tempo";
   final String publisher = "Tempo News";
-  final String category = "difabel";
+  final String category = "Difabel";
 
 
   bool _isLoading = true;

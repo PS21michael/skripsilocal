@@ -25,7 +25,7 @@ class _InquirySindoNewsSports extends State<InquirySindoNewsSports> {
 
   final String author = "Berita Sepakbola dan Olahraga Terkini dan Terbaru - SINDOnews";
   final String publisher = "SINDOnews";
-  final String category = "olahraga";
+  final String category = "Olahraga";
 
 
   bool _isLoading = true;

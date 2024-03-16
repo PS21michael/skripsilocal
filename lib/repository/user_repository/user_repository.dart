@@ -630,14 +630,82 @@ class UserRepository extends GetxController{
   // Inc News Read
   Future<void> updateSingelScore(String kategori) async{
     Map<String, dynamic> json = {'scoreKategori1' : FieldValue.increment(0)};
-    if(kategori == "nasional"){
+    if(kategori == "Nasional"){
       json = {'scoreKategori1' : FieldValue.increment(1)};
-    } else if(kategori == "bisnis"){
+    } else if(kategori == "Bisnis"){
       json = {'scoreKategori2' : FieldValue.increment(1)};
-    }else if(kategori == "politik"){
+    }else if(kategori == "Politik"){
       json = {'scoreKategori3' : FieldValue.increment(1)};
-    }else if(kategori == "bola"){
+    } else if(kategori == "Hukum"){
+      json = {'scoreKategori4' : FieldValue.increment(1)};
+    } else if(kategori == "Ekonomi"){
+      json = {'scoreKategori5' : FieldValue.increment(1)};
+    } else if(kategori == "Olahraga"){
+      json = {'scoreKategori6' : FieldValue.increment(1)};
+    }else if(kategori == "Teknologi"){
+      json = {'scoreKategori7' : FieldValue.increment(1)};
+    }else if(kategori == "Otomotif"){
+      json = {'scoreKategori8' : FieldValue.increment(1)};
+    }else if(kategori == "Internasional"){
+      json = {'scoreKategori9' : FieldValue.increment(1)};
+    } else if(kategori == "Bola"){
       json = {'scoreKategori10' : FieldValue.increment(1)};
+    }else if(kategori == "Selebritis"){
+      json = {'scoreKategori11' : FieldValue.increment(1)};
+    }else if(kategori == "Lifestyle"){
+      json = {'scoreKategori12' : FieldValue.increment(1)};
+    }else if(kategori == "Hiburan"){
+      json = {'scoreKategori13' : FieldValue.increment(1)};
+    }else if(kategori == "Jakarta"){
+      json = {'scoreKategori14' : FieldValue.increment(1)};
+    }else if(kategori == "Market"){
+      json = {'scoreKategori15' : FieldValue.increment(1)};
+    }else if(kategori == "News"){
+      json = {'scoreKategori16' : FieldValue.increment(1)};
+    }else if(kategori == "Cantik"){
+      json = {'scoreKategori17' : FieldValue.increment(1)};
+    }else if(kategori == "Travel"){
+      json = {'scoreKategori18' : FieldValue.increment(1)};
+    }else if(kategori == "Syariah"){
+      json = {'scoreKategori19' : FieldValue.increment(1)};
+    }else if(kategori == "Islam"){
+      json = {'scoreKategori20' : FieldValue.increment(1)};
+    }else if(kategori == "Sains"){
+      json = {'scoreKategori21' : FieldValue.increment(1)};
+    }else if(kategori == "Edukasi"){
+      json = {'scoreKategori22' : FieldValue.increment(1)};
+    }else if(kategori == "Kesehatan"){
+      json = {'scoreKategori23' : FieldValue.increment(1)};
+    }else if(kategori == "Humaniora"){
+      json = {'scoreKategori24' : FieldValue.increment(1)};
+    }else if(kategori == "Entrepreneur"){
+      json = {'scoreKategori25' : FieldValue.increment(1)};
+    }else if(kategori == "Opini"){
+      json = {'scoreKategori26' : FieldValue.increment(1)};
+    }else if(kategori == "Khas"){
+      json = {'scoreKategori27' : FieldValue.increment(1)};
+    }else if(kategori == "Jateng"){
+      json = {'scoreKategori28' : FieldValue.increment(1)};
+    }else if(kategori == "Daerah"){
+      json = {'scoreKategori29' : FieldValue.increment(1)};
+    }else if(kategori == "Khazanah"){
+      json = {'scoreKategori30' : FieldValue.increment(1)};
+    }else if(kategori == "Leisure"){
+      json = {'scoreKategori31' : FieldValue.increment(1)};
+    }else if(kategori == "Metro"){
+      json = {'scoreKategori32' : FieldValue.increment(1)};
+    }else if(kategori == "Ekbis"){
+      json = {'scoreKategori33' : FieldValue.increment(1)};
+    }else if(kategori == "Kalam"){
+      json = {'scoreKategori34' : FieldValue.increment(1)};
+    }else if(kategori == "Difabel"){
+      json = {'scoreKategori35' : FieldValue.increment(1)};
+    }else if(kategori == "Creativelab"){
+      json = {'scoreKategori36' : FieldValue.increment(1)};
+    }else if(kategori == "Inforial"){
+      json = {'scoreKategori37' : FieldValue.increment(1)};
+    }else if(kategori == "Event"){
+      json = {'scoreKategori38' : FieldValue.increment(1)};
     }
     await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
   }

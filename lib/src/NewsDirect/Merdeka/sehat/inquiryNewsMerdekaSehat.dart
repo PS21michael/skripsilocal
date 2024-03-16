@@ -23,9 +23,9 @@ class _InquiryMerdekaNewsSehat extends State<InquiryMerdekaNewsSehat> {
 
   final newsRepo = Get.put(MerdekaNewsRepository());
 
-  final String author = "Merdeka News | kesehatan";
+  final String author = "Merdeka News | Kesehatan";
   final String publisher = "Merdeka News";
-  final String category = "kesehatan";
+  final String category = "Kesehatan";
 
 
   bool _isLoading = true;

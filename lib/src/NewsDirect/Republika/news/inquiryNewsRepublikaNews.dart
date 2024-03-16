@@ -25,7 +25,7 @@ class _InquiryRepublikaNewsNews extends State<InquiryRepublikaNewsNews> {
 
   final String author = "Republika Online - News Feed";
   final String publisher = "Republika Online";
-  final String category = "news";
+  final String category = "News";
 
 
   bool _isLoading = true;

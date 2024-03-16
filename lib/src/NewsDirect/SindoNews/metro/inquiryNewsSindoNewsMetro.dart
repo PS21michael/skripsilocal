@@ -25,7 +25,7 @@ class _InquirySindoNewsMetro extends State<InquirySindoNewsMetro> {
 
   final String author = "Berita Metropolitan Jabodetabek Terkini dan Terbaru - SINDOnews";
   final String publisher = "SINDOnews";
-  final String category = "metro";
+  final String category = "Metro";
 
 
   bool _isLoading = true;

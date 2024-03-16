@@ -28,7 +28,7 @@ class CNBCNewsRepository extends GetxController{
   // Title List
   // NEWS - CNBC
   List<String> listJudulNews =[];
-  String categoryNews = "news";
+  String categoryNews = "News";
   Future<List<NewsModel>> getAllNewsCNBCNews(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNews).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -48,7 +48,7 @@ class CNBCNewsRepository extends GetxController{
 
   // MARKET - CNBC
   List<String> listJudulMarket =[];
-  String categoryMarket = "market";
+  String categoryMarket = "Market";
   Future<List<NewsModel>> getAllNewsCNBCMarket(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryMarket).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -68,7 +68,7 @@ class CNBCNewsRepository extends GetxController{
 
   // ENTREPRENEUR - CNBC
   List<String> listJudulEntrepreneur =[];
-  String categoryEntrepreneur = "entrepreneur";
+  String categoryEntrepreneur = "Entrepreneur";
   Future<List<NewsModel>> getAllNewsCNBCEntrepreneur(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEntrepreneur).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -89,7 +89,7 @@ class CNBCNewsRepository extends GetxController{
 
   // SYARIAH - CNBC
   List<String> listJudulSyariah =[];
-  String categorySyariah = "syariah";
+  String categorySyariah = "Syariah";
   Future<List<NewsModel>> getAllNewsCNBCSyariah(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySyariah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -109,7 +109,7 @@ class CNBCNewsRepository extends GetxController{
 
   // TEKNOLOGI - CNBC
   List<String> listJudulTeknologi =[];
-  String categoryTeknologi = "teknologi";
+  String categoryTeknologi = "Teknologi";
   Future<List<NewsModel>> getAllNewsCNBCTeknologi(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -129,7 +129,7 @@ class CNBCNewsRepository extends GetxController{
 
   // LIFESTYLE - CNBC
   List<String> listJudulLifeStyle =[];
-  String categoryLifeStyle = "lifestyle";
+  String categoryLifeStyle = "Lifestyle";
   Future<List<NewsModel>> getAllNewsCNBCLifeStyle(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLifeStyle).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -149,7 +149,7 @@ class CNBCNewsRepository extends GetxController{
 
   // OPINI - CNBC
   List<String> listJudulOpini =[];
-  String categoryOpini = "opini";
+  String categoryOpini = "Opini";
   Future<List<NewsModel>> getAllNewsCNBCOpini(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOpini).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

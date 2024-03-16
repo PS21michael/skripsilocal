@@ -83,7 +83,7 @@ class _HumanioraState extends State<Humaniora> {
             urlImage: dataFetching!.data!.posts![i].thumbnail.toString(),
             urlNews: dataFetching!.data!.posts![i].link.toString(),
             publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
-            category: "humaniora",
+            category: "Humaniora",
             like: 0,
             dislike: 0,
            saveDate: savedTime);

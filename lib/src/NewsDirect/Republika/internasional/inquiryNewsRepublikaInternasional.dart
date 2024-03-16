@@ -25,7 +25,7 @@ class _InquiryRepublikaNewsInternasional extends State<InquiryRepublikaNewsInter
 
   final String author = "Republika Online - Internasional Feed";
   final String publisher = "Republika Online";
-  final String category = "internasional";
+  final String category = "Internasional";
 
 
   bool _isLoading = true;

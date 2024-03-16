@@ -25,7 +25,7 @@ class _InquirySindoNewsTekno extends State<InquirySindoNewsTekno> {
 
   final String author = "Berita Teknologi, Gadget, Telekomunikasi Terkini dan Terbaru - SINDOnews";
   final String publisher = "SINDOnews";
-  final String category = "teknologi";
+  final String category = "Teknologi";
 
 
   bool _isLoading = true;

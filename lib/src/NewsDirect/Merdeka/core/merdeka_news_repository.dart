@@ -29,7 +29,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Jakarta - Merdeka News
   List<String> listJudulJakarta = [];
-  String categoryJakarta = "jakarta";
+  String categoryJakarta = "Jakarta";
   Future<List<NewsModel>> getAllNewsMerdekaJakarta(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryJakarta).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -49,7 +49,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Dunia - Merdeka News
   List<String> listJudulDunia = [];
-  String categoryDunia = "internasional";
+  String categoryDunia = "Internasional";
   Future<List<NewsModel>> getAllNewsMerdekaDunia(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDunia).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -68,7 +68,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Gaya - Merdeka News
   List<String> listJudulGaya = [];
-  String categoryGaya = "lifestyle";
+  String categoryGaya = "Lifestyle";
   Future<List<NewsModel>> getAllNewsMerdekaGaya(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryGaya).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -88,7 +88,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Olahraga - Merdeka News
   List<String> listJudulOlahraga = [];
-  String categoryOlahraga = "olahraga";
+  String categoryOlahraga = "Olahraga";
   Future<List<NewsModel>> getAllNewsMerdekaOlahraga(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOlahraga).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -107,7 +107,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Teknologi - Merdeka News
   List<String> listJudulTeknologi = [];
-  String categoryTeknologi = "teknologi";
+  String categoryTeknologi = "Teknologi";
   Future<List<NewsModel>> getAllNewsMerdekaTeknologi(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -127,7 +127,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // Otomotif - Merdeka News
   List<String> listJudulOtomotif = [];
-  String categoryOtomotif = "otomotif";
+  String categoryOtomotif = "Otomotif";
   Future<List<NewsModel>> getAllNewsMerdekaOtomotif(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -145,9 +145,9 @@ class MerdekaNewsRepository extends GetxController{
   }
 
 
-  // khas - Merdeka News
+  // Khas - Merdeka News
   List<String> listJudulKhas = [];
-  String categoryKhas = "khas";
+  String categoryKhas = "Khas";
   Future<List<NewsModel>> getAllNewsMerdekaKhas(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryKhas).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -167,7 +167,7 @@ class MerdekaNewsRepository extends GetxController{
 
   // sehat - Merdeka News
   List<String> listJudulSehat = [];
-  String categorySehat = "kesehatan";
+  String categorySehat = "Kesehatan";
   Future<List<NewsModel>> getAllNewsMerdekaSehat(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySehat).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
@@ -185,9 +185,9 @@ class MerdekaNewsRepository extends GetxController{
   }
 
 
-  // jateng - Merdeka News
+  // Jateng - Merdeka News
   List<String> listJudulJateng = [];
-  String categoryJateng = "jateng";
+  String categoryJateng = "Jateng";
   Future<List<NewsModel>> getAllNewsMerdekaJateng(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryJateng).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();

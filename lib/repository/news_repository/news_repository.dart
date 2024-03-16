@@ -199,7 +199,7 @@ class NewsRepository extends GetxController{
 
   // PENTING
   Future<List<NewsModel>> getAllNewsANTARAHumaniora(int time) async{
-    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "humaniora").where("SaveDate", isEqualTo: time).get();
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "Humaniora").where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
@@ -253,7 +253,7 @@ class NewsRepository extends GetxController{
   }
 
   List<String> listJudulPolitik =[];
-  String categoryPolitik = "politik";
+  String categoryPolitik = "Politik";
   Future<List<NewsModel>> getAllNewsAntaraPolitik(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();

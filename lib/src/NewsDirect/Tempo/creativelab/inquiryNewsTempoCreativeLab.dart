@@ -25,7 +25,7 @@ class _InquiryTempoNewsCreativeLab extends State<InquiryTempoNewsCreativeLab> {
 
   final String author = "Creative Lab Tempo";
   final String publisher = "Tempo News";
-  final String category = "creativelab";
+  final String category = "Creativelab";
 
 
   bool _isLoading = true;

@@ -25,7 +25,7 @@ class _InquiryCNBCNewsMarket extends State<InquiryCNBCNewsMarket> {
 
   final String author = "Market - Berita Terkini Market, Saham, Reksadana - CNBC Indonesia";
   final String publisher = "CNBC Indonesia";
-  final String category = "market";
+  final String category = "Market";
 
 
   bool _isLoading = true;

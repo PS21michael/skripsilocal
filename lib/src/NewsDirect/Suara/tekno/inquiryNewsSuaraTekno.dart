@@ -25,7 +25,7 @@ class _InquirySuaraTekno extends State<InquirySuaraNewsTekno> {
 
   final String author = "Suara News | Berita Teknologi Dan Science Terbaru";
   final String publisher = "Suara News";
-  final String category = "teknologi";
+  final String category = "Teknologi";
 
 
   bool _isLoading = true;
