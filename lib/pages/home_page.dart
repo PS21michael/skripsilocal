@@ -214,7 +214,6 @@ class _HomePageState extends State<HomePage> {
 
           GestureDetector(
             onTap: (){
-              UserRepository.instance.updateSingelScore("bola");
               Get.to(()=>const InquiryNewsDBFavoritScreen());
             },
 

@@ -479,6 +479,105 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             await UserRepository.instance.getSingelUserDetails(emailCustomer);
                             Get.to(() => UpdateCategory());
                           }
+                        } else if(userNameController.text.trim() == userNameCustomer){
+                          final user = UserModel(
+                            fullName: fullNameController.text.trim() == ""
+                                ? fullNameCustomer
+                                : fullNameController.text.trim(),
+                            email: emailCustomer,
+                            userName: userNameController.text.trim() == ""
+                                ? userNameCustomer
+                                : userNameController.text.trim(),
+                            province: _provinsiVal ?? provinceCustomer,
+                            dateOfBirth: dateOfBirthController.text.trim() == ""
+                                ? dateOfBirthCustomer
+                                : dateOfBirthController.text.trim(),
+                            password: passwordCustomer,
+                            joinDate: joinDateCustomer,
+                            profilePicture: profilePictureCustomer,
+                            kategori1: 'nasional',
+                            scoreKategori1: kategoriCustomer1,
+                            kategori2: 'bisnis',
+                            scoreKategori2: kategoriCustomer2,
+                            kategori3: 'politik',
+                            scoreKategori3: kategoriCustomer3,
+                            kategori4: 'hukum',
+                            scoreKategori4: kategoriCustomer4,
+                            kategori5: 'ekonomi',
+                            scoreKategori5: kategoriCustomer5,
+                            kategori6: 'olahraga',
+                            scoreKategori6: kategoriCustomer6,
+                            kategori7: 'teknologi',
+                            scoreKategori7: kategoriCustomer7,
+                            kategori8: 'otomotif',
+                            scoreKategori8: kategoriCustomer8,
+                            kategori9: 'internasional',
+                            scoreKategori9: kategoriCustomer9,
+                            kategori10: 'bola',
+                            scoreKategori10: kategoriCustomer10,
+                            kategori11: 'selebritis',
+                            scoreKategori11: kategoriCustomer11,
+                            kategori12: 'lifestyle',
+                            scoreKategori12: kategoriCustomer12,
+                            kategori13: 'hiburan',
+                            scoreKategori13: kategoriCustomer13,
+                            kategori14: 'jakarta',
+                            scoreKategori14: kategoriCustomer14,
+                            kategori15: 'market',
+                            scoreKategori15: kategoriCustomer15,
+                            kategori16: 'news',
+                            scoreKategori16: kategoriCustomer16,
+                            kategori17: 'cantik',
+                            scoreKategori17: kategoriCustomer17,
+                            kategori18: 'travel',
+                            scoreKategori18: kategoriCustomer18,
+                            kategori19: 'syariah',
+                            scoreKategori19: kategoriCustomer19,
+                            kategori20: 'islam',
+                            scoreKategori20: kategoriCustomer20,
+                            kategori21: 'sains',
+                            scoreKategori21: kategoriCustomer21,
+                            kategori22: 'edukasi',
+                            scoreKategori22: kategoriCustomer22,
+                            kategori23: 'kesehatan',
+                            scoreKategori23: kategoriCustomer23,
+                            kategori24: 'humaniora',
+                            scoreKategori24: kategoriCustomer24,
+                            kategori25: 'entrepreneur',
+                            scoreKategori25: kategoriCustomer25,
+                            kategori26: 'opini',
+                            scoreKategori26: kategoriCustomer26,
+                            kategori27: 'khas',
+                            scoreKategori27: kategoriCustomer27,
+                            kategori28: 'jateng',
+                            scoreKategori28: kategoriCustomer28,
+                            kategori29: 'daerah',
+                            scoreKategori29: kategoriCustomer29,
+                            kategori30: 'khazanah',
+                            scoreKategori30: kategoriCustomer30,
+                            kategori31: 'leisure',
+                            scoreKategori31: kategoriCustomer31,
+                            kategori32: 'metro',
+                            scoreKategori32: kategoriCustomer32,
+                            kategori33: 'ekbis',
+                            scoreKategori33: kategoriCustomer33,
+                            kategori34: 'kalam',
+                            scoreKategori34: kategoriCustomer34,
+                            kategori35: 'difabel',
+                            scoreKategori35: kategoriCustomer35,
+                            kategori36: 'creativelab',
+                            scoreKategori36: kategoriCustomer36,
+                            kategori37: 'inforial',
+                            scoreKategori37: kategoriCustomer37,
+                            kategori38: 'event',
+                            scoreKategori38: kategoriCustomer38,                         
+                          );
+                          await Future.delayed(Duration(seconds: 1));
+                          await UserRepository.instance.updateUserRecord(user, idCustomer);
+                          await Future.delayed(Duration(seconds: 2));
+                          await UserRepository.instance.getSingelUserDetails(emailCustomer);
+                          Get.to(() => UpdateCategory());
+
                         }
                       }
                     ),
