@@ -96,8 +96,7 @@ class _HomePageState extends State<HomePage> {
               UserRepository.instance.resetListScore();
               await Future.delayed(Duration(seconds: 2));
               await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-
-              Get.to(()=> UpdateCategory());
+              // Get.to(()=> UpdateCategory());
             },
 
             child: Container(

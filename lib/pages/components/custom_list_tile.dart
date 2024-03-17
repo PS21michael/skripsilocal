@@ -5,12 +5,16 @@ class CustomListTile extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
   final IconData icon;
+  final Color iconColor;
+  final Color textColor;
 
   const CustomListTile({
     Key? key,
     required this.onTap,
     required this.title,
     required this.icon,
+    required this.iconColor,
+    required this.textColor,
   }) : super(key: key);
 
   @override
@@ -32,6 +36,7 @@ class CustomListTile extends StatelessWidget {
           ),
           child: Icon(
             icon,
+            color: iconColor,
           ),
         ),
         title: Text(
@@ -39,7 +44,7 @@ class CustomListTile extends StatelessWidget {
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Colors.red,
+            color: textColor,
           ),
         ),
       ),

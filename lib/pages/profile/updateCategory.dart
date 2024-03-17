@@ -5,6 +5,7 @@ import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
@@ -13,16 +14,17 @@ import '../../models/user_model.dart';
 class UpdateCategory extends StatefulWidget {
   @override
   _UpdateCategoryState createState() => _UpdateCategoryState();
+  // final List<int> daftarScore;
+  // const UpdateCategory({Key? key, required this.daftarScore}) : super(key: key);
 }
 
 class _UpdateCategoryState extends State<UpdateCategory> {
   List<String> categories = ['Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahrga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Enterpreneur', 'Event'];
   List<String> selectedCategories = [];
-  // List<String> lowercaseCategories = categories.map((category) => category.toLowerCase()).toList();
   final listCategoryController = Get.put(CategoryListParser());
-  // List<String> TempselectedCategories = ['Nasional', 'Bisnis'];
   List<String> userCategory = [];
   List<String> tempCategory = [];
+  // List<int> daftarScore = [];
 
   @override
   void initState() {
@@ -31,8 +33,10 @@ class _UpdateCategoryState extends State<UpdateCategory> {
   }
 
   Future<void> fetchData() async {
-    // Terima list string
 
+    // UserRepository.instance.resetListScore();
+    // await Future.delayed(Duration(seconds: 2));
+    // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     List<int> daftarScore = UserRepository.instance.getListScore();
     List<int> scoreSecure = [];
     for(int i=0; i<38; i++){
@@ -66,7 +70,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: categories.map((category) {
-                      final lowercaseCategory = category;
+                      // final lowercaseCategory = category;
                       return ChoiceChip(
                         label: Text(category),
                         selected: tempCategory.contains(category),
@@ -120,7 +124,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
   Future<void> handleSubmit(List<String> listKategory) async {
 
-    // Inquiry Data First
     await Future.delayed(Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
@@ -171,12 +174,8 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     int kategoriCustomer36 = UserRepository.instance.getScoreKategori36();
     int kategoriCustomer37 = UserRepository.instance.getScoreKategori37();
     int kategoriCustomer38 = UserRepository.instance.getScoreKategori38();
-
     int tempIndexFavorit=0;
     int tempIndexRemover=0;
-
-
-    // List<String> tempCategories2 = ['Bisnis', 'Politik', 'Hukum'];
     print("User Category");
     print(listKategory);
     print("Selected Category");
@@ -192,8 +191,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
           removeCategories.add(category);
         }
       }
-
-      // List nambah
       for(int i=0; i<filteredCategories.length; i++){
         tempIndexFavorit = listCategoryController.listToScore(filteredCategories[i]);
         if(tempIndexFavorit == 1){
@@ -454,13 +451,11 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       await UserRepository.instance.updateUserRecord(user, idCustomer);
       await Future.delayed(Duration(seconds: 3));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
-
-      showCustomSnackbar('SUCCES', 'DATA SUDAH DIMASUKKAN', isError: false);
-
+      showCustomSnackbar('Success', 'Update berhasil!', isError: false);
       print("Data yg di dapat : "+ filteredCategories.toString());
       print("Data yg di hapus : "+ removeCategories.toString());
-      UserRepository.instance.resetListScore();
-      Get.to(() => HomePage());
+      // UserRepository.instance.resetListScore();
+      Get.to(() => ProfilePage());
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
