@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';
@@ -9,6 +8,7 @@ import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import '../comment/dummyComment.dart';
+import 'package:flutter/services.dart';
 
 class DummyNewsScreen extends StatefulWidget {
   const DummyNewsScreen({Key? key}) : super(key: key);
@@ -18,14 +18,11 @@ class DummyNewsScreen extends StatefulWidget {
 }
 
 class _DummyNewsScreenState extends State<DummyNewsScreen> {
-  // final fullnameController = TextEditingController();
-  // final provinsiController = TextEditingController();
-  // final emailController = TextEditingController();
-  // final passwordController = TextEditingController();
   String idBer = "";
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     final controller1 = Get.put(CommentController());
     List<CommentModel>? test = controller1.getAllDataList();
@@ -102,14 +99,14 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                                     ),
                                                   ),
                                                 ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.bookmark_border_rounded, // You can replace this with your love icon
-                                                      // color: Colors.white, // Customize the color as needed
-                                                    ),
-                                                  ],
-                                                ),
+                                                // Row(
+                                                //   children: [
+                                                //     Icon(
+                                                //       Icons.bookmark_border_rounded, // You can replace this with your love icon
+                                                //       // color: Colors.white, // Customize the color as needed
+                                                //     ),
+                                                //   ],
+                                                // ),
                                               ],
                                             ),
                                           ],

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/models/news_model.dart';
@@ -23,7 +24,7 @@ class _DummyBookmarkScreen extends State<DummyBookmarkScreen> {
 
   @override
   Widget build(BuildContext context){
-    // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(BookmarkController());
 
     return SafeArea(
@@ -88,23 +89,22 @@ class _DummyBookmarkScreen extends State<DummyBookmarkScreen> {
                                             ),
                                             Row(
                                               children: [
-                                                // Expanded(
-                                                //   child: Text(
-                                                //     snapshot.data![index].,
-                                                //     style: TextStyle(
-                                                //       fontSize: 14,
-                                                //       fontWeight: FontWeight.normal,
-                                                //     ),
-                                                //   ),
-                                                // ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.bookmark_border_rounded, // You can replace this with your love icon
-                                                      // color: Colors.white, // Customize the color as needed
+                                                Expanded(
+                                                  child: Text(
+                                                    snapshot.data![index].publisher,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.normal,
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
+                                                // Row(
+                                                //   children: [
+                                                //     Icon(
+                                                //       Icons.bookmark_border_rounded,
+                                                //     ),
+                                                //   ],
+                                                // ),
                                               ],
                                             ),
                                           ],
@@ -155,7 +155,7 @@ class _DummyBookmarkScreen extends State<DummyBookmarkScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: const MyNavBar(index: 1),
+        bottomNavigationBar: const MyNavBar(index: 2),
       ),
     );
   }

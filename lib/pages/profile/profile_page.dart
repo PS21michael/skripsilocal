@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
@@ -33,9 +34,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: RefreshIndicator(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    return SafeArea(
+      child: Scaffold(
+        body: RefreshIndicator(
           onRefresh: () async {
             await Future.delayed(Duration(seconds: 5));
             await updateController.reloadProfileData();
@@ -48,8 +50,8 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
+        bottomNavigationBar: const MyNavBar(index: 3),
       ),
-      bottomNavigationBar: const MyNavBar(index: 3),
     );
   }
 

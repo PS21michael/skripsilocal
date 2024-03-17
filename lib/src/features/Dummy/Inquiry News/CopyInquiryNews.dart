@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/bola/InquiryNewsAntaraBola.dart';
@@ -111,6 +112,7 @@ class _InquiryNewsState extends State<InquiryNews> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,

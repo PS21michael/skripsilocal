@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/dummyNews.dart';
+import 'package:skripsilocal/src/features/Dummy/InquiryAllBookmark.dart';
 import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -90,11 +91,11 @@ class _MyNavBarState extends State<MyNavBar> {
           );
           break;
         case 2:
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder:
-          //         (context) => const ProfileScreen()
-          //     )
-          // );
+          Navigator.push(context,
+              MaterialPageRoute(builder:
+                  (context) => const DummyBookmarkScreen()
+              )
+          );
           break;
         case 3:
           Navigator.push(context,
