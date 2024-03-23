@@ -26,5 +26,12 @@ class BookmarkController extends GetxController{
     await _bookmarkRepo.insertBookmark(bookmarkModel);
   }
 
+  Future<void> deleteBookmark(String id)async{
+    await _bookmarkRepo.deleteBookMark(id);
+  }
+
+  Future<List<BookmarkModel>> getAllBookmarkOne(String title) async{
+    return await _bookmarkRepo.getAllBookmarksOne(title);
+  }
 
 }

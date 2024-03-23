@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
+// var temp=0;
 
 class CommentModel{
   final String? id;

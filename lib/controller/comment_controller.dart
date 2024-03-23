@@ -20,8 +20,8 @@ class CommentController extends GetxController{
     return await _commentRepo.getAllComment();
   }
 
-  Future<List<CommentModel>> getAllCommentbasedOnIdNews(String idNews) async{
-    return await _commentRepo.getAllCommentBasedOnIdNews(idNews);
+  Stream<List<CommentModel>> getAllCommentbasedOnIdNews(String idNews){
+    return _commentRepo.getAllCommentBasedOnIdNews(idNews);
   }
 
   List<CommentModel>? getAllDataList(){

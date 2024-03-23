@@ -5,7 +5,8 @@ import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/my_tile.dart';
 import 'package:skripsilocal/pages/data/calon.dart';
 import 'package:skripsilocal/pages/home_detail_1/home_detail1.dart';
-import 'package:skripsilocal/pages/news/dummyNews.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
+import 'package:skripsilocal/pages/news/news.dart';
 import 'package:skripsilocal/pages/profile/core/profile_creen.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
@@ -15,11 +16,11 @@ import '../Utils/Helper/TimeSavedNews.dart';
 import '../controller/signup_controller.dart';
 import '../repository/authentication_repository/authentication_repository.dart';
 import '../repository/user_repository/user_repository.dart';
-import '../src/features/Dummy/Inquiry News/InquiryNews.dart';
-import '../src/features/Dummy/InquiryAllBookmark.dart';
+import '../src/features/Dummy/Inquiry News/XXX-InquiryNews.dart';
+import 'news/bookmark.dart';
 import '../src/features/Dummy/check_username_page.dart';
 import 'components/my_header.dart';
-import 'news/DummyPages/inquiryNewsDBFavorit.dart';
+import 'news/DummyPages/XXX-inquiryNewsDBFavorit.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               UserRepository.instance.resetListScore();
               await Future.delayed(Duration(seconds: 2));
               await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-              // Get.to(()=> UpdateCategory());
+              Get.to(()=> NewsPage());
             },
 
             child: Container(
@@ -162,7 +163,7 @@ class _HomePageState extends State<HomePage> {
           // PENTING -- Inquiry All BookMark
           GestureDetector(
             onTap: (){
-              Get.to(()=>const DummyBookmarkScreen());
+              Get.to(()=>const BookmarkPage());
               // SignUpController.instace.logout();
               // AuthenticationRepository.instance.logout();
             },

@@ -8,7 +8,6 @@ import 'package:skripsilocal/models/comment_model.dart';
 class CommentRepository extends GetxController{
   
   var count = 0;
-
   var comment;
 
   List<String>? listEmail;
@@ -25,10 +24,6 @@ class CommentRepository extends GetxController{
   String komen="";
   int like = 0;
   int dislike = 0;
-
-
-
-
 
   
   static CommentRepository get instance => Get.find();
@@ -59,11 +54,20 @@ class CommentRepository extends GetxController{
     return commentData;
   }
 
-  Future<List<CommentModel>> getAllCommentBasedOnIdNews(String idNews) async{
-    final snapshot = await _db.collection("/Comment").where("IdNews", isEqualTo: idNews).get();
-    final commentData = snapshot.docs.map((e) => CommentModel.fromSnapshot(e)).toList();
-    return commentData;
+  // Future<List<CommentModel>> getAllCommentBasedOnIdNews(String idNews) async{
+  //   final snapshot = await _db.collection("/Comment").where("IdNews", isEqualTo: idNews).get();
+  //   final commentData = snapshot.docs.map((e) => CommentModel.fromSnapshot(e)).toList();
+  //   return commentData;
+  // }
+
+  Stream<List<CommentModel>> getAllCommentBasedOnIdNews(String idNews) {
+    return _db.collection("/Comment")
+        .orderBy("Waktu",descending: false)
+        .where("IdNews", isEqualTo: idNews)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => CommentModel.fromSnapshot(doc)).toList());
   }
+
 
   List<CommentModel>? getLstComment(){
     return listCommentData;

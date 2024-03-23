@@ -10,6 +10,7 @@ import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import '../../../pages/profile/fill_profile.dart';
@@ -48,8 +49,8 @@ class AuthenticationRepository extends GetxController{
   void onReady() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
-    // screenRedirect();
-    // setInitialScreen(_firebaseUser.value);
+    screenRedirect();
+    setInitialScreen(_firebaseUser.value);
     // ever(_firebaseUser, _setInitialScreen);
   }
 
@@ -64,7 +65,7 @@ class AuthenticationRepository extends GetxController{
     //   print('CheckPoint 2');
     //   if(user.emailVerified){
     //     print('CheckPoint 3');
-    //     Get.offAll(HomePage());
+    //     Get.offAll(ExplorePage());
     //   } else{
     //     Get.offAll(MailVerification());
     //     print('CheckPoint 4');
@@ -73,8 +74,8 @@ class AuthenticationRepository extends GetxController{
 
     user == null ? Get.offAll(()=> const RegisterPage())
         : user.emailVerified ?
-    Get.offAll(const HomePage()) :
-        Get.offAll(const MailVerification());
+    Get.offAll(const ExplorePage()) :
+    Get.offAll(const MailVerification());
     print('user authenticated : ${user?.emailVerified}');
   }
 
@@ -86,7 +87,7 @@ class AuthenticationRepository extends GetxController{
       // if the user logged in
       if(user.emailVerified){
         // if the user's email is verified, navigate to the main menu
-        Get.offAll(const HomePage());
+        Get.offAll(const ExplorePage());
       } else {
         // if the user's email is not verified, navigate to verification menu
         Get.offAll(const MailVerification());
@@ -98,8 +99,8 @@ class AuthenticationRepository extends GetxController{
       // check if it's first time launching app
       deviceStorage.read('isFirstTime') != true ?
       Get.offAll(const LoginPage()) :
-          // TODO
-          // Nanti ubah ke onboarding screen atau splash screen
+      // TODO
+      // Nanti ubah ke onboarding screen atau splash screen
       Get.offAll(const MailVerification());
     }
 
@@ -107,7 +108,7 @@ class AuthenticationRepository extends GetxController{
     //Local storage
     deviceStorage.writeIfNull('isFirstTime', true);
     deviceStorage.read('isFirstTime') != true ? Get.offAll(()=> const RegisterPage()) : Get.offAll(()=> const RegisterPage());
-}
+  }
 
 
   Future<void> sendEmailVerification()async {
@@ -143,22 +144,22 @@ class AuthenticationRepository extends GetxController{
   Future<void> phoneAuthentication(String phoneNo) async {
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
-        verificationCompleted: (credential) async {
+      verificationCompleted: (credential) async {
         await _auth.signInWithCredential(credential);
-        },
-        codeSent: (verificationId, resendToken){
+      },
+      codeSent: (verificationId, resendToken){
         this.verificationId.value = verificationId;
-        },
-        codeAutoRetrievalTimeout: (verificationId) {
+      },
+      codeAutoRetrievalTimeout: (verificationId) {
         this.verificationId.value = verificationId;
-        },
-        verificationFailed: (e){
+      },
+      verificationFailed: (e){
         if(e.code == 'invalid-phone-number'){
           Get.snackbar('Error', 'The provided phone number is not valid.');
         } else{
           Get.snackbar('Error', 'Something went wrong, try again.');
         }
-        },
+      },
     );
   }
 
@@ -187,7 +188,7 @@ class AuthenticationRepository extends GetxController{
   }
   // Password Validation
   bool isHasSpecialCharacter(String password){
-    final regExp = RegExp('(?=.*?[!@#\$&*~])');
+    final regExp = RegExp('(?=.?[!@#\$&~])');
     return regExp.hasMatch(password);
   }
   // Email Validation
@@ -235,7 +236,7 @@ class AuthenticationRepository extends GetxController{
         isSuccessCreateUser = "True";
         _firebaseUser.value == null ? Get.offAll(()=>const RegisterPage())
             : _firebaseUser.value?.emailVerified == true
-        ? Get.to(()=>const LoginPage()) :
+            ? Get.to(()=>const LoginPage()) :
         Get.to(()=>const MailVerification());
 
       } on FirebaseAuthException catch(e){
@@ -268,12 +269,12 @@ class AuthenticationRepository extends GetxController{
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
           Get.to(()=>const FillProfile());
         } else{
-          Get.offAll(()=>const HomePage());
+          Get.offAll(()=>const ExplorePage());
         }
       } else{
         Get.to(()=>const LoginPage());
       }
-      // _firebaseUser.value != null ? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
+      // _firebaseUser.value != null ? Get.offAll(()=>ExplorePage()) : Get.to(()=>LoginPage());
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
       // showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
@@ -302,7 +303,7 @@ class AuthenticationRepository extends GetxController{
       );
 
       // Once signed in, return the UserCredential
-       await FirebaseAuth.instance.signInWithCredential(credential);
+      await FirebaseAuth.instance.signInWithCredential(credential);
     } catch(e){
       print('checkError2 : ');
       // isGoogleLoading.value=false;
@@ -327,7 +328,7 @@ class AuthenticationRepository extends GetxController{
         );
 
         await _firebaseAuth.signInWithCredential(credential);
-        Get.offAll(()=>const HomePage());
+        Get.offAll(()=>const ExplorePage());
 
       }
 
@@ -358,13 +359,13 @@ class AuthenticationRepository extends GetxController{
       UserCredential result = await auth.signInWithCredential(authCredential);
       User? user = result.user;
 
-      // Get.offAll(()=>HomePage());
+      // Get.offAll(()=>ExplorePage());
 
       // if (result != null) {
       //   Navigator.pushReplacement(
-      //       context, MaterialPageRoute(builder: (context) => HomePage()));
+      //       context, MaterialPageRoute(builder: (context) => ExplorePage()));
       // } // if result not null we simply call the MaterialpageRoute,
-      // for go to the HomePage screen
+      // for go to the ExplorePage screen
     }
   }
 
@@ -381,7 +382,7 @@ class AuthenticationRepository extends GetxController{
     await _auth.signOut();
     Get.to(()=>const LoginPage());
 
-    // firebaseUser != null? Get.offAll(()=>HomePage()) : Get.to(()=>LoginPage());
+    // firebaseUser != null? Get.offAll(()=>ExplorePage()) : Get.to(()=>LoginPage());
 
     // AuthenticationRepository.instance.logout();
   }

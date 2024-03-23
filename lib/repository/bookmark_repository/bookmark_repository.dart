@@ -46,6 +46,7 @@ class BookmarkRepository extends GetxController{
     } else{
       isDataExisst = "YES";
     }
+    listBookMarkTitle = [];
     for(int i=0; i<bookmarkData.length; i++){
       listBookMarkTitle.add(bookmarkData[i].title);
     }
@@ -76,5 +77,26 @@ class BookmarkRepository extends GetxController{
     return url;
   }
 
+  Future<void> deleteBookMark(String id) async {
+    await _db.collection("/Bookmark").doc(id).delete();
+  }
+
+  String dataAvail = "";
+
+  Future<List<BookmarkModel>> getAllBookmarksOne(title) async{
+    final snapshot = await _db.collection("/Bookmark").where("Title", isEqualTo: title).get();
+    final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
+    dataAvail = "";
+    if(bookmarkData.length !=0 ){
+      dataAvail = "YES";
+    } else if(bookmarkData.length == 0) {
+      dataAvail = "NO";
+    }
+    return bookmarkData;
+  }
+
+  String getDataAvail(){
+    return dataAvail;
+  }
 
 }

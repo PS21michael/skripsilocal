@@ -158,7 +158,6 @@ class UserRepository extends GetxController{
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     print('CheckPoint login 4');
 
-    // Setter Data from snapshot
     userModelID = userData.id!;
     userModelFullName = userData.fullName;
     userModelEmail = userData.email;

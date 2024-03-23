@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/news/dummyNews.dart';
-import 'package:skripsilocal/src/features/Dummy/InquiryAllBookmark.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
+import 'package:skripsilocal/pages/news/news.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
+import 'package:skripsilocal/pages/news/bookmark.dart';
 import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
@@ -41,7 +44,10 @@ class _MyNavBarState extends State<MyNavBar> {
           gap : 10,
           padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
-          onTabChange: (index){
+          onTabChange : (index) async{
+            UserRepository.instance.resetListScore();
+            await Future.delayed(Duration(milliseconds: 500));
+            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             _tabChange(index);
           },
           tabs: const [
@@ -74,26 +80,25 @@ class _MyNavBarState extends State<MyNavBar> {
   void _tabChange (int index){
     setState(() {
       _selectedIndex = index;
-      // You can use Navigator to push/pop pages based on the index
       switch (index) {
         case 0:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const HomePage()
+                  (context) => const ExplorePage()
               )
           );
           break;
         case 1:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const DummyNewsScreen()
+                  (context) => const NewsPage()
               )
           );
           break;
         case 2:
           Navigator.push(context,
               MaterialPageRoute(builder:
-                  (context) => const DummyBookmarkScreen()
+                  (context) => const BookmarkPage()
               )
           );
           break;

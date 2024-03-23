@@ -9,7 +9,7 @@ import 'package:skripsilocal/pages/components/custom_list_tile.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-import 'package:skripsilocal/src/features/Dummy/Inquiry%20News/CopyInquiryNews.dart';
+import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
 import '../components/button.dart';
 import '../components/my_navbar.dart';
 import 'fill_profile.dart';
@@ -176,7 +176,6 @@ class _ProfilePageState extends State<ProfilePage> {
     widgets.add(
       CustomListTile(
         onTap: () {
-          // Add your delete account logic here
         },
         textColor: Colors.red,
         title: 'Delete Account',

@@ -1,57 +1,90 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
-import 'package:skripsilocal/controller/news_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/models/news_model.dart';
+import 'package:skripsilocal/pages/comment/dummyComment.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
-import '../comment/dummyComment.dart';
-import 'package:flutter/services.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../controller/bookmark_controller.dart';
+import '../../models/bookmark_model.dart';
+import '../components/button.dart';
 
-class DummyNewsScreen extends StatefulWidget {
-  const DummyNewsScreen({Key? key}) : super(key: key);
+class BookmarkPage extends StatefulWidget {
+  const BookmarkPage({Key? key}) : super(key: key);
 
   @override
-  State<DummyNewsScreen> createState() => _DummyNewsScreenState();
+  State<BookmarkPage> createState() => _BookmarkPageState();
 }
 
-class _DummyNewsScreenState extends State<DummyNewsScreen> {
-  String idBer = "";
+class _BookmarkPageState extends State<BookmarkPage> {
+  final controller = Get.put(BookmarkController());
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    final controller = Get.put(NewsController());
-    final controller1 = Get.put(CommentController());
-    List<CommentModel>? test = controller1.getAllDataList();
-    print('Total data : ${test?.length}');
+    String idPengguna = UserRepository.instance.getUserModelId();
 
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: FutureBuilder<List<NewsModel>>(
-              future: controller.getAllNews(),
+            child: FutureBuilder<List<BookmarkModel>>(
+              future: controller.getAllBookmarkfromSingleUser(idPengguna),
               builder: (context, snapshot) {
-                print('Checkpoint News1: ${snapshot.connectionState}');
-                print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        for (var index = 0; index < snapshot.data!.length; index++)
-                          Column(
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final item = snapshot.data![index];
+                        return Dismissible(
+                          key: UniqueKey(),
+                          direction: DismissDirection.startToEnd,
+                          background: Padding(
+                            padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                            child: Container(
+                              // padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.black),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                    size: 40,
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    'Delete Bookmark',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          onDismissed: (direction) {
+                            String id = snapshot.data![index].id.toString();
+                            controller.deleteBookmark(id);
+                          },
+                          child: Column(
                             children: [
                               Material(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                    side: BorderSide(
-                                      color: Colors.black,
-                                    )
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: BorderSide(color: Colors.black),
                                 ),
                                 color: index.isOdd ? Colors.grey.shade200 : Colors.grey.shade400,
                                 child: ListTile(
@@ -62,15 +95,15 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                         height: 80,
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10), // Atur sesuai keinginan Anda
+                                            borderRadius: BorderRadius.circular(10),
                                             border: Border.all(
                                               width: 1.0,
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(8), // Atur sesuai keinginan Anda
+                                            borderRadius: BorderRadius.circular(8),
                                             child: Image.network(
-                                              snapshot.data![index].urlImage,
+                                              item.urlGambar,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -82,7 +115,7 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              snapshot.data![index].title,
+                                              item.title,
                                               style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
@@ -92,21 +125,13 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                               children: [
                                                 Expanded(
                                                   child: Text(
-                                                    snapshot.data![index].publisher,
+                                                    item.publisher,
                                                     style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight: FontWeight.normal,
                                                     ),
                                                   ),
                                                 ),
-                                                // Row(
-                                                //   children: [
-                                                //     Icon(
-                                                //       Icons.bookmark_border_rounded, // You can replace this with your love icon
-                                                //       // color: Colors.white, // Customize the color as needed
-                                                //     ),
-                                                //   ],
-                                                // ),
                                               ],
                                             ),
                                           ],
@@ -114,27 +139,21 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
                                       ),
                                     ],
                                   ),
-                                  onTap: () {
-                                    controller.getUserData(snapshot.data![index].title!);
-                                    FirebaseAuth.instance.currentUser?.reload();
-                                    Get.to(() => DummyCommentScreen());
+                                  onTap: () async {
+                                    String url = item.urlData;
+                                    if (await canLaunch(url)) {
+                                      await launch(url, forceWebView: true, enableJavaScript: true);
+                                    } else {
+                                      throw 'Could not launch $url';
+                                    }
                                   },
                                 ),
-      
                               ),
-                              const SizedBox(height: 20),
-                              // theButton(
-                              //   text: 'Comment',
-                              //   onTap: () async {
-                              //     controller.getUserData(snapshot.data![index].title!);
-                              //     Get.to(() => DummyNewsScreen());
-                              //     FirebaseAuth.instance.currentUser?.reload();
-                              //     Get.to(() => DummyCommentScreen());
-                              //   },
-                              // ),
+                              SizedBox(height: 20),
                             ],
                           ),
-                      ],
+                        );
+                      },
                     );
                   } else if (snapshot.hasError) {
                     return Center(
@@ -154,7 +173,7 @@ class _DummyNewsScreenState extends State<DummyNewsScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: const MyNavBar(index: 1),
+        bottomNavigationBar: const MyNavBar(index: 2),
       ),
     );
   }

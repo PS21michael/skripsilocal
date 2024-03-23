@@ -1,35 +1,31 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
-import '../../../Utils/Helper/CategoryUtils.dart';
-import '../../../repository/authentication_repository/authentication_repository.dart';
-import '../../../repository/user_repository/user_repository.dart';
-import '../../comment/dummyComment.dart';
+// import '../comment/dummyComment.dart';
+import 'package:flutter/services.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
-class InquiryNewsDBFavoritScreen extends StatefulWidget {
-  const InquiryNewsDBFavoritScreen({Key? key}) : super(key: key);
+import '../comment/NewsDetail.dart';
+
+class NewsPage extends StatefulWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
-  State<InquiryNewsDBFavoritScreen> createState() => _InquiryNewsDBFavoritScreen();
+  State<NewsPage> createState() => _NewsPageState();
 }
 
-class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
-  final fullnameController = TextEditingController();
-  final provinsiController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  String idBer = "";
-
-  final listCategoryController = Get.put(CategoryListParser());
-
+class _NewsPageState extends State<NewsPage> {
+  // String idBer = "";
   List<String> userCategory = [];
+  final listCategoryController = Get.put(CategoryListParser());
 
   @override
   void initState() {
@@ -41,14 +37,19 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
     // UserRepository.instance.resetListScore();
     // await Future.delayed(Duration(seconds: 1));
     // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    // await Future.delayed(Duration(seconds: 2));
     List<int> daftarScore = UserRepository.instance.getListScore();
+    // print(daftarScore);
+    // await Future.delayed(Duration(milliseconds: 500));
     userCategory = listCategoryController.parseScoreToList(daftarScore);
-    print("Kategori yg dikirim :1 "+ userCategory.toString());
+    // print(userCategory);
+    // print("Kategori yg dikirim :1 "+ userCategory.toString());
   }
-
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     final controller1 = Get.put(CommentController());
     List<CommentModel>? test = controller1.getAllDataList();
@@ -62,6 +63,7 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
             child: FutureBuilder<List<NewsModel>>(
               future: controller.getAllNewsFavorit(userCategory),
               builder: (context, snapshot) {
+                print(userCategory);
                 print('Checkpoint News1: ${snapshot.connectionState}');
                 print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
                 if (snapshot.connectionState == ConnectionState.done) {
@@ -88,13 +90,13 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
                                         height: 80,
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10), // Atur sesuai keinginan Anda
+                                            borderRadius: BorderRadius.circular(10),
                                             border: Border.all(
                                               width: 1.0,
                                             ),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(8), // Atur sesuai keinginan Anda
+                                            borderRadius: BorderRadius.circular(8),
                                             child: Image.network(
                                               snapshot.data![index].urlImage,
                                               fit: BoxFit.cover,
@@ -113,6 +115,8 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.bold,
                                               ),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 3,
                                             ),
                                             Row(
                                               children: [
@@ -125,14 +129,6 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
                                                     ),
                                                   ),
                                                 ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.bookmark_border_rounded, // You can replace this with your love icon
-                                                      // color: Colors.white, // Customize the color as needed
-                                                    ),
-                                                  ],
-                                                ),
                                               ],
                                             ),
                                           ],
@@ -141,23 +137,23 @@ class _InquiryNewsDBFavoritScreen extends State<InquiryNewsDBFavoritScreen> {
                                     ],
                                   ),
                                   onTap: () {
-                                    controller.getUserData(snapshot.data![index].title!);
+                                    controller.getNewsData(snapshot.data![index].title!);
                                     FirebaseAuth.instance.currentUser?.reload();
-                                    Get.to(() => DummyCommentScreen());
+                                    Get.to(() => NewsDetail(
+                                      id: snapshot.data![index].id.toString(),
+                                      title: snapshot.data![index].title,
+                                      publisher: snapshot.data![index].publisher,
+                                      urlImage: snapshot.data![index].urlImage,
+                                      urlNews: snapshot.data![index].urlNews,
+                                      description: snapshot.data![index].description,
+                                      penulis: snapshot.data![index].author,
+                                      kategori: snapshot.data![index].category,
+                                    ));
                                   },
                                 ),
-
+      
                               ),
                               const SizedBox(height: 20),
-                              // theButton(
-                              //   text: 'Comment',
-                              //   onTap: () async {
-                              //     controller.getUserData(snapshot.data![index].title!);
-                              //     Get.to(() => DummyNewsScreen());
-                              //     FirebaseAuth.instance.currentUser?.reload();
-                              //     Get.to(() => DummyCommentScreen());
-                              //   },
-                              // ),
                             ],
                           ),
                       ],

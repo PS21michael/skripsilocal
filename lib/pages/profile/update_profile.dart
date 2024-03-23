@@ -578,6 +578,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           await UserRepository.instance.updateUserRecord(user, idCustomer);
                           await Future.delayed(Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(emailCustomer);
+
                           UserRepository.instance.resetListScore();
                           await Future.delayed(Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
