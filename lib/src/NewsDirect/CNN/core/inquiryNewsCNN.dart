@@ -1,12 +1,5 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/core/cnn_news_repository.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/ekonomi/InquiryNewsCNNEkonomi.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/hiburan/InquiryNewsCNNHiburan.dart';
@@ -15,12 +8,6 @@ import 'package:skripsilocal/src/NewsDirect/CNN/nasional/inquiryNewsCNNNasional.
 import 'package:skripsilocal/src/NewsDirect/CNN/olahraga/InquiryNewsCNNOlahraga.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/teknologi/InquiryNewsCNNTeknologi.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsCNN extends StatefulWidget {
 
@@ -66,13 +53,14 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 ),
                 // 1. Politik
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsNasional());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -91,13 +79,14 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
                 // 2. Otomotif
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsInternasional());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -116,9 +105,11 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
                 // 3. Olahraga
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsEkonomi());
                   },
@@ -141,9 +132,11 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
                 // 4. Life Style
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsOlahraga());
                   },
@@ -166,13 +159,14 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
                 // 5. Humaniora
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsTeknologi());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -191,9 +185,11 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
                 // 6. Hukum
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNNNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNNNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNNNewsHiburan());
                   },
@@ -218,17 +214,6 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
 
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

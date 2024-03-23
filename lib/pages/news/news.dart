@@ -10,6 +10,7 @@ import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
+import '../../controller/profile_controller.dart';
 import 'NewsDetail.dart';
 
 class NewsPage extends StatefulWidget {
@@ -49,6 +50,7 @@ class _NewsPageState extends State<NewsPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     final controller1 = Get.put(CommentController());
+    final userController = Get.put(ProfileController());
     List<CommentModel>? test = controller1.getAllDataList();
     print('Total data : ${test?.length}');
 
@@ -133,8 +135,12 @@ class _NewsPageState extends State<NewsPage> {
                                       ),
                                     ],
                                   ),
-                                  onTap: () {
+                                  onTap: () async{
                                     controller.getNewsData(snapshot.data![index].title!);
+                                    await Future.delayed(Duration(milliseconds: 100));
+                                    controller.updateViews(snapshot.data![index].id.toString());
+                                    await Future.delayed(Duration(milliseconds: 100));
+                                    userController.updateUserScoreCategory(snapshot.data![index].category);
                                     Get.to(() => NewsDetail(
                                       id: snapshot.data![index].id.toString(),
                                       title: snapshot.data![index].title,

@@ -47,6 +47,7 @@ class _InquiryOkezoneNewsTechno extends State<InquiryOkezoneNewsTechno> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = OkezoneNewsRepository.instance.getDateSaved();
       await OkezoneNewsRepository.instance.getAllNewsOkezoneTechno(tempCtr);
       await OkezoneNewsRepository.instance.getAllNewsOkezoneTechno(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryOkezoneNewsTechno extends State<InquiryOkezoneNewsTechno> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?OkezoneNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsOkezone(news);
         }
       }

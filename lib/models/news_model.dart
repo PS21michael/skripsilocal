@@ -13,8 +13,7 @@ class NewsModel{
   final String urlNews;
   final String publishedTime;
   final String category;
-  final int like;
-  final int dislike;
+  final int views;
   final int saveDate;
 
   NewsModel({
@@ -27,8 +26,7 @@ class NewsModel{
     required this.urlNews,
     required this.publishedTime,
     required this.category,
-    required this.like,
-    required this.dislike,
+    required this.views,
     required this.saveDate
   });
 
@@ -41,8 +39,7 @@ class NewsModel{
       urlNews: '',
       publishedTime: '',
       category: '',
-      like: 0,
-      dislike: 0,
+      views: 0,
       saveDate: 0
   );
 
@@ -57,8 +54,7 @@ class NewsModel{
       "UrlNews" : urlNews,
       "PublishedTime" : publishedTime,
       "Category" : category,
-      "Like" : like,
-      "Dislike" : dislike,
+      "Views" : views,
       "SaveDate" : saveDate,
     };
   }
@@ -75,8 +71,7 @@ class NewsModel{
         urlNews: data?["UrlNews"],
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
-        like: data?["Like"],
-        dislike: data?["Dislike"],
+        views: data?["Views"],
         saveDate: data?["SaveDate"]
     );
   }

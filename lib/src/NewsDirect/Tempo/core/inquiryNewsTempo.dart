@@ -1,15 +1,7 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/core/tempo_news_repository.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
 import '../bisnis/inquiryNewsTempoBisnis.dart';
 import '../bola/inquiryNewsTempoBola.dart';
 import '../cantik/inquiryNewsTempoCantik.dart';
@@ -25,11 +17,6 @@ import '../otomotif/inquiryNewsTempoOtomotif.dart';
 import '../seleb/inquiryNewsTempoSeleb.dart';
 import '../tekno/inquiryNewsTempoTekno.dart';
 import '../travel/inquiryNewsTempoTravel.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsTempo extends StatefulWidget {
 
@@ -76,13 +63,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 1. NASIONAL
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsNasional());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -101,13 +89,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 2. BISNIS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsBisnis());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -126,13 +115,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 3. METRO
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsMetro());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -151,13 +141,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 4. DUNIA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsDunia());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -176,13 +167,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 5. BOLA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsBola());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -201,14 +193,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 6. CANTIK
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsCantik());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -227,14 +219,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 7. TEKNO
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsTekno());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -254,14 +246,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 8. OTOMOTIF
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsOtomotif());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -280,14 +272,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 9. SELEB
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsSeleb());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -307,14 +299,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 10. GAYA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsGaya());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -334,14 +326,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 11. TRAVEL
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsTravel());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -361,14 +353,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 12. DIFABEL
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsDifabel());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -387,14 +379,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 13. CREATIVE LAB
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsCreativeLab());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -413,14 +405,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 14. INFORIAL
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsInforial());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -439,14 +431,14 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
                 // 15. EVENT
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    TempoNewsRepository.instance.setDateSavedNULL();
+                    await Future.delayed(Duration(milliseconds: 100));
                     TempoNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryTempoNewsEvent());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -463,19 +455,7 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                   ),
                 ),
 
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

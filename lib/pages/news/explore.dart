@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
+import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
@@ -25,6 +27,7 @@ class _ExplorePageState extends State<ExplorePage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     final controller1 = Get.put(CommentController());
+    final userController = Get.put(ProfileController());
     List<CommentModel>? test = controller1.getAllDataList();
     print('Total data : ${test?.length}');
 
@@ -108,8 +111,12 @@ class _ExplorePageState extends State<ExplorePage> {
                                       ),
                                     ],
                                   ),
-                                  onTap: () {
+                                  onTap: () async{
                                     controller.getNewsData(snapshot.data![index].title!);
+                                    await Future.delayed(Duration(milliseconds: 100));
+                                    controller.updateViews(snapshot.data![index].id.toString());
+                                    await Future.delayed(Duration(milliseconds: 100));
+                                    userController.updateUserScoreCategory(snapshot.data![index].category);
                                     Get.to(() => NewsDetail(
                                       id: snapshot.data![index].id.toString(),
                                       title: snapshot.data![index].title,

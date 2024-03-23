@@ -109,5 +109,8 @@ class ProfileController extends GetxController{
     return _userRepo.getUserModelId();
   }
 
+  Future<void> updateUserScoreCategory(String category)async{
+    await _userRepo.updateSingelScore(category);
+  }
 
 }

@@ -24,6 +24,9 @@ class CNBCNewsRepository extends GetxController{
   void setDateSaved(int time){
     dateSaved=time;
   }
+  void setDateSavedNull(){
+    dateSaved=0;
+  }
 
   // Title List
   // NEWS - CNBC
@@ -33,6 +36,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNews).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulNews =[];
     for(int i=0; i<newsData.length;i++){
       listJudulNews.add(newsData[i].title);
     }
@@ -53,6 +57,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryMarket).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulMarket =[];
     for(int i=0; i<newsData.length;i++){
       listJudulMarket.add(newsData[i].title);
     }
@@ -73,6 +78,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEntrepreneur).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulEntrepreneur =[];
     for(int i=0; i<newsData.length;i++){
       listJudulEntrepreneur.add(newsData[i].title);
     }
@@ -94,6 +100,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySyariah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulSyariah =[];
     for(int i=0; i<newsData.length;i++){
       listJudulSyariah.add(newsData[i].title);
     }
@@ -114,6 +121,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulTeknologi =[];
     for(int i=0; i<newsData.length;i++){
       listJudulTeknologi.add(newsData[i].title);
     }
@@ -134,6 +142,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLifeStyle).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulLifeStyle =[];
     for(int i=0; i<newsData.length;i++){
       listJudulLifeStyle.add(newsData[i].title);
     }
@@ -154,6 +163,7 @@ class CNBCNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOpini).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulOpini =[];
     for(int i=0; i<newsData.length;i++){
       listJudulOpini.add(newsData[i].title);
     }

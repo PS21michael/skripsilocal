@@ -1,15 +1,7 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Suara/core/suara_news_repository.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
 import '../bisnis/inquiryNewsSuaraBisnis.dart';
 import '../bola/inquiryNewsSuaraBola.dart';
 import '../entertainment/inquiryNewsSuaraEntertainment.dart';
@@ -17,11 +9,6 @@ import '../health/inquiryNewsSuaraHealth.dart';
 import '../lifestyle/inquiryNewsSuaraLifeStyle.dart';
 import '../otomotif/inquiryNewsSuaraOtomotif.dart';
 import '../tekno/inquiryNewsSuaraTekno.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsSuara extends StatefulWidget {
 
@@ -68,13 +55,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 1. BISNIS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsBisnis());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -93,13 +81,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 2. BOLA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsBola());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -118,13 +107,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 3. LIFESTYLE
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsLifeStyle());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -143,13 +133,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 4. ENTERTAINMENT
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsEntertainment());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -168,13 +159,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 5. OTOMOTIF
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsOtomotif());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -193,14 +185,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 6. TEKNO
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsTekno());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -219,14 +211,14 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
 
                 // 7. HEALTH
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    SuaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     SuaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquirySuaraNewsHealth());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -243,19 +235,8 @@ class _InquiryNewsSuara extends State<InquiryNewsSuara> {
                   ),
                 ),
 
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
+
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

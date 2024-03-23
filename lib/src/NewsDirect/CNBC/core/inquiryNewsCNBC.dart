@@ -1,27 +1,14 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/CNBC/core/cnbc_news_repository.dart';
 import 'package:skripsilocal/src/NewsDirect/CNBC/lifestyle/inquiryNewCNBCLifeStyle.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
 import '../entrepreneur/inquiryNewsCNBCEntrepreneur.dart';
 import '../market/inquiryNewsCNBCMarket.dart';
 import '../news/inquiryNewsCNBCNews.dart';
 import '../opini/inquiryNewsCNBCOpini.dart';
 import '../syariah/inquiryNewsCNBCSyariah.dart';
 import '../tech/inquiryNewsCNBCTech.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsCNBC extends StatefulWidget {
 
@@ -68,13 +55,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 1. NEWS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsNews());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -93,13 +81,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 2. MARKET
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsMarket());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -118,13 +107,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 3. ENTREPRENEUR
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsEntrepreneur());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -143,13 +133,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 4. SYARIAH
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsSyariah());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -168,13 +159,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 5. TEKNOLOGI
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsTech());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -193,14 +185,14 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
                 // 6. LIFE STYLE
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsLifeStyle());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -217,17 +209,16 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                   ),
                 ),
 
-
                 // 6. OPINI
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    CNBCNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     CNBCNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsOpini());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -244,19 +235,7 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                   ),
                 ),
 
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

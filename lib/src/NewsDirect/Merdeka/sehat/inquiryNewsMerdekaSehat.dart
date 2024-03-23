@@ -47,6 +47,7 @@ class _InquiryMerdekaNewsSehat extends State<InquiryMerdekaNewsSehat> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = MerdekaNewsRepository.instance.getDateSaved();
       await MerdekaNewsRepository.instance.getAllNewsMerdekaSehat(tempCtr);
       await MerdekaNewsRepository.instance.getAllNewsMerdekaSehat(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryMerdekaNewsSehat extends State<InquiryMerdekaNewsSehat> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?MerdekaNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsMerdeka(news);
         }
       }

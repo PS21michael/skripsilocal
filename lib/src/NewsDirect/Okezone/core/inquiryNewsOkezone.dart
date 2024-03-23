@@ -1,27 +1,13 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Okezone/core/okezone_news_repository.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
-import '../bola/inquiryNewsOkezoneBola.dart';
 import '../celebrity/inquiryNewsOkezoneCelebrity.dart';
 import '../economy/inquiryNewsOkezoneEconomy.dart';
 import '../lifestyle/inquiryNewsOkezoneLifestyle.dart';
 import '../otomotif/inquiryNewsOkezoneOtomotif.dart';
 import '../sports/inquiryNewsOkezoneSports.dart';
 import '../techno/inquiryNewsOkezoneTechno.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsOkezone extends StatefulWidget {
 
@@ -68,13 +54,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 1. CELEBRITY
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsCelebrity());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -93,13 +80,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 2. SPORTS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsSports());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -118,13 +106,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 3. OTOMOTIF
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsOtomotif());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -143,13 +132,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 4. ECONOMY
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsEconomy());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -168,13 +158,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 5. TECHNO
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsTechno());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -193,14 +184,14 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
                 // 6. LIFE STYLE
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     OkezoneNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsLifeStyle());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -216,20 +207,7 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                     ),
                   ),
                 ),
-
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

@@ -47,6 +47,7 @@ class _InquiryAntaraNewsOtomotif extends State<InquiryAntaraNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraOtomotif(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraOtomotif(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryAntaraNewsOtomotif extends State<InquiryAntaraNewsOtomotif> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?AntaraNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsAntara(news);
         }
       }

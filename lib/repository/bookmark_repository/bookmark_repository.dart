@@ -82,12 +82,11 @@ class BookmarkRepository extends GetxController{
   }
 
   String dataAvail = "";
-
-  Future<List<BookmarkModel>> getAllBookmarksOne(title) async{
-    final snapshot = await _db.collection("/Bookmark").where("Title", isEqualTo: title).get();
+  Future<List<BookmarkModel>> getAllBookmarksOne(userId, title) async{
+    final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: userId).where("Title", isEqualTo: title).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
     dataAvail = "";
-    if(bookmarkData.length !=0 ){
+    if(bookmarkData.length != 0 ){
       dataAvail = "YES";
     } else if(bookmarkData.length == 0) {
       dataAvail = "NO";
@@ -98,5 +97,4 @@ class BookmarkRepository extends GetxController{
   String getDataAvail(){
     return dataAvail;
   }
-
 }

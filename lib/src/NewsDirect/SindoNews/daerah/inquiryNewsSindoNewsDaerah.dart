@@ -47,6 +47,7 @@ class _InquirySindoNewsDaerah extends State<InquirySindoNewsDaerah> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = SindoNewsRepository.instance.getDateSaved();
       await SindoNewsRepository.instance.getAllNewsSindoNewsDaerah(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsDaerah(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquirySindoNewsDaerah extends State<InquirySindoNewsDaerah> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?SindoNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsSindoNews(news);
         }
       }

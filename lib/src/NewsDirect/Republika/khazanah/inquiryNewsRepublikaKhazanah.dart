@@ -47,6 +47,7 @@ class _InquiryRepublikaNewsKhazanah extends State<InquiryRepublikaNewsKhazanah> 
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = RepublikaNewsRepository.instance.getDateSaved();
       await RepublikaNewsRepository.instance.getAllNewsRepublikaKhazanah(tempCtr);
       await RepublikaNewsRepository.instance.getAllNewsRepublikaKhazanah(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryRepublikaNewsKhazanah extends State<InquiryRepublikaNewsKhazanah> 
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?RepublikaNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsRepublika(news);
         }
       }

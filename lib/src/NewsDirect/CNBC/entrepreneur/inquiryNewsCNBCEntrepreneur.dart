@@ -47,6 +47,7 @@ class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = CNBCNewsRepository.instance.getDateSaved();
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr);
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?CNBCNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsCNBC(news);
         }
       }

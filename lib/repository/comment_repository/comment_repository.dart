@@ -22,8 +22,6 @@ class CommentRepository extends GetxController{
   String userNamePengguna="";
   String waktu="";
   String komen="";
-  int like = 0;
-  int dislike = 0;
 
   
   static CommentRepository get instance => Get.find();

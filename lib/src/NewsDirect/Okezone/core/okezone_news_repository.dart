@@ -23,8 +23,9 @@ class OkezoneNewsRepository extends GetxController{
   void setDateSaved(int time){
     dateSaved=time;
   }
-
-  // Title List
+  void setDateSavedNull(){
+    dateSaved=0;
+  }
 
   // Celebrity - Okezone
   List<String> listJudulCelebrity =[];
@@ -33,6 +34,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCelebrity).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulCelebrity =[];
     for(int i=0; i<newsData.length;i++){
       listJudulCelebrity.add(newsData[i].title);
     }
@@ -53,6 +55,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySports).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulSports =[];
     for(int i=0; i<newsData.length;i++){
       listJudulSports.add(newsData[i].title);
     }
@@ -73,6 +76,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulOtomotif =[];
     for(int i=0; i<newsData.length;i++){
       listJudulOtomotif.add(newsData[i].title);
     }
@@ -93,6 +97,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEconomy).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulEconomy =[];
     for(int i=0; i<newsData.length;i++){
       listJudulEconomy.add(newsData[i].title);
     }
@@ -113,6 +118,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTechno).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulTechno =[];
     for(int i=0; i<newsData.length;i++){
       listJudulTechno.add(newsData[i].title);
     }
@@ -133,6 +139,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLifestyle).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulLifestyle =[];
     for(int i=0; i<newsData.length;i++){
       listJudulLifestyle.add(newsData[i].title);
     }
@@ -152,6 +159,7 @@ class OkezoneNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulBola =[];
     for(int i=0; i<newsData.length;i++){
       listJudulBola.add(newsData[i].title);
     }
@@ -164,7 +172,6 @@ class OkezoneNewsRepository extends GetxController{
     listJudulBola = [];
   }
 
-
   saveNewsOkezone(NewsModel newsModel)async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
@@ -172,6 +179,4 @@ class OkezoneNewsRepository extends GetxController{
     });
     print('News ke ${count+=1} Berhasil dibuat');
   }
-
-
 }

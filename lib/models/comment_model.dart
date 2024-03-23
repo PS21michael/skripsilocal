@@ -1,7 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// var temp=0;
 
 class CommentModel{
   final String? id;
@@ -11,8 +10,6 @@ class CommentModel{
   final String userNamePengguna;
   final String waktu;
   final String komen;
-  final int like;
-  final int dislike;
 
   CommentModel({
     this.id,
@@ -22,8 +19,6 @@ class CommentModel{
     required this.userNamePengguna,
     required this.waktu,
     required this.komen,
-    required this.like,
-    required this.dislike,
   });
 
   static CommentModel empty() => CommentModel(
@@ -33,8 +28,6 @@ class CommentModel{
       userNamePengguna: '',
       waktu: '',
       komen: '',
-      like: 0,
-      dislike: 0,
   );
 
   // Json Parse To
@@ -46,8 +39,6 @@ class CommentModel{
       "UserNamePengguna" : userNamePengguna,
       "Waktu" : waktu,
       "Komen" : komen,
-      "Like" : like,
-      "Dislike" : dislike,
     };
   }
 
@@ -61,8 +52,6 @@ class CommentModel{
         userNamePengguna: data?["UserNamePengguna"],
         waktu: data?["Waktu"],
         komen: data?["Komen"],
-        like: data?["Like"],
-        dislike: data?["Dislike"]
     );
   }
 

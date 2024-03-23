@@ -162,7 +162,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         InkWell(
                           onTap: () async {
                             await Future.delayed(Duration(seconds: 2));
-                            await bookMarkController.getAllBookmarkOne(title);
+                            await bookMarkController.getAllBookmarkOne(idUser, title);
                             await Future.delayed(Duration(seconds: 1));
                             String temp = BookmarkRepository.instance.getDataAvail();
                             // print("Title-nya " + title);
@@ -354,9 +354,7 @@ class _NewsDetailState extends State<NewsDetail> {
                             emailPengguna: emailUser,
                             userNamePengguna: userName,
                             waktu: waktu,
-                            komen: usercomment,
-                            like: 0,
-                            dislike: 0);
+                            komen: usercomment,);
                         await controller.createComment(comment);
                         DetailComment.clear();
                       },

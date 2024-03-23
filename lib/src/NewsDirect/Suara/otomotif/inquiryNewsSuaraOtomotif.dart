@@ -47,6 +47,7 @@ class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = SuaraNewsRepository.instance.getDateSaved();
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr);
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?SuaraNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsSuara(news);
         }
       }

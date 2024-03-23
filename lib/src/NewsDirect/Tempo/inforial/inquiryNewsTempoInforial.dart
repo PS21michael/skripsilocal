@@ -47,6 +47,7 @@ class _InquiryTempoNewsInforial extends State<InquiryTempoNewsInforial> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = TempoNewsRepository.instance.getDateSaved();
       await TempoNewsRepository.instance.getAllNewsTempoInforial(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoInforial(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryTempoNewsInforial extends State<InquiryTempoNewsInforial> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?TempoNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsTempo(news);
         }
       }

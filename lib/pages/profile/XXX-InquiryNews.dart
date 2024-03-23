@@ -275,20 +275,6 @@ class _InquiryNews extends State<InquiryNews> {
                   ),
                 ),
                 const SizedBox(height: 10),
-
-
-
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

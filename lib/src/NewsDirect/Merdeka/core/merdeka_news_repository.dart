@@ -24,8 +24,9 @@ class MerdekaNewsRepository extends GetxController{
   void setDateSaved(int time){
     dateSaved=time;
   }
-
-  // Title List
+  void setDateSavedNull(){
+    dateSaved=0;
+  }
 
   // Jakarta - Merdeka News
   List<String> listJudulJakarta = [];
@@ -34,6 +35,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryJakarta).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulJakarta = [];
     for(int i=0; i<newsData.length;i++){
       listJudulJakarta.add(newsData[i].title);
     }
@@ -54,6 +56,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDunia).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulDunia = [];
     for(int i=0; i<newsData.length;i++){
       listJudulDunia.add(newsData[i].title);
     }
@@ -73,6 +76,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryGaya).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulGaya = [];
     for(int i=0; i<newsData.length;i++){
       listJudulGaya.add(newsData[i].title);
     }
@@ -93,6 +97,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOlahraga).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulOlahraga = [];
     for(int i=0; i<newsData.length;i++){
       listJudulOlahraga.add(newsData[i].title);
     }
@@ -112,6 +117,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulTeknologi = [];
     for(int i=0; i<newsData.length;i++){
       listJudulTeknologi.add(newsData[i].title);
     }
@@ -132,6 +138,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulOtomotif = [];
     for(int i=0; i<newsData.length;i++){
       listJudulOtomotif.add(newsData[i].title);
     }
@@ -152,6 +159,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryKhas).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulKhas = [];
     for(int i=0; i<newsData.length;i++){
       listJudulKhas.add(newsData[i].title);
     }
@@ -172,6 +180,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySehat).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulSehat = [];
     for(int i=0; i<newsData.length;i++){
       listJudulSehat.add(newsData[i].title);
     }
@@ -192,6 +201,7 @@ class MerdekaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryJateng).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudulJateng = [];
     for(int i=0; i<newsData.length;i++){
       listJudulJateng.add(newsData[i].title);
     }
@@ -212,5 +222,4 @@ class MerdekaNewsRepository extends GetxController{
     });
     print('News ke ${count+=1} Berhasil dibuat');
   }
-
-  }
+}

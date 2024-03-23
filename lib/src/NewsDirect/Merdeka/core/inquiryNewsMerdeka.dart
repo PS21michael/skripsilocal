@@ -1,15 +1,7 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Merdeka/core/merdeka_news_repository.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
 import '../dunia/inquiryNewsMerdekaDunia.dart';
 import '../gaya/inquiryNewsMerdekaGaya.dart';
 import '../jakarta/inquiryNewsMerdekaJakarta.dart';
@@ -19,11 +11,6 @@ import '../olahraga/inquiryNewsMerdekaOlahraga.dart';
 import '../otomotif/inquiryNewsMerdekaOtomotif.dart';
 import '../sehat/inquiryNewsMerdekaSehat.dart';
 import '../teknologi/inquiryNewsMerdekaTeknologi.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsMerdeka extends StatefulWidget {
 
@@ -70,13 +57,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 1. JAKARTA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsJakarta());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -95,13 +83,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 2. DUNIA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsDunia());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -120,13 +109,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 3. GAYA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsGaya());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -145,13 +135,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 4. OLAHRAGA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsOlahraga());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -170,13 +161,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 5. TEKNOLOGI
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsTeknologi());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -195,14 +187,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 6. OTOMOTIF
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsOtomotif());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -219,17 +211,16 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                   ),
                 ),
 
-
                 // 7. KHAS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsKhas());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -248,14 +239,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 8. SEHAT
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsSehat());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -274,14 +265,14 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
                 // 9. JATENG
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     MerdekaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsJateng());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -297,21 +288,7 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                     ),
                   ),
                 ),
-
-
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

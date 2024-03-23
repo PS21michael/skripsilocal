@@ -47,6 +47,7 @@ class _InquirySindoNewsSports extends State<InquirySindoNewsSports> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = SindoNewsRepository.instance.getDateSaved();
       await SindoNewsRepository.instance.getAllNewsSindoNewsSports(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsSports(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquirySindoNewsSports extends State<InquirySindoNewsSports> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?SindoNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsSindoNews(news);
         }
       }

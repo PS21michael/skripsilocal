@@ -1,15 +1,7 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Republika/core/republika_news_repository.dart';
 import '../../../../Utils/TimeSavedNews.dart';
-import '../../../../pages/components/my_textfield.dart';
 import '../bola/inquiryNewsRepublikaBola.dart';
 import '../daerah/inquiryNewsRepublikaDaerah.dart';
 import '../internasional/inquiryNewsRepublikaInternasional.dart';
@@ -17,11 +9,6 @@ import '../islam/inquiryNewsRepublikaIslam.dart';
 import '../khazanah/inquiryNewsRepublikaKhazanah.dart';
 import '../leisure/inquiryNewsRepublikaLeisure.dart';
 import '../news/inquiryNewsRepublikaNews.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsRepublika extends StatefulWidget {
 
@@ -68,13 +55,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 1. NEWS
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsNews());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -93,13 +81,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 2. DAERAH
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsDaerah());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -118,13 +107,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 3. KHAZANAH
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsKhazanah());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -143,13 +133,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 4. ISLAM
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsIslam());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -168,13 +159,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 5. INTERNASIONAL
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsInternasional());
                   },
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -193,14 +185,14 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
                 // 6. BOLA
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsBola());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -217,17 +209,16 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                   ),
                 ),
 
-
                 // 7. LEISURE
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     RepublikaNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsLeisure());
                   },
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -246,17 +237,6 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
 
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

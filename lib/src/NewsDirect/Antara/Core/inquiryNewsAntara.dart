@@ -1,12 +1,5 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:random_name_generator/random_name_generator.dart';
-import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/bola/InquiryNewsAntaraBola.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/dunia/InquiryNewsAntaraDunia.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/hiburan/InquiryNewsAntaraHiburan.dart';
@@ -18,14 +11,8 @@ import 'package:skripsilocal/src/NewsDirect/Antara/otomotif/InquiryAntaraNewsOto
 import 'package:skripsilocal/src/NewsDirect/Antara/tekno/InquiryAntaraNewsTeknologi.dart';
 import '../../../../Utils/TimeSavedNews.dart';
 import '../../../../controller/signin_controller.dart';
-import '../../../../pages/components/my_textfield.dart';
 import 'antara_news_repository.dart';
 import '../politik/InquiryAntaraNewsPolitik.dart';
-// import '../../src/features/authentication/models/user_model.dart';
-// import '../../src/features/authentication/screens/error_toast/show_toast.dart';
-// import '../components/my_textfield.dart';
-// import '../components/button.dart';
-// import 'core/update_profile_new.dart';
 
 class InquiryNewsAnatara extends StatefulWidget {
 
@@ -73,9 +60,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 ),
                 // 1. Politik
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsPolitik());
                   },
@@ -98,9 +87,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 2. Otomotif
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: () async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsOtomotif());
                   },
@@ -123,9 +114,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 3. Olahraga
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: () async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsOlahraga());
                   },
@@ -148,9 +141,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 4. Life Style
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsLifeStyle());
                   },
@@ -173,9 +168,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 5. Humaniora
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: () async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHumaniora());
                   },
@@ -198,9 +195,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 6. Hukum
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHukum());
                   },
@@ -224,9 +223,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 7. Hiburan
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHiburan());
                   },
@@ -250,9 +251,11 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 8. Ekonomi
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHiburan());
                   },
@@ -276,16 +279,14 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 9. Internasional
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsInternasional());
                   },
-
-
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -304,16 +305,14 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 10. Bola
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsBola());
                   },
-
-
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -332,16 +331,14 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
                 // 11. Teknologi
                 const SizedBox(height: 20),
-                // DISINI BUAT BUTTON
                 GestureDetector(
-                  onTap: (){
+                  onTap: ()async{
+                    await Future.delayed(Duration(milliseconds: 100));
+                    AntaraNewsRepository.instance.setDateSavedNull();
+                    await Future.delayed(Duration(milliseconds: 100));
                     AntaraNewsRepository.instance.setDateSaved(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsTeknologi());
                   },
-
-
-
-
                   child: Container(
                     height: 45,
                     width: 100,
@@ -358,20 +355,7 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                   ),
                 ),
 
-
-
                 const SizedBox(height: 10),
-                // Forget Password
-                Padding(
-                  padding: EdgeInsets.only(right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const SizedBox(width: 4),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 20,

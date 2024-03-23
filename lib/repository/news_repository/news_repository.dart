@@ -17,8 +17,7 @@ class NewsRepository extends GetxController{
   String publisher="";
   String author="";
   String url="";
-  int dislikeCount=0;
-  int likeCount=0;
+  int viewsCount=0;
   String idNews="";
 
   String judul = "";
@@ -47,15 +46,12 @@ class NewsRepository extends GetxController{
     title11 = newsData.title;
     author = newsData.author;
     url = newsData.urlNews;
-    dislikeCount = newsData.dislike;
-    likeCount = newsData.like;
+    viewsCount = newsData.views;
     idNews = newsData.id!;
     linkGambar = newsData.urlImage!;
     newsCategory = newsData.category!;
     print('Data terisi ');
     print('salah satu data : ${title} ');
-    print('salah satu data1 : ${likeCount} ');
-    print('salah satu data2 : ${dislikeCount} ');
     return newsData;
   }
 
@@ -79,12 +75,9 @@ class NewsRepository extends GetxController{
     return newsCategory;
   }
 
-  int getDislikeCount(){
-    return dislikeCount;
-  }
 
-  int getlikeCount(){
-    return likeCount;
+  int getViewsCount(){
+    return viewsCount;
   }
 
   int getTanggalDisimpan(){
@@ -109,8 +102,9 @@ class NewsRepository extends GetxController{
 
 
   Future<List<NewsModel>> getAllNews() async{
-    final snapshot = await _db.collection("/News").get();
+    final snapshot = await _db.collection("/News").orderBy("Views",descending: true).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listJudul = [];
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
     }
@@ -145,7 +139,8 @@ class NewsRepository extends GetxController{
 
   // List Favorit
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
-    final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).get();
+    final snapshot = await _db.collection("/News").orderBy("Views",descending: true)
+        .where("Category", whereIn: listFavorit).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
 
     return newsData;
@@ -261,6 +256,10 @@ class NewsRepository extends GetxController{
       listJudulPolitik.add(newsData[i].title);
     }
     return newsData;
+  }
+
+  Future<void> updateViewsNews(Map<String, dynamic> json, String id) async{
+    await _db.collection("/News").doc(id).update(json);
   }
 
 

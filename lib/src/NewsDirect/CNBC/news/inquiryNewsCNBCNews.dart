@@ -47,6 +47,7 @@ class _InquiryCNBCNewsNews extends State<InquiryCNBCNewsNews> {
         _isLoading = false;
         setState(() {});
       }
+      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = CNBCNewsRepository.instance.getDateSaved();
       await CNBCNewsRepository.instance.getAllNewsCNBCNews(tempCtr);
       await CNBCNewsRepository.instance.getAllNewsCNBCNews(tempCtr-1);
@@ -67,9 +68,8 @@ class _InquiryCNBCNewsNews extends State<InquiryCNBCNewsNews> {
               urlNews: dataFetching!.data!.posts![i].link.toString(),
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
-              like: 0,
-              dislike: 0,
-              saveDate: tempCtr);
+              views: 0,
+              saveDate: tempCtr==0?CNBCNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsCNBC(news);
         }
       }

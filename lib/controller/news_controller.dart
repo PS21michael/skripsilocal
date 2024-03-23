@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
@@ -37,6 +38,11 @@ class NewsController extends GetxController{
 
   Future<void> createNews(NewsModel news) async{
     await _newsRepo.insertNews(news);
+  }
+
+  Future<void> updateViews(String id)async{
+    Map<String, dynamic> json = {'Views' : FieldValue.increment(1)};
+    await _newsRepo.updateViewsNews(json, id);
   }
 
   // Future<List<NewsModel>> getAllNewsAntaraHumaniora(int time) async{
