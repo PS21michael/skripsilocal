@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:line_icons/line_icon.dart';
 import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/models/bookmark_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../Utils/Helper/TimeSavedNews.dart';
+import '../../Utils/TimeSavedNews.dart';
 import '../../controller/comment_controller.dart';
 import '../../models/comment_model.dart';
-import '../../repository/news_repository/news_repository.dart';
-import '../components/button.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;

@@ -15,10 +15,10 @@ import 'package:skripsilocal/src/NewsDirect/Republika/core/inquiryNewsRepublika.
 import 'package:skripsilocal/src/NewsDirect/SindoNews/core/inquiryNewsSindoNews.dart';
 import 'package:skripsilocal/src/NewsDirect/Suara/core/inquiryNewsSuara.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/core/inquiryNewsTempo.dart';
-import '../../../../../pages/components/my_textfield.dart';
-import '../../../../Utils/Helper/TimeSavedNews.dart';
-import '../../../../controller/signin_controller.dart';
-import '../../../NewsDirect/Antara/Core/inquiryNewsAntara.dart';
+import '../../../pages/components/my_textfield.dart';
+import '../../Utils/TimeSavedNews.dart';
+import '../../controller/signin_controller.dart';
+import '../../src/NewsDirect/Antara/Core/inquiryNewsAntara.dart';
 // import '../../src/features/authentication/models/user_model.dart';
 // import '../../src/features/authentication/screens/error_toast/show_toast.dart';
 // import '../../src/repository/user_repository/user_repository.dart';

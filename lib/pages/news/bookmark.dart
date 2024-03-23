@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/pages/comment/dummyComment.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../controller/bookmark_controller.dart';
 import '../../models/bookmark_model.dart';
-import '../components/button.dart';
 
 class BookmarkPage extends StatefulWidget {
   const BookmarkPage({Key? key}) : super(key: key);

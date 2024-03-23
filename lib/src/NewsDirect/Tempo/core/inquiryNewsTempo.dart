@@ -8,7 +8,7 @@ import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/core/tempo_news_repository.dart';
-import '../../../../Utils/Helper/TimeSavedNews.dart';
+import '../../../../Utils/TimeSavedNews.dart';
 import '../../../../pages/components/my_textfield.dart';
 import '../bisnis/inquiryNewsTempoBisnis.dart';
 import '../bola/inquiryNewsTempoBola.dart';

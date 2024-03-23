@@ -16,7 +16,7 @@ import 'package:skripsilocal/src/NewsDirect/Antara/lifestyle/InquiryNewsAntaraLi
 import 'package:skripsilocal/src/NewsDirect/Antara/olahraga/InquiryAntaraNewsOlahraga.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/otomotif/InquiryAntaraNewsOtomotif.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/tekno/InquiryAntaraNewsTeknologi.dart';
-import '../../../../Utils/Helper/TimeSavedNews.dart';
+import '../../../../Utils/TimeSavedNews.dart';
 import '../../../../controller/signin_controller.dart';
 import '../../../../pages/components/my_textfield.dart';
 import 'antara_news_repository.dart';

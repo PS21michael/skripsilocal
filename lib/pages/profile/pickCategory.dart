@@ -5,7 +5,7 @@ import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 
-import '../../Utils/Helper/CategoryUtils.dart';
+import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/user_repository/user_repository.dart';
 

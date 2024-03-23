@@ -156,4 +156,3 @@ class Post {
     return "$link, $title, $pubDate, $description, $thumbnail, ";
   }
 }
-

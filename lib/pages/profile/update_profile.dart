@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:dropdown_textfield/dropdown_textfield.dart';
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';

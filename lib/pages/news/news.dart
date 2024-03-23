@@ -1,19 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
+import 'package:skripsilocal/Utils/CategoryUtils.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
-import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
-// import '../comment/dummyComment.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
-import '../comment/NewsDetail.dart';
+import 'NewsDetail.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -138,7 +135,6 @@ class _NewsPageState extends State<NewsPage> {
                                   ),
                                   onTap: () {
                                     controller.getNewsData(snapshot.data![index].title!);
-                                    FirebaseAuth.instance.currentUser?.reload();
                                     Get.to(() => NewsDetail(
                                       id: snapshot.data![index].id.toString(),
                                       title: snapshot.data![index].title,

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/Helper/CategoryUtils.dart';
+import 'package:skripsilocal/Utils/CategoryUtils.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -14,8 +13,6 @@ import '../../models/user_model.dart';
 class UpdateCategory extends StatefulWidget {
   @override
   _UpdateCategoryState createState() => _UpdateCategoryState();
-  // final List<int> daftarScore;
-  // const UpdateCategory({Key? key, required this.daftarScore}) : super(key: key);
 }
 
 class _UpdateCategoryState extends State<UpdateCategory> {
@@ -454,7 +451,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       showCustomSnackbar('Success', 'Update berhasil!', isError: false);
       print("Data yg di dapat : "+ filteredCategories.toString());
       print("Data yg di hapus : "+ removeCategories.toString());
-      // UserRepository.instance.resetListScore();
       Get.to(() => ProfilePage());
     }
     else{

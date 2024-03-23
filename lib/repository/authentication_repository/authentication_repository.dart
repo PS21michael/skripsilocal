@@ -51,31 +51,18 @@ class AuthenticationRepository extends GetxController{
     _firebaseUser.bindStream(_auth.userChanges());
     screenRedirect();
     setInitialScreen(_firebaseUser.value);
-    // ever(_firebaseUser, _setInitialScreen);
   }
 
   setInitialScreen (User ? user) async{
-    // null means user logout
-    // not null means already clik login button and been authenticated
-
-    // if(user == null){
-    //   print('CheckPoint 1');
-    //   Get.offAll(()=> RegisterPage());
-    // } else if(user != null){
-    //   print('CheckPoint 2');
-    //   if(user.emailVerified){
-    //     print('CheckPoint 3');
-    //     Get.offAll(ExplorePage());
-    //   } else{
-    //     Get.offAll(MailVerification());
-    //     print('CheckPoint 4');
-    //   }
-    // }
-
-    user == null ? Get.offAll(()=> const RegisterPage())
-        : user.emailVerified ?
-    Get.offAll(const ExplorePage()) :
-    Get.offAll(const MailVerification());
+    if(user == null){
+      Get.offAll(()=> RegisterPage());
+    } else if(user != null){
+      if(user.emailVerified){
+        Get.offAll(ExplorePage());
+      } else{
+        Get.offAll(MailVerification());
+      }
+    }
     print('user authenticated : ${user?.emailVerified}');
   }
 

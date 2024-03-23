@@ -14,7 +14,7 @@ import 'package:skripsilocal/src/NewsDirect/CNN/internasional/InquiryNewsCNNInte
 import 'package:skripsilocal/src/NewsDirect/CNN/nasional/inquiryNewsCNNNasional.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/olahraga/InquiryNewsCNNOlahraga.dart';
 import 'package:skripsilocal/src/NewsDirect/CNN/teknologi/InquiryNewsCNNTeknologi.dart';
-import '../../../../Utils/Helper/TimeSavedNews.dart';
+import '../../../../Utils/TimeSavedNews.dart';
 import '../../../../pages/components/my_textfield.dart';
 // import '../../src/features/authentication/models/user_model.dart';
 // import '../../src/features/authentication/screens/error_toast/show_toast.dart';

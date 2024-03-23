@@ -37,7 +37,7 @@ class BookmarkRepository extends GetxController{
 
   // AVoid Redundant
   List<String> listBookMarkTitle = [];
-  String isDataExisst = "null";
+  String isDataExisst = "";
   Future<List<BookmarkModel>> getAllBookmarksFromSingleUser(String idPengguna) async{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: idPengguna).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
