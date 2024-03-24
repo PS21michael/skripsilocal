@@ -10,6 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../Utils/TimeSavedNews.dart';
 import '../../controller/comment_controller.dart';
 import '../../models/comment_model.dart';
+import '../../repository/authentication_repository/authentication_repository.dart';
+import '../authentication/login_page.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;
@@ -161,15 +163,18 @@ class _NewsDetailState extends State<NewsDetail> {
                         SizedBox(height: 5),
                         InkWell(
                           onTap: () async {
-                            await Future.delayed(Duration(seconds: 2));
-                            await bookMarkController.getAllBookmarkOne(idUser, title);
-                            await Future.delayed(Duration(seconds: 1));
-                            String temp = BookmarkRepository.instance.getDataAvail();
-                            // print("Title-nya " + title);
-                            // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
-                            print(BookmarkRepository.instance.getDataAvail());
-                            if(temp == "NO"){
-                              final bookmark = BookmarkModel(
+                            if(AuthenticationRepository.instance.firebaseUser==null){
+                              Get.to(() => const LoginPage());
+                            } else {
+                              await Future.delayed(Duration(seconds: 2));
+                              await bookMarkController.getAllBookmarkOne(idUser, title);
+                              await Future.delayed(Duration(seconds: 1));
+                              String temp = BookmarkRepository.instance.getDataAvail();
+                              // print("Title-nya " + title);
+                              // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
+                              print(BookmarkRepository.instance.getDataAvail());
+                              if(temp == "NO"){
+                                final bookmark = BookmarkModel(
                                   idNews: idNews,
                                   idPengguna: idUser,
                                   title: title,
@@ -177,17 +182,17 @@ class _NewsDetailState extends State<NewsDetail> {
                                   urlGambar: urlImage,
                                   kategori: kategori,
                                   publisher: penulis,
-                              );
-                              await bookMarkController.createBookMark(bookmark);
-                              print("Data sudah pernah ada");
-                              showCustomSnackbar("Success", "Berita sudah pernah ditambahkan!", isError: false);
-                            } else{
-                              // await Future.delayed(Duration(seconds: 2));
-                              // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
-                              // for(int i=0; i<listTitleSave.length;i++){
-                              //   if(listTitleSave.contains(title)){
-                                  print("Data sudah pernah ada");
-                                  showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
+                                );
+                                await bookMarkController.createBookMark(bookmark);
+                                print("Data sudah pernah ada");
+                                showCustomSnackbar("Success", "Berita sudah pernah ditambahkan!", isError: false);
+                              } else{
+                                // await Future.delayed(Duration(seconds: 2));
+                                // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
+                                // for(int i=0; i<listTitleSave.length;i++){
+                                //   if(listTitleSave.contains(title)){
+                                print("Data sudah pernah ada");
+                                showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
                                 // }
                                 // print(listTitleSave)
                                 // else{
@@ -202,7 +207,8 @@ class _NewsDetailState extends State<NewsDetail> {
                                 //   );
                                 //   await bookMarkController.createBookMark(bookmark);
                                 // }
-                              // }
+                                // }
+                              }
                             }
                           },
                           child: Row(
@@ -347,16 +353,21 @@ class _NewsDetailState extends State<NewsDetail> {
                       icon: Icon(Icons.send),
                       color: Colors.black,
                       onPressed: () async {
-                        String usercomment = DetailComment.text;
-                        final comment = CommentModel(
+                        await Future.delayed(Duration(milliseconds: 100));
+                        if(AuthenticationRepository.instance.firebaseUser==null){
+                          Get.to(() => const LoginPage());
+                        } else{
+                          String usercomment = DetailComment.text;
+                          final comment = CommentModel(
                             idNews: idNews,
                             pathFoto: fotoUser,
                             emailPengguna: emailUser,
                             userNamePengguna: userName,
                             waktu: waktu,
                             komen: usercomment,);
-                        await controller.createComment(comment);
-                        DetailComment.clear();
+                          await controller.createComment(comment);
+                          DetailComment.clear();
+                        }
                       },
                     ),
                   ],

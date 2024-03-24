@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
+      // home: ProfilePage(),
+      home: ExplorePage(),
       // home: PickCategory(),
       // home: UpdateCategory(),
       // home: UpdateProfile_New(),

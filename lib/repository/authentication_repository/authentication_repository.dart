@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,8 +7,9 @@ import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
+import 'package:skripsilocal/pages/profile/pickCategory.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import '../../../pages/profile/fill_profile.dart';
@@ -55,10 +54,10 @@ class AuthenticationRepository extends GetxController{
 
   setInitialScreen (User ? user) async{
     if(user == null){
-      Get.offAll(()=> RegisterPage());
+      Get.offAll(()=> ExplorePage());
     } else if(user != null){
       if(user.emailVerified){
-        Get.offAll(ExplorePage());
+        Get.offAll(ProfilePage());
       } else{
         Get.offAll(MailVerification());
       }
@@ -230,8 +229,7 @@ class AuthenticationRepository extends GetxController{
         final ex = SignupEmailAndPasswordFailure.code(e.code);
         isSuccessCreateUser = "False";
 
-        // showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
-        showCustomSnackbar("Error", "FIREBASE AUTH EXCEPTION - ${ex.message}");
+        showCustomSnackbar("Error", "${ex.message}");
         print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
@@ -255,17 +253,17 @@ class AuthenticationRepository extends GetxController{
       if(_firebaseUser.value != null){
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
           Get.to(()=>const FillProfile());
+        } else if(UserRepository.instance.getUserModelInitScore() == "NO"){
+          Get.offAll(()=> PickCategory());
         } else{
           Get.offAll(()=>const ExplorePage());
         }
       } else{
         Get.to(()=>const LoginPage());
       }
-      // _firebaseUser.value != null ? Get.offAll(()=>ExplorePage()) : Get.to(()=>LoginPage());
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
-      // showToast(message:'FIREBASE AUTH EXCEPTION - ${ex.message}');
-      showCustomSnackbar("Error", "FIREBASE AUTH EXCEPTION - ${ex.message}");
+      showCustomSnackbar("Error", "${ex.message}");
       print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
@@ -333,6 +331,7 @@ class AuthenticationRepository extends GetxController{
   Future<void> signup() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    emailGoogleSignIn = "";
     emailGoogleSignIn = googleSignInAccount!.email;
     print('CheckPointGoogle 1, Email udah di assign $emailGoogleSignIn');
     if (googleSignInAccount != null) {
@@ -365,13 +364,19 @@ class AuthenticationRepository extends GetxController{
   // Future<void> logout() async => await _auth.signOut();
 
   Future<void> logout() async {
-    // await GoogleSignIn().signOut();
     await _auth.signOut();
     Get.to(()=>const LoginPage());
+    print("User Berhasil keluar");
+  }
 
-    // firebaseUser != null? Get.offAll(()=>ExplorePage()) : Get.to(()=>LoginPage());
-
-    // AuthenticationRepository.instance.logout();
+  Future<void> deleteUser() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        print('The user must reauthenticate before this operation can be executed.');
+      }
+    }
   }
 
   void showCustomSnackbar(String title, String message, {bool isError = true}) {

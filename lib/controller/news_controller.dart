@@ -32,6 +32,22 @@ class NewsController extends GetxController{
     return await _newsRepo.getAllNews();
   }
 
+  // Filter time => ASC/DESC (All News)
+  Future<List<NewsModel>> getAllNewsFilterTime(String period) async{
+    return await _newsRepo.getAllNewsBasedOnDate(period);
+  }
+
+  // Filter time => ASC/DESC (Favorit News)
+  Future<List<NewsModel>> getAllNewsFavoritFilterTime(List<String> listFavorit, String period) async{
+    return await _newsRepo.getAllNewsBasedOnDateAndListFavorit(listFavorit, period);
+  }
+
+  // Searching => (Favorit News)
+  Future<List<NewsModel>> getAllNewsFavoritSearching(List<String> listFavorit, String id) async{
+    return await _newsRepo.getSearchTitleNewsFavorit(listFavorit, id);
+  }
+
+
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
     return await _newsRepo.getAllNewsFavorit(listFavorit);
   }
@@ -56,6 +72,26 @@ class NewsController extends GetxController{
   // Future<void> updateFlagLikeNews(int like, String id) async{
   //   await _newsRepo.updateLikeRecord(like, id);
   // }
+
+// Advanced -- FF - Heavy Work
+  List<NewsModel> getAllSearchAdvanced(String key) {
+    _newsRepo.getAllNewsSearchAdvanced(key);
+    return  _newsRepo.getAllSearchTempNewsModel();
+  }
+
+  void setAllSearchAdvancedNull(){
+    _newsRepo.setAllSearchTempNewsModelNull();
+  }
+
+// Title
+  Future<List<NewsModel>> getAllSearchTitleNews(String id) async{
+    return await _newsRepo.getSearchTitleNews(id);
+  }
+
+// Description
+  Future<List<NewsModel>> getAllSearchDescriptionNews(String id) async{
+    return await _newsRepo.getSearchDescriptionNews(id);
+  }
 
 
 

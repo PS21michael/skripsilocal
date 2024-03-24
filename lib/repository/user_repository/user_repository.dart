@@ -22,9 +22,11 @@ class UserRepository extends GetxController{
   String userModelJoinDate = "";
   String userModelProfilePicture = "";
 
-  String isSuccesGetData = "False";
+  String isSuccesGetData = "FALSE";
 
   List<int> listScore = [];
+
+  String initKategori = "";
 
   // ADDING
   String kategori1="";
@@ -148,7 +150,25 @@ class UserRepository extends GetxController{
     return isUsernameAvail;
   }
 
+  String isUserEmailAvail = "";
+  Future<List<UserModel>> getSingelAllUserFromEmail(String email) async{
+    final snapshot = await _db.collection("/Users").where("Email", isEqualTo: email).get();
+    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+    isUserEmailAvail = "";
+    if(userData.length ==0){
+      isUserEmailAvail="NO";
+    } else if(userData.length !=0){
+      isUserEmailAvail="YES";
+    }
+    return userData;
+  }
 
+  String getIsUserEmailAvail(){
+    return isUserEmailAvail;
+  }
+
+
+  List<int> initScoreAwal = [];
   Future<UserModel> getSingelUserDetails(String email) async{
     print('CheckPoint login 2');
     print('DB telah dipanggil ke ${ctr+=1}');
@@ -157,6 +177,8 @@ class UserRepository extends GetxController{
     // final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).elementAt(0);
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     print('CheckPoint login 4');
+
+    isSuccesGetData = "";
 
     userModelID = userData.id!;
     userModelFullName = userData.fullName;
@@ -246,6 +268,7 @@ class UserRepository extends GetxController{
     kategori38 = userData.kategori38;
     scoreKategori38 = userData.scoreKategori38;
 
+    listScore = [];
     listScore.add(scoreKategori1);
     listScore.add(scoreKategori2);
     listScore.add(scoreKategori3);
@@ -285,6 +308,20 @@ class UserRepository extends GetxController{
     listScore.add(scoreKategori37);
     listScore.add(scoreKategori38);
     // listScore.sort();
+    await Future.delayed(Duration(milliseconds: 100));
+    initScoreAwal = [];
+    for(int i=0; i<listScore.length; i++){
+      if(listScore[i]>9999){
+        initScoreAwal.add(listScore[i]);
+      }
+    }
+    initKategori = "";
+    await Future.delayed(Duration(milliseconds: 100));
+    if(initScoreAwal.length <3){
+      initKategori =  "NO";
+    } else {
+      initKategori =  "YES";
+    }
 
     isSuccesGetData = "True";
     print('Data profil url udah di assign');
@@ -295,6 +332,10 @@ class UserRepository extends GetxController{
     final snapshot = await _db.collection("/Users").get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     return userData;
+  }
+
+  String getUserModelInitScore(){
+    return initKategori;
   }
 
   String getUserModelId(){
@@ -754,5 +795,8 @@ class UserRepository extends GetxController{
     }
   }
 
+  Future<void> deleteSingelUser(String id)async{
+    await _db.collection("/Users").doc(id).delete();
+  }
 
 }

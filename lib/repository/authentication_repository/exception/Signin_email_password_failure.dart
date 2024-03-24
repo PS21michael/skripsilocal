@@ -19,6 +19,13 @@ class SigninEmailAndPasswordFailure{
         return const SigninEmailAndPasswordFailure('This user has been disabled. Please contact support for help.');
       case 'wrong-password' :
         return const SigninEmailAndPasswordFailure('Wrong Password.');
+      case 'account-exists-with-different-credential' :
+        return const SigninEmailAndPasswordFailure('Passowrd not match with email');
+      case 'operation-not-allowed' :
+        return const SigninEmailAndPasswordFailure('Too many requests to log into this account.');
+      case 'invalid-credential' :
+        return const SigninEmailAndPasswordFailure('Email atau Password tidak ditemukan');
+
       default: return const SigninEmailAndPasswordFailure();
     }
 

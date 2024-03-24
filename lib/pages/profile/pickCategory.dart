@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
+import 'package:skripsilocal/pages/news/news.dart';
 
 import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
@@ -157,7 +158,7 @@ class _PickCategoryState extends State<PickCategory> {
       print(filteredCategories);
       // Get.to(() => HomePage(selectedCategories: filteredCategories));
       for(int i=0; i<filteredCategories.length; i++){
-        tempIndex = listCategoryController.listToScore(filteredCategories[i].toLowerCase());
+        tempIndex = listCategoryController.listToScore(filteredCategories[i]);
         if(tempIndex == 1){
           kategoriCustomer1 = 10000;
         } else if(tempIndex == 2){
@@ -235,7 +236,6 @@ class _PickCategoryState extends State<PickCategory> {
         }else if(tempIndex == 38){
           kategoriCustomer38 = 10000;
         }
-
 
         // Batas for
       }
@@ -327,12 +327,19 @@ class _PickCategoryState extends State<PickCategory> {
           scoreKategori38: kategoriCustomer38,
       );
 
-      await Future.delayed(Duration(seconds: 3));
-      await UserRepository.instance.updateUserRecord(user, idCustomer);
       await Future.delayed(Duration(seconds: 4));
+      await UserRepository.instance.updateUserRecord(user, idCustomer);
+      await Future.delayed(Duration(seconds: 2));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
 
       showCustomSnackbar('SUCCES', 'DATA SUDAH DIMASUKKAN', isError: false);
+
+      await Future.delayed(Duration(milliseconds: 300));
+      UserRepository.instance.resetListScore();
+      await Future.delayed(Duration(milliseconds: 300));
+      await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+      await Future.delayed(Duration(milliseconds: 300));
+      Get.to(() => NewsPage());
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);

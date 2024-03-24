@@ -262,5 +262,70 @@ class NewsRepository extends GetxController{
     await _db.collection("/News").doc(id).update(json);
   }
 
+  // Delete singel news
+  Future<void> deleteSingelNews(String id)async{
+    await _db.collection("/News").doc(id).delete();
+  }
+
+  // Title  - Search
+  Future<List<NewsModel>> getSearchTitleNews(String id) async{
+    final snapshot = await _db.collection("/News").orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    return newsData;
+  }
+
+// Description - Search
+  Future<List<NewsModel>> getSearchDescriptionNews(String id) async{
+    final snapshot = await _db.collection("/News").orderBy("Description").startAt([id,]).endAt([id+'\uf8ff',]).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    return newsData;
+  }
+
+  // News Favorit - Searching
+  Future<List<NewsModel>> getSearchTitleNewsFavorit(List<String> listFavorit, String id) async{
+    final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+      return newsData;
+  }
+
+
+
+// Search Advanced
+  late List<NewsModel> listNewsModelTemp;
+  late NewsModel newsModel;
+
+  Future<List<NewsModel>> getAllNewsSearchAdvanced(String keyWord) async{
+    final snapshot = await _db.collection("/News").get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    listNewsModelTemp = [];
+    for(int i=0; i<newsData.length;i++){
+      if(newsData[i].title.contains(keyWord)){
+        NewsModel newsModel = NewsModel(id: newsData[i].id,
+            publisher: newsData[i].publisher,
+            author: newsData[i].author,
+            title: newsData[i].title,
+            description: newsData[i].description,
+            urlImage: newsData[i].urlImage,
+            urlNews: newsData[i].urlNews,
+            publishedTime: newsData[i].publishedTime,
+            category: newsData[i].category,
+            views: newsData[i].views,
+            saveDate: newsData[i].saveDate);
+
+        listNewsModelTemp.add(newsModel);
+        continue;
+      }
+    }
+    return newsData;
+  }
+
+  List<NewsModel> getAllSearchTempNewsModel(){
+    return listNewsModelTemp;
+  }
+
+  void setAllSearchTempNewsModelNull(){
+    listNewsModelTemp = [];
+  }
+
 
 }

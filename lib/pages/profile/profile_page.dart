@@ -10,6 +10,8 @@ import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
+import '../../controller/bookmark_controller.dart';
+import '../../repository/bookmark_repository/bookmark_repository.dart';
 import '../components/button.dart';
 import '../components/my_navbar.dart';
 import 'fill_profile.dart';
@@ -24,6 +26,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   late ProfileController controller;
   late UpdateProfileController updateController;
+
+  final bookMarkController = Get.put(BookmarkController());
+  final userController = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -62,6 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final dateOfBirthCustomer = UserRepository.instance.getUserModelDateOfBirth();
     final profilePictureCustomer = UserRepository.instance.getUserModelProfilePicture();
     final emailCustomer = UserRepository.instance.getUserModelEmail();
+    final idCustomer = UserRepository.instance.getUserModelId();
 
     List<Widget> widgets = [
       Column(
@@ -175,7 +181,34 @@ class _ProfilePageState extends State<ProfilePage> {
 
     widgets.add(
       CustomListTile(
-        onTap: () {
+        onTap: () async{
+          // AUTH
+          await Future.delayed(Duration(milliseconds: 100));
+          userController.deleteUserAuth();
+
+          // DB
+          await Future.delayed(Duration(seconds: 1));
+          String id = idCustomer;
+          await Future.delayed(Duration(milliseconds: 300));
+          userController.deleteUserDBByID(id);
+
+          // BOOKMARK
+          await Future.delayed(Duration(milliseconds: 500));
+          bookMarkController.getAllBookmarkfromSingleUser(id);
+          await Future.delayed(Duration(milliseconds: 1000));
+          List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+          await Future.delayed(Duration(milliseconds: 500));
+          print("list bookmark yg ada di homepage: ${listIdBookmark.toString()}");
+          for(int i=0; i<listIdBookmark.length; i++){
+            await Future.delayed(Duration(milliseconds: 50));
+            print("data ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
+            bookMarkController.deleteBookmark(listIdBookmark[i]);
+          }
+
+          await Future.delayed(Duration(seconds: 1));
+          print("User Berhasil di delete");
+          userController.logout();
+
         },
         textColor: Colors.red,
         title: 'Delete Account',

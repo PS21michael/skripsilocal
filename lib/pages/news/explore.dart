@@ -10,6 +10,7 @@ import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 
+import '../../repository/authentication_repository/authentication_repository.dart';
 import 'NewsDetail.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -37,7 +38,9 @@ class _ExplorePageState extends State<ExplorePage> {
           child: Container(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
             child: FutureBuilder<List<NewsModel>>(
-              future: controller.getAllNews(),
+              // future: controller.getAllNews(),
+              // future: controller.getAllNewsFilterTime("ASC"),
+              future: controller.getAllSearchTitleNews("Yg mau dicari"),
               builder: (context, snapshot) {
                 print('Checkpoint News1: ${snapshot.connectionState}');
                 print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
@@ -115,8 +118,10 @@ class _ExplorePageState extends State<ExplorePage> {
                                     controller.getNewsData(snapshot.data![index].title!);
                                     await Future.delayed(Duration(milliseconds: 100));
                                     controller.updateViews(snapshot.data![index].id.toString());
-                                    await Future.delayed(Duration(milliseconds: 100));
-                                    userController.updateUserScoreCategory(snapshot.data![index].category);
+                                    if(AuthenticationRepository.instance.firebaseUser!=null){
+                                      await Future.delayed(Duration(milliseconds: 100));
+                                      userController.updateUserScoreCategory(snapshot.data![index].category);
+                                    }
                                     Get.to(() => NewsDetail(
                                       id: snapshot.data![index].id.toString(),
                                       title: snapshot.data![index].title,

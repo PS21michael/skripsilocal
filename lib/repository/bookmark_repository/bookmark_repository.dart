@@ -35,23 +35,30 @@ class BookmarkRepository extends GetxController{
     return bookmarkData;
   }
 
-  // AVoid Redundant
+// AVoid Redundant
   List<String> listBookMarkTitle = [];
-  String isDataExisst = "";
+  String isDataExisst = "null";
+  List<String> listIdBookmarkFromSingelIdUser = [];
   Future<List<BookmarkModel>> getAllBookmarksFromSingleUser(String idPengguna) async{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: idPengguna).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
+    isDataExisst = "";
     if(bookmarkData.length==0){
       isDataExisst = "NO";
     } else{
       isDataExisst = "YES";
     }
+    listIdBookmarkFromSingelIdUser = [];
     listBookMarkTitle = [];
     for(int i=0; i<bookmarkData.length; i++){
+      listIdBookmarkFromSingelIdUser.add(bookmarkData[i].id.toString());
+      print("Id : " + bookmarkData[i].id.toString());
       listBookMarkTitle.add(bookmarkData[i].title);
     }
+    print("list bookmark yg ada : ${listIdBookmarkFromSingelIdUser.toString()}");
     return bookmarkData;
   }
+
   String isDataAvail(){
     return isDataExisst;
   }
@@ -63,6 +70,9 @@ class BookmarkRepository extends GetxController{
     listBookMarkTitle = [];
   }
 
+  List<String> getListIdBookmarkFromSingelUser(){
+    return listIdBookmarkFromSingelIdUser;
+  }
   
   Future<void> updateBookmarkRecord(BookmarkModel bookmarkModel, String id) async{
     await _db.collection("/Bookmark").doc(id).update(bookmarkModel.toJson()).catchError((error, stackTrice){

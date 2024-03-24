@@ -113,4 +113,26 @@ class ProfileController extends GetxController{
     await _userRepo.updateSingelScore(category);
   }
 
+  Future<void> deleteUserAuth() async{
+    try{
+      await AuthenticationRepository.instance.deleteUser();
+    } catch(e){
+      print('Error In Login : $e');
+    }
+  }
+
+
+  Future<void> deleteUserDBByID(String id) async{
+    try{
+      await UserRepository.instance.deleteSingelUser(id);
+    } catch(e){
+      print('Error In Login : $e');
+    }
+  }
+
+  void logout(){
+    AuthenticationRepository.instance.logout();
+  }
+
+
 }

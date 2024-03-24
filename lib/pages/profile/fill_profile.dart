@@ -10,6 +10,7 @@ import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
+import '../news/explore.dart';
 
 class FillProfile extends StatefulWidget {
 
@@ -457,14 +458,22 @@ class _FillProfileState extends State<FillProfile> {
                             print('dateOfBirth yg di input: ${user.dateOfBirth}');
                             print('password yg di input: ${user.password}');
 
-                            await Future.delayed(Duration(seconds: 3));
+                            print("user Id yang dikirim :"+ idCustomer);
+                            await Future.delayed(Duration(seconds: 1));
                             await UserRepository.instance.updateUserRecord(
                                 user, idCustomer);
-                            await Future.delayed(Duration(seconds: 4));
+                            await Future.delayed(Duration(seconds: 1));
                             await UserRepository.instance.getSingelUserDetails(
-                                controller.email.text.trim());
+                                user.email);
 
-                            Get.to(() => PickCategory());
+                            await Future.delayed(Duration(milliseconds: 200));
+                            if(UserRepository.instance.getUserModelInitScore() == "NO"){
+                              Get.offAll(()=> PickCategory());
+                            } else{
+                              await Future.delayed(Duration(milliseconds: 200));
+                              Get.to(() => ExplorePage());
+                            }
+
                           }
                         } else {
                           showCustomSnackbar(

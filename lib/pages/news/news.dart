@@ -60,7 +60,9 @@ class _NewsPageState extends State<NewsPage> {
           child: Container(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
             child: FutureBuilder<List<NewsModel>>(
-              future: controller.getAllNewsFavorit(userCategory),
+              // future: controller.getAllNewsFavorit(userCategory),
+              // future: controller.getAllNewsFavoritFilterTime(userCategory, "ASC"),
+              future: controller.getAllNewsFavoritSearching(userCategory, "Yg mau di search"),
               builder: (context, snapshot) {
                 print(userCategory);
                 print('Checkpoint News1: ${snapshot.connectionState}');
