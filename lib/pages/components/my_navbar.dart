@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
@@ -24,6 +26,7 @@ class MyNavBar extends StatefulWidget {
 
 class _MyNavBarState extends State<MyNavBar> {
   late int _selectedIndex;
+  final controller = Get.put(BookmarkController());
 
   @override
   void initState(){
@@ -60,7 +63,12 @@ class _MyNavBarState extends State<MyNavBar> {
               // await Future.delayed(Duration(milliseconds: 500));
               // BookmarkRepository.instance.getAllBookmarksFromSingleUser(iduser);
               // String isDataAvail = BookmarkRepository.instance.isDataAvail();
-              //
+              // print("###### + $isDataAvail");
+              String idPengguna = UserRepository.instance.getUserModelId();
+              BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+              String temp = "";
+              temp = BookmarkRepository.instance.isDataAvail();
+              print("isDataAvail $temp");
             }
             _tabChange(index);
           },

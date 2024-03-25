@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skripsilocal/pages/components/my_header.dart';
+import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/home_detail_1/post1_1.dart';
 import 'package:skripsilocal/pages/home_detail_1/post1_2.dart';
@@ -19,7 +19,7 @@ class _HomeDetail_1State extends State<HomeDetail_1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyHeader(),
+      appBar: const BasicHeader(),
       body: Column(
         children: [
           Expanded(

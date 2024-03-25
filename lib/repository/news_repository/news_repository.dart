@@ -268,9 +268,19 @@ class NewsRepository extends GetxController{
   }
 
   // Title  - Search
-  Future<List<NewsModel>> getSearchTitleNews(String id) async{
-    final snapshot = await _db.collection("/News").orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
-    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+  // Future<List<NewsModel>> getSearchTitleNews(String id) async{
+  //   final snapshot = await _db.collection("/News").orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
+  //   final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+  //   return newsData;
+  // }
+
+  Future<List<NewsModel>> getSearchTitleNews(String query) async {
+    final snapshot = await _db.collection("/News").get();
+    final lowercaseQuery = query.toLowerCase();
+    final filteredNews = snapshot.docs.where((doc) =>
+        doc["Title"].toLowerCase().contains(lowercaseQuery)
+    ).toList();
+    final newsData = filteredNews.map((e) => NewsModel.fromSnapshot(e)).toList();
     return newsData;
   }
 
@@ -282,11 +292,25 @@ class NewsRepository extends GetxController{
   }
 
   // News Favorit - Searching
-  Future<List<NewsModel>> getSearchTitleNewsFavorit(List<String> listFavorit, String id) async{
-    final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
-    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-      return newsData;
+  // Future<List<NewsModel>> getSearchTitleNewsFavorit(List<String> listFavorit, String id) async{
+  //   final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("Title").startAt([id,]).endAt([id+'\uf8ff',]).get();
+  //   final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+  //     return newsData;
+  // }
+  Future<List<NewsModel>> getSearchTitleNewsFavorit(List<String> listFavorit, String query) async {
+    final snapshot = await _db.collection("/News")
+        .where("Category", whereIn: listFavorit)
+        .orderBy("Title")
+        .get();
+    final lowercaseQuery = query.toLowerCase();
+    final filteredNews = snapshot.docs.where((doc) =>
+        doc["Title"].toLowerCase().contains(lowercaseQuery)
+    ).toList();
+
+    final newsData = filteredNews.map((e) => NewsModel.fromSnapshot(e)).toList();
+    return newsData;
   }
+
 
 
 

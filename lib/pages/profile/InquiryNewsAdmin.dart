@@ -135,8 +135,8 @@ class _InquiryNewsState extends State<InquiryNews> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
+                const Padding(
+                  padding: EdgeInsets.only(left: 50),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -170,7 +170,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                             children: [
                               Text(
                                 item,
-                                style: TextStyle(color: Colors.black),
+                                style: const TextStyle(color: Colors.black),
                               ),
                             ],
                           ),
@@ -217,8 +217,8 @@ class _InquiryNewsState extends State<InquiryNews> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
+                const Padding(
+                  padding: EdgeInsets.only(left: 50),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -253,7 +253,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                               children: [
                                 Text(
                                   item,
-                                  style: TextStyle(color: Colors.black),
+                                  style: const TextStyle(color: Colors.black),
                                 ),
                               ],
                             ),
@@ -315,264 +315,264 @@ class _InquiryNewsState extends State<InquiryNews> {
   }
 
   void handleSubmit(firstIndex, secondIndex){
-    print(firstIndex);
-    print(secondIndex);
+    // print(firstIndex);
+    // print(secondIndex);
     if(firstIndex == 0){
       if(secondIndex == 0){
-        Get.to(()=> InquiryAntaraNewsPolitik());
+        Get.to(()=> const InquiryAntaraNewsPolitik());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryAntaraNewsOtomotif());
+        Get.to(()=> const InquiryAntaraNewsOtomotif());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryAntaraNewsOlahraga());
+        Get.to(()=> const InquiryAntaraNewsOlahraga());
       }
       else if(secondIndex == 3){
-      Get.to(()=> InquiryAntaraNewsLifeStyle());
+      Get.to(()=> const InquiryAntaraNewsLifeStyle());
       }
       else if(secondIndex == 4){
-      Get.to(()=> InquiryAntaraNewsHumaniora());
+      Get.to(()=> const InquiryAntaraNewsHumaniora());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryAntaraNewsHukum());
+        Get.to(()=> const InquiryAntaraNewsHukum());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquiryAntaraNewsHiburan());
+        Get.to(()=> const InquiryAntaraNewsHiburan());
       }
       else if(secondIndex == 7){
-        Get.to(()=> InquiryAntaraNewsEkonomi());
+        Get.to(()=> const InquiryAntaraNewsEkonomi());
       }
       else if(secondIndex == 8){
-        Get.to(()=> InquiryAntaraNewsInternasional());
+        Get.to(()=> const InquiryAntaraNewsInternasional());
       }
       else if(secondIndex == 9){
-        Get.to(()=> InquiryAntaraNewsBola());
+        Get.to(()=> const InquiryAntaraNewsBola());
       }
       else if(secondIndex == 10){
-        Get.to(()=> InquiryAntaraNewsTeknologi());
+        Get.to(()=> const InquiryAntaraNewsTeknologi());
       }
     }
     else if(firstIndex == 1){
       if(secondIndex == 0){
-        Get.to(()=> InquiryCNNNewsNasional());
+        Get.to(()=> const InquiryCNNNewsNasional());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryCNNNewsInternasional());
+        Get.to(()=> const InquiryCNNNewsInternasional());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryCNNNewsEkonomi());
+        Get.to(()=> const InquiryCNNNewsEkonomi());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryCNNNewsOlahraga());
+        Get.to(()=> const InquiryCNNNewsOlahraga());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryCNNNewsTeknologi());
+        Get.to(()=> const InquiryCNNNewsTeknologi());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryCNNNewsHiburan());
+        Get.to(()=> const InquiryCNNNewsHiburan());
       }
     }
     else if(firstIndex == 2){
       if(secondIndex == 0){
-        Get.to(()=> InquiryCNBCNewsNews());
+        Get.to(()=> const InquiryCNBCNewsNews());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryCNBCNewsMarket());
+        Get.to(()=> const InquiryCNBCNewsMarket());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryCNBCNewsEntrepreneur());
+        Get.to(()=> const InquiryCNBCNewsEntrepreneur());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryCNBCNewsSyariah());
+        Get.to(()=> const InquiryCNBCNewsSyariah());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryCNBCNewsTech());
+        Get.to(()=> const InquiryCNBCNewsTech());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryCNBCNewsLifeStyle());
+        Get.to(()=> const InquiryCNBCNewsLifeStyle());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquiryCNBCNewsOpini());
+        Get.to(()=> const InquiryCNBCNewsOpini());
       }
     }
     else if(firstIndex == 3){
       if(secondIndex == 0){
-        Get.to(()=> InquiryMerdekaNewsJakarta());
+        Get.to(()=> const InquiryMerdekaNewsJakarta());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryMerdekaNewsDunia());
+        Get.to(()=> const InquiryMerdekaNewsDunia());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryMerdekaNewsGaya());
+        Get.to(()=> const InquiryMerdekaNewsGaya());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryMerdekaNewsOlahraga());
+        Get.to(()=> const InquiryMerdekaNewsOlahraga());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryMerdekaNewsTeknologi());
+        Get.to(()=> const InquiryMerdekaNewsTeknologi());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryMerdekaNewsOtomotif());
+        Get.to(()=> const InquiryMerdekaNewsOtomotif());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquiryMerdekaNewsKhas());
+        Get.to(()=> const InquiryMerdekaNewsKhas());
       }
       else if(secondIndex == 7){
-        Get.to(()=> InquiryMerdekaNewsSehat());
+        Get.to(()=> const InquiryMerdekaNewsSehat());
       }
       else if(secondIndex == 8){
-        Get.to(()=> InquiryMerdekaNewsJateng());
+        Get.to(()=> const InquiryMerdekaNewsJateng());
       }
     }
     else if(firstIndex == 4){
       if(secondIndex == 0){
-        Get.to(()=> InquiryOkezoneNewsCelebrity());
+        Get.to(()=> const InquiryOkezoneNewsCelebrity());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryOkezoneNewsSports());
+        Get.to(()=> const InquiryOkezoneNewsSports());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryOkezoneNewsOtomotif());
+        Get.to(()=> const InquiryOkezoneNewsOtomotif());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryOkezoneNewsEconomy());
+        Get.to(()=> const InquiryOkezoneNewsEconomy());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryOkezoneNewsTechno());
+        Get.to(()=> const InquiryOkezoneNewsTechno());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryOkezoneNewsLifeStyle());
+        Get.to(()=> const InquiryOkezoneNewsLifeStyle());
       }
     }
     else if(firstIndex == 5){
       if(secondIndex == 0){
-        Get.to(()=> InquiryRepublikaNewsNews());
+        Get.to(()=> const InquiryRepublikaNewsNews());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryRepublikaNewsDaerah());
+        Get.to(()=> const InquiryRepublikaNewsDaerah());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryRepublikaNewsKhazanah());
+        Get.to(()=> const InquiryRepublikaNewsKhazanah());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryRepublikaNewsIslam());
+        Get.to(()=> const InquiryRepublikaNewsIslam());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryRepublikaNewsInternasional());
+        Get.to(()=> const InquiryRepublikaNewsInternasional());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryRepublikaNewsBola());
+        Get.to(()=> const InquiryRepublikaNewsBola());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquiryRepublikaNewsLeisure());
+        Get.to(()=> const InquiryRepublikaNewsLeisure());
       }
     }
     else if(firstIndex == 6){
       if(secondIndex == 0){
-        Get.to(()=> InquirySindoNewsNasional());
+        Get.to(()=> const InquirySindoNewsNasional());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquirySindoNewsMetro());
+        Get.to(()=> const InquirySindoNewsMetro());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquirySindoNewsEkbis());
+        Get.to(()=> const InquirySindoNewsEkbis());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquirySindoNewsInternational());
+        Get.to(()=> const InquirySindoNewsInternational());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquirySindoNewsDaerah());
+        Get.to(()=> const InquirySindoNewsDaerah());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquirySindoNewsSports());
+        Get.to(()=> const InquirySindoNewsSports());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquirySindoNewsOtomotif());
+        Get.to(()=> const InquirySindoNewsOtomotif());
       }
       else if(secondIndex == 7){
-        Get.to(()=> InquirySindoNewsTekno());
+        Get.to(()=> const InquirySindoNewsTekno());
       }
       else if(secondIndex == 8){
-        Get.to(()=> InquirySindoNewsSains());
+        Get.to(()=> const InquirySindoNewsSains());
       }
       else if(secondIndex == 9){
-        Get.to(()=> InquirySindoNewsEdukasi());
+        Get.to(()=> const InquirySindoNewsEdukasi());
       }
       else if(secondIndex == 10){
-        Get.to(()=> InquirySindoNewsLifeStyle());
+        Get.to(()=> const InquirySindoNewsLifeStyle());
       }
       else if(secondIndex == 11){
-        Get.to(()=> InquirySindoNewsKalam());
+        Get.to(()=> const InquirySindoNewsKalam());
       }
     }
     else if(firstIndex == 7){
       if(secondIndex == 0){
-        Get.to(()=> InquirySuaraNewsBisnis());
+        Get.to(()=> const InquirySuaraNewsBisnis());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquirySuaraNewsBola());
+        Get.to(()=> const InquirySuaraNewsBola());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquirySuaraNewsLifeStyle());
+        Get.to(()=> const InquirySuaraNewsLifeStyle());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquirySuaraNewsEntertainment());
+        Get.to(()=> const InquirySuaraNewsEntertainment());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquirySuaraNewsOtomotif());
+        Get.to(()=> const InquirySuaraNewsOtomotif());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquirySuaraNewsTekno());
+        Get.to(()=> const InquirySuaraNewsTekno());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquirySuaraNewsHealth());
+        Get.to(()=> const InquirySuaraNewsHealth());
       }
     }
     else if(firstIndex == 8){
       if(secondIndex == 0){
-        Get.to(()=> InquiryTempoNewsNasional());
+        Get.to(()=> const InquiryTempoNewsNasional());
       }
       else if(secondIndex == 1){
-        Get.to(()=> InquiryTempoNewsBisnis());
+        Get.to(()=> const InquiryTempoNewsBisnis());
       }
       else if(secondIndex == 2){
-        Get.to(()=> InquiryTempoNewsMetro());
+        Get.to(()=> const InquiryTempoNewsMetro());
       }
       else if(secondIndex == 3){
-        Get.to(()=> InquiryTempoNewsDunia());
+        Get.to(()=> const InquiryTempoNewsDunia());
       }
       else if(secondIndex == 4){
-        Get.to(()=> InquiryTempoNewsBola());
+        Get.to(()=> const InquiryTempoNewsBola());
       }
       else if(secondIndex == 5){
-        Get.to(()=> InquiryTempoNewsCantik());
+        Get.to(()=> const InquiryTempoNewsCantik());
       }
       else if(secondIndex == 6){
-        Get.to(()=> InquiryTempoNewsTekno());
+        Get.to(()=> const InquiryTempoNewsTekno());
       }
       else if(secondIndex == 7){
-        Get.to(()=> InquiryTempoNewsOtomotif());
+        Get.to(()=> const InquiryTempoNewsOtomotif());
       }
       else if(secondIndex == 8){
-        Get.to(()=> InquiryTempoNewsSeleb());
+        Get.to(()=> const InquiryTempoNewsSeleb());
       }
       else if(secondIndex == 9){
-        Get.to(()=> InquiryTempoNewsGaya());
+        Get.to(()=> const InquiryTempoNewsGaya());
       }
       else if(secondIndex == 10){
-        Get.to(()=> InquiryTempoNewsTravel());
+        Get.to(()=> const InquiryTempoNewsTravel());
       }
       else if(secondIndex == 11){
-        Get.to(()=> InquiryTempoNewsDifabel());
+        Get.to(()=> const InquiryTempoNewsDifabel());
       }
       else if(secondIndex == 12){
-        Get.to(()=> InquiryTempoNewsCreativeLab());
+        Get.to(()=> const InquiryTempoNewsCreativeLab());
       }
       else if(secondIndex == 13){
-        Get.to(()=> InquiryTempoNewsInforial());
+        Get.to(()=> const InquiryTempoNewsInforial());
       }
       else if(secondIndex == 14){
-        Get.to(()=> InquiryTempoNewsEvent());
+        Get.to(()=> const InquiryTempoNewsEvent());
       }
     }
   }

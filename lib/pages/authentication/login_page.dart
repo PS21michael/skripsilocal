@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
@@ -45,25 +46,41 @@ class _LoginPageState extends State<LoginPage> {
     List<String> nameParts = fullName.split("");
     String firstName = nameParts[0].toLowerCase();
     String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
-
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String camelCaseUsername = "$firstName$lastName";
     String usernameWithPrefix = "User_$camelCaseUsername";
     return usernameWithPrefix;
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        body: Center(
           key : _formkey,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 const SizedBox(height: 30),
+                Container(
+                  padding: EdgeInsets.only(left: 10),
+                  alignment: Alignment.topLeft,
+                  child: GestureDetector(
+                    child: Text(
+                      "Langsung baca berita!",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    onTap: () {
+                      Get.to(()=>const ExplorePage());
+                    },
+                  ),
+                ),
+                // const SizedBox(height: 10),
                 Image.asset(
                   'assets/logo.jpg',
                   width: 200,

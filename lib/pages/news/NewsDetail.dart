@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/models/bookmark_model.dart';
+import 'package:skripsilocal/pages/components/basicHeader.dart';
+import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -43,10 +45,9 @@ class _NewsDetailState extends State<NewsDetail> {
   // String url1 = NewsRepository.instance.getUrl();
   // String newsPicture = NewsRepository.instance.getNewsPicture();
   // String kategori = NewsRepository.instance.getNewsCategory();
-  final DetailComment = TextEditingController();
+  final detailComment = TextEditingController();
   final dateTimecontroller = Get.put(TimeSavedParser());
   final userController = Get.put(ProfileController());
-
   late String idNews;
   late String title;
   late String publisher;
@@ -83,14 +84,15 @@ class _NewsDetailState extends State<NewsDetail> {
 
     return SafeArea(
       child: Scaffold(
+        appBar: DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: double.infinity,
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 border: Border(
                   bottom: BorderSide(
@@ -126,7 +128,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         InkWell(
                           child: Text(
                             title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
@@ -142,33 +144,33 @@ class _NewsDetailState extends State<NewsDetail> {
                             }
                           },
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           description,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.normal,
                           ),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
-                          "$publisher",
-                          style: TextStyle(
+                          publisher,
+                          style: const TextStyle(
                             fontSize: 13,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         InkWell(
                           onTap: () async {
                             if(AuthenticationRepository.instance.firebaseUser==null){
                               Get.to(() => const LoginPage());
                             } else {
-                              await Future.delayed(Duration(seconds: 2));
+                              await Future.delayed(const Duration(seconds: 2));
                               await bookMarkController.getAllBookmarkOne(idUser, title);
-                              await Future.delayed(Duration(seconds: 1));
+                              await Future.delayed(const Duration(seconds: 1));
                               String temp = BookmarkRepository.instance.getDataAvail();
                               // print("Title-nya " + title);
                               // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
@@ -185,7 +187,12 @@ class _NewsDetailState extends State<NewsDetail> {
                                 );
                                 await bookMarkController.createBookMark(bookmark);
                                 print("Data sudah pernah ada");
-                                showCustomSnackbar("Success", "Berita sudah pernah ditambahkan!", isError: false);
+                                showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
+                                // String idPengguna = UserRepository.instance.getUserModelId();
+                                BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
+                                String temp = "";
+                                temp = BookmarkRepository.instance.isDataAvail();
+                                print("isDataAvail $temp");
                               } else{
                                 // await Future.delayed(Duration(seconds: 2));
                                 // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
@@ -211,7 +218,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               }
                             }
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
@@ -230,10 +237,10 @@ class _NewsDetailState extends State<NewsDetail> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: StreamBuilder<List<CommentModel>>(
                   stream: controller.getAllCommentbasedOnIdNews(idNews),
                   builder: (context, snapshot) {
@@ -244,18 +251,18 @@ class _NewsDetailState extends State<NewsDetail> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: Colors.grey.withOpacity(0.4),
+                                color: Colors.grey.withOpacity(0.5),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(5.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(100),
                                       child: Image.network(
@@ -273,20 +280,20 @@ class _NewsDetailState extends State<NewsDetail> {
                                       children: [
                                         Text(
                                           snapshot.data![index].userNamePengguna,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                         Text(
                                           snapshot.data![index].komen,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 14,
                                           ),
                                         ),
                                         Text(
                                           snapshot.data![index].waktu,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 12,
                                           ),
                                         ),
@@ -315,49 +322,49 @@ class _NewsDetailState extends State<NewsDetail> {
             Container(
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
-                border: Border(
+                border: const Border(
                   top: BorderSide(
                     color: Colors.black,
                     width: 1,
                   ),
                 ),
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: TextField(
-                        controller: DetailComment,
+                        controller: detailComment,
                         decoration: InputDecoration(
                           hintText: 'Masukkan Komentar',
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           fillColor: Colors.white,
                           filled: true,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.black),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(color: Colors.red),
+                            borderSide: const BorderSide(color: Colors.red),
                           ),
                         ),
                       ),
                     ),
                     IconButton(
-                      icon: Icon(Icons.send),
+                      icon: const Icon(Icons.send),
                       color: Colors.black,
                       onPressed: () async {
-                        await Future.delayed(Duration(milliseconds: 100));
+                        await Future.delayed(const Duration(milliseconds: 100));
                         if(AuthenticationRepository.instance.firebaseUser==null){
                           Get.to(() => const LoginPage());
                         } else{
-                          String usercomment = DetailComment.text;
+                          String usercomment = detailComment.text;
                           final comment = CommentModel(
                             idNews: idNews,
                             pathFoto: fotoUser,
@@ -366,7 +373,7 @@ class _NewsDetailState extends State<NewsDetail> {
                             waktu: waktu,
                             komen: usercomment,);
                           await controller.createComment(comment);
-                          DetailComment.clear();
+                          detailComment.clear();
                         }
                       },
                     ),

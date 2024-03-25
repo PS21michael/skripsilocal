@@ -18,7 +18,7 @@ import '../repository/authentication_repository/authentication_repository.dart';
 import '../repository/user_repository/user_repository.dart';
 import 'profile/XXX-InquiryNews.dart';
 import 'news/bookmark.dart';
-import 'components/my_header.dart';
+import 'components/basicHeader.dart';
 
 class HomePage extends StatefulWidget {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyHeader extends StatelessWidget implements PreferredSizeWidget {
-  const MyHeader({super.key});
+class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
+  const BasicHeader({Key? key});
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -11,17 +11,17 @@ class MyHeader extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       title: const Text(
-        '17 FEBRUARI 2024',
+        'Baca Berita',
         style: TextStyle(
-          fontSize: 30,
-          letterSpacing: 4,
+          fontSize: 28,
+          letterSpacing: 5,
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
       ),
       elevation: 5,
       bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(10),
         child: Container(
           height: 1,
           color: Colors.black.withOpacity(1),
@@ -31,5 +31,4 @@ class MyHeader extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
     );
   }
-
 }
