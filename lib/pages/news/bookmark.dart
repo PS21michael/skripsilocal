@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:skripsilocal/controller/news_controller.dart';
+import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
+import 'package:skripsilocal/pages/news/NewsDetail.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,6 +22,8 @@ class BookmarkPage extends StatefulWidget {
 
 class _BookmarkPageState extends State<BookmarkPage> {
   final controller = Get.put(BookmarkController());
+  final controller1 = Get.put(NewsController());
+  final userController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +32,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     String temp = BookmarkRepository.instance.isDataAvail();
     print("isDataAvail $temp");
+
 
     return SafeArea(
       child: Scaffold(
@@ -135,7 +142,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                             fontWeight: FontWeight.bold,
                                           ),
                                           overflow: TextOverflow.ellipsis,
-                                          maxLines: 3,
+                                          maxLines: 2,
                                         ),
                                         Row(
                                           children: [
@@ -157,14 +164,23 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                 ],
                               ),
                               onTap: () async {
-                                String url = item.urlData;
-                                if (await canLaunch(url)) {
-                                  await launch(url,
-                                      forceWebView: true,
-                                      enableJavaScript: true);
-                                } else {
-                                  throw 'Could not launch $url';
+                                controller1.getNewsData(snapshot.data![index].title);
+                                await Future.delayed(const Duration(milliseconds: 100));
+                                controller1.updateViews(snapshot.data![index].id.toString());
+                                if(AuthenticationRepository.instance.firebaseUser!=null){
+                                  await Future.delayed(const Duration(milliseconds: 100));
+                                  userController.updateUserScoreCategory(snapshot.data![index].kategori);
                                 }
+                                Get.to(() => NewsDetail(
+                                  id: snapshot.data![index].id.toString(),
+                                  title: snapshot.data![index].title,
+                                  publisher: snapshot.data![index].publisher,
+                                  urlImage: snapshot.data![index].urlGambar,
+                                  urlNews: snapshot.data![index].urlData,
+                                  description: snapshot.data![index].description,
+                                  penulis: snapshot.data![index].publisher,
+                                  kategori: snapshot.data![index].kategori,
+                                ));
                               },
                             ),
                           ),
@@ -196,7 +212,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
 
   Widget buildNoDataWidget() {
     return Container(
-      // color: Colors.blue,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

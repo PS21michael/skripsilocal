@@ -184,6 +184,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                   urlGambar: urlImage,
                                   kategori: kategori,
                                   publisher: penulis,
+                                  description: description,
                                 );
                                 await bookMarkController.createBookMark(bookmark);
                                 print("Data sudah pernah ada");

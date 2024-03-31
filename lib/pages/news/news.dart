@@ -150,7 +150,7 @@ class _NewsPageState extends State<NewsPage> {
                                                           fontWeight: FontWeight.bold,
                                                         ),
                                                         overflow: TextOverflow.ellipsis,
-                                                        maxLines: 3,
+                                                        maxLines: 2,
                                                       ),
                                                       Row(
                                                         children: [
@@ -165,6 +165,22 @@ class _NewsPageState extends State<NewsPage> {
                                                           ),
                                                         ],
                                                       ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.remove_red_eye,
+                                                            size: 20,
+                                                          ),
+                                                          const SizedBox(width: 4),
+                                                          Text(
+                                                            "${snapshot.data![index].views.toString()}",
+                                                            style: const TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.normal,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -174,8 +190,10 @@ class _NewsPageState extends State<NewsPage> {
                                               controller.getNewsData(snapshot.data![index].title);
                                               await Future.delayed(const Duration(milliseconds: 100));
                                               controller.updateViews(snapshot.data![index].id.toString());
-                                              await Future.delayed(const Duration(milliseconds: 100));
-                                              userController.updateUserScoreCategory(snapshot.data![index].category);
+                                              if(AuthenticationRepository.instance.firebaseUser!=null){
+                                                await Future.delayed(const Duration(milliseconds: 100));
+                                                userController.updateUserScoreCategory(snapshot.data![index].category);
+                                              }
                                               Get.to(() => NewsDetail(
                                                 id: snapshot.data![index].id.toString(),
                                                 title: snapshot.data![index].title,
