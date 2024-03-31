@@ -39,7 +39,67 @@ class _RegisterPageState extends State<RegisterPage> {
     return usernameWithPrefix;
   }
 
-  void SignUpUser(){}
+  bool _obscureText = true;
+  void _TriggerObscureText() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showPopupMessage(context);
+    // });
+  }
+
+  void _showPopupMessage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          elevation: 5,
+          backgroundColor: Colors.white,
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Informasi',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Password harus terdiri dari satu special character, satu angka, satu huruf besar dan lebih dari 8 karakter!',
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.center,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Oke, paham!'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,23 +150,63 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
-                  controller: controller.password,
-                  hintText: 'Password',
-                  obscureText: true,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: controller.password,
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      fillColor: Colors.grey[300],
+                      filled: true,
+                      hintText: 'Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: _TriggerObscureText,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
-                  controller: controller.confirmPassword,
-                  hintText: 'Konfirmasi Password',
-                  obscureText: true,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: controller.confirmPassword,
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      fillColor: Colors.grey[300],
+                      filled: true,
+                      hintText: 'Konfirmasi Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: _TriggerObscureText,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 30),
                 theButton(
                   text: 'Sign Up',
                   onTap: (){
-
-                    // Data yg akan di assign untuk pertama kali
                     final user = UserModel(
                         fullName: randomNames.manFullName(),
                         email: controller.email.text.trim(),
@@ -116,7 +216,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         password: controller.password.text.trim(),
                         joinDate: DateTime.now().toString(),
                         profilePicture: 'https://firebasestorage.googleapis.com/v0/b/indonesia-memilih-c26b0.appspot.com/o/Users%2FImages%2FProfile%2FDefaultImageProject.jpg?alt=media&token=6b2e46b5-a2f6-4377-ade1-7a1046724b8c',
-                        // Adding
                         kategori1: 'Nasional',
                         scoreKategori1: 0,
                         kategori2: 'Bisnis',
@@ -195,7 +294,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         scoreKategori38: 0,
                         //Adding
                     );
-
                     SignUpController.instace.registerAndCreateUser(controller.email.text.trim(), controller.password.text.trim(),
                         controller.confirmPassword.text.trim(), user);
                   },

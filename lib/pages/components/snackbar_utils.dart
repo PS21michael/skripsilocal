@@ -14,7 +14,7 @@ class SnackbarUtils {
         message,
         style: TextStyle(
           fontSize: 18.0,
-          color: Colors.black, // Customize as needed
+          color: Colors.black,
         ),
       ),
     );

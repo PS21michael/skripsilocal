@@ -12,6 +12,7 @@ class BookmarkModel{
   final String urlGambar;
   final String kategori;
   final String publisher;
+  final String description;
 
   BookmarkModel({
     this.id,
@@ -22,16 +23,18 @@ class BookmarkModel{
     required this.urlGambar,
     required this.kategori,
     required this.publisher,
+    required this.description,
   });
 
   static BookmarkModel empty() => BookmarkModel(
-      idNews: '',
-      idPengguna: '',
-      title: '',
-      urlData: '',
-      urlGambar: '',
-      kategori: '',
+    idNews: '',
+    idPengguna: '',
+    title: '',
+    urlData: '',
+    urlGambar: '',
+    kategori: '',
     publisher: '',
+    description: '',
   );
 
   // Json Parser
@@ -44,20 +47,22 @@ class BookmarkModel{
       "UrlGambar" : urlGambar,
       "Kategori" : kategori,
       "Publisher" : publisher,
+      "Description" : description,
     };
   }
 
   factory BookmarkModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
     final data = document.data();
     return BookmarkModel(
-        id: document.id,
-        idNews: data?["IdNews"],
-        idPengguna: data?["IdPengguna"],
-        title: data?["Title"],
-        urlData: data?["UrlData"],
-        urlGambar: data?["UrlGambar"],
-        kategori: data?["Kategori"],
+      id: document.id,
+      idNews: data?["IdNews"],
+      idPengguna: data?["IdPengguna"],
+      title: data?["Title"],
+      urlData: data?["UrlData"],
+      urlGambar: data?["UrlGambar"],
+      kategori: data?["Kategori"],
       publisher: data?["Publisher"],
+      description: data?["Description"],
     );
   }
 

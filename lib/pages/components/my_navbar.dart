@@ -50,26 +50,33 @@ class _MyNavBarState extends State<MyNavBar> {
           padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
           onTabChange : (index) async{
-            if(AuthenticationRepository.instance.firebaseUser==null){
-                  (context) => const LoginPage();
-            } else {
-              UserRepository.instance.resetListScore();
-              await Future.delayed(Duration(milliseconds: 500));
-              await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-              //
-              // await Future.delayed(Duration(milliseconds: 100));
-              // String iduser = UserRepository.instance.getUserModelId();
-              //
-              // await Future.delayed(Duration(milliseconds: 500));
-              // BookmarkRepository.instance.getAllBookmarksFromSingleUser(iduser);
-              // String isDataAvail = BookmarkRepository.instance.isDataAvail();
-              // print("###### + $isDataAvail");
-              String idPengguna = UserRepository.instance.getUserModelId();
-              BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-              String temp = "";
-              temp = BookmarkRepository.instance.isDataAvail();
-              print("isDataAvail $temp");
-            }
+            // if(AuthenticationRepository.instance.firebaseUser==null){
+            //   Get.snackbar(
+            //     'Informasi!',
+            //     'Login dulu yaa!',
+            //     snackPosition: SnackPosition.BOTTOM,
+            //     backgroundColor: Colors.yellow,
+            //     borderRadius: 10.0,
+            //     messageText: Text(
+            //       'Login dulu yaa!',
+            //       style: TextStyle(
+            //         fontSize: 18.0,
+            //         color: Colors.black, // Customize as needed
+            //       ),
+            //     ),
+            //   );
+            //   await Future.delayed(Duration(seconds: 3));
+            //   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+            // } else {
+            //   UserRepository.instance.resetListScore();
+            //   await Future.delayed(Duration(milliseconds: 500));
+            //   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            //   String idPengguna = UserRepository.instance.getUserModelId();
+            //   BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+            //   String temp = "";
+            //   temp = BookmarkRepository.instance.isDataAvail();
+            //   print("isDataAvail $temp");
+            // }
             _tabChange(index);
           },
           tabs: const [
@@ -111,28 +118,97 @@ class _MyNavBarState extends State<MyNavBar> {
           );
           break;
         case 1:
-          Navigator.push(context,
-              MaterialPageRoute(builder: AuthenticationRepository.instance.firebaseUser==null?
-                  (context) => const LoginPage():
-                  (context) => const NewsPage()
-              )
-          );
+          if (AuthenticationRepository.instance.firebaseUser == null) {
+            Get.snackbar(
+              'Informasi!',
+              'Login dulu yaa!',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.yellow,
+              borderRadius: 10.0,
+              messageText: Text(
+                'Login dulu yaa!',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black,
+                ),
+              ),
+            );
+            Future.delayed(Duration(seconds: 3));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          }
+          else {
+            UserRepository.instance.resetListScore();
+            Future.delayed(Duration(milliseconds: 500));
+            UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            String idPengguna = UserRepository.instance.getUserModelId();
+            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+            String temp = "";
+            temp = BookmarkRepository.instance.isDataAvail();
+            print("isDataAvail $temp");
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const NewsPage(),),);
+          }
           break;
         case 2:
-          Navigator.push(context,
-              MaterialPageRoute(builder: AuthenticationRepository.instance.firebaseUser==null?
-                  (context) => const LoginPage():
-                  (context) => const BookmarkPage()
-              )
-          );
+          if (AuthenticationRepository.instance.firebaseUser == null) {
+            Get.snackbar(
+              'Informasi!',
+              'Login dulu yaa!',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.yellow,
+              borderRadius: 10.0,
+              messageText: Text(
+                'Login dulu yaa!',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black,
+                ),
+              ),
+            );
+            Future.delayed(Duration(seconds: 3));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          }
+          else {
+            UserRepository.instance.resetListScore();
+            Future.delayed(Duration(milliseconds: 500));
+            UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            String idPengguna = UserRepository.instance.getUserModelId();
+            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+            String temp = "";
+            temp = BookmarkRepository.instance.isDataAvail();
+            print("isDataAvail $temp");
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
+          }
           break;
         case 3:
-          Navigator.push(context,
-              MaterialPageRoute(builder: AuthenticationRepository.instance.firebaseUser==null?
-                  (context) => const LoginPage():
-                  (context) => ProfilePage()
-              )
-          );
+          if (AuthenticationRepository.instance.firebaseUser == null) {
+            Get.snackbar(
+              'Informasi!',
+              'Login dulu yaa!',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: Colors.yellow,
+              borderRadius: 10.0,
+              messageText: Text(
+                'Login dulu yaa!',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black,
+                ),
+              ),
+            );
+            Future.delayed(Duration(seconds: 3));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          }
+          else {
+            UserRepository.instance.resetListScore();
+            Future.delayed(Duration(milliseconds: 500));
+            UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+            String idPengguna = UserRepository.instance.getUserModelId();
+            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+            String temp = "";
+            temp = BookmarkRepository.instance.isDataAvail();
+            print("isDataAvail $temp");
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+          }
           break;
       }
     });

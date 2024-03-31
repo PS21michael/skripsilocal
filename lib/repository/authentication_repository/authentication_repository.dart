@@ -8,6 +8,7 @@ import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
+import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
@@ -48,13 +49,13 @@ class AuthenticationRepository extends GetxController{
   void onReady() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
-    screenRedirect();
+    // screenRedirect();
     setInitialScreen(_firebaseUser.value);
   }
 
   setInitialScreen (User ? user) async{
     if(user == null){
-      Get.offAll(()=> ExplorePage());
+      Get.offAll(()=> ManageUserScreen());
     } else if(user != null){
       if(user.emailVerified){
         Get.offAll(ProfilePage());
@@ -65,12 +66,11 @@ class AuthenticationRepository extends GetxController{
     print('user authenticated : ${user?.emailVerified}');
   }
 
-  screenRedirect()async{
+  screenRedirect() async{
 
     final user = _auth.currentUser;
 
     if(user != null){
-      // if the user logged in
       if(user.emailVerified){
         // if the user's email is verified, navigate to the main menu
         Get.offAll(const ExplorePage());
@@ -81,8 +81,6 @@ class AuthenticationRepository extends GetxController{
     } else{
       // local storage
       deviceStorage.writeIfNull('isFirstTime', true);
-
-      // check if it's first time launching app
       deviceStorage.read('isFirstTime') != true ?
       Get.offAll(const LoginPage()) :
       // TODO
@@ -197,9 +195,9 @@ class AuthenticationRepository extends GetxController{
     } else if(password.length<8){
       // showToast(message:'Password should at least 8 character');
       showCustomSnackbar("Error", "Password should at least 8 character");
-    } else if(password.length>16){
-      // showToast(message:'Password should maksimum 8 character');
-      showCustomSnackbar("Error", "Password can't more than 16 character");
+    // } else if(password.length>16){
+    //   // showToast(message:'Password should maksimum 8 character');
+    //   showCustomSnackbar("Error", "Password can't more than 16 character");
     } else if (!isHasUpperCase(password)){
       // showToast(message:'Password should have at least one upper case');
       showCustomSnackbar("Error", "Password should have at least one upper case");

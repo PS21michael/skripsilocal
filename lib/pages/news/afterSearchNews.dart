@@ -160,6 +160,22 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
                                                       ),
                                                     ],
                                                   ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.remove_red_eye,
+                                                        size: 20,
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      Text(
+                                                        "${snapshot.data![index].views.toString()}",
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ),
