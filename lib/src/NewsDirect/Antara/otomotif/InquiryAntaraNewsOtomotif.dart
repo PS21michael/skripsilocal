@@ -47,7 +47,9 @@ class _InquiryAntaraNewsOtomotif extends State<InquiryAntaraNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulOtomotifAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraOtomotif(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraOtomotif(tempCtr-1);

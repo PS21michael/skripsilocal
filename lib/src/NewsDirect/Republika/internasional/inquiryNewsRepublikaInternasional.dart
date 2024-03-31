@@ -47,7 +47,9 @@ class _InquiryRepublikaNewsInternasional extends State<InquiryRepublikaNewsInter
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      RepublikaNewsRepository.instance.SetListJudulNewsRepublikaInternasionalNull();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = RepublikaNewsRepository.instance.getDateSaved();
       await RepublikaNewsRepository.instance.getAllNewsRepublikaInternasional(tempCtr);
       await RepublikaNewsRepository.instance.getAllNewsRepublikaInternasional(tempCtr-1);

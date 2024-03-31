@@ -47,7 +47,9 @@ class _InquirySindoNewsSains extends State<InquirySindoNewsSains> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SindoNewsRepository.instance.setNullListJudulSainsSindoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SindoNewsRepository.instance.getDateSaved();
       await SindoNewsRepository.instance.getAllNewsSindoNewsSains(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsSains(tempCtr-1);

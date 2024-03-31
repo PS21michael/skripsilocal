@@ -47,7 +47,9 @@ class _InquiryCNBCNewsLifeStyle extends State<InquiryCNBCNewsLifeStyle> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      CNBCNewsRepository.instance.setNullListJudulLifeStyleCNBCNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = CNBCNewsRepository.instance.getDateSaved();
       await CNBCNewsRepository.instance.getAllNewsCNBCLifeStyle(tempCtr);
       await CNBCNewsRepository.instance.getAllNewsCNBCLifeStyle(tempCtr-1);

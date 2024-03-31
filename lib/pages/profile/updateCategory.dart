@@ -191,81 +191,81 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       for(int i=0; i<filteredCategories.length; i++){
         tempIndexFavorit = listCategoryController.listToScore(filteredCategories[i]);
         if(tempIndexFavorit == 1){
-          kategoriCustomer1 = kategoriCustomer1>=10000?kategoriCustomer1:10000;
+          kategoriCustomer1 = kategoriCustomer1>=1000?kategoriCustomer1:1000;
         } else if(tempIndexFavorit == 2){
-          kategoriCustomer2 = kategoriCustomer2>=10000?kategoriCustomer2:10000;
+          kategoriCustomer2 = kategoriCustomer2>=1000?kategoriCustomer2:1000;
         } else if(tempIndexFavorit == 3){
-          kategoriCustomer3 = kategoriCustomer3>=10000?kategoriCustomer3:10000;
+          kategoriCustomer3 = kategoriCustomer3>=1000?kategoriCustomer3:1000;
         }else if(tempIndexFavorit == 4){
-          kategoriCustomer4 = kategoriCustomer4>=10000?kategoriCustomer4:10000;
+          kategoriCustomer4 = kategoriCustomer4>=1000?kategoriCustomer4:1000;
         }else if(tempIndexFavorit == 5){
-          kategoriCustomer5 = kategoriCustomer5>=10000?kategoriCustomer5:10000;;
+          kategoriCustomer5 = kategoriCustomer5>=1000?kategoriCustomer5:1000;;
         }else if(tempIndexFavorit == 6){
-          kategoriCustomer6 = kategoriCustomer6>=10000?kategoriCustomer6:10000;;
+          kategoriCustomer6 = kategoriCustomer6>=1000?kategoriCustomer6:1000;;
         }else if(tempIndexFavorit == 7){
-          kategoriCustomer7 = kategoriCustomer7>=10000?kategoriCustomer7:10000;;
+          kategoriCustomer7 = kategoriCustomer7>=1000?kategoriCustomer7:1000;;
         }else if(tempIndexFavorit == 8){
-          kategoriCustomer8 = kategoriCustomer8>=10000?kategoriCustomer8:10000;;
+          kategoriCustomer8 = kategoriCustomer8>=1000?kategoriCustomer8:1000;;
         }else if(tempIndexFavorit == 9){
-          kategoriCustomer9 = kategoriCustomer9>=10000?kategoriCustomer9:10000;;
+          kategoriCustomer9 = kategoriCustomer9>=1000?kategoriCustomer9:1000;;
         }else if(tempIndexFavorit == 10){
-          kategoriCustomer10 = kategoriCustomer10>=10000?kategoriCustomer10:10000;;
+          kategoriCustomer10 = kategoriCustomer10>=1000?kategoriCustomer10:1000;;
         } else if(tempIndexFavorit == 11){
-          kategoriCustomer11 = kategoriCustomer11>=10000?kategoriCustomer11:10000;;
+          kategoriCustomer11 = kategoriCustomer11>=1000?kategoriCustomer11:1000;;
         } else if(tempIndexFavorit == 12){
-          kategoriCustomer12 = kategoriCustomer12>=10000?kategoriCustomer12:10000;;
+          kategoriCustomer12 = kategoriCustomer12>=1000?kategoriCustomer12:1000;;
         } else if(tempIndexFavorit == 13){
-          kategoriCustomer13 = kategoriCustomer13>=10000?kategoriCustomer13:10000;;
+          kategoriCustomer13 = kategoriCustomer13>=1000?kategoriCustomer13:1000;;
         }else if(tempIndexFavorit == 14){
-          kategoriCustomer14 = kategoriCustomer14>=10000?kategoriCustomer14:10000;;
+          kategoriCustomer14 = kategoriCustomer14>=1000?kategoriCustomer14:1000;;
         }else if(tempIndexFavorit == 15){
-          kategoriCustomer15 = kategoriCustomer15>=10000?kategoriCustomer15:10000;;
+          kategoriCustomer15 = kategoriCustomer15>=1000?kategoriCustomer15:1000;;
         }else if(tempIndexFavorit == 16){
-          kategoriCustomer16 = kategoriCustomer16>=10000?kategoriCustomer16:10000;;
+          kategoriCustomer16 = kategoriCustomer16>=1000?kategoriCustomer16:1000;;
         }else if(tempIndexFavorit == 17){
-          kategoriCustomer17 = kategoriCustomer17>=10000?kategoriCustomer17:10000;;
+          kategoriCustomer17 = kategoriCustomer17>=1000?kategoriCustomer17:1000;;
         }else if(tempIndexFavorit == 18){
-          kategoriCustomer18 = kategoriCustomer18>=10000?kategoriCustomer18:10000;;
+          kategoriCustomer18 = kategoriCustomer18>=1000?kategoriCustomer18:1000;;
         }else if(tempIndexFavorit == 19){
-          kategoriCustomer19 = kategoriCustomer19>=10000?kategoriCustomer19:10000;;
+          kategoriCustomer19 = kategoriCustomer19>=1000?kategoriCustomer19:1000;;
         }else if(tempIndexFavorit == 20){
-          kategoriCustomer20 = kategoriCustomer20>=10000?kategoriCustomer20:10000;;
+          kategoriCustomer20 = kategoriCustomer20>=1000?kategoriCustomer20:1000;;
         } else if(tempIndexFavorit == 21){
-          kategoriCustomer21 = kategoriCustomer21>=10000?kategoriCustomer21:10000;;
+          kategoriCustomer21 = kategoriCustomer21>=1000?kategoriCustomer21:1000;;
         } else if(tempIndexFavorit == 22){
-          kategoriCustomer22 = kategoriCustomer22>=10000?kategoriCustomer22:10000;;
+          kategoriCustomer22 = kategoriCustomer22>=1000?kategoriCustomer22:1000;;
         } else if(tempIndexFavorit == 23){
-          kategoriCustomer23 = kategoriCustomer23>=10000?kategoriCustomer23:10000;;
+          kategoriCustomer23 = kategoriCustomer23>=1000?kategoriCustomer23:1000;;
         }else if(tempIndexFavorit == 24){
-          kategoriCustomer24 = kategoriCustomer24>=10000?kategoriCustomer24:10000;;
+          kategoriCustomer24 = kategoriCustomer24>=1000?kategoriCustomer24:1000;;
         }else if(tempIndexFavorit == 25){
-          kategoriCustomer25 = kategoriCustomer25>=10000?kategoriCustomer25:10000;;
+          kategoriCustomer25 = kategoriCustomer25>=1000?kategoriCustomer25:1000;;
         }else if(tempIndexFavorit == 26){
-          kategoriCustomer26 = kategoriCustomer26>=10000?kategoriCustomer26:10000;;
+          kategoriCustomer26 = kategoriCustomer26>=1000?kategoriCustomer26:1000;;
         }else if(tempIndexFavorit == 27){
-          kategoriCustomer27 = kategoriCustomer27>=10000?kategoriCustomer27:10000;;
+          kategoriCustomer27 = kategoriCustomer27>=1000?kategoriCustomer27:1000;;
         }else if(tempIndexFavorit == 28){
-          kategoriCustomer28 = kategoriCustomer28>=10000?kategoriCustomer28:10000;;
+          kategoriCustomer28 = kategoriCustomer28>=1000?kategoriCustomer28:1000;;
         }else if(tempIndexFavorit == 29){
-          kategoriCustomer29 = kategoriCustomer29>=10000?kategoriCustomer29:10000;;
+          kategoriCustomer29 = kategoriCustomer29>=1000?kategoriCustomer29:1000;;
         }else if(tempIndexFavorit == 30){
-          kategoriCustomer30 = kategoriCustomer30>=10000?kategoriCustomer30:10000;;
+          kategoriCustomer30 = kategoriCustomer30>=1000?kategoriCustomer30:1000;;
         } else if(tempIndexFavorit == 31){
-          kategoriCustomer31 = kategoriCustomer31>=10000?kategoriCustomer31:10000;;
+          kategoriCustomer31 = kategoriCustomer31>=1000?kategoriCustomer31:1000;;
         } else if(tempIndexFavorit == 32){
-          kategoriCustomer32 = kategoriCustomer32>=10000?kategoriCustomer32:10000;;
+          kategoriCustomer32 = kategoriCustomer32>=1000?kategoriCustomer32:1000;;
         } else if(tempIndexFavorit == 33){
-          kategoriCustomer33 = kategoriCustomer33>=10000?kategoriCustomer33:10000;;
+          kategoriCustomer33 = kategoriCustomer33>=1000?kategoriCustomer33:1000;;
         }else if(tempIndexFavorit == 34){
-          kategoriCustomer34 = kategoriCustomer34>=10000?kategoriCustomer34:10000;;
+          kategoriCustomer34 = kategoriCustomer34>=1000?kategoriCustomer34:1000;;
         }else if(tempIndexFavorit == 35){
-          kategoriCustomer35 = kategoriCustomer35>=10000?kategoriCustomer35:10000;;
+          kategoriCustomer35 = kategoriCustomer35>=1000?kategoriCustomer35:1000;;
         }else if(tempIndexFavorit == 36){
-          kategoriCustomer36 = kategoriCustomer36>=10000?kategoriCustomer36:10000;;
+          kategoriCustomer36 = kategoriCustomer36>=1000?kategoriCustomer36:1000;;
         }else if(tempIndexFavorit == 37){
-          kategoriCustomer37 = kategoriCustomer37>=10000?kategoriCustomer37:10000;;
+          kategoriCustomer37 = kategoriCustomer37>=1000?kategoriCustomer37:1000;;
         }else if(tempIndexFavorit == 38){
-          kategoriCustomer38 = kategoriCustomer38>=10000?kategoriCustomer38:10000;;
+          kategoriCustomer38 = kategoriCustomer38>=1000?kategoriCustomer38:1000;;
         }
 
 
@@ -276,81 +276,81 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       for(int i=0; i<removeCategories.length; i++){
         tempIndexRemover = listCategoryController.listToScore(removeCategories[i]);
         if(tempIndexRemover == 1){
-          kategoriCustomer1-=10000;
+          kategoriCustomer1-=1000;
         } else if(tempIndexRemover == 2){
-          kategoriCustomer2-=10000;
+          kategoriCustomer2-=1000;
         } else if(tempIndexRemover == 3){
-          kategoriCustomer3-=10000;
+          kategoriCustomer3-=1000;
         }else if(tempIndexRemover == 4){
-          kategoriCustomer4-=10000;
+          kategoriCustomer4-=1000;
         }else if(tempIndexRemover == 5){
-          kategoriCustomer5-=10000;
+          kategoriCustomer5-=1000;
         }else if(tempIndexRemover == 6){
-          kategoriCustomer6-=10000;
+          kategoriCustomer6-=1000;
         }else if(tempIndexRemover == 7){
-          kategoriCustomer7-=10000;
+          kategoriCustomer7-=1000;
         }else if(tempIndexRemover == 8){
-          kategoriCustomer8-=10000;
+          kategoriCustomer8-=1000;
         }else if(tempIndexRemover == 9){
-          kategoriCustomer9-=10000;
+          kategoriCustomer9-=1000;
         }else if(tempIndexRemover == 10){
-          kategoriCustomer10-=10000;
+          kategoriCustomer10-=1000;
         } else if(tempIndexRemover == 11){
-          kategoriCustomer11-=10000;
+          kategoriCustomer11-=1000;
         } else if(tempIndexRemover == 12){
-          kategoriCustomer12-=10000;
+          kategoriCustomer12-=1000;
         } else if(tempIndexRemover == 13){
-          kategoriCustomer13-=10000;
+          kategoriCustomer13-=1000;
         }else if(tempIndexRemover == 14){
-          kategoriCustomer14-=10000;
+          kategoriCustomer14-=1000;
         }else if(tempIndexRemover == 15){
-          kategoriCustomer15-=10000;
+          kategoriCustomer15-=1000;
         }else if(tempIndexRemover == 16){
-          kategoriCustomer16-=10000;
+          kategoriCustomer16-=1000;
         }else if(tempIndexRemover == 17){
-          kategoriCustomer17-=10000;
+          kategoriCustomer17-=1000;
         }else if(tempIndexRemover == 18){
-          kategoriCustomer18-=10000;
+          kategoriCustomer18-=1000;
         }else if(tempIndexRemover == 19){
-          kategoriCustomer19-=10000;
+          kategoriCustomer19-=1000;
         }else if(tempIndexRemover == 20){
-          kategoriCustomer20-=10000;
+          kategoriCustomer20-=1000;
         } else if(tempIndexRemover == 21){
-          kategoriCustomer21-=10000;
+          kategoriCustomer21-=1000;
         } else if(tempIndexRemover == 22){
-          kategoriCustomer22-=10000;
+          kategoriCustomer22-=1000;
         } else if(tempIndexRemover == 23){
-          kategoriCustomer23-=10000;
+          kategoriCustomer23-=1000;
         }else if(tempIndexRemover == 24){
-          kategoriCustomer24-=10000;
+          kategoriCustomer24-=1000;
         }else if(tempIndexRemover == 25){
-          kategoriCustomer25-=10000;
+          kategoriCustomer25-=1000;
         }else if(tempIndexRemover == 26){
-          kategoriCustomer26-=10000;
+          kategoriCustomer26-=1000;
         }else if(tempIndexRemover == 27){
-          kategoriCustomer27-=10000;
+          kategoriCustomer27-=1000;
         }else if(tempIndexRemover == 28){
-          kategoriCustomer28-=10000;
+          kategoriCustomer28-=1000;
         }else if(tempIndexRemover == 29){
-          kategoriCustomer29-=10000;
+          kategoriCustomer29-=1000;
         }else if(tempIndexRemover == 30){
-          kategoriCustomer30-=10000;
+          kategoriCustomer30-=1000;
         } else if(tempIndexRemover == 31){
-          kategoriCustomer31-=10000;
+          kategoriCustomer31-=1000;
         } else if(tempIndexRemover == 32){
-          kategoriCustomer32-=10000;
+          kategoriCustomer32-=1000;
         } else if(tempIndexRemover == 33){
-          kategoriCustomer33-=10000;
+          kategoriCustomer33-=1000;
         }else if(tempIndexRemover == 34){
-          kategoriCustomer34-=10000;
+          kategoriCustomer34-=1000;
         }else if(tempIndexRemover == 35){
-          kategoriCustomer35-=10000;
+          kategoriCustomer35-=1000;
         }else if(tempIndexRemover == 36){
-          kategoriCustomer36-=10000;
+          kategoriCustomer36-=1000;
         }else if(tempIndexRemover == 37){
-          kategoriCustomer37-=10000;
+          kategoriCustomer37-=1000;
         }else if(tempIndexRemover == 38){
-          kategoriCustomer38-=10000;
+          kategoriCustomer38-=1000;
         }
 
 

@@ -47,7 +47,9 @@ class _InquirySindoNewsOtomotif extends State<InquirySindoNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SindoNewsRepository.instance.setNullListJudulOtomotifSindoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SindoNewsRepository.instance.getDateSaved();
       await SindoNewsRepository.instance.getAllNewsSindoNewsOtomotif(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsOtomotif(tempCtr-1);

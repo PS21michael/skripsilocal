@@ -47,7 +47,9 @@ class _InquiryTempoNewsDifabel extends State<InquiryTempoNewsDifabel> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      TempoNewsRepository.instance.setNullListJudulDifabelTempoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = TempoNewsRepository.instance.getDateSaved();
       await TempoNewsRepository.instance.getAllNewsTempoDifabel(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoDifabel(tempCtr-1);

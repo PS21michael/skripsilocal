@@ -47,7 +47,9 @@ class _InquiryAntaraNewsInternasional extends State<InquiryAntaraNewsInternasion
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulInternasionalAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraInternasional(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraInternasional(tempCtr-1);

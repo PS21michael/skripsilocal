@@ -47,7 +47,9 @@ class _InquirySuaraBola extends State<InquirySuaraNewsBola> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SuaraNewsRepository.instance.setNullListJudulBolaSuaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SuaraNewsRepository.instance.getDateSaved();
       await SuaraNewsRepository.instance.getAllNewsSuaraBola(tempCtr);
       await SuaraNewsRepository.instance.getAllNewsSuaraBola(tempCtr-1);

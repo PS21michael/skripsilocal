@@ -35,7 +35,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNews).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulNews =[];
     for(int i=0; i<newsData.length; i++){
       listJudulNews.add(newsData[i].title);
     }
@@ -56,7 +55,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDaerah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulDaerah =[];
     for(int i=0; i<newsData.length; i++){
       listJudulDaerah.add(newsData[i].title);
     }
@@ -77,7 +75,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryKhazanah).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulKhazanah =[];
     for(int i=0; i<newsData.length; i++){
       listJudulKhazanah.add(newsData[i].title);
     }
@@ -98,7 +95,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryIslam).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulIslam =[];
     for(int i=0; i<newsData.length; i++){
       listJudulIslam.add(newsData[i].title);
     }
@@ -119,7 +115,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInternasional).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulInternasional =[];
     for(int i=0; i<newsData.length; i++){
       listJudulInternasional.add(newsData[i].title);
     }
@@ -142,7 +137,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulBola =[];
     for(int i=0; i<newsData.length; i++){
       listJudulBola.add(newsData[i].title);
     }
@@ -163,7 +157,6 @@ class RepublikaNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryLeisure).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulLeisure =[];
     for(int i=0; i<newsData.length; i++){
       listJudulLeisure.add(newsData[i].title);
     }

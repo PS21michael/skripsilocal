@@ -10,6 +10,7 @@ import 'package:skripsilocal/pages/news/FilterExplore.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
 
+import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import 'NewsDetail.dart';
 
@@ -24,6 +25,8 @@ class _ExplorePageState extends State<ExplorePage> {
   String idBer = "";
   String ? selectedFilter;
   List<String> filters = ['Terbaru', 'Terlama'];
+  List<String> userCategoryOver = [];
+  final listCategoryController = Get.put(CategoryListParser());
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +145,47 @@ class _ExplorePageState extends State<ExplorePage> {
                                                 await Future.delayed(const Duration(milliseconds: 100));
                                                 userController.updateUserScoreCategory(snapshot.data![index].category);
                                               }
+
+                                              // Check Score over limit
+                                              userCategoryOver = [];
+                                              await Future.delayed(const Duration(milliseconds: 100));
+                                              String flagCategoryOver = userController.getFlagOverScore();
+                                              await Future.delayed(const Duration(milliseconds: 100));
+                                              List<int> indexOverScore = [];
+                                              indexOverScore = userController.getListIndexOverScoreCategory();
+
+                                              if(flagCategoryOver == "TRUE"){
+                                                userCategoryOver = listCategoryController.parseScoreOverToList(indexOverScore);
+                                              }
+
+                                              // Data yg over limit dikirim dalam bentuk list string
+
+                                              // Ekspetasi dari FE :
+                                              // Kirim list kategori yang dipilih dan yang tidak dipilih
+
+                                              String persetujuan = "";
+                                              List<String> listKategoriYgMauDiUpdate = [];
+                                              List<String> listKategoriYgTidakUpdate = userCategoryOver;
+
+                                              // Kalau YES ==> Jadi Favorit, Score = 1000
+                                              // Kalau NO ==> Score kembali jadi 0.
+
+                                              if(listKategoriYgMauDiUpdate.length !=0){
+                                                await Future.delayed(const Duration(milliseconds: 50));
+                                                for(int i=0; i<listKategoriYgMauDiUpdate.length; i++){
+                                                  await Future.delayed(const Duration(milliseconds: 100));
+                                                  userController.updateUserScoreOverLimitCategory(listKategoriYgMauDiUpdate[i].toString(), 1000);
+                                                }
+                                              }
+
+                                              if(listKategoriYgTidakUpdate.length !=0){
+                                                await Future.delayed(const Duration(milliseconds: 50));
+                                                for(int i=0; i<listKategoriYgTidakUpdate.length; i++){
+                                                  await Future.delayed(const Duration(milliseconds: 100));
+                                                  userController.updateUserScoreOverLimitCategory(listKategoriYgTidakUpdate[i].toString(), 0);
+                                                }
+                                              }
+
                                               Get.to(() => NewsDetail(
                                                 id: snapshot.data![index].id.toString(),
                                                 title: snapshot.data![index].title,

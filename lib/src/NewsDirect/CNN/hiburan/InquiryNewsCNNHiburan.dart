@@ -47,7 +47,9 @@ class _InquiryCNNNewsHiburan extends State<InquiryCNNNewsHiburan> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      CNNNewsRepository.instance.setNullListJudulHiburanCNNNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = CNNNewsRepository.instance.getDateSaved();
       await CNNNewsRepository.instance.getAllNewsCNNHiburan(tempCtr);
       await CNNNewsRepository.instance.getAllNewsCNNHiburan(tempCtr-1);

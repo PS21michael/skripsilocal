@@ -47,7 +47,9 @@ class _InquirySuaraHealth extends State<InquirySuaraNewsHealth> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SuaraNewsRepository.instance.setNullListJudulHealthSuaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SuaraNewsRepository.instance.getDateSaved();
       await SuaraNewsRepository.instance.getAllNewsSuaraHealth(tempCtr);
       await SuaraNewsRepository.instance.getAllNewsSuaraHealth(tempCtr-1);

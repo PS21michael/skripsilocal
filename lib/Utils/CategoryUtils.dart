@@ -254,7 +254,7 @@ class CategoryListParser extends GetxController{
   List<String> parseScoreToList(List<int> listScore){
     List<String> listFavorit =[];
     for(int i=0; i<listScore.length; i++){
-      if(listScore[i].isGreaterThan(9999)){
+      if(listScore[i].isGreaterThan(999)){
         listFavorit.add(scoreToList(i));
       }
     }
@@ -262,5 +262,12 @@ class CategoryListParser extends GetxController{
     return listFavorit;
   }
 
+  List<String> parseScoreOverToList(List<int> listScore){
+    List<String> listFavorit =[];
+    for(int i=0; i<listScore.length; i++){
+        listFavorit.add(scoreToList(listScore[i]));
+    }
+    return listFavorit;
+  }
 
 }

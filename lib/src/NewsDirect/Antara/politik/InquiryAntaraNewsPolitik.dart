@@ -47,30 +47,33 @@ class _InquiryAntaraNewsPolitik extends State<InquiryAntaraNewsPolitik> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulPolitikAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       await AntaraNewsRepository.instance.getAllNewsAntaraPolitik(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraPolitik(tempCtr-1);
       await AntaraNewsRepository.instance.getAllNewsAntaraPolitik(tempCtr-2);
       await AntaraNewsRepository.instance.getAllNewsAntaraPolitik(tempCtr-3);
       List<String> listJudul = AntaraNewsRepository.instance.getListJudulPolitikAntaraNews();
+
       for(int i=0; i<dataFetching!.data!.posts.length;i++){
         if(listJudul.contains(dataFetching!.data!.posts![i].title)){
-          print('Data yang duplikat ada sebanyak ${i}');
+          print('Data yang duplikat ada sebanyak ${i+1}');
           continue;
         }else {
-          final news = NewsModel(
-              publisher: publisher,
-              author: author,
-              title: dataFetching!.data!.posts![i].title.toString(),
-              description: dataFetching!.data!.posts![i].description.toString(),
-              urlImage: dataFetching!.data!.posts![i].thumbnail.toString(),
-              urlNews: dataFetching!.data!.posts![i].link.toString(),
-              publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
-              category: category,
-              views: 0,
-              saveDate: tempCtr==0?AntaraNewsRepository.instance.getDateSaved():tempCtr);
-          await newsRepo.saveNewsAntara(news);
+            final news = NewsModel(
+                publisher: publisher,
+                author: author,
+                title: dataFetching!.data!.posts![i].title.toString(),
+                description: dataFetching!.data!.posts![i].description.toString(),
+                urlImage: dataFetching!.data!.posts![i].thumbnail.toString(),
+                urlNews: dataFetching!.data!.posts![i].link.toString(),
+                publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
+                category: category,
+                views: 0,
+                saveDate: tempCtr==0?AntaraNewsRepository.instance.getDateSaved():tempCtr);
+            await newsRepo.saveNewsAntara(news);
         }
       }
     } catch (e) {

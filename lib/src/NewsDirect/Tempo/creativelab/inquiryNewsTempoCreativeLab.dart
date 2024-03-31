@@ -47,7 +47,9 @@ class _InquiryTempoNewsCreativeLab extends State<InquiryTempoNewsCreativeLab> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      TempoNewsRepository.instance.setNullListJudulCreativeLabTempoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = TempoNewsRepository.instance.getDateSaved();
       await TempoNewsRepository.instance.getAllNewsTempoCreativeLab(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoCreativeLab(tempCtr-1);

@@ -61,6 +61,10 @@ class ProfileController extends GetxController{
     await _userRepo.updateUserRecord(user, email!);
   }
 
+  Future<void> updateUserOverLimitCategory(Map<String, dynamic> json)async{
+    await _userRepo.updateUserOverLimitCategoryRecord(json);
+  }
+
   uploadProfilePicture() async{
     final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70,
     maxHeight: 512, maxWidth: 512);
@@ -109,9 +113,22 @@ class ProfileController extends GetxController{
     return _userRepo.getUserModelId();
   }
 
+  String getFlagOverScore(){
+    return _userRepo.getUserOverScoreCategory();
+  }
+
+  List<int> getListIndexOverScoreCategory(){
+    return _userRepo.getListScoreOverCategory();
+  }
+
   Future<void> updateUserScoreCategory(String category)async{
     await _userRepo.updateSingelScore(category);
   }
+
+  Future<void> updateUserScoreOverLimitCategory(String category, int Score)async{
+    await _userRepo.updateSingelScoreOverLimit(category, Score);
+  }
+
 
   Future<void> deleteUserAuth() async{
     try{

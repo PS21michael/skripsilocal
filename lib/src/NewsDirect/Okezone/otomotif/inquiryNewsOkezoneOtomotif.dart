@@ -47,7 +47,9 @@ class _InquiryOkezoneNewsOtomotif extends State<InquiryOkezoneNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      OkezoneNewsRepository.instance.setNullListJudulOtomotifOkezoneNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = OkezoneNewsRepository.instance.getDateSaved();
       await OkezoneNewsRepository.instance.getAllNewsOkezoneOtomotif(tempCtr);
       await OkezoneNewsRepository.instance.getAllNewsOkezoneOtomotif(tempCtr-1);

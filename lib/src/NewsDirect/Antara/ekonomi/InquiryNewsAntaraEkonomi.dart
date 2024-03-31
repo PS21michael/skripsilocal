@@ -47,7 +47,9 @@ class _InquiryAntaraNewsEkonomi extends State<InquiryAntaraNewsEkonomi> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulEkonomiAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraEkonomi(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraEkonomi(tempCtr-1);

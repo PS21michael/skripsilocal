@@ -47,7 +47,9 @@ class _InquiryRepublikaNewsKhazanah extends State<InquiryRepublikaNewsKhazanah> 
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      RepublikaNewsRepository.instance.SetListJudulNewsRepublikaKhazanahNull();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = RepublikaNewsRepository.instance.getDateSaved();
       await RepublikaNewsRepository.instance.getAllNewsRepublikaKhazanah(tempCtr);
       await RepublikaNewsRepository.instance.getAllNewsRepublikaKhazanah(tempCtr-1);

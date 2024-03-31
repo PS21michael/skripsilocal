@@ -47,7 +47,9 @@ class _InquirySindoNewsInternational extends State<InquirySindoNewsInternational
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SindoNewsRepository.instance.setNullListJudulInternasionalSindoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SindoNewsRepository.instance.getDateSaved();
       await SindoNewsRepository.instance.getAllNewsSindoNewsInternasional(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsInternasional(tempCtr-1);

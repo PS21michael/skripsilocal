@@ -47,7 +47,9 @@ class _InquiryTempoNewsCantik extends State<InquiryTempoNewsCantik> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      TempoNewsRepository.instance.setNullListJudulCantikTempoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = TempoNewsRepository.instance.getDateSaved();
       await TempoNewsRepository.instance.getAllNewsTempoCantik(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoCantik(tempCtr-1);

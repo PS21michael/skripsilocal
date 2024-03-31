@@ -47,7 +47,9 @@ class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      SuaraNewsRepository.instance.setNullListJudulOtomotifSuaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = SuaraNewsRepository.instance.getDateSaved();
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr);
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr-1);

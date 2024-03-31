@@ -47,7 +47,9 @@ class _InquiryOkezoneNewsLifeStyle extends State<InquiryOkezoneNewsLifeStyle> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      OkezoneNewsRepository.instance.setNullListJudulLifestyleOkezoneNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = OkezoneNewsRepository.instance.getDateSaved();
       await OkezoneNewsRepository.instance.getAllNewsOkezoneLifestyle(tempCtr);
       await OkezoneNewsRepository.instance.getAllNewsOkezoneLifestyle(tempCtr-1);

@@ -47,7 +47,9 @@ class _InquiryTempoMetro extends State<InquiryTempoNewsMetro> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      TempoNewsRepository.instance.setNullListJudulMetroTempoNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = TempoNewsRepository.instance.getDateSaved();
       await TempoNewsRepository.instance.getAllNewsTempoMetro(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoMetro(tempCtr-1);

@@ -47,7 +47,9 @@ class _InquiryCNNNewsOlahraga extends State<InquiryCNNNewsOlahraga> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      CNNNewsRepository.instance.setNullListJudulOlahragaCNNNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = CNNNewsRepository.instance.getDateSaved();
       await CNNNewsRepository.instance.getAllNewsCNNOlahraga(tempCtr);
       await CNNNewsRepository.instance.getAllNewsCNNOlahraga(tempCtr-1);

@@ -160,81 +160,81 @@ class _PickCategoryState extends State<PickCategory> {
       for(int i=0; i<filteredCategories.length; i++){
         tempIndex = listCategoryController.listToScore(filteredCategories[i]);
         if(tempIndex == 1){
-          kategoriCustomer1 = 10000;
+          kategoriCustomer1 = 1000;
         } else if(tempIndex == 2){
-          kategoriCustomer2 = 10000;
+          kategoriCustomer2 = 1000;
         } else if(tempIndex == 3){
-          kategoriCustomer3 = 10000;
+          kategoriCustomer3 = 1000;
         }else if(tempIndex == 4){
-          kategoriCustomer4 = 10000;
+          kategoriCustomer4 = 1000;
         }else if(tempIndex == 5){
-          kategoriCustomer5 = 10000;
+          kategoriCustomer5 = 1000;
         }else if(tempIndex == 6){
-          kategoriCustomer6 = 10000;
+          kategoriCustomer6 = 1000;
         }else if(tempIndex == 7){
-          kategoriCustomer7 = 10000;
+          kategoriCustomer7 = 1000;
         }else if(tempIndex == 8){
-          kategoriCustomer8 = 10000;
+          kategoriCustomer8 = 1000;
         }else if(tempIndex == 9){
-          kategoriCustomer9 = 10000;
+          kategoriCustomer9 = 1000;
         }else if(tempIndex == 10){
-          kategoriCustomer10 = 10000;
+          kategoriCustomer10 = 1000;
         } else if(tempIndex == 11){
-          kategoriCustomer11 = 10000;
+          kategoriCustomer11 = 1000;
         } else if(tempIndex == 12){
-          kategoriCustomer12 = 10000;
+          kategoriCustomer12 = 1000;
         } else if(tempIndex == 13){
-          kategoriCustomer13 = 10000;
+          kategoriCustomer13 = 1000;
         }else if(tempIndex == 14){
-          kategoriCustomer14 = 10000;
+          kategoriCustomer14 = 1000;
         }else if(tempIndex == 15){
-          kategoriCustomer15 = 10000;
+          kategoriCustomer15 = 1000;
         }else if(tempIndex == 16){
-          kategoriCustomer16 = 10000;
+          kategoriCustomer16 = 1000;
         }else if(tempIndex == 17){
-          kategoriCustomer17 = 10000;
+          kategoriCustomer17 = 1000;
         }else if(tempIndex == 18){
-          kategoriCustomer18 = 10000;
+          kategoriCustomer18 = 1000;
         }else if(tempIndex == 19){
-          kategoriCustomer19 = 10000;
+          kategoriCustomer19 = 1000;
         }else if(tempIndex == 20){
-          kategoriCustomer20 = 10000;
+          kategoriCustomer20 = 1000;
         } else if(tempIndex == 21){
-          kategoriCustomer21 = 10000;
+          kategoriCustomer21 = 1000;
         } else if(tempIndex == 22){
-          kategoriCustomer22 = 10000;
+          kategoriCustomer22 = 1000;
         } else if(tempIndex == 23){
-          kategoriCustomer23 = 10000;
+          kategoriCustomer23 = 1000;
         }else if(tempIndex == 24){
-          kategoriCustomer24 = 10000;
+          kategoriCustomer24 = 1000;
         }else if(tempIndex == 25){
-          kategoriCustomer25 = 10000;
+          kategoriCustomer25 = 1000;
         }else if(tempIndex == 26){
-          kategoriCustomer26 = 10000;
+          kategoriCustomer26 = 1000;
         }else if(tempIndex == 27){
-          kategoriCustomer27 = 10000;
+          kategoriCustomer27 = 1000;
         }else if(tempIndex == 28){
-          kategoriCustomer28 = 10000;
+          kategoriCustomer28 = 1000;
         }else if(tempIndex == 29){
-          kategoriCustomer29 = 10000;
+          kategoriCustomer29 = 1000;
         }else if(tempIndex == 30){
-          kategoriCustomer30 = 10000;
+          kategoriCustomer30 = 1000;
         } else if(tempIndex == 31){
-          kategoriCustomer31 = 10000;
+          kategoriCustomer31 = 1000;
         } else if(tempIndex == 32){
-          kategoriCustomer32 = 10000;
+          kategoriCustomer32 = 1000;
         } else if(tempIndex == 33){
-          kategoriCustomer33 = 10000;
+          kategoriCustomer33 = 1000;
         }else if(tempIndex == 34){
-          kategoriCustomer34 = 10000;
+          kategoriCustomer34 = 1000;
         }else if(tempIndex == 35){
-          kategoriCustomer35 = 10000;
+          kategoriCustomer35 = 1000;
         }else if(tempIndex == 36){
-          kategoriCustomer36 = 10000;
+          kategoriCustomer36 = 1000;
         }else if(tempIndex == 37){
-          kategoriCustomer37 = 10000;
+          kategoriCustomer37 = 1000;
         }else if(tempIndex == 38){
-          kategoriCustomer38 = 10000;
+          kategoriCustomer38 = 1000;
         }
 
         // Batas for

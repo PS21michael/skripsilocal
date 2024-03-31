@@ -47,7 +47,9 @@ class _InquiryRepublikaNewsLeisure extends State<InquiryRepublikaNewsLeisure> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      RepublikaNewsRepository.instance.SetListJudulNewsRepublikaLeisureNull();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = RepublikaNewsRepository.instance.getDateSaved();
       await RepublikaNewsRepository.instance.getAllNewsRepublikaLeisure(tempCtr);
       await RepublikaNewsRepository.instance.getAllNewsRepublikaLeisure(tempCtr-1);

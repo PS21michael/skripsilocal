@@ -34,7 +34,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNasional).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulNasional =[];
     for(int i=0; i<newsData.length;i++){
       listJudulNasional.add(newsData[i].title);
     }
@@ -54,7 +53,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInternasional).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulInternasional =[];
     for(int i=0; i<newsData.length;i++){
       listJudulInternasional.add(newsData[i].title);
     }
@@ -74,7 +72,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEkonomi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulEkonomi =[];
     for(int i=0; i<newsData.length;i++){
       listJudulEkonomi.add(newsData[i].title);
     }
@@ -95,7 +92,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOlahraga).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulOlahraga =[];
     for(int i=0; i<newsData.length;i++){
       listJudulOlahraga.add(newsData[i].title);
     }
@@ -116,7 +112,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulTeknologi =[];
     for(int i=0; i<newsData.length;i++){
       listJudulTeknologi.add(newsData[i].title);
     }
@@ -137,7 +132,6 @@ class CNNNewsRepository extends GetxController{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryHiburan).
     where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
-    listJudulHiburan =[];
     for(int i=0; i<newsData.length;i++){
       listJudulHiburan.add(newsData[i].title);
     }

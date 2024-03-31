@@ -47,7 +47,9 @@ class _InquiryAntaraNewsLifeStyle extends State<InquiryAntaraNewsLifeStyle> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulLifeStyleAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraLifeStyle(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraLifeStyle(tempCtr-1);

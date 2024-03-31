@@ -47,7 +47,9 @@ class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      CNBCNewsRepository.instance.setNullListJudulEntrepreneurCNBCNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = CNBCNewsRepository.instance.getDateSaved();
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr);
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr-1);

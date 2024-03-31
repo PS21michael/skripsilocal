@@ -47,7 +47,9 @@ class _InquiryMerdekaNewsJakarta extends State<InquiryMerdekaNewsJakarta> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      MerdekaNewsRepository.instance.setNullListJudulJakartaMerdekaNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = MerdekaNewsRepository.instance.getDateSaved();
       await MerdekaNewsRepository.instance.getAllNewsMerdekaJakarta(tempCtr);
       await MerdekaNewsRepository.instance.getAllNewsMerdekaJakarta(tempCtr-1);

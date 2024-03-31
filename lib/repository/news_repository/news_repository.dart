@@ -100,9 +100,8 @@ class NewsRepository extends GetxController{
     return author;
   }
 
-
   Future<List<NewsModel>> getAllNews() async{
-    final snapshot = await _db.collection("/News").orderBy("Views",descending: true).get();
+    final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).orderBy("Views",descending: true).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     listJudul = [];
     for(int i=0; i<newsData.length;i++){
@@ -111,14 +110,20 @@ class NewsRepository extends GetxController{
     return newsData;
   }
 
+  Future<List<NewsModel>> getAllNews86() async{
+    final snapshot = await _db.collection("/News").where("SaveDate", isEqualTo: 86).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    return newsData;
+  }
+
   // Rentang waktu
   Future<List<NewsModel>> getAllNewsBasedOnDate(String periode) async{
     if(periode == "DESC"){
-      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).get();
+      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).orderBy("Views",descending: true).get();
       final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
       return newsData;
     } else{
-      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: false).get();
+      final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: false).orderBy("Views",descending: true).get();
       final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
       return newsData;
     }
@@ -127,11 +132,11 @@ class NewsRepository extends GetxController{
   // List Favorit + Rentang waktu
   Future<List<NewsModel>> getAllNewsBasedOnDateAndListFavorit(List<String> listFavorit, String periode) async{
     if(periode == "DESC"){
-      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: true).get();
+      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: true).orderBy("Views",descending: true).get();
       final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
       return newsData;
     } else{
-      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: false).get();
+      final snapshot = await _db.collection("/News").where("Category", whereIn: listFavorit).orderBy("PublishedTime", descending: false).orderBy("Views",descending: true).get();
       final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
       return newsData;
     }
@@ -139,7 +144,7 @@ class NewsRepository extends GetxController{
 
   // List Favorit
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
-    final snapshot = await _db.collection("/News").orderBy("Views",descending: true)
+    final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).orderBy("Views",descending: true)
         .where("Category", whereIn: listFavorit).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
 

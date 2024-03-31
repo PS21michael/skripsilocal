@@ -47,7 +47,9 @@ class _InquiryAntaraNewsHukum extends State<InquiryAntaraNewsHukum> {
         _isLoading = false;
         setState(() {});
       }
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(Duration(milliseconds: 100));
+      AntaraNewsRepository.instance.setNullListJudulHukumAntaraNews();
+      await Future.delayed(Duration(milliseconds: 100));
       int tempCtr = AntaraNewsRepository.instance.getDateSaved();
       await AntaraNewsRepository.instance.getAllNewsAntaraHukum(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraHukum(tempCtr-1);
