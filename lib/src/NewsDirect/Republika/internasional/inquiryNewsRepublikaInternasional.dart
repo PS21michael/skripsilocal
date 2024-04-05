@@ -19,7 +19,7 @@ class InquiryRepublikaNewsInternasional extends StatefulWidget {
 class _InquiryRepublikaNewsInternasional extends State<InquiryRepublikaNewsInternasional> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(RepublikaNewsRepository());
 
@@ -71,7 +71,7 @@ class _InquiryRepublikaNewsInternasional extends State<InquiryRepublikaNewsInter
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?RepublikaNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?RepublikaNewsRepository.instance.getDateSaved():tempCtr);
           await newsRepo.saveNewsRepublika(news);
         }
       }

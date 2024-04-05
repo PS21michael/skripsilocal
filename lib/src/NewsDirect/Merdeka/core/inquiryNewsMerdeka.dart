@@ -22,7 +22,7 @@ class InquiryNewsMerdeka extends StatefulWidget {
 
 class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(MerdekaNewsRepository());
 
@@ -31,7 +31,7 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -60,9 +60,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsJakarta());
                   },
                   child: Container(
@@ -86,9 +86,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsDunia());
                   },
                   child: Container(
@@ -112,9 +112,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsGaya());
                   },
                   child: Container(
@@ -138,9 +138,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsOlahraga());
                   },
                   child: Container(
@@ -164,9 +164,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsTeknologi());
                   },
                   child: Container(
@@ -190,9 +190,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsOtomotif());
                   },
                   child: Container(
@@ -216,9 +216,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsKhas());
                   },
                   child: Container(
@@ -242,9 +242,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsSehat());
                   },
                   child: Container(
@@ -268,9 +268,9 @@ class _InquiryNewsMerdeka extends State<InquiryNewsMerdeka> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSavedNull();
+                    MerdekaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    MerdekaNewsRepository.instance.setDateSaved(monthNumber);
+                    MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryMerdekaNewsJateng());
                   },
                   child: Container(

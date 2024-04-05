@@ -20,7 +20,7 @@ class InquiryNewsCNBC extends StatefulWidget {
 
 class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(CNBCNewsRepository());
 
@@ -29,7 +29,7 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -58,9 +58,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsNews());
                   },
                   child: Container(
@@ -84,9 +84,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsMarket());
                   },
                   child: Container(
@@ -110,9 +110,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsEntrepreneur());
                   },
                   child: Container(
@@ -136,9 +136,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsSyariah());
                   },
                   child: Container(
@@ -162,9 +162,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsTech());
                   },
                   child: Container(
@@ -188,9 +188,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsLifeStyle());
                   },
                   child: Container(
@@ -214,9 +214,9 @@ class _InquiryNewsCNBC extends State<InquiryNewsCNBC> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSavedNull();
+                    CNBCNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNBCNewsRepository.instance.setDateSaved(monthNumber);
+                    CNBCNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNBCNewsOpini());
                   },
                   child: Container(

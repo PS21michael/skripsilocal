@@ -77,7 +77,7 @@ class SignUpController extends GetxController{
     print('Befire user : $user');
     await userRepo.createUer(user);
     print('after user : $user');
-    registerUser(user.email, user.password, "test");
+    registerUser(user.email, "", "test");
   }
 
   Future<void> createUserDefault(UserModel user) async {

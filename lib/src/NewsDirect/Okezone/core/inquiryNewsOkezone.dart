@@ -19,7 +19,7 @@ class InquiryNewsOkezone extends StatefulWidget {
 
 class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(OkezoneNewsRepository());
 
@@ -28,7 +28,7 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -57,9 +57,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsCelebrity());
                   },
                   child: Container(
@@ -83,9 +83,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsSports());
                   },
                   child: Container(
@@ -109,9 +109,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsOtomotif());
                   },
                   child: Container(
@@ -135,9 +135,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsEconomy());
                   },
                   child: Container(
@@ -161,9 +161,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsTechno());
                   },
                   child: Container(
@@ -187,9 +187,9 @@ class _InquiryNewsOkezone extends State<InquiryNewsOkezone> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSavedNull();
+                    OkezoneNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    OkezoneNewsRepository.instance.setDateSaved(monthNumber);
+                    OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryOkezoneNewsLifeStyle());
                   },
                   child: Container(

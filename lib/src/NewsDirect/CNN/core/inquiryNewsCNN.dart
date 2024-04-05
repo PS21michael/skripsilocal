@@ -19,7 +19,7 @@ class InquiryNewsCNN extends StatefulWidget {
 
 class _InquiryNewsCNN extends State<InquiryNewsCNN> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(CNNNewsRepository());
 
@@ -28,7 +28,7 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -56,9 +56,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsNasional());
                   },
                   child: Container(
@@ -82,9 +82,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsInternasional());
                   },
                   child: Container(
@@ -108,9 +108,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsEkonomi());
                   },
 
@@ -135,9 +135,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsOlahraga());
                   },
 
@@ -162,9 +162,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsTeknologi());
                   },
                   child: Container(
@@ -188,9 +188,9 @@ class _InquiryNewsCNN extends State<InquiryNewsCNN> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSavedNull();
+                    CNNNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    CNNNewsRepository.instance.setDateSaved(monthNumber);
+                    CNNNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryCNNNewsHiburan());
                   },
 

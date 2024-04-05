@@ -78,7 +78,6 @@ class _FillProfileState extends State<FillProfile> {
     String provinceCustomer = UserRepository.instance.getUserModelProvince();
     String dateOfBirthCustomer = UserRepository.instance
         .getUserModelDateOfBirth();
-    String passwordCustomer = UserRepository.instance.getUserModelPassword();
     String joinDateCustomer = UserRepository.instance.getUserModelJoinDate();
     String profilePictureCustomer = UserRepository.instance
         .getUserModelProfilePicture();
@@ -371,92 +370,52 @@ class _FillProfileState extends State<FillProfile> {
                               dateOfBirth: dateOfBirthController.text.trim() == ""
                                   ? dateOfBirthCustomer
                                   : dateOfBirthController.text.trim(),
-                              password: passwordCustomer,
                               joinDate: joinDateCustomer,
                               profilePicture: profilePictureCustomer,
 
-                                kategori1: 'Nasional',
                                 scoreKategori1: kategoriCustomer1,
-                                kategori2: 'Bisnis',
                                 scoreKategori2: kategoriCustomer2,
-                                kategori3: 'Politik',
                                 scoreKategori3: kategoriCustomer3,
-                                kategori4: 'Hukum',
                                 scoreKategori4: kategoriCustomer4,
-                                kategori5: 'Ekonomi',
                                 scoreKategori5: kategoriCustomer5,
-                                kategori6: 'Olahraga',
                                 scoreKategori6: kategoriCustomer6,
-                                kategori7: 'Teknologi',
                                 scoreKategori7: kategoriCustomer7,
-                                kategori8: 'Otomotif',
                                 scoreKategori8: kategoriCustomer8,
-                                kategori9: 'Internasional',
                                 scoreKategori9: kategoriCustomer9,
-                                kategori10: 'Bola',
                                 scoreKategori10: kategoriCustomer10,
-                                kategori11: 'Selebritis',
                                 scoreKategori11: kategoriCustomer11,
-                                kategori12: 'Lifestyle',
                                 scoreKategori12: kategoriCustomer12,
-                                kategori13: 'Hiburan',
                                 scoreKategori13: kategoriCustomer13,
-                                kategori14: 'Jakarta',
                                 scoreKategori14: kategoriCustomer14,
-                                kategori15: 'Market',
                                 scoreKategori15: kategoriCustomer15,
-                                kategori16: 'News',
                                 scoreKategori16: kategoriCustomer16,
-                                kategori17: 'Cantik',
                                 scoreKategori17: kategoriCustomer17,
-                                kategori18: 'Travel',
                                 scoreKategori18: kategoriCustomer18,
-                                kategori19: 'Syariah',
                                 scoreKategori19: kategoriCustomer19,
-                                kategori20: 'Islam',
                                 scoreKategori20: kategoriCustomer20,
-                                kategori21: 'Sains',
                                 scoreKategori21: kategoriCustomer21,
-                                kategori22: 'Edukasi',
                                 scoreKategori22: kategoriCustomer22,
-                                kategori23: 'Kesehatan',
                                 scoreKategori23: kategoriCustomer23,
-                                kategori24: 'Humaniora',
                                 scoreKategori24: kategoriCustomer24,
-                                kategori25: 'Entrepreneur',
                                 scoreKategori25: kategoriCustomer25,
-                                kategori26: 'Opini',
                                 scoreKategori26: kategoriCustomer26,
-                                kategori27: 'Khas',
                                 scoreKategori27: kategoriCustomer27,
-                                kategori28: 'Jateng',
                                 scoreKategori28: kategoriCustomer28,
-                                kategori29: 'Daerah',
                                 scoreKategori29: kategoriCustomer29,
-                                kategori30: 'Khazanah',
                                 scoreKategori30: kategoriCustomer30,
-                                kategori31: 'Leisure',
                                 scoreKategori31: kategoriCustomer31,
-                                kategori32: 'Metro',
                                 scoreKategori32: kategoriCustomer32,
-                                kategori33: 'Ekbis',
                                 scoreKategori33: kategoriCustomer33,
-                                kategori34: 'Kalam',
                                 scoreKategori34: kategoriCustomer34,
-                                kategori35: 'Difabel',
                                 scoreKategori35: kategoriCustomer35,
-                                kategori36: 'Creativelab',
                                 scoreKategori36: kategoriCustomer36,
-                                kategori37: 'Inforial',
                                 scoreKategori37: kategoriCustomer37,
-                                kategori38: 'Event',
                                 scoreKategori38: kategoriCustomer38,                            );
                             print('fullName yg di input: ${user.fullName}');
                             print('email yg di input: ${user.email}');
                             print('userName yg di input: ${user.userName}');
                             print('province yg di input: ${user.province}');
                             print('dateOfBirth yg di input: ${user.dateOfBirth}');
-                            print('password yg di input: ${user.password}');
 
                             print("user Id yang dikirim :"+ idCustomer);
                             await Future.delayed(Duration(seconds: 1));

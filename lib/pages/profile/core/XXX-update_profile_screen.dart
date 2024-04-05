@@ -57,7 +57,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                   UserModel userData = snapshot.data as UserModel;
                   tempString = userData.email;
                   final email = TextEditingController(text: userData.email);
-                  final password = TextEditingController(text: userData.password);
+                  final password = TextEditingController(text: "");
                   final fullName = TextEditingController(text: userData.fullName);
                   final province = TextEditingController(text: userData.province);
                   final dateOfBirth = TextEditingController(text: userData.dateOfBirth);
@@ -122,7 +122,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                           ),
                           MyTextField(
                             controller: passwordController,
-                            hintText: userData.password,
+                            hintText: "",
                             obscureText: false,
                           ),
                           const SizedBox(height: 30,),

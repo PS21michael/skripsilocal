@@ -111,7 +111,7 @@ class NewsRepository extends GetxController{
   }
 
   Future<List<NewsModel>> getAllNews86() async{
-    final snapshot = await _db.collection("/News").where("SaveDate", isEqualTo: 86).get();
+    final snapshot = await _db.collection("/News").where("CountPeriod", isEqualTo: 86).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     return newsData;
   }
@@ -199,23 +199,23 @@ class NewsRepository extends GetxController{
 
   // PENTING
   Future<List<NewsModel>> getAllNewsANTARAHumaniora(int time) async{
-    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "Humaniora").where("SaveDate", isEqualTo: time).get();
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: "Humaniora").where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
-      if(48 == newsData[i].saveDate){
+      if(48 == newsData[i].countPeriod){
         print("Data yang ke 48 : ${newsData[i].title}");
       }
     }
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
-      if(47 == newsData[i].saveDate){
+      if(47 == newsData[i].countPeriod){
         print("Data yang ke 47 : ${newsData[i].title}");
       }
     }
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
-      if(46 == newsData[i].saveDate){
+      if(46 == newsData[i].countPeriod){
         print("Data yang ke 46 : ${newsData[i].title}");
       }
     }
@@ -255,7 +255,7 @@ class NewsRepository extends GetxController{
   List<String> listJudulPolitik =[];
   String categoryPolitik = "Politik";
   Future<List<NewsModel>> getAllNewsAntaraPolitik(int time) async{
-    final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).where("SaveDate", isEqualTo: time).get();
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length; i++){
       listJudulPolitik.add(newsData[i].title);
@@ -339,7 +339,7 @@ class NewsRepository extends GetxController{
             publishedTime: newsData[i].publishedTime,
             category: newsData[i].category,
             views: newsData[i].views,
-            saveDate: newsData[i].saveDate);
+            countPeriod: newsData[i].countPeriod);
 
         listNewsModelTemp.add(newsModel);
         continue;

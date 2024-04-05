@@ -24,7 +24,7 @@ class InquiryNewsAnatara extends StatefulWidget {
 
 class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final controller = Get.put(SignInController());
 
@@ -35,7 +35,7 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -63,9 +63,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsPolitik());
                   },
 
@@ -90,9 +90,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: () async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsOtomotif());
                   },
 
@@ -117,9 +117,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: () async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsOlahraga());
                   },
 
@@ -144,9 +144,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsLifeStyle());
                   },
 
@@ -171,9 +171,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: () async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHumaniora());
                   },
 
@@ -198,9 +198,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHukum());
                   },
 
@@ -226,9 +226,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHiburan());
                   },
 
@@ -254,9 +254,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsHiburan());
                   },
 
@@ -282,9 +282,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsInternasional());
                   },
                   child: Container(
@@ -308,9 +308,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsBola());
                   },
                   child: Container(
@@ -334,9 +334,9 @@ class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSavedNull();
+                    AntaraNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    AntaraNewsRepository.instance.setDateSaved(monthNumber);
+                    AntaraNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryAntaraNewsTeknologi());
                   },
                   child: Container(

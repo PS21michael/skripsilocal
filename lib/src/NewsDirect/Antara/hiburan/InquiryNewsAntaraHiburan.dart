@@ -19,7 +19,7 @@ class InquiryAntaraNewsHiburan extends StatefulWidget {
 class _InquiryAntaraNewsHiburan extends State<InquiryAntaraNewsHiburan> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(AntaraNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryAntaraNewsHiburan extends State<InquiryAntaraNewsHiburan> {
       await Future.delayed(Duration(milliseconds: 100));
       AntaraNewsRepository.instance.setNullListJudulHiburanAntaraNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = AntaraNewsRepository.instance.getDateSaved();
+      int tempCtr = AntaraNewsRepository.instance.getCountPeriod();
       await AntaraNewsRepository.instance.getAllNewsAntaraHiburan(tempCtr);
       await AntaraNewsRepository.instance.getAllNewsAntaraHiburan(tempCtr-1);
       await AntaraNewsRepository.instance.getAllNewsAntaraHiburan(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryAntaraNewsHiburan extends State<InquiryAntaraNewsHiburan> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?AntaraNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?AntaraNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsAntara(news);
 
         }

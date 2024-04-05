@@ -19,7 +19,7 @@ class InquiryOkezoneNewsBola extends StatefulWidget {
 class _InquiryOkezoneNewsBola extends State<InquiryOkezoneNewsBola> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(OkezoneNewsRepository());
 
@@ -48,7 +48,7 @@ class _InquiryOkezoneNewsBola extends State<InquiryOkezoneNewsBola> {
         setState(() {});
       }
       await Future.delayed(Duration(milliseconds: 300));
-      int tempCtr = OkezoneNewsRepository.instance.getDateSaved();
+      int tempCtr = OkezoneNewsRepository.instance.getCountPeriod();
       await OkezoneNewsRepository.instance.getAllNewsOkezoneBola(tempCtr);
       await OkezoneNewsRepository.instance.getAllNewsOkezoneBola(tempCtr-1);
       await OkezoneNewsRepository.instance.getAllNewsOkezoneBola(tempCtr-2);
@@ -69,7 +69,7 @@ class _InquiryOkezoneNewsBola extends State<InquiryOkezoneNewsBola> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?OkezoneNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?OkezoneNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsOkezone(news);
         }
       }

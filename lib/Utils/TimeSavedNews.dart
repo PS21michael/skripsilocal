@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 
 
-class TimeSavedParser extends GetxController{
+class PeriodSavedParser extends GetxController{
 
 
 
 
-  static TimeSavedParser get instance => Get.find();
+  static PeriodSavedParser get instance => Get.find();
 
 
 
@@ -1085,7 +1085,7 @@ class TimeSavedParser extends GetxController{
 
 
 
-  int timeSaver (String time){
+  int periodSaver (String time){
     if(time == day1){
       return 1;
     } else if(time == day2){

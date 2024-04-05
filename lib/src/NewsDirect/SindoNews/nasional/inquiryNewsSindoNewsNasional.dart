@@ -19,7 +19,7 @@ class InquirySindoNewsNasional extends StatefulWidget {
 class _InquirySindoNewsNasional extends State<InquirySindoNewsNasional> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(SindoNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquirySindoNewsNasional extends State<InquirySindoNewsNasional> {
       await Future.delayed(Duration(milliseconds: 100));
       SindoNewsRepository.instance.setNullListJudulNasionalSindoNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = SindoNewsRepository.instance.getDateSaved();
+      int tempCtr = SindoNewsRepository.instance.getCountPeriod();
       await SindoNewsRepository.instance.getAllNewsSindoNewsNasional(tempCtr);
       await SindoNewsRepository.instance.getAllNewsSindoNewsNasional(tempCtr-1);
       await SindoNewsRepository.instance.getAllNewsSindoNewsNasional(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquirySindoNewsNasional extends State<InquirySindoNewsNasional> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?SindoNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?SindoNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsSindoNews(news);
         }
       }

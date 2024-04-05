@@ -137,7 +137,7 @@ class _MyNavBarState extends State<MyNavBar> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
           }
           else {
-            UserRepository.instance.resetListScore();
+            // UserRepository.instance.resetListScore();
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();
@@ -168,7 +168,7 @@ class _MyNavBarState extends State<MyNavBar> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
           }
           else {
-            UserRepository.instance.resetListScore();
+            // UserRepository.instance.resetListScore();
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();
@@ -199,7 +199,7 @@ class _MyNavBarState extends State<MyNavBar> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
           }
           else {
-            UserRepository.instance.resetListScore();
+            // UserRepository.instance.resetListScore();
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();

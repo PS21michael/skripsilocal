@@ -46,7 +46,7 @@ class _NewsDetailState extends State<NewsDetail> {
   // String newsPicture = NewsRepository.instance.getNewsPicture();
   // String kategori = NewsRepository.instance.getNewsCategory();
   final detailComment = TextEditingController();
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
   final userController = Get.put(ProfileController());
   late String idNews;
   late String title;

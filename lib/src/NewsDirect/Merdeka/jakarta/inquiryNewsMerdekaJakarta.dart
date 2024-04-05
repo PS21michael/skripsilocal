@@ -19,7 +19,7 @@ class InquiryMerdekaNewsJakarta extends StatefulWidget {
 class _InquiryMerdekaNewsJakarta extends State<InquiryMerdekaNewsJakarta> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(MerdekaNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryMerdekaNewsJakarta extends State<InquiryMerdekaNewsJakarta> {
       await Future.delayed(Duration(milliseconds: 100));
       MerdekaNewsRepository.instance.setNullListJudulJakartaMerdekaNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = MerdekaNewsRepository.instance.getDateSaved();
+      int tempCtr = MerdekaNewsRepository.instance.getCountPeriod();
       await MerdekaNewsRepository.instance.getAllNewsMerdekaJakarta(tempCtr);
       await MerdekaNewsRepository.instance.getAllNewsMerdekaJakarta(tempCtr-1);
       await MerdekaNewsRepository.instance.getAllNewsMerdekaJakarta(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryMerdekaNewsJakarta extends State<InquiryMerdekaNewsJakarta> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?MerdekaNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?MerdekaNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsMerdeka(news);
         }
       }

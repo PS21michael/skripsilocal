@@ -15,15 +15,15 @@ class CNNNewsRepository extends GetxController{
   final String publisher = "CNN Indonesia";
 
   // UTILS
-  int dateSaved=0;
-  int getDateSaved(){
-    return dateSaved;
+  int countPeriod=0;
+  int getCountPeriod(){
+    return countPeriod;
   }
-  void setDateSaved(int time){
-    dateSaved=time;
+  void setCountPeriod(int time){
+    countPeriod=time;
   }
-  void setDateSavedNull(){
-    dateSaved=0;
+  void setCountPeriodNull(){
+    countPeriod=0;
   }
 
   // Title List
@@ -32,7 +32,7 @@ class CNNNewsRepository extends GetxController{
   String categoryNasional = "Nasional";
   Future<List<NewsModel>> getAllNewsCNNNasional(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNasional).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulNasional.add(newsData[i].title);
@@ -51,7 +51,7 @@ class CNNNewsRepository extends GetxController{
   String categoryInternasional = "Internasional";
   Future<List<NewsModel>> getAllNewsCNNInternasional(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInternasional).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulInternasional.add(newsData[i].title);
@@ -70,7 +70,7 @@ class CNNNewsRepository extends GetxController{
   String categoryEkonomi = "Ekonomi";
   Future<List<NewsModel>> getAllNewsCNNEkonomi(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEkonomi).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulEkonomi.add(newsData[i].title);
@@ -90,7 +90,7 @@ class CNNNewsRepository extends GetxController{
   String categoryOlahraga = "Olahraga";
   Future<List<NewsModel>> getAllNewsCNNOlahraga(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOlahraga).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulOlahraga.add(newsData[i].title);
@@ -110,7 +110,7 @@ class CNNNewsRepository extends GetxController{
   String categoryTeknologi = "Teknologi";
   Future<List<NewsModel>> getAllNewsCNNTeknologi(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTeknologi).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulTeknologi.add(newsData[i].title);
@@ -130,7 +130,7 @@ class CNNNewsRepository extends GetxController{
   String categoryHiburan = "Hiburan";
   Future<List<NewsModel>> getAllNewsCNNHiburan(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryHiburan).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulHiburan.add(newsData[i].title);

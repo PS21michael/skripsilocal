@@ -19,7 +19,7 @@ class InquiryCNBCNewsEntrepreneur extends StatefulWidget {
 class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(CNBCNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
       await Future.delayed(Duration(milliseconds: 100));
       CNBCNewsRepository.instance.setNullListJudulEntrepreneurCNBCNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = CNBCNewsRepository.instance.getDateSaved();
+      int tempCtr = CNBCNewsRepository.instance.getCountPeriod();
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr);
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr-1);
       await CNBCNewsRepository.instance.getAllNewsCNBCEntrepreneur(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryCNBCNewsEntrepreneur extends State<InquiryCNBCNewsEntrepreneur> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?CNBCNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?CNBCNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsCNBC(news);
         }
       }

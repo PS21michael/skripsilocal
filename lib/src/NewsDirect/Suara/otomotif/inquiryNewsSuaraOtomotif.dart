@@ -19,7 +19,7 @@ class InquirySuaraNewsOtomotif extends StatefulWidget {
 class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(SuaraNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
       await Future.delayed(Duration(milliseconds: 100));
       SuaraNewsRepository.instance.setNullListJudulOtomotifSuaraNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = SuaraNewsRepository.instance.getDateSaved();
+      int tempCtr = SuaraNewsRepository.instance.getCountPeriod();
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr);
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr-1);
       await SuaraNewsRepository.instance.getAllNewsSuaraOtomotif(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquirySuaraOtomotif extends State<InquirySuaraNewsOtomotif> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?SuaraNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?SuaraNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsSuara(news);
         }
       }

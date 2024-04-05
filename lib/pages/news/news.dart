@@ -13,7 +13,9 @@ import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/news/afterSearchNews.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
+import '../../controller/history_controller.dart';
 import '../../controller/profile_controller.dart';
+import '../../models/history_model.dart';
 import 'NewsDetail.dart';
 
 class NewsPage extends StatefulWidget {
@@ -81,7 +83,7 @@ class _NewsPageState extends State<NewsPage> {
                       ),
                     ),
                     onSubmitted: (value) async {
-                      UserRepository.instance.resetListScore();
+                      // UserRepository.instance.resetListScore();
                       await Future.delayed(Duration(milliseconds: 500));
                       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                       String inputSearh = detailSearch.text;
@@ -268,7 +270,7 @@ class _NewsPageState extends State<NewsPage> {
                   );
                 }).toList(),
                 onChanged: (String? newValue) async {
-                  UserRepository.instance.resetListScore();
+                  // UserRepository.instance.resetListScore();
                   await Future.delayed(Duration(milliseconds: 500));
                   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                   setState(() {

@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
   final listCategoryController = Get.put(CategoryListParser());
   final controller = Get.put(SignUpController());
 

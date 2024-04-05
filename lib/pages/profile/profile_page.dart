@@ -150,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     ];
 
-    if (emailCustomer == 'snackmaknyo@gmail.com') {
+    if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
       widgets.add(
         CustomListTile(
           onTap: () {

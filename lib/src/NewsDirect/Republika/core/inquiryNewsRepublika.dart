@@ -20,7 +20,7 @@ class InquiryNewsRepublika extends StatefulWidget {
 
 class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(RepublikaNewsRepository());
 
@@ -29,7 +29,7 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -58,9 +58,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsNews());
                   },
                   child: Container(
@@ -84,9 +84,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsDaerah());
                   },
                   child: Container(
@@ -110,9 +110,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsKhazanah());
                   },
                   child: Container(
@@ -136,9 +136,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsIslam());
                   },
                   child: Container(
@@ -162,9 +162,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsInternasional());
                   },
                   child: Container(
@@ -188,9 +188,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsBola());
                   },
                   child: Container(
@@ -214,9 +214,9 @@ class _InquiryNewsRepublika extends State<InquiryNewsRepublika> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSavedNull();
+                    RepublikaNewsRepository.instance.setCountPeriodNull();
                     await Future.delayed(Duration(milliseconds: 100));
-                    RepublikaNewsRepository.instance.setDateSaved(monthNumber);
+                    RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryRepublikaNewsLeisure());
                   },
                   child: Container(

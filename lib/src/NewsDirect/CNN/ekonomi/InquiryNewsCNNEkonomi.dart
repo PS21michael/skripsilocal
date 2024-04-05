@@ -19,7 +19,7 @@ class InquiryCNNNewsEkonomi extends StatefulWidget {
 class _InquiryCNNNewsEkonomi extends State<InquiryCNNNewsEkonomi> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(CNNNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryCNNNewsEkonomi extends State<InquiryCNNNewsEkonomi> {
       await Future.delayed(Duration(milliseconds: 100));
       CNNNewsRepository.instance.setNullListJudulEkonomiCNNNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = CNNNewsRepository.instance.getDateSaved();
+      int tempCtr = CNNNewsRepository.instance.getCountPeriod();
       await CNNNewsRepository.instance.getAllNewsCNNEkonomi(tempCtr);
       await CNNNewsRepository.instance.getAllNewsCNNEkonomi(tempCtr-1);
       await CNNNewsRepository.instance.getAllNewsCNNEkonomi(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryCNNNewsEkonomi extends State<InquiryCNNNewsEkonomi> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?CNNNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?CNNNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsCNN(news);
         }
       }

@@ -19,7 +19,7 @@ class InquiryTempoNewsCantik extends StatefulWidget {
 class _InquiryTempoNewsCantik extends State<InquiryTempoNewsCantik> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(TempoNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryTempoNewsCantik extends State<InquiryTempoNewsCantik> {
       await Future.delayed(Duration(milliseconds: 100));
       TempoNewsRepository.instance.setNullListJudulCantikTempoNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = TempoNewsRepository.instance.getDateSaved();
+      int tempCtr = TempoNewsRepository.instance.getCountPeriod();
       await TempoNewsRepository.instance.getAllNewsTempoCantik(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoCantik(tempCtr-1);
       await TempoNewsRepository.instance.getAllNewsTempoCantik(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryTempoNewsCantik extends State<InquiryTempoNewsCantik> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?TempoNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?TempoNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsTempo(news);
         }
       }

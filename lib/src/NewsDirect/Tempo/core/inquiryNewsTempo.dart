@@ -28,16 +28,16 @@ class InquiryNewsTempo extends StatefulWidget {
 
 class _InquiryNewsTempo extends State<InquiryNewsTempo> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final periodcontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(TempoNewsRepository());
 
   @override
   Widget build(BuildContext context) {
     DateTime tets = DateTime.now();
-    String montValue = dateTimecontroller.montParser(tets.month.toInt());
+    String montValue = periodcontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = periodcontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -66,9 +66,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsNasional());
                   },
                   child: Container(
@@ -92,9 +92,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsBisnis());
                   },
                   child: Container(
@@ -118,9 +118,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsMetro());
                   },
                   child: Container(
@@ -144,9 +144,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsDunia());
                   },
                   child: Container(
@@ -170,9 +170,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsBola());
                   },
                   child: Container(
@@ -196,9 +196,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsCantik());
                   },
                   child: Container(
@@ -222,9 +222,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsTekno());
                   },
                   child: Container(
@@ -249,9 +249,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsOtomotif());
                   },
                   child: Container(
@@ -275,9 +275,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsSeleb());
                   },
                   child: Container(
@@ -302,9 +302,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsGaya());
                   },
                   child: Container(
@@ -329,9 +329,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsTravel());
                   },
                   child: Container(
@@ -356,9 +356,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsDifabel());
                   },
                   child: Container(
@@ -382,9 +382,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsCreativeLab());
                   },
                   child: Container(
@@ -408,9 +408,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsInforial());
                   },
                   child: Container(
@@ -434,9 +434,9 @@ class _InquiryNewsTempo extends State<InquiryNewsTempo> {
                 GestureDetector(
                   onTap: ()async{
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSavedNULL();
+                    TempoNewsRepository.instance.setCountPeriodNULL();
                     await Future.delayed(Duration(milliseconds: 100));
-                    TempoNewsRepository.instance.setDateSaved(monthNumber);
+                    TempoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquiryTempoNewsEvent());
                   },
                   child: Container(

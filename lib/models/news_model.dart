@@ -14,7 +14,7 @@ class NewsModel{
   final String publishedTime;
   final String category;
   final int views;
-  final int saveDate;
+  final int countPeriod;
 
   NewsModel({
     this.id,
@@ -27,7 +27,7 @@ class NewsModel{
     required this.publishedTime,
     required this.category,
     required this.views,
-    required this.saveDate
+    required this.countPeriod
   });
 
   static NewsModel empty() => NewsModel(
@@ -40,7 +40,7 @@ class NewsModel{
       publishedTime: '',
       category: '',
       views: 0,
-      saveDate: 0
+      countPeriod: 0
   );
 
   // Json parse To
@@ -55,7 +55,7 @@ class NewsModel{
       "PublishedTime" : publishedTime,
       "Category" : category,
       "Views" : views,
-      "SaveDate" : saveDate,
+      "CountPeriod" : countPeriod,
     };
   }
 
@@ -72,7 +72,7 @@ class NewsModel{
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
         views: data?["Views"],
-        saveDate: data?["SaveDate"]
+        countPeriod: data?["CountPeriod"]
     );
   }
 }

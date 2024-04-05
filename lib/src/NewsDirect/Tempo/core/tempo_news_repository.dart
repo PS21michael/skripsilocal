@@ -16,15 +16,15 @@ class TempoNewsRepository extends GetxController{
   final String publisher = "Tempo News";
 
   // UTILS
-  int dateSaved=0;
-  int getDateSaved(){
-    return dateSaved;
+  int countPeriod=0;
+  int getCountPeriod(){
+    return countPeriod;
   }
-  void setDateSaved(int time){
-    dateSaved=time;
+  void setCountPeriod(int time){
+    countPeriod=time;
   }
-  void setDateSavedNULL(){
-    dateSaved=0;
+  void setCountPeriodNULL(){
+    countPeriod=0;
   }
 
   // Title List
@@ -33,7 +33,7 @@ class TempoNewsRepository extends GetxController{
   String categoryNasional = "Nasional";
   Future<List<NewsModel>> getAllNewsTempoNasional(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryNasional).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulNasional.add(newsData[i].title);
@@ -53,7 +53,7 @@ class TempoNewsRepository extends GetxController{
   String categoryBisnis = "Bisnis";
   Future<List<NewsModel>> getAllNewsTempoBisnis(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBisnis).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulBisnis.add(newsData[i].title);
@@ -73,7 +73,7 @@ class TempoNewsRepository extends GetxController{
   String categoryMetro = "Metro";
   Future<List<NewsModel>> getAllNewsTempoMetro(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryMetro).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulMetro.add(newsData[i].title);
@@ -93,7 +93,7 @@ class TempoNewsRepository extends GetxController{
   String categoryDunia = "Internasional";
   Future<List<NewsModel>> getAllNewsTempoDunia(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDunia).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulDunia.add(newsData[i].title);
@@ -113,7 +113,7 @@ class TempoNewsRepository extends GetxController{
   String categoryBola = "Bola";
   Future<List<NewsModel>> getAllNewsTempoBola(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryBola).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulBola.add(newsData[i].title);
@@ -133,7 +133,7 @@ class TempoNewsRepository extends GetxController{
   String categoryCantik = "Cantik";
   Future<List<NewsModel>> getAllNewsTempoCantik(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCantik).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulCantik.add(newsData[i].title);
@@ -153,7 +153,7 @@ class TempoNewsRepository extends GetxController{
   String categoryTekno = "Teknologi";
   Future<List<NewsModel>> getAllNewsTempoTekno(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTekno).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulTekno.add(newsData[i].title);
@@ -173,7 +173,7 @@ class TempoNewsRepository extends GetxController{
   String categoryOtomotif = "Otomotif";
   Future<List<NewsModel>> getAllNewsTempoOtomotif(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryOtomotif).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulOtomotif.add(newsData[i].title);
@@ -192,7 +192,7 @@ class TempoNewsRepository extends GetxController{
   String categorySeleb = "Selebritis";
   Future<List<NewsModel>> getAllNewsTempoSeleb(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categorySeleb).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulSeleb.add(newsData[i].title);
@@ -212,7 +212,7 @@ class TempoNewsRepository extends GetxController{
   String categoryGaya = "Lifestyle";
   Future<List<NewsModel>> getAllNewsTempoGaya(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryGaya).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulGaya.add(newsData[i].title);
@@ -231,7 +231,7 @@ class TempoNewsRepository extends GetxController{
   String categoryTravel = "Travel";
   Future<List<NewsModel>> getAllNewsTempoTravel(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryTravel).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulTravel.add(newsData[i].title);
@@ -250,7 +250,7 @@ class TempoNewsRepository extends GetxController{
   String categoryDifabel = "Difabel";
   Future<List<NewsModel>> getAllNewsTempoDifabel(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryDifabel).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulDifabel.add(newsData[i].title);
@@ -270,7 +270,7 @@ class TempoNewsRepository extends GetxController{
   String categoryCreativeLab = "Creativelab";
   Future<List<NewsModel>> getAllNewsTempoCreativeLab(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryCreativeLab).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulCreativeLab.add(newsData[i].title);
@@ -290,7 +290,7 @@ class TempoNewsRepository extends GetxController{
   String categoryInforial = "Inforial";
   Future<List<NewsModel>> getAllNewsTempoInforial(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryInforial).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulInforial.add(newsData[i].title);
@@ -309,7 +309,7 @@ class TempoNewsRepository extends GetxController{
   String categoryEvent = "Event";
   Future<List<NewsModel>> getAllNewsTempoEvent(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryEvent).
-    where("Publisher", isEqualTo: publisher).where("SaveDate", isEqualTo: time).get();
+    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length;i++){
       listJudulEvent.add(newsData[i].title);

@@ -19,7 +19,7 @@ class InquiryAntaraNewsPolitik extends StatefulWidget {
 class _InquiryAntaraNewsPolitik extends State<InquiryAntaraNewsPolitik> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(AntaraNewsRepository());
 
@@ -47,7 +47,7 @@ class _InquiryAntaraNewsPolitik extends State<InquiryAntaraNewsPolitik> {
         _isLoading = false;
         setState(() {});
       }
-      int tempCtr = AntaraNewsRepository.instance.getDateSaved();
+      int tempCtr = AntaraNewsRepository.instance.getCountPeriod();
       await Future.delayed(Duration(milliseconds: 100));
       AntaraNewsRepository.instance.setNullListJudulPolitikAntaraNews();
       await Future.delayed(Duration(milliseconds: 100));
@@ -72,7 +72,7 @@ class _InquiryAntaraNewsPolitik extends State<InquiryAntaraNewsPolitik> {
                 publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
                 category: category,
                 views: 0,
-                saveDate: tempCtr==0?AntaraNewsRepository.instance.getDateSaved():tempCtr);
+                countPeriod: tempCtr==0?AntaraNewsRepository.instance.getCountPeriod():tempCtr);
             await newsRepo.saveNewsAntara(news);
         }
       }

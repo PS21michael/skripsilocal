@@ -55,7 +55,7 @@ class AuthenticationRepository extends GetxController{
 
   setInitialScreen (User ? user) async{
     if(user == null){
-      Get.offAll(()=> ManageUserScreen());
+      Get.offAll(()=> LoginPage());
     } else if(user != null){
       if(user.emailVerified){
         Get.offAll(ProfilePage());
@@ -66,33 +66,33 @@ class AuthenticationRepository extends GetxController{
     print('user authenticated : ${user?.emailVerified}');
   }
 
-  screenRedirect() async{
-
-    final user = _auth.currentUser;
-
-    if(user != null){
-      if(user.emailVerified){
-        // if the user's email is verified, navigate to the main menu
-        Get.offAll(const ExplorePage());
-      } else {
-        // if the user's email is not verified, navigate to verification menu
-        Get.offAll(const MailVerification());
-      }
-    } else{
-      // local storage
-      deviceStorage.writeIfNull('isFirstTime', true);
-      deviceStorage.read('isFirstTime') != true ?
-      Get.offAll(const LoginPage()) :
-      // TODO
-      // Nanti ubah ke onboarding screen atau splash screen
-      Get.offAll(const MailVerification());
-    }
-
-
-    //Local storage
-    deviceStorage.writeIfNull('isFirstTime', true);
-    deviceStorage.read('isFirstTime') != true ? Get.offAll(()=> const RegisterPage()) : Get.offAll(()=> const RegisterPage());
-  }
+  // screenRedirect() async{
+  //
+  //   final user = _auth.currentUser;
+  //
+  //   if(user != null){
+  //     if(user.emailVerified){
+  //       // if the user's email is verified, navigate to the main menu
+  //       Get.offAll(const ExplorePage());
+  //     } else {
+  //       // if the user's email is not verified, navigate to verification menu
+  //       Get.offAll(const MailVerification());
+  //     }
+  //   } else{
+  //     // local storage
+  //     deviceStorage.writeIfNull('isFirstTime', true);
+  //     deviceStorage.read('isFirstTime') != true ?
+  //     Get.offAll(const LoginPage()) :
+  //     // TODO
+  //     // Nanti ubah ke onboarding screen atau splash screen
+  //     Get.offAll(const MailVerification());
+  //   }
+  //
+  //
+  //   //Local storage
+  //   deviceStorage.writeIfNull('isFirstTime', true);
+  //   deviceStorage.read('isFirstTime') != true ? Get.offAll(()=> const RegisterPage()) : Get.offAll(()=> const RegisterPage());
+  // }
 
 
   Future<void> sendEmailVerification()async {

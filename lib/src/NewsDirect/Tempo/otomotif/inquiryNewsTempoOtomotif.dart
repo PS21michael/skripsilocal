@@ -19,7 +19,7 @@ class InquiryTempoNewsOtomotif extends StatefulWidget {
 class _InquiryTempoNewsOtomotif extends State<InquiryTempoNewsOtomotif> {
 
 
-  int savedTime = 0;
+  int countPeriod = 0;
 
   final newsRepo = Get.put(TempoNewsRepository());
 
@@ -50,7 +50,7 @@ class _InquiryTempoNewsOtomotif extends State<InquiryTempoNewsOtomotif> {
       await Future.delayed(Duration(milliseconds: 100));
       TempoNewsRepository.instance.setNullListJudulOtomotifTempoNews();
       await Future.delayed(Duration(milliseconds: 100));
-      int tempCtr = TempoNewsRepository.instance.getDateSaved();
+      int tempCtr = TempoNewsRepository.instance.getCountPeriod();
       await TempoNewsRepository.instance.getAllNewsTempoOtomotif(tempCtr);
       await TempoNewsRepository.instance.getAllNewsTempoOtomotif(tempCtr-1);
       await TempoNewsRepository.instance.getAllNewsTempoOtomotif(tempCtr-2);
@@ -71,7 +71,7 @@ class _InquiryTempoNewsOtomotif extends State<InquiryTempoNewsOtomotif> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              saveDate: tempCtr==0?TempoNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?TempoNewsRepository.instance.getCountPeriod():tempCtr);
           await newsRepo.saveNewsTempo(news);
         }
       }

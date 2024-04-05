@@ -38,7 +38,7 @@ class InquiryNewsSindoNews extends StatefulWidget {
 
 class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
 
-  final dateTimecontroller = Get.put(TimeSavedParser());
+  final dateTimecontroller = Get.put(PeriodSavedParser());
 
   final newsRepo = Get.put(SindoNewsRepository());
 
@@ -47,7 +47,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-    int monthNumber = dateTimecontroller.timeSaver(tanggalToday);
+    int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -76,7 +76,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsNasional());
                   },
 
@@ -101,7 +101,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsMetro());
                   },
 
@@ -126,7 +126,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsEkbis());
                   },
 
@@ -151,7 +151,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsInternational());
                   },
 
@@ -176,7 +176,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsDaerah());
                   },
 
@@ -201,7 +201,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsSports());
                   },
 
@@ -227,7 +227,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsOtomotif());
                   },
 
@@ -254,7 +254,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsTekno());
                   },
 
@@ -280,7 +280,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsSains());
                   },
 
@@ -307,7 +307,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsEdukasi());
                   },
 
@@ -334,7 +334,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsLifeStyle());
                   },
 
@@ -360,7 +360,7 @@ class _InquiryNewsSindoNews extends State<InquiryNewsSindoNews> {
                 // DISINI BUAT BUTTON
                 GestureDetector(
                   onTap: (){
-                    SindoNewsRepository.instance.setDateSaved(monthNumber);
+                    SindoNewsRepository.instance.setCountPeriod(monthNumber);
                     Get.to(()=>const InquirySindoNewsKalam());
                   },
 
