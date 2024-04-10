@@ -147,8 +147,8 @@ class CNNNewsRepository extends GetxController{
   saveNewsCNN(NewsModel newsModel)async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('News ke ${count+=1} Berhasil dibuat');
+    // print('News ke ${count+=1} Berhasil dibuat');
   }
 }

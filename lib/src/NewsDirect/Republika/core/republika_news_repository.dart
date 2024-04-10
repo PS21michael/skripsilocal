@@ -1,18 +1,12 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
 import '../../../../models/news_model.dart';
-
 
 class RepublikaNewsRepository extends GetxController{
 
   var count = 0;
-
   static RepublikaNewsRepository get instance => Get.find();
-
   final _db = FirebaseFirestore.instance;
-
   final String publisher = "Republika Online";
 
   // UTILS
@@ -63,7 +57,7 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaDaerah(){
     return listJudulDaerah;
   }
-  void SetListJudulNewsRepublikaDaerahNull(){
+  void setListJudulNewsRepublikaDaerahNull(){
     listJudulDaerah = [];
   }
 
@@ -83,7 +77,7 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaKhazanah(){
     return listJudulKhazanah;
   }
-  void SetListJudulNewsRepublikaKhazanahNull(){
+  void setListJudulNewsRepublikaKhazanahNull(){
     listJudulKhazanah = [];
   }
 
@@ -103,7 +97,7 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaIslam(){
     return listJudulIslam;
   }
-  void SetListJudulNewsRepublikaIslamNull(){
+  void setListJudulNewsRepublikaIslamNull(){
     listJudulIslam = [];
   }
 
@@ -123,7 +117,7 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaInternasional(){
     return listJudulInternasional;
   }
-  void SetListJudulNewsRepublikaInternasionalNull(){
+  void setListJudulNewsRepublikaInternasionalNull(){
     listJudulInternasional = [];
   }
 
@@ -145,7 +139,7 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaBola(){
     return listJudulBola;
   }
-  void SetListJudulNewsRepublikaBolaNull(){
+  void setListJudulNewsRepublikaBolaNull(){
     listJudulBola = [];
   }
 
@@ -165,15 +159,15 @@ class RepublikaNewsRepository extends GetxController{
   List<String> getListJudulNewsRepublikaLeisure(){
     return listJudulLeisure;
   }
-  void SetListJudulNewsRepublikaLeisureNull(){
+  void setListJudulNewsRepublikaLeisureNull(){
     listJudulLeisure = [];
   }
 
   saveNewsRepublika(NewsModel newsModel)async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('News ke ${count+=1} Berhasil dibuat');
+    // print('News ke ${count+=1} Berhasil dibuat');
   }
 }

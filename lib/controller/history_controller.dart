@@ -1,9 +1,7 @@
-
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-
-import '../repository/authentication_repository/authentication_repository.dart';
+// import '../repository/authentication_repository/authentication_repository.dart';
 
 class HistoryController extends GetxController{
 
@@ -11,7 +9,7 @@ class HistoryController extends GetxController{
 
   Rx<HistoryModel> history = HistoryModel.empty().obs;
 
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final _historyRepo = Get.put(HistoryRepository());
 
   Future<List<HistoryModel>> getAllHistoryFromSingleUser(String idPengguna)async{
@@ -31,7 +29,7 @@ class HistoryController extends GetxController{
   }
 
   Future<void> createHistory(HistoryModel historyModel)async{
-    print("History akan Dibuat");
+    // print("History akan Dibuat");
     await _historyRepo.insertHistory(historyModel);
   }
 

@@ -106,12 +106,12 @@ class _MyNavBarState extends State<MyNavBar> {
     );
   }
 
-  void _tabChange (int index){
+  void _tabChange(int index) {
     setState(() {
       _selectedIndex = index;
       switch (index) {
         case 0:
-          Navigator.push(context,
+          Navigator.pushReplacement(context,
               MaterialPageRoute(builder:
                   (context) => const ExplorePage()
               )
@@ -134,10 +134,8 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             );
             Future.delayed(Duration(seconds: 3));
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          }
-          else {
-            // UserRepository.instance.resetListScore();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          } else {
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();
@@ -145,7 +143,7 @@ class _MyNavBarState extends State<MyNavBar> {
             String temp = "";
             temp = BookmarkRepository.instance.isDataAvail();
             print("isDataAvail $temp");
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const NewsPage(),),);
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
           }
           break;
         case 2:
@@ -165,10 +163,8 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             );
             Future.delayed(Duration(seconds: 3));
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          }
-          else {
-            // UserRepository.instance.resetListScore();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          } else {
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();
@@ -176,7 +172,7 @@ class _MyNavBarState extends State<MyNavBar> {
             String temp = "";
             temp = BookmarkRepository.instance.isDataAvail();
             print("isDataAvail $temp");
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
           }
           break;
         case 3:
@@ -196,10 +192,8 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             );
             Future.delayed(Duration(seconds: 3));
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          }
-          else {
-            // UserRepository.instance.resetListScore();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          } else {
             Future.delayed(Duration(milliseconds: 500));
             UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
             String idPengguna = UserRepository.instance.getUserModelId();
@@ -207,11 +201,13 @@ class _MyNavBarState extends State<MyNavBar> {
             String temp = "";
             temp = BookmarkRepository.instance.isDataAvail();
             print("isDataAvail $temp");
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
           }
           break;
       }
     });
   }
+
+
 }
 

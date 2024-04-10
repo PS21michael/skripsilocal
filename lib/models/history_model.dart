@@ -15,6 +15,7 @@ class HistoryModel{
   final String publisher;
   final String description;
   final String waktu;
+  final String author;
 
   HistoryModel({
     this.id,
@@ -27,21 +28,22 @@ class HistoryModel{
     required this.publisher,
     required this.description,
     required this.waktu,
+    required this.author,
   });
 
   static HistoryModel empty() => HistoryModel(
-      idNews: '',
-      idPengguna: '',
-      title: '',
-      urlData: '',
-      urlGambar: '',
-      kategori: '',
-      publisher: '',
-      description: '',
-      waktu: '',
+    idNews: '',
+    idPengguna: '',
+    title: '',
+    urlData: '',
+    urlGambar: '',
+    kategori: '',
+    publisher: '',
+    description: '',
+    waktu: '',
+    author: '',
   );
 
-  // Json Parser
   toJson(){
     return{
       "IdNews" : idNews,
@@ -53,6 +55,7 @@ class HistoryModel{
       "Publisher" : publisher,
       "Description" : description,
       "Waktu" : waktu,
+      "Author" : author,
     };
   }
 
@@ -60,16 +63,17 @@ class HistoryModel{
   factory HistoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
     final data = document.data();
     return HistoryModel(
-        id: document.id,
-        idNews: data?["IdNews"],
-        idPengguna: data?["IdPengguna"],
-        title: data?["Title"],
-        urlData: data?["UrlData"],
-        urlGambar: data?["UrlGambar"],
-        kategori: data?["Kategori"],
-        publisher: data?["Publisher"],
-        description: data?["Description"],
-        waktu: data?["Waktu"],
+      id: document.id,
+      idNews: data?["IdNews"],
+      idPengguna: data?["IdPengguna"],
+      title: data?["Title"],
+      urlData: data?["UrlData"],
+      urlGambar: data?["UrlGambar"],
+      kategori: data?["Kategori"],
+      publisher: data?["Publisher"],
+      description: data?["Description"],
+      waktu: data?["Waktu"],
+      author: data?["Author"],
     );
   }
 

@@ -9,7 +9,6 @@ import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
-import 'package:skripsilocal/pages/profile/core/manage_user_screen.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
@@ -20,9 +19,7 @@ import '../user_repository/user_repository.dart';
 class AuthenticationRepository extends GetxController{
   static AuthenticationRepository get instance => Get.find();
 
-  // variabel temp
   String emailGoogleSignIn = "";
-
   String isSuccessCreateUser = "False";
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -32,10 +29,7 @@ class AuthenticationRepository extends GetxController{
       ]
   );
 
-  // variabels tambahan
   final deviceStorage = GetStorage();
-
-  // Variables
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> _firebaseUser;
   var verificationId = ''.obs;
@@ -56,15 +50,15 @@ class AuthenticationRepository extends GetxController{
 
   setInitialScreen (User ? user) async{
     if(user == null){
-      Get.offAll(()=> LoginPage());
+      Get.offAll(()=> const ExplorePage());
     } else if(user != null){
       if(user.emailVerified){
-        Get.offAll(ProfilePage());
+        Get.offAll(const ExplorePage());
       } else{
-        Get.offAll(MailVerification());
+        Get.offAll(const MailVerification());
       }
     }
-    print('user authenticated : ${user?.emailVerified}');
+    // print('user authenticated : ${user?.emailVerified}');
   }
 
   // screenRedirect() async{
@@ -108,7 +102,6 @@ class AuthenticationRepository extends GetxController{
     }
   }
 
-  // Forget Password
   Future<void> sendEmailForgetPassword(String email)async {
     try{
       await _auth.sendPasswordResetEmail(email: email);
@@ -156,27 +149,22 @@ class AuthenticationRepository extends GetxController{
     return credentials.user != null ? true : false;
   }
 
-  // Password Validation
   bool isHasUpperCase(String password){
     final regExp = RegExp('(?=.*[A-Z])');
     return regExp.hasMatch(password);
   }
-  // Password Validation
   bool isHasLowerCase(String password){
     final regExp = RegExp('(?=.*[a-z])');
     return regExp.hasMatch(password);
   }
-  // Password Validation
   bool isHasDigit(String password){
     final regExp = RegExp('(?=.*?[0-9])');
     return regExp.hasMatch(password);
   }
-  // Password Validation
   bool isHasSpecialCharacter(String password){
     final regExp = RegExp('(?=.?[!@#\$&~])');
     return regExp.hasMatch(password);
   }
-  // Email Validation
   bool isEmailValid(String email){
     final regExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return regExp.hasMatch(email);
@@ -190,30 +178,30 @@ class AuthenticationRepository extends GetxController{
 
   Future<void> createUserWithEmailAndPassword(String email, String password, String confirmPassword) async {
     if(!isEmailValid(email)){
-      print('Email must be valid');
+      // print('Email must be valid');
       // showToast(message:'Email must be valid');
-      showCustomSnackbar("Error", "Email must be valid");
+      showCustomSnackbar("Error", "Email tidak valid");
     } else if(password.length<8){
       // showToast(message:'Password should at least 8 character');
-      showCustomSnackbar("Error", "Password should at least 8 character");
+      showCustomSnackbar("Error", "Password harus terdiri dari 8 karakter atau lebih");
     // } else if(password.length>16){
     //   // showToast(message:'Password should maksimum 8 character');
     //   showCustomSnackbar("Error", "Password can't more than 16 character");
     } else if (!isHasUpperCase(password)){
       // showToast(message:'Password should have at least one upper case');
-      showCustomSnackbar("Error", "Password should have at least one upper case");
+      showCustomSnackbar("Error", "Password harus mengandung 1 huruf kapital");
     }else if (!isHasLowerCase(password)){
       // showToast(message:'Password should have at least one Lower case');
-      showCustomSnackbar("Error", "Password should have at least one Lower case");
+      showCustomSnackbar("Error", "Password harus mengandung 1 huruf kecil");
     }else if (!isHasDigit(password)){
       // showToast(message:'Password should have at least one Number');
-      showCustomSnackbar("Error", "Password should have at least one Number");
+      showCustomSnackbar("Error", "Password harus mengandung 1 angka");
     }else if (!isHasSpecialCharacter(password)){
       // showToast(message:'Password should have at least one Special Character');
-      showCustomSnackbar("Error", "Password should have at least one Special Character");
+      showCustomSnackbar("Error", "Password harus mengandung 1 special karakter");
     } else if(password != confirmPassword){
       // showToast(message:'Confirm Password Should be same with Passowrd');
-      showCustomSnackbar("Error", "Confirm Password Should be same with Passowrd");
+      showCustomSnackbar("Error", "Confirm Password harus sama dengan Passowrd");
 
     } else {
       try{
@@ -229,24 +217,22 @@ class AuthenticationRepository extends GetxController{
         isSuccessCreateUser = "False";
 
         showCustomSnackbar("Error", "${ex.message}");
-        print('FIREBASE EXCEPTION - ${e.code}');
+        // print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
         isSuccessCreateUser = "False";
-        print('EXCEPTION - ${ex.message}');
+        // print('EXCEPTION - ${ex.message}');
         throw ex;
       }
     }
-
   }
 
   Future<void> loginUserWithEmailAndPassword(String email, String password) async {
 
     try{
-
-      print("Firebase usser : ${_firebaseUser.value}");
-      print("Email given : $email");
-      print("Password given : $password");
+      // print("Firebase usser : ${_firebaseUser.value}");
+      // print("Email given : $email");
+      // print("Password given : $password");
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       //Sekarang di comment untuk menentukan apakah user udah pernah dafar atau belum
       if(_firebaseUser.value != null){
@@ -263,10 +249,10 @@ class AuthenticationRepository extends GetxController{
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
       showCustomSnackbar("Error", "${ex.message}");
-      print('FIREBASE AUTH EXCEPTION - ${e.code}');
+      // print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
-      print('EXCEPTION - ${ex.message}');
+      // print('EXCEPTION - ${ex.message}');
       throw ex;
     }
 
@@ -274,50 +260,40 @@ class AuthenticationRepository extends GetxController{
 
   Future<UserCredential?> signInWithGoogle() async {
     try{
-      // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-      // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-      // Create a new credential
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
 
-      // Once signed in, return the UserCredential
       await FirebaseAuth.instance.signInWithCredential(credential);
     } catch(e){
-      print('checkError2 : ');
+      // print('checkError2 : ');
       // isGoogleLoading.value=false;
       // showToast(message:'Error Happend : $e');
-      showCustomSnackbar("Error", "Error Happend : $e");
+      showCustomSnackbar("Error", "Terjadi kesalahan");
     }
   }
 
   void _loginWithGoogle() async{
-
     try{
-
       final GoogleSignInAccount ? googleSignInAccount = await _googleSignIn.signIn();
-
       if(googleSignInAccount != null){
         final GoogleSignInAuthentication googleSignInAuthentication = await
         googleSignInAccount.authentication;
-
         final AuthCredential credential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken,
         );
-
         await _firebaseAuth.signInWithCredential(credential);
         Get.offAll(()=>const ExplorePage());
-
       }
 
     } catch (e){
-      print('Some error accurred $e');
+      // print('Some error accurred $e');
     }
 
   }
@@ -332,7 +308,7 @@ class AuthenticationRepository extends GetxController{
     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
     emailGoogleSignIn = "";
     emailGoogleSignIn = googleSignInAccount!.email;
-    print('CheckPointGoogle 1, Email udah di assign $emailGoogleSignIn');
+    // print('CheckPointGoogle 1, Email udah di assign $emailGoogleSignIn');
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount.authentication;
@@ -342,7 +318,7 @@ class AuthenticationRepository extends GetxController{
 
       // Getting users credential
       UserCredential result = await auth.signInWithCredential(authCredential);
-      User? user = result.user;
+      // User? user = result.user;
 
       // Get.offAll(()=>ExplorePage());
 
@@ -355,7 +331,7 @@ class AuthenticationRepository extends GetxController{
   }
 
   String getEmailGoogleSingIn(){
-    print('Email yg dikirim repo : $emailGoogleSignIn');
+    // print('Email yg dikirim repo : $emailGoogleSignIn');
     return emailGoogleSignIn;
   }
 
@@ -365,7 +341,7 @@ class AuthenticationRepository extends GetxController{
   Future<void> logout() async {
     await _auth.signOut();
     Get.to(()=>const LoginPage());
-    print("User Berhasil keluar");
+    // print("User Berhasil keluar");
   }
 
   Future<void> deleteUser() async {
@@ -373,7 +349,7 @@ class AuthenticationRepository extends GetxController{
       await FirebaseAuth.instance.currentUser?.delete();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
-        print('The user must reauthenticate before this operation can be executed.');
+        // print('The user must reauthenticate before this operation can be executed.');
       }
     }
   }

@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 
 class CategoryListParser extends GetxController{

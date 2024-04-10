@@ -1,18 +1,8 @@
 import 'package:get/get.dart';
 
-
-
-
 class PeriodSavedParser extends GetxController{
 
-
-
-
   static PeriodSavedParser get instance => Get.find();
-
-
-
-
   // JANUARI 2024
   String day1 = "1 Januari 2024";
   String day2 = "2 Januari 2024";

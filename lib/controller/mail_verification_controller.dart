@@ -23,7 +23,7 @@ class MailVerificationController extends GetxController{
       await AuthenticationRepository.instance.sendEmailVerification();
     }catch(e){
       // Helper.errorSncakBar();
-      print(e);
+      // print(e);
       rethrow;
     }
 
@@ -45,7 +45,7 @@ class MailVerificationController extends GetxController{
     final user = FirebaseAuth.instance.currentUser;
     if(user!.emailVerified){
       if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
-        print('ChekpointGoogle 6');
+        // print('ChekpointGoogle 6');
         Get.to(()=>const FillProfile());
       }
       //

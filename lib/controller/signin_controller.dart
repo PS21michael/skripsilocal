@@ -25,7 +25,7 @@ class SignInController extends GetxController{
   }
 
 
-  Future<void> googleSignIn()async{
+  Future<void> googleSignIn() async{
     try{
       await Future.delayed(const Duration(milliseconds: 150));
       await AuthenticationRepository.instance.signup();

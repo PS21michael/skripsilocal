@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -18,7 +19,7 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const HomePage(),
+          builder: (_) => const ExplorePage(),
         ),
       );
     });
@@ -33,30 +34,32 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.red.shade400,
-              Colors.red.shade200,
-              Colors.red.shade50,
-              Colors.white
-            ],
-            begin: Alignment.center,
-            end: Alignment.bottomCenter
-          ),
-        ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.lock,
-              size: 80,
-              color: Colors.black,
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.grey.shade400,
+                Colors.grey.shade200,
+                Colors.grey.shade50,
+                Colors.white
+              ],
+              begin: Alignment.center,
+              end: Alignment.bottomCenter
             ),
-          ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/logo-removebg-preview.png',
+                width: 300,
+                height: 300,
+              ),
+            ],
+          ),
         ),
       ),
     );

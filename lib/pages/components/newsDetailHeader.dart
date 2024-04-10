@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
 class DetailHeader extends StatelessWidget implements PreferredSizeWidget {
   const DetailHeader({Key? key});
@@ -13,6 +15,10 @@ class DetailHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
         onPressed: () {
+          String idPengguna = UserRepository.instance.getUserModelId();
+          HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+          String temp = "";
+          temp = HistoryRepository.instance.isDataAvail();
           Navigator.of(context).pop();
         },
       ),

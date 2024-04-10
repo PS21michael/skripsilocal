@@ -201,7 +201,7 @@ class UserModel{
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
-    print('Sudah dipanggil ke ${temp+=1}');
+    // print('Sudah dipanggil ke ${temp+=1}');
     final data = document.data();
     return UserModel(
         id: document.id,

@@ -1,4 +1,4 @@
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,15 +24,15 @@ class ProfileController extends GetxController{
 
   var temp = 0;
 
-  getUserData()async{
-    print('UserData dipanggil ${temp+=1} kali');
+  getUserData() async {
+    // print('UserData dipanggil ${temp+=1} kali');
     final email = _authRepo.firebaseUser?.email;
     if(email != null){
-      print('Checkpint 22');
-      print('Test  1 ${_userRepo.getSingelUserDetails(email)}');
+      // print('Checkpint 22');
+      // print('Test  1 ${_userRepo.getSingelUserDetails(email)}');
       return await _userRepo.getSingelUserDetails(email);
     } else{
-      print('Error' "Login to continue");
+      // print('Error' "Login to continue");
     }
 
   }
@@ -51,12 +51,12 @@ class ProfileController extends GetxController{
   //   return response;
   // }
 
-  Future<List<UserModel>> getAllUser() async{
+  Future<List<UserModel>> getAllUser() async {
     return await _userRepo.getAllUserDetails();
   }
 
 
-  updateRecord(UserModel user) async{
+  updateRecord(UserModel user) async {
     final email = _authRepo.firebaseUser?.email;
     await _userRepo.updateUserRecord(user, email!);
   }
@@ -65,31 +65,31 @@ class ProfileController extends GetxController{
     await _userRepo.updateUserOverLimitCategoryRecord(json);
   }
 
-  uploadProfilePicture() async{
+  uploadProfilePicture() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70,
     maxHeight: 512, maxWidth: 512);
-    print("CheckPoint LALA Controller1");
+    // print("CheckPoint LALA Controller1");
     if(image!=null){
       final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image);
 
       // Update user image record
       Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
-      print("CheckPoint LALA Controller2");
+      // print("CheckPoint LALA Controller2");
       await _userRepo.updateSingelRecord(json);
-      print("CheckPoint LALA Controller3");
+      // print("CheckPoint LALA Controller3");
       user.value.profilePicture = imageUrl;
-      print("CheckPoint LALA Controller4");
+      // print("CheckPoint LALA Controller4");
     }
   }
 
-  uploadImageByLink(String link) async{
+  uploadImageByLink(String link) async {
     final image = link;
     final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
     Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
     await _userRepo.updateSingelRecord(json);
     user.value.profilePicture = imageUrl;
-    print("CheckPoint Upload Image Baru");
-    }
+    // print("CheckPoint Upload Image Baru");
+  }
 
   String getprofileUrl(){
     getUserData();
@@ -121,12 +121,12 @@ class ProfileController extends GetxController{
     return _userRepo.getListScoreOverCategory();
   }
 
-  Future<void> updateUserScoreCategory(String category)async{
+  Future<void> updateUserScoreCategory(String category) async {
     await _userRepo.updateSingelScore(category);
   }
 
-  Future<void> updateUserScoreOverLimitCategory(String category, int Score)async{
-    await _userRepo.updateSingelScoreOverLimit(category, Score);
+  Future<void> updateUserScoreOverLimitCategory(String category, int score) async {
+    await _userRepo.updateSingelScoreOverLimit(category, score);
   }
 
 
@@ -134,7 +134,7 @@ class ProfileController extends GetxController{
     try{
       await AuthenticationRepository.instance.deleteUser();
     } catch(e){
-      print('Error In Login : $e');
+      // print('Error In Login : $e');
     }
   }
 
@@ -143,7 +143,7 @@ class ProfileController extends GetxController{
     try{
       await UserRepository.instance.deleteSingelUser(id);
     } catch(e){
-      print('Error In Login : $e');
+      // print('Error In Login : $e');
     }
   }
 

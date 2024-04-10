@@ -1,28 +1,27 @@
-
 class SigninEmailAndPasswordFailure{
 
   final String message;
 
-  const SigninEmailAndPasswordFailure([this.message = "An Unknown error occured."]);
+  const SigninEmailAndPasswordFailure([this.message = "Terjadi kesalahan. Tolong di cek kembali"]);
 
   factory SigninEmailAndPasswordFailure.code(String code){
     switch(code){
       case 'user-not-found' :
-        return const SigninEmailAndPasswordFailure('User Not Found.');
+        return const SigninEmailAndPasswordFailure('User tidak ditemukan');
       case 'invalid-email' :
-        return const SigninEmailAndPasswordFailure('Email is not valid or badly formatted.');
+        return const SigninEmailAndPasswordFailure('Email tidak valid');
       case 'email-already-in-use' :
-        return const SigninEmailAndPasswordFailure('An account already exists for that email.');
+        return const SigninEmailAndPasswordFailure('Email sudah terdaftar');
       case 'operation-not-allowed' :
-        return const SigninEmailAndPasswordFailure('Operation is not allowed. Please contact support.');
+        return const SigninEmailAndPasswordFailure('Terjadi keselahan sistem');
       case 'user-disabled' :
-        return const SigninEmailAndPasswordFailure('This user has been disabled. Please contact support for help.');
+        return const SigninEmailAndPasswordFailure('User dinonaktifkan. Tolong hubungi tim support');
       case 'wrong-password' :
-        return const SigninEmailAndPasswordFailure('Wrong Password.');
+        return const SigninEmailAndPasswordFailure('Password salah');
       case 'account-exists-with-different-credential' :
-        return const SigninEmailAndPasswordFailure('Passowrd not match with email');
+        return const SigninEmailAndPasswordFailure('Password tidak sesuai');
       case 'operation-not-allowed' :
-        return const SigninEmailAndPasswordFailure('Too many requests to log into this account.');
+        return const SigninEmailAndPasswordFailure('Terlalu banyak percobaan masuk');
       case 'invalid-credential' :
         return const SigninEmailAndPasswordFailure('Email atau Password tidak ditemukan');
 

@@ -12,8 +12,10 @@ import 'package:skripsilocal/pages/components/my_textfield.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 Container(
                   padding: EdgeInsets.only(left: 10),
                   alignment: Alignment.topLeft,
@@ -198,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                             print('Email sudah tidak null ${j+=1}');
                             try{
                               print('ChekpointGoogle 1');
-                              UserRepository.instance.getSingelUserDetails(emailTemp!);
+                              UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getEmailGoogleSingIn());
                               print('ChekpointGoogle 2');
                             } catch (e){
                               print('ChekpointGoogle 3');
@@ -209,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                               print('ChekpointGoogle 4');
                               if(UserRepository.instance.getUserModelEmail() == ""){
                                 print('ChekpointGoogle 5');
-                                Map<String, dynamic> json = {'Email' : emailTemp!};
+                                Map<String, dynamic> json = {'Email' : AuthenticationRepository.instance.getEmailGoogleSingIn()};
                                 userRepo.updateSingelRecord(json);
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
@@ -221,24 +223,19 @@ class _LoginPageState extends State<LoginPage> {
                                 print('ChekpointGoogle 7');
                                 await Future.delayed(Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp!);
-
                                 Get.to(()=>const ExplorePage());
                               }
                             } else{
-                              await Future.delayed(Duration(milliseconds: 100));
-                              if(UserRepository.instance.getUserModelInitScore() == "NO"){
-                                Get.offAll(()=> PickCategory());
-                              }
                               print('ChekpointGoogle 8');
                               await Future.delayed(Duration(seconds: 1));
                               UserRepository.instance.getSingelUserDetails(emailTemp!);
                               print("Email dari DB : "+UserRepository.instance.getUserModelEmail());
                               print("Status dari DB : "+UserRepository.instance.getIsSuccessGetData());
 
-                              print('Email yang diterima page : ${emailTemp!}');
+                              print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
                               print('Email yang diterima page1 : ${emailTemp}');
 
-                              await Future.delayed(Duration(seconds: 2));
+                              await Future.delayed(Duration(seconds: 1));
                               UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
 
                               await Future.delayed(Duration(milliseconds: 200));
@@ -255,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
 
                                 final user = UserModel(
                                   fullName: randomNames.manFullName(),
-                                  email: emailTemp,
+                                  email: AuthenticationRepository.instance.getEmailGoogleSingIn(),
                                   userName: generateUserName(randomNames.manFullName()),
                                   province: "ProvinsiUtama",
                                   dateOfBirth: "01-01-1900",

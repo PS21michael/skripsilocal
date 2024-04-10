@@ -4,9 +4,12 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
+import 'package:intl/intl.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/controller/recommendation_controller.dart';
+import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/models/recommendation_model.dart';
@@ -21,6 +24,9 @@ import 'package:skripsilocal/repository/recommendation_repository/recommendation
 import '../../Utils/CategoryUtils.dart';
 import '../../controller/rating_controller.dart';
 import '../../models/rating_model.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
+import '../../Utils/categoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/rating_repository/rating_repository.dart';
 import 'NewsDetail.dart';
@@ -40,7 +46,8 @@ class _ExplorePageState extends State<ExplorePage> {
   final ratingController = Get.put(RatingController());
   late Future<List<NewsModel>> _futureNewsList;
   List<String> userCategoryOver = [];
-  final listCategoryController = Get.put(CategoryListParser());
+  // TODO ERRO WHEN MERGE
+  // final listCategoryController = Get.put(CategoryListParser());
 
 
   @override
@@ -64,6 +71,19 @@ class _ExplorePageState extends State<ExplorePage> {
     final detailSearch = TextEditingController();
     final userController = Get.put(ProfileController());
     String idUser = userController.getidUser();
+    final historyController = Get.put(HistoryController());
+    // final userController = Get.put(ProfileController());
+    Future.delayed(Duration(milliseconds: 500));
+    // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    // String idPengguna = UserRepository.instance.getUserModelId();
+    // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+    // String temp = "";
+    // temp = BookmarkRepository.instance.isDataAvail();
+    // print("isDataAvail $temp");
+    String idPengguna = UserRepository.instance.getUserModelId();
+    HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+    String temp = "";
+    temp = HistoryRepository.instance.isDataAvail();
 
     return SafeArea(
       child: Scaffold(
@@ -199,6 +219,8 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   userController.updateUserScoreCategory(snapshot.data![index].category);
                                                 }
 
+
+                                                // TODO : Panggil method ini sebelum ke news Detail
                                                 // Ambil data rataing by user id dan news id
                                                 if(idUser.isNotEmpty){
                                                   await Future.delayed(const Duration(milliseconds: 100));
@@ -213,9 +235,9 @@ class _ExplorePageState extends State<ExplorePage> {
                                                 List<int> indexOverScore = [];
                                                 indexOverScore = userController.getListIndexOverScoreCategory();
 
-                                                if(flagCategoryOver == "TRUE"){
-                                                  userCategoryOver = listCategoryController.parseScoreOverToList(indexOverScore);
-                                                }
+                                                // if(flagCategoryOver == "TRUE"){
+                                                //   userCategoryOver = listCategoryController.parseScoreOverToList(indexOverScore);
+                                                // }
 
                                                 // Data yg over limit dikirim dalam bentuk list string
 
@@ -244,7 +266,23 @@ class _ExplorePageState extends State<ExplorePage> {
                                                     userController.updateUserScoreOverLimitCategory(listKategoriYgTidakUpdate[i].toString(), 0);
                                                   }
                                                 }
-
+                                                if (AuthenticationRepository.instance.firebaseUser != null){
+                                                  DateTime now = DateTime.now();
+                                                  String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                                  final history = HistoryModel(
+                                                    idNews: snapshot.data![index].id.toString(),
+                                                    idPengguna: idUser,
+                                                    title: snapshot.data![index].title,
+                                                    urlData: snapshot.data![index].urlNews,
+                                                    urlGambar: snapshot.data![index].urlImage,
+                                                    kategori: snapshot.data![index].category,
+                                                    publisher: snapshot.data![index].publisher,
+                                                    description: snapshot.data![index].description,
+                                                    author: snapshot.data![index].author,
+                                                    waktu: formattedDate,
+                                                  );
+                                                  await historyController.createHistory(history);
+                                                }
                                                 Get.to(() => NewsDetail(
                                                   id: snapshot.data![index].id.toString(),
                                                   title: snapshot.data![index].title,
@@ -306,7 +344,7 @@ class _ExplorePageState extends State<ExplorePage> {
                           style: TextStyle(
                             color: selectedFilter != null ? Colors.black : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 17,
                           ),
                         ),
                       ),

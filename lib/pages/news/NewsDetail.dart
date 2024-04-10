@@ -12,7 +12,7 @@ import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:skripsilocal/repository/rating_repository/rating_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../Utils/TimeSavedNews.dart';
+import '../../Utils/timeSavedNews.dart';
 import '../../controller/comment_controller.dart';
 import '../../models/comment_model.dart';
 import '../../models/rating_model.dart';
@@ -249,8 +249,9 @@ class _NewsDetailState extends State<NewsDetail> {
                                   urlData: urlNews,
                                   urlGambar: urlImage,
                                   kategori: kategori,
-                                  publisher: penulis,
+                                  publisher: publisher,
                                   description: description,
+                                  author: penulis,
                                 );
                                 await bookMarkController.createBookMark(bookmark);
                                 print("Data sudah pernah ada");

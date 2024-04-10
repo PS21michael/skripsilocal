@@ -7,6 +7,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/components/custom_list_tile.dart';
+import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
@@ -168,6 +169,20 @@ class _ProfilePageState extends State<ProfilePage> {
       widgets.add(SizedBox(height: 5));
     }
 
+    if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
+      widgets.add(
+        CustomListTile(
+          onTap: () {
+            Get.to(()=> ShowUser());
+          },
+          title: 'List Registered User',
+          textColor: Colors.black,
+          icon: LineAwesomeIcons.upload,
+          iconColor: Colors.black,
+        ),
+      );
+      widgets.add(SizedBox(height: 5));
+    }
 
     widgets.add(
       CustomListTile(

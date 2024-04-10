@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+// import 'package:get/get_core/src/get_main.dart';
+// import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skripsilocal/models/user_model.dart';
 
@@ -11,7 +11,6 @@ class UserRepository extends GetxController{
   static UserRepository get instance => Get.find();
 
   var ctr =0;
-
   String userModelID = "";
   String userModelFullName = "";
   String userModelEmail = "";
@@ -20,14 +19,10 @@ class UserRepository extends GetxController{
   String userModelDateOfBirth = "";
   String userModelJoinDate = "";
   String userModelProfilePicture = "";
-
   String isSuccesGetData = "FALSE";
-
   List<int> listScore = [];
-
   String initKategori = "";
 
-  // ADDING
   int scoreKategori1=0;
   int scoreKategori2=0;
   int scoreKategori3=0;
@@ -72,7 +67,7 @@ class UserRepository extends GetxController{
 
   createUer(UserModel user) async {
     await _db.collection("/Users").add(user.toJson());
-    print('User Berhasil dibuat');
+    // print('User Berhasil dibuat');
   }
 
 
@@ -83,7 +78,7 @@ class UserRepository extends GetxController{
   Future<List<UserModel>> checkListUserName(String username) async{
     final snapshot = await _db.collection("/Users").where("UserName", isEqualTo: username).get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
-    if(userData.length != 0){
+    if(userData.isNotEmpty){
       for (int i=0; i<userData.length;i++){
         listUsernameRegistered.add(userData[i].userName);
       }
@@ -103,9 +98,9 @@ class UserRepository extends GetxController{
     final snapshot = await _db.collection("/Users").where("Email", isEqualTo: email).get();
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
     isUserEmailAvail = "";
-    if(userData.length ==0){
+    if(userData.isEmpty){
       isUserEmailAvail="NO";
-    } else if(userData.length !=0){
+    } else if(userData.isNotEmpty){
       isUserEmailAvail="YES";
     }
     return userData;
@@ -120,13 +115,13 @@ class UserRepository extends GetxController{
   String flagOverCategory = "";
   List<int> indexCategoryOver = [];
   Future<UserModel> getSingelUserDetails(String email) async{
-    print('CheckPoint login 2');
-    print('DB telah dipanggil ke ${ctr+=1}');
+    // print('CheckPoint login 2');
+    // print('DB telah dipanggil ke ${ctr+=1}');
     final snapshot = await _db.collection("/Users").where("Email", isEqualTo: email).get();
-    print('CheckPoint login 3');
+    // print('CheckPoint login 3');
     // final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).elementAt(0);
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
-    print('CheckPoint login 4');
+    // print('CheckPoint login 4');
 
     isSuccesGetData = "";
 
@@ -218,9 +213,9 @@ class UserRepository extends GetxController{
     listScore.add(scoreKategori36);
     listScore.add(scoreKategori37);
     listScore.add(scoreKategori38);
-    print('Lit score yg dibalikin : ${listScore.toString()}');
+    // print('Lit score yg dibalikin : ${listScore.toString()}');
     // listScore.sort();
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
     initScoreAwal = [];
     indexCategoryOver = [];
     flagOverCategory = "";
@@ -235,7 +230,7 @@ class UserRepository extends GetxController{
 
     }
     initKategori = "";
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
     if(initScoreAwal.length <3){
       initKategori =  "NO";
     } else {
@@ -243,7 +238,7 @@ class UserRepository extends GetxController{
     }
 
     isSuccesGetData = "True";
-    print('Data profil url udah di assign');
+    // print('Data profil url udah di assign');
     return userData;
   }
 
@@ -451,19 +446,19 @@ class UserRepository extends GetxController{
 
 
 
-  Future<void> updateUserRecord(UserModel user, String Id) async{
+  Future<void> updateUserRecord(UserModel user, String id) async{
     // getSingelUserDetails(email);
-    print('User Id yang mau di update : ${user.id}');
-    print('Email yang mau di update : ${user.email}');
-    print('Email yang mau di update2 : $Id');
-
-    print('CaraKedua : Id yang mau diupdate : ${user.id}');
-    print('CaraKedua : Id yang mau dikirm : ${UserRepository.instance.getUserModelId()}');
+    // print('User Id yang mau di update : ${user.id}');
+    // print('Email yang mau di update : ${user.email}');
+    // print('Email yang mau di update2 : $Id');
+    //
+    // print('CaraKedua : Id yang mau diupdate : ${user.id}');
+    // print('CaraKedua : Id yang mau dikirm : ${UserRepository.instance.getUserModelId()}');
     // await _db.collection("/Users").doc(email).update(user.toJson()).catchError((error, stackTrice){
-    await _db.collection("/Users").doc(Id).update(user.toJson()).catchError((error, stackTrice){
-      print('Thi1 the error : $error');
-      print('Thi2 the error : ${stackTrice.message}');
-      print(error.toString());
+    await _db.collection("/Users").doc(id).update(user.toJson()).catchError((error, stackTrice){
+      // print('Thi1 the error : $error');
+      // print('Thi2 the error : ${stackTrice.message}');
+      // print(error.toString());
     });
     getSingelUserDetails(user.email);
   }
@@ -643,11 +638,11 @@ class UserRepository extends GetxController{
 
 
   Future<String> uploadImage (String path, XFile image) async{
-    print('Path yang diterima : $path');
+    // print('Path yang diterima : $path');
     final ref = FirebaseStorage.instance.ref(path).child(image.name);
     await ref.putFile(File(image.path));
     final url = await ref.getDownloadURL();
-    print('Url yang dibalikin : $url');
+    // print('Url yang dibalikin : $url');
     return url;
   }
 
@@ -679,7 +674,7 @@ class UserRepository extends GetxController{
       update();
     } catch (e) {
       // Tangani kesalahan jika terjadi
-      print('Error refreshing user data: $e');
+      // print('Error refreshing user data: $e');
     }
   }
 
