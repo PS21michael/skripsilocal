@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:skripsilocal/pages/components/InquiryHeader.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/components/InquiryHeader.dart';import 'package:skripsilocal/src/NewsDirect/Antara/Core/antara_news_repository.dart';
+import 'package:skripsilocal/pages/components/InquiryHeader.dart';
+import 'package:skripsilocal/src/NewsDirect/Antara/Core/antara_news_repository.dart';
 import '../../../../models/berita_model.dart';
+import '../../../../models/news_model.dart';
 
 class InquiryAntaraNewsBola extends StatefulWidget {
   const InquiryAntaraNewsBola({Key? key}) : super(key: key);
