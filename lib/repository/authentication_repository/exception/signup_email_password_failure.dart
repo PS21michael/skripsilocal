@@ -2,20 +2,20 @@
 class SignupEmailAndPasswordFailure{
   final String message;
 
-  const SignupEmailAndPasswordFailure([this.message = "An Unknown error occured."]);
+  const SignupEmailAndPasswordFailure([this.message = "Terjadi kesalahan. Tolong di cek kembali"]);
 
   factory SignupEmailAndPasswordFailure.code(String code){
     switch(code){
       case 'weak-password' :
-        return const SignupEmailAndPasswordFailure('Please enter a stronger password.');
+        return const SignupEmailAndPasswordFailure('Passwor terlalu mudah ditebak');
       case 'invalid-email' :
-        return const SignupEmailAndPasswordFailure('Email is not valid or badly formatted.');
+        return const SignupEmailAndPasswordFailure('Email tidak valid');
       case 'email-already-in-use' :
-        return const SignupEmailAndPasswordFailure('An account already exists for that email.');
+        return const SignupEmailAndPasswordFailure('Email sudah terdaftar');
       case 'operation-not-allowed' :
-        return const SignupEmailAndPasswordFailure('Operation is not allowed. Please contact support.');
+        return const SignupEmailAndPasswordFailure('Terjadi keselahan sistem');
       case 'user-disabled' :
-        return const SignupEmailAndPasswordFailure('This user has been disabled. Please contact support for help.');
+        return const SignupEmailAndPasswordFailure('User dinonaktifkan. Tolong hubungi tim support');
       default: return const SignupEmailAndPasswordFailure();
     }
   }

@@ -8,11 +8,8 @@ import 'package:skripsilocal/models/news_model.dart';
 class NewsRepository extends GetxController{
   
   var count = 0;
-  
   static NewsRepository get instance => Get.find();
-
   final _db = FirebaseFirestore.instance;
-
   String title11="";
   String publisher="";
   String author="";
@@ -25,33 +22,31 @@ class NewsRepository extends GetxController{
   String linkGambar = "";
   String newsCategory="";
 
-  // PENTING
   List<String> listJudul = ["null"];
-
-  int TanggalDisimpan=0;
+  int tanggalDisimpan=0;
 
   insertNews(NewsModel newsModel) async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-          print(error.toString());
+          // print(error.toString());
     });
-    print('News ke ${count+=1}Berhasil dibuat');
+    // print('News ke ${count+=1}Berhasil dibuat');
   }
   
   Future<NewsModel> getSingelNewsDetails (String title) async{
     final snapshot = await _db.collection("/News").where("Title", isEqualTo: title).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).single;
-    print('CheckPoint isi user ');
+    // print('CheckPoint isi user ');
     publisher = newsData.publisher;
     title11 = newsData.title;
     author = newsData.author;
     url = newsData.urlNews;
     viewsCount = newsData.views;
     idNews = newsData.id!;
-    linkGambar = newsData.urlImage!;
-    newsCategory = newsData.category!;
-    print('Data terisi ');
-    print('salah satu data : ${title} ');
+    linkGambar = newsData.urlImage;
+    newsCategory = newsData.category;
+    // print('Data terisi ');
+    // print('salah satu data : ${title} ');
     return newsData;
   }
 
@@ -81,11 +76,11 @@ class NewsRepository extends GetxController{
   }
 
   int getTanggalDisimpan(){
-    return TanggalDisimpan;
+    return tanggalDisimpan;
   }
 
   void setTanggalDisimpan(int tanggal){
-    TanggalDisimpan = tanggal;
+    tanggalDisimpan = tanggal;
   }
 
   String getPublisher(){
@@ -204,19 +199,19 @@ class NewsRepository extends GetxController{
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
       if(48 == newsData[i].countPeriod){
-        print("Data yang ke 48 : ${newsData[i].title}");
+        // print("Data yang ke 48 : ${newsData[i].title}");
       }
     }
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
       if(47 == newsData[i].countPeriod){
-        print("Data yang ke 47 : ${newsData[i].title}");
+        // print("Data yang ke 47 : ${newsData[i].title}");
       }
     }
     for(int i=0; i<newsData.length;i++){
       listJudul.add(newsData[i].title);
       if(46 == newsData[i].countPeriod){
-        print("Data yang ke 46 : ${newsData[i].title}");
+        // print("Data yang ke 46 : ${newsData[i].title}");
       }
     }
 
@@ -227,7 +222,7 @@ class NewsRepository extends GetxController{
 
   Future<void> updateNewsRecord(NewsModel newsModel, String id) async{
     await _db.collection("/News").doc(id).update(newsModel.toJson()).catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
   }
 
@@ -241,14 +236,14 @@ class NewsRepository extends GetxController{
   Future<void> updateDislikeRecord(int dislike, String id) async{
     Map<String, dynamic> json = {'Dislike' : dislike};
     await _db.collection("/News").doc(id).update(json).catchError((error, stacktrice){
-      print(error.toString());
+      // print(error.toString());
     });
   }
 
   Future<void> updateLikeRecord(int like, String id) async{
     Map<String, dynamic> json = {'Like' : like};
     await _db.collection("/News").doc(id).update(json).catchError((error, stacktrice){
-      print(error.toString());
+      // print(error.toString());
     });
   }
 
@@ -279,6 +274,12 @@ class NewsRepository extends GetxController{
   //   return newsData;
   // }
 
+  Future<List<NewsModel>> getSearchDescriptionNews(String id) async{
+    final snapshot = await _db.collection("/News").orderBy("Description").startAt([id,]).endAt([id+'\uf8ff',]).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+    return newsData;
+  }
+
   Future<List<NewsModel>> getSearchTitleNews(String query) async {
     final snapshot = await _db.collection("/News").get();
     final lowercaseQuery = query.toLowerCase();
@@ -286,13 +287,6 @@ class NewsRepository extends GetxController{
         doc["Title"].toLowerCase().contains(lowercaseQuery)
     ).toList();
     final newsData = filteredNews.map((e) => NewsModel.fromSnapshot(e)).toList();
-    return newsData;
-  }
-
-// Description - Search
-  Future<List<NewsModel>> getSearchDescriptionNews(String id) async{
-    final snapshot = await _db.collection("/News").orderBy("Description").startAt([id,]).endAt([id+'\uf8ff',]).get();
-    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     return newsData;
   }
 
@@ -315,9 +309,6 @@ class NewsRepository extends GetxController{
     final newsData = filteredNews.map((e) => NewsModel.fromSnapshot(e)).toList();
     return newsData;
   }
-
-
-
 
 // Search Advanced
   late List<NewsModel> listNewsModelTemp;
@@ -355,6 +346,5 @@ class NewsRepository extends GetxController{
   void setAllSearchTempNewsModelNull(){
     listNewsModelTemp = [];
   }
-
 
 }

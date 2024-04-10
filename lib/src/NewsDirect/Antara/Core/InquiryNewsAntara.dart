@@ -1,43 +1,41 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import 'package:skripsilocal/src/NewsDirect/Tempo/core/tempo_news_repository.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/bola/InquiryNewsAntaraBola.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/dunia/InquiryNewsAntaraDunia.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/hiburan/InquiryNewsAntaraHiburan.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/hukum/InquiryNewsAntaraHukum.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/humaniora/InquiryNewsAntaraHumaniora.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/lifestyle/InquiryNewsAntaraLifeStyle.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/olahraga/InquiryAntaraNewsOlahraga.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/otomotif/InquiryAntaraNewsOtomotif.dart';
+// import 'package:skripsilocal/src/NewsDirect/Antara/tekno/InquiryAntaraNewsTeknologi.dart';
 // import '../../../../Utils/timeSavedNews.dart';
-// import '../bisnis/inquiryNewsTempoBisnis.dart';
-// import '../bola/inquiryNewsTempoBola.dart';
-// import '../cantik/inquiryNewsTempoCantik.dart';
-// import '../creativelab/inquiryNewsTempoCreativeLab.dart';
-// import '../difabel/inquiryNewsTempoDifabel.dart';
-// import '../dunia/inquiryNewsTempoDunia.dart';
-// import '../event/inquiryNewsTempoEvent.dart';
-// import '../gaya/inquiryNewsTempoGaya.dart';
-// import '../inforial/inquiryNewsTempoInforial.dart';
-// import '../metro/inquiryNewsTempoMetro.dart';
-// import '../nasional/inquiryNewsTempoNasional.dart';
-// import '../otomotif/inquiryNewsTempoOtomotif.dart';
-// import '../seleb/inquiryNewsTempoSeleb.dart';
-// import '../tekno/inquiryNewsTempoTekno.dart';
-// import '../travel/inquiryNewsTempoTravel.dart';
+// import '../../../../controller/signin_controller.dart';
+// import 'antara_news_repository.dart';
+// import '../politik/InquiryAntaraNewsPolitik.dart';
 //
-// class InquiryNewsTempo extends StatefulWidget {
+// class InquiryNewsAnatara extends StatefulWidget {
 //
-//   const InquiryNewsTempo({super.key});
+//   const InquiryNewsAnatara({super.key});
 //
 //   @override
-//   State<InquiryNewsTempo> createState() => _InquiryNewsTempo();
+//   State<InquiryNewsAnatara> createState() => _InquiryNewsAnatara();
 // }
 //
-// class _InquiryNewsTempo extends State<InquiryNewsTempo> {
+// class _InquiryNewsAnatara extends State<InquiryNewsAnatara> {
 //
-//   final periodcontroller = Get.put(PeriodSavedParser());
+//   final dateTimecontroller = Get.put(PeriodSavedParser());
 //
-//   final newsRepo = Get.put(TempoNewsRepository());
+//   final controller = Get.put(SignInController());
+//
+//   final newsRepo = Get.put(AntaraNewsRepository());
 //
 //   @override
 //   Widget build(BuildContext context) {
 //     DateTime tets = DateTime.now();
-//     String montValue = periodcontroller.montParser(tets.month.toInt());
+//     String montValue = dateTimecontroller.montParser(tets.month.toInt());
 //     String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
-//     int monthNumber = periodcontroller.periodSaver(tanggalToday);
+//     int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 //
 //     return Scaffold(
 //       resizeToAvoidBottomInset: false,
@@ -60,16 +58,234 @@
 //                     fontSize: 20,
 //                   ),
 //                 ),
+//                 // 1. Politik
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: ()async{
+//                     await Future.delayed(const Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(const Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsPolitik());
+//                   },
 //
-//                 // 1. NASIONAL
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Politik",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 2. Otomotif
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: () async{
+//                     await Future.delayed(const Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(const Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsOtomotif());
+//                   },
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Otomotif",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 3. Olahraga
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: () async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsOlahraga());
+//                   },
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Olahraga",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 4. Life Style
 //                 const SizedBox(height: 20),
 //                 GestureDetector(
 //                   onTap: ()async{
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsNasional());
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsLifeStyle());
+//                   },
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Life Style",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 5. Humaniora
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: () async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsHumaniora());
+//                   },
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Humaniora",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 6. Hukum
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: ()async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsHukum());
+//                   },
+//
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Hukum",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 7. Hiburan
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: ()async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsHiburan());
+//                   },
+//
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Hiburan",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 8. Ekonomi
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: ()async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsHiburan());
+//                   },
+//
+//
+//                   child: Container(
+//                     height: 45,
+//                     width: 100,
+//                     decoration: BoxDecoration(
+//                       color: Colors.blue[200],
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: const Center(
+//                       child: Text("Ekonomi",
+//                         style: TextStyle(
+//                             color: Colors.white),
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//
+//                 // 9. Internasional
+//                 const SizedBox(height: 20),
+//                 GestureDetector(
+//                   onTap: ()async{
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
+//                     await Future.delayed(Duration(milliseconds: 100));
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsInternasional());
 //                   },
 //                   child: Container(
 //                     height: 45,
@@ -79,7 +295,7 @@
 //                       borderRadius: BorderRadius.circular(10),
 //                     ),
 //                     child: const Center(
-//                       child: Text("Nasional",
+//                       child: Text("Internasional",
 //                         style: TextStyle(
 //                             color: Colors.white),
 //                       ),
@@ -87,93 +303,15 @@
 //                   ),
 //                 ),
 //
-//                 // 2. BISNIS
+//                 // 10. Bola
 //                 const SizedBox(height: 20),
 //                 GestureDetector(
 //                   onTap: ()async{
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsBisnis());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Bisnis",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 3. METRO
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsMetro());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Metro",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 4. DUNIA
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsDunia());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Dunia",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 5. BOLA
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsBola());
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsBola());
 //                   },
 //                   child: Container(
 //                     height: 45,
@@ -191,15 +329,15 @@
 //                   ),
 //                 ),
 //
-//                 // 6. CANTIK
+//                 // 11. Teknologi
 //                 const SizedBox(height: 20),
 //                 GestureDetector(
 //                   onTap: ()async{
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
+//                     AntaraNewsRepository.instance.setCountPeriodNull();
 //                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsCantik());
+//                     AntaraNewsRepository.instance.setCountPeriod(monthNumber);
+//                     Get.to(()=>const InquiryAntaraNewsTeknologi());
 //                   },
 //                   child: Container(
 //                     height: 45,
@@ -209,245 +347,7 @@
 //                       borderRadius: BorderRadius.circular(10),
 //                     ),
 //                     child: const Center(
-//                       child: Text("Cantik",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 7. TEKNO
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsTekno());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Tekno",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//
-//                 // 8. OTOMOTIF
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsOtomotif());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Otomotif",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 9. SELEB
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsSeleb());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Seleb",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//
-//                 // 10. GAYA
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsGaya());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Gaya",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//
-//                 // 11. TRAVEL
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsTravel());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Travel",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//
-//                 // 12. DIFABEL
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsDifabel());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Difabel",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 13. CREATIVE LAB
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsCreativeLab());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Creative Lab",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 14. INFORIAL
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsInforial());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Inforial",
-//                         style: TextStyle(
-//                             color: Colors.white),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 // 15. EVENT
-//                 const SizedBox(height: 20),
-//                 GestureDetector(
-//                   onTap: ()async{
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriodNULL();
-//                     await Future.delayed(Duration(milliseconds: 100));
-//                     TempoNewsRepository.instance.setCountPeriod(monthNumber);
-//                     Get.to(()=>const InquiryTempoNewsEvent());
-//                   },
-//                   child: Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                       color: Colors.blue[200],
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: const Center(
-//                       child: Text("Event",
+//                       child: Text("Teknologi",
 //                         style: TextStyle(
 //                             color: Colors.white),
 //                       ),

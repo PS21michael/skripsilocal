@@ -1,18 +1,12 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
 import '../../../../models/news_model.dart';
-
 
 class TempoNewsRepository extends GetxController{
 
   var count = 0;
-
   static TempoNewsRepository get instance => Get.find();
-
   final _db = FirebaseFirestore.instance;
-
   final String publisher = "Tempo News";
 
   // UTILS
@@ -326,9 +320,9 @@ class TempoNewsRepository extends GetxController{
   saveNewsTempo(NewsModel newsModel)async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('News ke ${count+=1} Berhasil dibuat');
+    // print('News ke ${count+=1} Berhasil dibuat');
   }
 
 

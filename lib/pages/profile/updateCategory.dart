@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/CategoryUtils.dart';
+import 'package:skripsilocal/Utils/categoryUtils.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
@@ -107,7 +107,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                       onTap: () async{
                         handleSubmit(userCategory);
                       },
-                      text: "Submit"
+                      text: "Selesai"
                   ),
                   SizedBox(height: 20),
                 ],

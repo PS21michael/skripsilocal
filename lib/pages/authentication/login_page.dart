@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
@@ -11,8 +12,10 @@ import 'package:skripsilocal/pages/components/my_textfield.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
 import 'package:skripsilocal/pages/home_page.dart';
+import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
+import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
@@ -29,17 +32,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = Get.put(SignInController());
-
   final _formkey = GlobalKey<FormState>();
-
   final userRepo = Get.put(UserRepository());
-
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
-  void SignInUser(){}
-
+  // void SignInUser(){}
   var randomNames = RandomNames(Zone.us);
 
   static String generateUserName(fullName){
@@ -63,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 Container(
                   padding: EdgeInsets.only(left: 10),
                   alignment: Alignment.topLeft,
@@ -183,16 +180,20 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () async {
                           var i=0;
                           var j=0;
-                          String emailTemp = "";
+                          await Future.delayed(const Duration(seconds: 2));
                           SignInController.instance.googleSignIn();
-                          emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
+                          await Future.delayed(const Duration(seconds: 1));
+                          final GoogleSignIn googleSignIn = GoogleSignIn();
+                          final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+                          await Future.delayed(const Duration(milliseconds: 500));
+                          String? emailTemp = googleSignInAccount?.email.toString();
                           FirebaseAuth.instance.currentUser?.reload();
                           if(emailTemp == "") {
-                            showCustomSnackbar(
-                              "Maaf!",
-                              "Terjadi kesalahan \nSilahkan tekan sekali lagi \n Untuk melanjutkan",
-                              isError: true,
-                            );
+                            // showCustomSnackbar(
+                            //   "Maaf!",
+                            //   "Terjadi kesalahan \nSilahkan tekan sekali lagi \n Untuk melanjutkan",
+                            //   isError: true,
+                            // );
                           } else{
                             print('Email sudah tidak null ${j+=1}');
                             try{
@@ -203,7 +204,6 @@ class _LoginPageState extends State<LoginPage> {
                               print('ChekpointGoogle 3');
                               print('Ada error $e');
                             }
-
                             if(UserRepository.instance.getIsSuccessGetData() == "True"){
                               print('ChekpointGoogle 4');
                               if(UserRepository.instance.getUserModelEmail() == ""){
@@ -219,35 +219,29 @@ class _LoginPageState extends State<LoginPage> {
                               }else{
                                 print('ChekpointGoogle 7');
                                 await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelUserDetails(emailTemp);
-
+                                UserRepository.instance.getSingelUserDetails(emailTemp!);
                                 Get.to(()=>const ExplorePage());
                               }
                             } else{
                               print('ChekpointGoogle 8');
                               await Future.delayed(Duration(seconds: 1));
-                              UserRepository.instance.getSingelUserDetails(emailTemp);
+                              UserRepository.instance.getSingelUserDetails(emailTemp!);
                               print("Email dari DB : "+UserRepository.instance.getUserModelEmail());
                               print("Status dari DB : "+UserRepository.instance.getIsSuccessGetData());
-
                               print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
-                              print('Email yang diterima page1 : ${emailTemp}');
-
+                              print('Email yang diterima page1 : ${emailTemp!}');
                               await Future.delayed(Duration(seconds: 1));
-                              UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
-
+                              UserRepository.instance.getSingelAllUserFromEmail(emailTemp!);
                               await Future.delayed(Duration(milliseconds: 200));
                               String isUserDBExist = UserRepository.instance.getIsUserEmailAvail();
                               print('Status yang diterima page : ${isUserDBExist}');
                               if(isUserDBExist==""){
                                 await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
-
+                                UserRepository.instance.getSingelAllUserFromEmail(emailTemp!);
                                 await Future.delayed(Duration(milliseconds: 200));
                                 isUserDBExist = UserRepository.instance.getIsUserEmailAvail();
                               }
                               if(isUserDBExist=="NO"){
-
                                 final user = UserModel(
                                   fullName: randomNames.manFullName(),
                                   email: AuthenticationRepository.instance.getEmailGoogleSingIn(),
@@ -303,7 +297,7 @@ class _LoginPageState extends State<LoginPage> {
                                 print('ChekpointGoogle 10');
 
                                 await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelUserDetails(emailTemp);
+                                UserRepository.instance.getSingelUserDetails(emailTemp!);
 
                                 Get.to(()=>const FillProfile());
                                 print('ChekpointGoogle 11');
@@ -312,7 +306,7 @@ class _LoginPageState extends State<LoginPage> {
                               } else {
                                 print("Checkpoint login 15");
                                 await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelUserDetails(emailTemp);
+                                UserRepository.instance.getSingelUserDetails(emailTemp!);
 
                                 Get.to(()=>const ExplorePage());
                               }

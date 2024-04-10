@@ -8,13 +8,10 @@ import 'package:skripsilocal/models/comment_model.dart';
 class CommentRepository extends GetxController{
   
   var count = 0;
-  var comment;
-
+  // var comment;
   List<String>? listEmail;
   String listtEmail="";
-
   List<CommentModel>? listCommentData;
-
   String idComment="";
   String idNews="";
   String pathFoto="";
@@ -23,7 +20,6 @@ class CommentRepository extends GetxController{
   String waktu="";
   String komen="";
 
-  
   static CommentRepository get instance => Get.find();
   
   final _db = FirebaseFirestore.instance;
@@ -31,9 +27,9 @@ class CommentRepository extends GetxController{
   insertComment(CommentModel commentModel) async{
     await _db.collection("/Comment").add(commentModel.toJson())
         .catchError((error, stackTrice){
-          print(error.toString());
+          // print(error.toString());
     });
-    print('Comment ke ${count+=1}Berhasil dibuat');
+    // print('Comment ke ${count+=1}Berhasil dibuat');
   }
 
 
@@ -45,10 +41,10 @@ class CommentRepository extends GetxController{
   }
 
   Future<List<CommentModel>> getAllComment() async{
-    print('ChekpointComment 1');
+    // print('ChekpointComment 1');
     final snapshot = await _db.collection("/Comment").get();
     final commentData = snapshot.docs.map((e) => CommentModel.fromSnapshot(e)).toList();
-    print('ChekpointComment 2');
+    // print('ChekpointComment 2');
     return commentData;
   }
 
@@ -77,7 +73,7 @@ class CommentRepository extends GetxController{
 
   Future<void> updateCommentRecord(CommentModel commentModel, String id) async{
     await _db.collection("/Comment").doc(id).update(commentModel.toJson()).catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
   }
 

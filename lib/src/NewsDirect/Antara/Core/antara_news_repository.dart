@@ -1,12 +1,6 @@
-
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
-
 import '../../../../models/news_model.dart';
-
 
 class AntaraNewsRepository extends GetxController{
 
@@ -262,18 +256,12 @@ class AntaraNewsRepository extends GetxController{
     listJudulOtomotif = [];
   }
 
-
-
   saveNewsAntara(NewsModel newsModel)async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('News ke ${count+=1} Berhasil dibuat');
+    // print('News ke ${count+=1} Berhasil dibuat');
   }
-
-  // POLITIK
-
-
 
 }

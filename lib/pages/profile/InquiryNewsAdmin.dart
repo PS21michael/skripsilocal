@@ -84,7 +84,7 @@ import 'package:skripsilocal/src/NewsDirect/Tempo/seleb/inquiryNewsTempoSeleb.da
 import 'package:skripsilocal/src/NewsDirect/Tempo/tekno/inquiryNewsTempoTekno.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/travel/inquiryNewsTempoTravel.dart';
 
-import '../../Utils/TimeSavedNews.dart';
+import '../../Utils/timeSavedNews.dart';
 import '../../controller/signin_controller.dart';
 import '../../src/NewsDirect/Antara/Core/antara_news_repository.dart';
 import '../../src/NewsDirect/CNBC/core/cnbc_news_repository.dart';
@@ -331,7 +331,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                   ),
                 const SizedBox(height: 20),
                 theButton(
-                    text: 'Submit',
+                    text: 'Lanjut',
                     onTap: (){
                       handleSubmit(selectedIndex, selectedSecondIndex, monthNumber);
                     }

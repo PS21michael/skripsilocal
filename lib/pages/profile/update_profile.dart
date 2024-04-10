@@ -360,7 +360,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     ),
                     const SizedBox(height: 30),
                     theButton(
-                      text: 'Next',
+                      text: 'Lanjut',
                       onTap: () async {
                         if (userNameController.text.trim() != userNameCustomer) {
                           if (!_usernameValidated) {

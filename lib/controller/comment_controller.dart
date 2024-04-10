@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/repository/comment_repository/comment_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../repository/authentication_repository/authentication_repository.dart';
+// import '../../../repository/authentication_repository/authentication_repository.dart';
 
 class CommentController extends GetxController{
   static CommentController get instance => Get.find();
 
   Rx<CommentModel> comment = CommentModel.empty().obs;
 
-  final _authRepo     = Get.put(AuthenticationRepository());
+  // final _authRepo     = Get.put(AuthenticationRepository());
   final _commentRepo  = Get.put(CommentRepository());
 
   getCommentData(String idNews) async{
@@ -30,7 +30,7 @@ class CommentController extends GetxController{
   }
 
   Future<void>createComment(CommentModel commentModel) async{
-    print('Comment Akan Dibuat');
+    // print('Comment Akan Dibuat');
     await _commentRepo.insertComment(commentModel);
   }
 

@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
-import '../../../repository/authentication_repository/authentication_repository.dart';
+// import '../../../repository/authentication_repository/authentication_repository.dart';
 
 class NewsController extends GetxController{
   static NewsController get instance => Get.find();
 
   Rx<NewsModel> news = NewsModel.empty().obs;
 
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final _newsRepo = Get.put(NewsRepository());
 
   String title = "TKN Prabowo Yakin Mahfud Mundur Tak Goyang Kabinet Jokowi";

@@ -49,9 +49,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _showPopupMessage(context);
-    // });
+    });
   }
 
   void _showPopupMessage(BuildContext context) {
@@ -80,7 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Password harus terdiri dari satu special character, satu angka, satu huruf besar dan lebih dari 8 karakter!',
+                  'Password harus terdiri dari satu special character, satu angka, satu huruf besar, satu huruf kecil dan lebih dari 8 karakter!',
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(height: 20),

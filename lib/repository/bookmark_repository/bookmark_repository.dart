@@ -8,30 +8,26 @@ import 'package:skripsilocal/models/bookmark_model.dart';
 class BookmarkRepository extends GetxController{
 
   var count = 0;
-
   static BookmarkRepository get instance => Get.find();
-
   final _db = FirebaseFirestore.instance;
 
   insertBookmark(BookmarkModel bookmarkModel) async{
     await _db.collection("/Bookmark").add(bookmarkModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('Bookmark ke ${count+=1}Berhasil dibuat');
+    // print('Bookmark ke ${count+=1}Berhasil dibuat');
   }
 
   Future<BookmarkModel> getSingelBookmarkDetails(String idPengguna) async{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: idPengguna).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).single;
-    
     return bookmarkData;
   }
   
   Future<List<BookmarkModel>> getAllBookmarks() async{
     final snapshot = await _db.collection("/Bookmark").get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
-    
     return bookmarkData;
   }
 
@@ -43,7 +39,7 @@ class BookmarkRepository extends GetxController{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: idPengguna).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
     isDataExisst = "";
-    if(bookmarkData.length==0){
+    if(bookmarkData.isEmpty){
       isDataExisst = "NO";
     } else{
       isDataExisst = "YES";
@@ -52,10 +48,10 @@ class BookmarkRepository extends GetxController{
     listBookMarkTitle = [];
     for(int i=0; i<bookmarkData.length; i++){
       listIdBookmarkFromSingelIdUser.add(bookmarkData[i].id.toString());
-      print("Id : " + bookmarkData[i].id.toString());
+      // print("Id : " + bookmarkData[i].id.toString());
       listBookMarkTitle.add(bookmarkData[i].title);
     }
-    print("list bookmark yg ada : ${listIdBookmarkFromSingelIdUser.toString()}");
+    // print("list bookmark yg ada : ${listIdBookmarkFromSingelIdUser.toString()}");
     return bookmarkData;
   }
 
@@ -76,7 +72,7 @@ class BookmarkRepository extends GetxController{
   
   Future<void> updateBookmarkRecord(BookmarkModel bookmarkModel, String id) async{
     await _db.collection("/Bookmark").doc(id).update(bookmarkModel.toJson()).catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
   }
 
@@ -96,9 +92,9 @@ class BookmarkRepository extends GetxController{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: userId).where("Title", isEqualTo: title).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
     dataAvail = "";
-    if(bookmarkData.length != 0 ){
+    if(bookmarkData.isNotEmpty ){
       dataAvail = "YES";
-    } else if(bookmarkData.length == 0) {
+    } else if(bookmarkData.isEmpty) {
       dataAvail = "NO";
     }
     return bookmarkData;

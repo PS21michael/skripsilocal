@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/news/NewsDetail.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../controller/bookmark_controller.dart';
@@ -24,15 +28,21 @@ class _BookmarkPageState extends State<BookmarkPage> {
   final controller = Get.put(BookmarkController());
   final controller1 = Get.put(NewsController());
   final userController = Get.put(ProfileController());
+  final historyController = Get.put(HistoryController());
+  // final userController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String idPengguna = UserRepository.instance.getUserModelId();
+    // String idUser = userController.getidUser();
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     String temp = BookmarkRepository.instance.isDataAvail();
     print("isDataAvail $temp");
-
+    // String idPengguna = UserRepository.instance.getUserModelId();
+    HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+    String temp1 = "";
+    temp1 = HistoryRepository.instance.isDataAvail();
 
     return SafeArea(
       child: Scaffold(
@@ -171,6 +181,21 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                   await Future.delayed(const Duration(milliseconds: 100));
                                   userController.updateUserScoreCategory(snapshot.data![index].kategori);
                                 }
+                                DateTime now = DateTime.now();
+                                String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                final history = HistoryModel(
+                                  idNews: snapshot.data![index].id.toString(),
+                                  idPengguna: idPengguna,
+                                  title: snapshot.data![index].title,
+                                  urlData: snapshot.data![index].urlData,
+                                  urlGambar: snapshot.data![index].urlGambar,
+                                  kategori: snapshot.data![index].kategori,
+                                  publisher: snapshot.data![index].publisher,
+                                  description: snapshot.data![index].description,
+                                  author: snapshot.data![index].author,
+                                  waktu: formattedDate,
+                                );
+                                await historyController.createHistory(history);
                                 Get.to(() => NewsDetail(
                                   id: snapshot.data![index].id.toString(),
                                   title: snapshot.data![index].title,

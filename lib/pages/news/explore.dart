@@ -1,16 +1,20 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/news/FilterExplore.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
-
-import '../../Utils/CategoryUtils.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
+import '../../Utils/categoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import 'NewsDetail.dart';
 
@@ -51,6 +55,20 @@ class _ExplorePageState extends State<ExplorePage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final detailSearch = TextEditingController();
     final userController = Get.put(ProfileController());
+    final historyController = Get.put(HistoryController());
+    // final userController = Get.put(ProfileController());
+    String idUser = userController.getidUser();
+    Future.delayed(Duration(milliseconds: 500));
+    // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    // String idPengguna = UserRepository.instance.getUserModelId();
+    // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+    // String temp = "";
+    // temp = BookmarkRepository.instance.isDataAvail();
+    // print("isDataAvail $temp");
+    String idPengguna = UserRepository.instance.getUserModelId();
+    HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+    String temp = "";
+    temp = HistoryRepository.instance.isDataAvail();
 
     return SafeArea(
       child: Scaffold(
@@ -185,7 +203,6 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   await Future.delayed(const Duration(milliseconds: 100));
                                                   userController.updateUserScoreCategory(snapshot.data![index].category);
                                                 }
-
                                                 // Check Score over limit
                                                 userCategoryOver = [];
                                                 await Future.delayed(const Duration(milliseconds: 100));
@@ -217,7 +234,6 @@ class _ExplorePageState extends State<ExplorePage> {
                                                     userController.updateUserScoreOverLimitCategory(listKategoriYgMauDiUpdate[i].toString(), 1000);
                                                   }
                                                 }
-
                                                 if(listKategoriYgTidakUpdate.length !=0){
                                                   await Future.delayed(const Duration(milliseconds: 50));
                                                   for(int i=0; i<listKategoriYgTidakUpdate.length; i++){
@@ -225,7 +241,23 @@ class _ExplorePageState extends State<ExplorePage> {
                                                     userController.updateUserScoreOverLimitCategory(listKategoriYgTidakUpdate[i].toString(), 0);
                                                   }
                                                 }
-
+                                                // if (AuthenticationRepository.instance.firebaseUser != null){
+                                                  DateTime now = DateTime.now();
+                                                  String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                                  final history = HistoryModel(
+                                                    idNews: snapshot.data![index].id.toString(),
+                                                    idPengguna: idUser,
+                                                    title: snapshot.data![index].title,
+                                                    urlData: snapshot.data![index].urlNews,
+                                                    urlGambar: snapshot.data![index].urlImage,
+                                                    kategori: snapshot.data![index].category,
+                                                    publisher: snapshot.data![index].publisher,
+                                                    description: snapshot.data![index].description,
+                                                    author: snapshot.data![index].author,
+                                                    waktu: formattedDate,
+                                                  );
+                                                  await historyController.createHistory(history);
+                                                // }
                                                 Get.to(() => NewsDetail(
                                                   id: snapshot.data![index].id.toString(),
                                                   title: snapshot.data![index].title,
@@ -287,7 +319,7 @@ class _ExplorePageState extends State<ExplorePage> {
                           style: TextStyle(
                             color: selectedFilter != null ? Colors.black : Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 17,
                           ),
                         ),
                       ),

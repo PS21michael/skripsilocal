@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/CategoryUtils.dart';
+import 'package:skripsilocal/Utils/categoryUtils.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';

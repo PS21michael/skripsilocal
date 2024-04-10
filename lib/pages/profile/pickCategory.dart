@@ -6,7 +6,7 @@ import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/news/news.dart';
 
-import '../../Utils/CategoryUtils.dart';
+import '../../Utils/categoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/user_repository/user_repository.dart';
 
@@ -78,7 +78,7 @@ class _PickCategoryState extends State<PickCategory> {
                       onTap: () async{
                         handleSubmit();
                       },
-                      text: "Submit"
+                      text: "Selesai"
                   ),
                   SizedBox(height: 20),
                   // Text('Kategori yang Dipilih:'),
@@ -292,7 +292,7 @@ class _PickCategoryState extends State<PickCategory> {
       await Future.delayed(Duration(seconds: 2));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
 
-      showCustomSnackbar('SUCCES', 'DATA SUDAH DIMASUKKAN', isError: false);
+      showCustomSnackbar('SUCCES', 'Data berhasil disimpan', isError: false);
 
       await Future.delayed(Duration(milliseconds: 300));
       // UserRepository.instance.resetListScore();

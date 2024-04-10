@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/bookmark_model.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
-import '../../../repository/authentication_repository/authentication_repository.dart';
+// import '../../../repository/authentication_repository/authentication_repository.dart';
 
 class BookmarkController extends GetxController{
 
@@ -9,7 +9,7 @@ class BookmarkController extends GetxController{
 
   Rx<BookmarkModel> bookmark = BookmarkModel.empty().obs;
 
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final _bookmarkRepo = Get.put(BookmarkRepository());
 
   Future<List<BookmarkModel>> getAllBookmark() async{
@@ -22,7 +22,7 @@ class BookmarkController extends GetxController{
 
 
   Future<void> createBookMark(BookmarkModel bookmarkModel)async{
-    print('Bookmark Akan Dibuat');
+    // print('Bookmark Akan Dibuat');
     await _bookmarkRepo.insertBookmark(bookmarkModel);
   }
 

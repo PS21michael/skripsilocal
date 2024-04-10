@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 var temp=0;
@@ -13,6 +12,7 @@ class BookmarkModel{
   final String kategori;
   final String publisher;
   final String description;
+  final String author;
 
   BookmarkModel({
     this.id,
@@ -24,6 +24,7 @@ class BookmarkModel{
     required this.kategori,
     required this.publisher,
     required this.description,
+    required this.author,
   });
 
   static BookmarkModel empty() => BookmarkModel(
@@ -35,6 +36,7 @@ class BookmarkModel{
     kategori: '',
     publisher: '',
     description: '',
+    author: '',
   );
 
   // Json Parser
@@ -48,6 +50,7 @@ class BookmarkModel{
       "Kategori" : kategori,
       "Publisher" : publisher,
       "Description" : description,
+      "Author" : author,
     };
   }
 
@@ -63,6 +66,7 @@ class BookmarkModel{
       kategori: data?["Kategori"],
       publisher: data?["Publisher"],
       description: data?["Description"],
+      author: data?["Author"],
     );
   }
 

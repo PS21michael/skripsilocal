@@ -1,7 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/CategoryUtils.dart';
+import 'package:intl/intl.dart';
+import 'package:skripsilocal/Utils/categoryUtils.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
@@ -12,6 +13,7 @@ import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/news/afterSearchNews.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../../controller/history_controller.dart';
 import '../../controller/profile_controller.dart';
@@ -58,8 +60,15 @@ class _NewsPageState extends State<NewsPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     final detailSearch = TextEditingController();
-    // final controller1 = Get.put(CommentController());
+    final historyController = Get.put(HistoryController());
     final userController = Get.put(ProfileController());
+    String idUser = userController.getidUser();
+    String idPengguna = UserRepository.instance.getUserModelId();
+    HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+    String temp = "";
+    temp = HistoryRepository.instance.isDataAvail();
+    // final controller1 = Get.put(CommentController());
+    // final userController = Get.put(ProfileController());
     // List<CommentModel>? test = controller1.getAllDataList();
     // print('Total data : ${test?.length}');
 
@@ -196,6 +205,21 @@ class _NewsPageState extends State<NewsPage> {
                                                 await Future.delayed(const Duration(milliseconds: 100));
                                                 userController.updateUserScoreCategory(snapshot.data![index].category);
                                               }
+                                              DateTime now = DateTime.now();
+                                              String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                              final history = HistoryModel(
+                                                idNews: snapshot.data![index].id.toString(),
+                                                idPengguna: idUser,
+                                                title: snapshot.data![index].title,
+                                                urlData: snapshot.data![index].urlNews,
+                                                urlGambar: snapshot.data![index].urlImage,
+                                                kategori: snapshot.data![index].category,
+                                                publisher: snapshot.data![index].publisher,
+                                                description: snapshot.data![index].description,
+                                                author: snapshot.data![index].author,
+                                                waktu: formattedDate,
+                                              );
+                                              await historyController.createHistory(history);
                                               Get.to(() => NewsDetail(
                                                 id: snapshot.data![index].id.toString(),
                                                 title: snapshot.data![index].title,
@@ -256,7 +280,7 @@ class _NewsPageState extends State<NewsPage> {
                         style: TextStyle(
                           color: selectedFilter != null ? Colors.black : Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 16,
                         ),
                       ),
                     ),

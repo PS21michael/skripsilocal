@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
@@ -36,20 +35,20 @@ class SignUpController extends GetxController{
       await auth.createUserWithEmailAndPassword(email, password, confirmPassword);
     } catch(e){
       isLoading.value = false;
-      print('Errror in Register $e');
+      // print('Errror in Register $e');
     }
   }
 
   uploadImageByLink(String link) async{
     final image = link;
-    print("CheckPoint Upload Image Baru 2");
+    // print("CheckPoint Upload Image Baru 2");
     final imageUrl = await userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
-    print("CheckPoint Upload Image Baru 2");
+    // print("CheckPoint Upload Image Baru 2");
     Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
     await userRepo.updateSingelRecord(json);
     user.value.profilePicture = imageUrl;
-    print("CheckPoint Upload Image Baru 3");
-    }
+    // print("CheckPoint Upload Image Baru 3");
+  }
 
   Future<void> registerAndCreateUser(String email, String password, String confirmPassword, UserModel user) async {
     try{
@@ -61,7 +60,7 @@ class SignUpController extends GetxController{
       UserRepository.instance.getSingelUserDetails(email);
     } catch(e){
       isLoading.value = false;
-      print('Errror in Register $e');
+      // print('Errror in Register $e');
     }
   }
 
@@ -74,14 +73,14 @@ class SignUpController extends GetxController{
   }
 
   Future<void> createUser(UserModel user) async {
-    print('Befire user : $user');
+    // print('Befire user : $user');
     await userRepo.createUer(user);
-    print('after user : $user');
+    // print('after user : $user');
     registerUser(user.email, "", "test");
   }
 
   Future<void> createUserDefault(UserModel user) async {
-    print('User Akan Dibuat');
+    // print('User Akan Dibuat');
     await userRepo.createUer(user);
   }
 

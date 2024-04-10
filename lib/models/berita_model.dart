@@ -17,7 +17,7 @@ class BeritaModel {
 
   BeritaModel copyWith({
     bool? success,
-    dynamic? message,
+    dynamic message,
     Data? data,
   }) {
     return BeritaModel(
@@ -93,7 +93,7 @@ class Data {
     "description": description,
     "title": title,
     "image": image,
-    "posts": posts.map((x) => x?.toJson()).toList(),
+    "posts": posts.map((x) => x.toJson()).toList(),
   };
 
   @override

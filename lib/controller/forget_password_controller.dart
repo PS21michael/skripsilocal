@@ -5,17 +5,15 @@ import 'package:skripsilocal/repository/authentication_repository/authentication
 class ForgetPasswordController extends GetxController{
   static ForgetPasswordController get instance => Get.find();
 
-  // variabels
   final email = TextEditingController();
   GlobalKey<FormState> forgetPasswordFormKey = GlobalKey<FormState>();
 
-  // send reset password email
   sendPasswordResetEmail()async{
     try{
       await AuthenticationRepository.instance.sendEmailForgetPassword(email.text.trim());
-      print('Email Sent' 'Email link sent to reset your password');
+      // print('Email Sent' 'Email link sent to reset your password');
     } catch (e){
-      print('Error di controller send password : $e');
+      // print('Error di controller send password : $e');
       rethrow;
     }
   }
@@ -23,9 +21,9 @@ class ForgetPasswordController extends GetxController{
   resendPasswordResetEmail() async{
     try{
       await AuthenticationRepository.instance.sendEmailForgetPassword(email.text.trim());
-      print('Email has been Sent' 'Email link sent to reset your password');
+      // print('Email has been Sent' 'Email link sent to reset your password');
     } catch (e){
-      print('Error di controller send password : $e');
+      // print('Error di controller send password : $e');
       rethrow;
     }
   }
