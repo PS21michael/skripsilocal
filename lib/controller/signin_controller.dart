@@ -27,9 +27,11 @@ class SignInController extends GetxController{
 
   Future<void> googleSignIn()async{
     try{
-      emailGoogle = AuthenticationRepository.instance.getEmailGoogleSingIn();
-      print('CheckPointGoogle 2, Email udah di assign $emailGoogle');
+      await Future.delayed(const Duration(milliseconds: 150));
       await AuthenticationRepository.instance.signup();
+      // await Future.delayed(const Duration(milliseconds: 100));
+      // emailGoogle = AuthenticationRepository.instance.getEmailGoogleSingIn();
+      // print('CheckPointGoogle 2, Email udah di assign $emailGoogle');
 
       // await userRepo.createUer(user);
     }catch (e){

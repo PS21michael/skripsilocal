@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
@@ -197,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                             print('Email sudah tidak null ${j+=1}');
                             try{
                               print('ChekpointGoogle 1');
-                              UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getEmailGoogleSingIn());
+                              UserRepository.instance.getSingelUserDetails(emailTemp!);
                               print('ChekpointGoogle 2');
                             } catch (e){
                               print('ChekpointGoogle 3');
@@ -208,7 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                               print('ChekpointGoogle 4');
                               if(UserRepository.instance.getUserModelEmail() == ""){
                                 print('ChekpointGoogle 5');
-                                Map<String, dynamic> json = {'Email' : AuthenticationRepository.instance.getEmailGoogleSingIn()};
+                                Map<String, dynamic> json = {'Email' : emailTemp!};
                                 userRepo.updateSingelRecord(json);
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
@@ -219,38 +220,42 @@ class _LoginPageState extends State<LoginPage> {
                               }else{
                                 print('ChekpointGoogle 7');
                                 await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelUserDetails(emailTemp);
+                                UserRepository.instance.getSingelUserDetails(emailTemp!);
 
                                 Get.to(()=>const ExplorePage());
                               }
                             } else{
+                              await Future.delayed(Duration(milliseconds: 100));
+                              if(UserRepository.instance.getUserModelInitScore() == "NO"){
+                                Get.offAll(()=> PickCategory());
+                              }
                               print('ChekpointGoogle 8');
                               await Future.delayed(Duration(seconds: 1));
-                              UserRepository.instance.getSingelUserDetails(emailTemp);
+                              UserRepository.instance.getSingelUserDetails(emailTemp!);
                               print("Email dari DB : "+UserRepository.instance.getUserModelEmail());
                               print("Status dari DB : "+UserRepository.instance.getIsSuccessGetData());
 
-                              print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
+                              print('Email yang diterima page : ${emailTemp!}');
                               print('Email yang diterima page1 : ${emailTemp}');
 
-                              await Future.delayed(Duration(seconds: 1));
+                              await Future.delayed(Duration(seconds: 2));
                               UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
 
                               await Future.delayed(Duration(milliseconds: 200));
-                              String isUserDBExist = UserRepository.instance.getIsUserEmailAvail();
+                              String isUserDBExist = UserRepository.instance.isUserEmailAvail;
                               print('Status yang diterima page : ${isUserDBExist}');
                               if(isUserDBExist==""){
                                 await Future.delayed(Duration(seconds: 1));
                                 UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
 
                                 await Future.delayed(Duration(milliseconds: 200));
-                                isUserDBExist = UserRepository.instance.getIsUserEmailAvail();
+                                isUserDBExist = UserRepository.instance.isUserEmailAvail;
                               }
                               if(isUserDBExist=="NO"){
 
                                 final user = UserModel(
                                   fullName: randomNames.manFullName(),
-                                  email: AuthenticationRepository.instance.getEmailGoogleSingIn(),
+                                  email: emailTemp,
                                   userName: generateUserName(randomNames.manFullName()),
                                   province: "ProvinsiUtama",
                                   dateOfBirth: "01-01-1900",

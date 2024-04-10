@@ -1,17 +1,28 @@
+import 'dart:math';
+
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/controller/recommendation_controller.dart';
+import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
+import 'package:skripsilocal/models/recommendation_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/news/FilterExplore.dart';
+import 'package:skripsilocal/pages/news/Recommendation.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
+import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 
 import '../../Utils/CategoryUtils.dart';
+import '../../controller/rating_controller.dart';
+import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
+import '../../repository/rating_repository/rating_repository.dart';
 import 'NewsDetail.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -24,8 +35,9 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   String idBer = "";
   String ? selectedFilter;
-  List<String> filters = ['Terbaru', 'Terlama'];
+  List<String> filters = ['Recommendation', 'Terlama'];
   final controller = Get.put(NewsController());
+  final ratingController = Get.put(RatingController());
   late Future<List<NewsModel>> _futureNewsList;
   List<String> userCategoryOver = [];
   final listCategoryController = Get.put(CategoryListParser());
@@ -51,6 +63,7 @@ class _ExplorePageState extends State<ExplorePage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final detailSearch = TextEditingController();
     final userController = Get.put(ProfileController());
+    String idUser = userController.getidUser();
 
     return SafeArea(
       child: Scaffold(
@@ -186,6 +199,12 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   userController.updateUserScoreCategory(snapshot.data![index].category);
                                                 }
 
+                                                // Ambil data rataing by user id dan news id
+                                                if(idUser.isNotEmpty){
+                                                  await Future.delayed(const Duration(milliseconds: 100));
+                                                  ratingController.getAllRatingByIdUserAndIdNews(idUser, snapshot.data![index].id.toString());
+                                                }
+
                                                 // Check Score over limit
                                                 userCategoryOver = [];
                                                 await Future.delayed(const Duration(milliseconds: 100));
@@ -300,13 +319,14 @@ class _ExplorePageState extends State<ExplorePage> {
                       child: Text(filter),
                     );
                   }).toList(),
-                  onChanged: (String? newValue) {
+                  onChanged: (String? newValue) async {
                     setState(() {
                       selectedFilter = newValue;
                       // print(selectedFilter);
                     });
                     if (selectedFilter == filters[0]) {
-                      Get.to(() => FilterExplorePage(inputFilter: "DESC"));
+                      Get.to(() => RecommendationPage());
+                      // Get.to(() => FilterExplorePage(inputFilter: "DESC"));
                     } else if (selectedFilter == filters[1]) {
                       Get.to(() => FilterExplorePage(inputFilter: "ASC"));
                     }

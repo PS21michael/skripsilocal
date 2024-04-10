@@ -71,7 +71,9 @@ class _InquiryRepublikaNewsNews extends State<InquiryRepublikaNewsNews> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?RepublikaNewsRepository.instance.getDateSaved():tempCtr);
+              countPeriod: tempCtr==0?RepublikaNewsRepository.instance.getDateSaved():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsRepublika(news);
         }
       }

@@ -71,7 +71,9 @@ class _InquirySuaraTekno extends State<InquirySuaraNewsTekno> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?SuaraNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?SuaraNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsSuara(news);
         }
       }

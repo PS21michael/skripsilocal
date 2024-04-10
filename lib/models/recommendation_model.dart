@@ -3,8 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 var temp=0;
 
-class NewsModel{
+class RecommendationModel{
   final String? id;
+  final String idNews;
+  final String idPengguna;
   final String publisher;
   final String author;
   final String title;
@@ -13,13 +15,12 @@ class NewsModel{
   final String urlNews;
   final String publishedTime;
   final String category;
-  final int views;
-  final int countPeriod;
-  final int nilaiRating;
-  final int jumlahPerating;
+  final double recommendationScore;
 
-  NewsModel({
+  RecommendationModel({
     this.id,
+    required this.idNews,
+    required this.idPengguna,
     required this.publisher,
     required this.author,
     required this.title,
@@ -28,13 +29,12 @@ class NewsModel{
     required this.urlNews,
     required this.publishedTime,
     required this.category,
-    required this.views,
-    required this.countPeriod,
-    required this.nilaiRating,
-    required this.jumlahPerating
+    required this.recommendationScore,
   });
 
-  static NewsModel empty() => NewsModel(
+  static RecommendationModel empty() => RecommendationModel(
+      idNews: '',
+      idPengguna: '',
       publisher: '',
       author: '',
       title: '',
@@ -43,15 +43,14 @@ class NewsModel{
       urlNews: '',
       publishedTime: '',
       category: '',
-      views: 0,
-      countPeriod: 0,
-      nilaiRating: 0,
-      jumlahPerating: 0,
+      recommendationScore: 0.0
   );
 
-  // Json parse To
+  // Parser
   toJson(){
     return {
+      "IdNews" : idNews,
+      "IdPengguna" : idPengguna,
       "Publisher" : publisher,
       "Author" : author,
       "Title" : title,
@@ -60,17 +59,16 @@ class NewsModel{
       "UrlNews" : urlNews,
       "PublishedTime" : publishedTime,
       "Category" : category,
-      "Views" : views,
-      "CountPeriod" : countPeriod,
-      "NilaiRating" : countPeriod,
-      "JumlahPerating" : countPeriod,
+      "RecommendationScore" : recommendationScore,
     };
   }
 
-  factory NewsModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
+  factory RecommendationModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
     final data = document.data();
-    return NewsModel(
+    return RecommendationModel(
         id: document.id,
+        idNews: data?["IdNews"],
+        idPengguna: data?["IdPengguna"],
         publisher: data?["Publisher"],
         author: data?["Author"],
         title: data?["Title"],
@@ -79,10 +77,9 @@ class NewsModel{
         urlNews: data?["UrlNews"],
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
-        views: data?["Views"],
-        countPeriod: data?["CountPeriod"],
-        nilaiRating: data?["NilaiRating"],
-        jumlahPerating: data?["JumlahPerating"]
+        recommendationScore: data?["RecommendationScore"]
     );
+
   }
+
 }

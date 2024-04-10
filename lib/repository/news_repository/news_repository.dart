@@ -238,6 +238,16 @@ class NewsRepository extends GetxController{
     return url;
   }
 
+  Future<void> tambahNilaiRating(int nilaiRating, String id) async{
+    Map<String, dynamic> json = {'NilaiRating' : nilaiRating, 'JumlahPerating' : FieldValue.increment(1)};
+    await _db.collection("/News").doc(id).update(json);
+  }
+
+  Future<void> updateNilaiRating(int nilaiRating, String id) async{
+    Map<String, dynamic> json = {'NilaiRating' : nilaiRating};
+    await _db.collection("/News").doc(id).update(json);
+  }
+
   Future<void> updateDislikeRecord(int dislike, String id) async{
     Map<String, dynamic> json = {'Dislike' : dislike};
     await _db.collection("/News").doc(id).update(json).catchError((error, stacktrice){
@@ -339,7 +349,10 @@ class NewsRepository extends GetxController{
             publishedTime: newsData[i].publishedTime,
             category: newsData[i].category,
             views: newsData[i].views,
-            countPeriod: newsData[i].countPeriod);
+            countPeriod: newsData[i].countPeriod,
+            nilaiRating: newsData[i].nilaiRating,
+            jumlahPerating: newsData[i].jumlahPerating
+        );
 
         listNewsModelTemp.add(newsModel);
         continue;

@@ -71,7 +71,9 @@ class _InquiryMerdekaNewsKhas extends State<InquiryMerdekaNewsKhas> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?MerdekaNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?MerdekaNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsMerdeka(news);
         }
       }

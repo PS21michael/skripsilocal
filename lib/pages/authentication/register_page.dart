@@ -49,9 +49,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _showPopupMessage(context);
-    // });
+    });
   }
 
   void _showPopupMessage(BuildContext context) {

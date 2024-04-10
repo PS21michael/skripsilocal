@@ -71,7 +71,9 @@ class _InquiryCNBCNewsSyariah extends State<InquiryCNBCNewsSyariah> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?CNBCNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?CNBCNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsCNBC(news);
         }
       }

@@ -3,15 +3,19 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/controller/rating_controller.dart';
 import 'package:skripsilocal/models/bookmark_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
+import 'package:skripsilocal/repository/news_repository/news_repository.dart';
+import 'package:skripsilocal/repository/rating_repository/rating_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../Utils/TimeSavedNews.dart';
 import '../../controller/comment_controller.dart';
 import '../../models/comment_model.dart';
+import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../authentication/login_page.dart';
 
@@ -76,6 +80,7 @@ class _NewsDetailState extends State<NewsDetail> {
     DateFormat temp = DateFormat('yyyy-MM-dd');
     String waktu = temp.format(now);
     final bookMarkController = Get.put(BookmarkController());
+    final ratingController = Get.put(RatingController());
     final controller = Get.put(CommentController());
     String fotoUser = userController.getUserFoto();
     String emailUser = userController.getUserEmail();
@@ -164,6 +169,67 @@ class _NewsDetailState extends State<NewsDetail> {
                         ),
                         const SizedBox(height: 5),
                         InkWell(
+                          // TODO RATING : METHOD UNTUK RATING
+                          //   onTap: () async {
+                          //   DateTime now = DateTime.now();
+                          //   String time = "";
+                          //   time = now.toString();
+                          //
+                          //   // TODO : RATING, nilai yang akan disimpan ke DB rating
+                          //   int nilaiRatingInput = 5;
+                          //
+                          //   if(AuthenticationRepository.instance.firebaseUser==null){
+                          //   Get.to(() => const LoginPage());
+                          //   } else {
+                          //   await Future.delayed(const Duration(seconds: 1));
+                          //   await ratingController.getAllRatingByIdUserAndIdNews(idUser, idNews);
+                          //   await Future.delayed(const Duration(milliseconds: 500));
+                          //   String flagRatingAvail = RatingRepository.instance.isDataRatingAvail;
+                          //   await Future.delayed(const Duration(milliseconds: 200));
+                          //   int nilaiRatingUserFromDB = RatingRepository.instance.nilaiRatingUser;
+                          //   await Future.delayed(const Duration(milliseconds: 100));
+                          //   String idRatingDBUser = RatingRepository.instance.idRatingByUserIdAndNewsId;
+                          //
+                          //   // NO ==> Isi data rating
+                          //   if(flagRatingAvail == "NO"){
+                          //   // ISI DATA RATING
+                          //   final rating = RatingModel(
+                          //   idNews: idNews,
+                          //   idPengguna: idUser,
+                          //   nilaiRating: nilaiRatingInput, // TODO : RATING, Di isi nilai rating dari inputan user
+                          //   timeRating: time,
+                          //   publisher: publisher,
+                          //   author: penulis,
+                          //   title: title,
+                          //   description: description,
+                          //   urlImage: urlImage,
+                          //   urlNews: urlNews,
+                          //   publishedTime: "", // TODO : RATING Ambil data published time dari list news
+                          //   category: kategori,
+                          //   );
+                          //
+                          //   await ratingController.createRating(rating);
+                          //
+                          //   await Future.delayed(const Duration(milliseconds: 100));
+                          //   await NewsRepository.instance.tambahNilaiRating(nilaiRatingInput, idNews);
+                          //
+                          //   showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
+                          //
+                          //   RatingRepository.instance.getAllRatingsOnlyUserTarget(idUser);
+                          //   } else{ // YES ==> Data bisa di isi (update nilai rating atau sama sekali nggak di isi)
+                          //
+                          //   // Kalau sama, berarti nggak ada update
+                          //   if(nilaiRatingUserFromDB != nilaiRatingInput) {
+                          //   await Future.delayed(const Duration(milliseconds: 50));
+                          //   ratingController.updateRatingUsers(idRatingDBUser, nilaiRatingInput);
+                          //   showCustomSnackbar("Success", "Rating berhasil diupdate!", isError: false);
+                          //   await Future.delayed(const Duration(milliseconds: 100));
+                          //   await NewsRepository.instance.updateNilaiRating(nilaiRatingInput, idNews);
+                          //   }
+                          //   }
+                          //   }
+                          // },
+
                           onTap: () async {
                             if(AuthenticationRepository.instance.firebaseUser==null){
                               Get.to(() => const LoginPage());
@@ -219,6 +285,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               }
                             }
                           },
+
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

@@ -71,7 +71,9 @@ class _InquiryAntaraNewsTeknologi extends State<InquiryAntaraNewsTeknologi> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?AntaraNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?AntaraNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsAntara(news);
         }
       }

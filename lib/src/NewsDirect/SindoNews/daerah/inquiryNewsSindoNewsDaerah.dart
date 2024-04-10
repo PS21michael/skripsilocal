@@ -71,7 +71,9 @@ class _InquirySindoNewsDaerah extends State<InquirySindoNewsDaerah> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?SindoNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?SindoNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsSindoNews(news);
         }
       }

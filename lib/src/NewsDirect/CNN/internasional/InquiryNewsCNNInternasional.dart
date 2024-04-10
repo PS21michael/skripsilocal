@@ -71,7 +71,9 @@ class _InquiryCNNNewsInternasional extends State<InquiryCNNNewsInternasional> {
               publishedTime: dataFetching!.data!.posts![i].pubDate.toString(),
               category: category,
               views: 0,
-              countPeriod: tempCtr==0?CNNNewsRepository.instance.getCountPeriod():tempCtr);
+              countPeriod: tempCtr==0?CNNNewsRepository.instance.getCountPeriod():tempCtr,
+              nilaiRating: 0,
+              jumlahPerating: 0);
           await newsRepo.saveNewsCNN(news);
         }
       }

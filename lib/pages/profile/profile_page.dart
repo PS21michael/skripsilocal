@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/components/custom_list_tile.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
 import '../../controller/bookmark_controller.dart';
@@ -29,6 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   final bookMarkController = Get.put(BookmarkController());
   final userController = Get.put(ProfileController());
+  final historyController = Get.put(HistoryController());
 
   @override
   void initState() {
@@ -198,12 +201,34 @@ class _ProfilePageState extends State<ProfilePage> {
           await Future.delayed(Duration(milliseconds: 1000));
           List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
           await Future.delayed(Duration(milliseconds: 500));
-          print("list bookmark yg ada di homepage: ${listIdBookmark.toString()}");
+          print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
           for(int i=0; i<listIdBookmark.length; i++){
             await Future.delayed(Duration(milliseconds: 50));
-            print("data ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
+            print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
             bookMarkController.deleteBookmark(listIdBookmark[i]);
           }
+
+
+          // HISTORY
+          await Future.delayed(Duration(milliseconds: 500));
+          historyController.getAllHistoryFromSingleUser(id);
+          await Future.delayed(Duration(milliseconds: 800));
+          List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+          await Future.delayed(Duration(milliseconds: 500));
+          print("list history yg ada di db: ${listIdHistory.toString()}");
+          for(int i=0; i<listIdHistory.length; i++){
+            await Future.delayed(Duration(milliseconds: 50));
+            print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
+            historyController.deleteHistory(listIdHistory[i]);
+          }
+
+
+          // RATING
+
+
+          // RECOMMEND
+
+
 
           await Future.delayed(Duration(seconds: 1));
           print("User Berhasil di delete");

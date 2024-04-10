@@ -33,6 +33,7 @@ class HistoryRepository extends GetxController{
   }
 
   String isDataExist = "";
+  List<String> listIdHistoryFromSingelIdUser = [];
   Future<List<HistoryModel>> getAllHistoryDetailsFromIdUser(String idPengguna)async{
     final snapshot = await _db.collection("/History").where("IdPengguna", isEqualTo: idPengguna).get();
     final historyData = snapshot.docs.map((e) => HistoryModel.fromSnapshot(e)).toList();
@@ -42,11 +43,19 @@ class HistoryRepository extends GetxController{
     } else{
       isDataExist = "YES";
     }
+    listIdHistoryFromSingelIdUser = [];
+    for(int i=0; i<historyData.length; i++){
+      listIdHistoryFromSingelIdUser.add(historyData[i].id.toString());
+    }
     return historyData;
   }
 
   String isDataAvail(){
     return isDataExist;
+  }
+
+  List<String> getListIdHistoryFromSingelUser(){
+    return listIdHistoryFromSingelIdUser;
   }
 
   Future<void> deleteHistory(String id) async{

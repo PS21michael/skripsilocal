@@ -3,8 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 var temp=0;
 
-class NewsModel{
+class RatingModel{
   final String? id;
+  final String idNews;
+  final String idPengguna;
+  final int nilaiRating;
+  final String timeRating;
   final String publisher;
   final String author;
   final String title;
@@ -13,13 +17,13 @@ class NewsModel{
   final String urlNews;
   final String publishedTime;
   final String category;
-  final int views;
-  final int countPeriod;
-  final int nilaiRating;
-  final int jumlahPerating;
 
-  NewsModel({
+  RatingModel({
     this.id,
+    required this.idNews,
+    required this.idPengguna,
+    required this.nilaiRating,
+    required this.timeRating,
     required this.publisher,
     required this.author,
     required this.title,
@@ -28,13 +32,13 @@ class NewsModel{
     required this.urlNews,
     required this.publishedTime,
     required this.category,
-    required this.views,
-    required this.countPeriod,
-    required this.nilaiRating,
-    required this.jumlahPerating
   });
 
-  static NewsModel empty() => NewsModel(
+  static RatingModel empty() => RatingModel(
+      idNews: '',
+      idPengguna: '',
+      nilaiRating: 0,
+      timeRating: '',
       publisher: '',
       author: '',
       title: '',
@@ -43,15 +47,15 @@ class NewsModel{
       urlNews: '',
       publishedTime: '',
       category: '',
-      views: 0,
-      countPeriod: 0,
-      nilaiRating: 0,
-      jumlahPerating: 0,
   );
 
-  // Json parse To
+  // Parser
   toJson(){
-    return {
+    return{
+      "IdNews" : idNews,
+      "IdPengguna" : idPengguna,
+      "NilaiRating" : nilaiRating,
+      "TimeRating" : timeRating,
       "Publisher" : publisher,
       "Author" : author,
       "Title" : title,
@@ -60,17 +64,17 @@ class NewsModel{
       "UrlNews" : urlNews,
       "PublishedTime" : publishedTime,
       "Category" : category,
-      "Views" : views,
-      "CountPeriod" : countPeriod,
-      "NilaiRating" : countPeriod,
-      "JumlahPerating" : countPeriod,
     };
   }
 
-  factory NewsModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
+  factory RatingModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
     final data = document.data();
-    return NewsModel(
+    return RatingModel(
         id: document.id,
+        idNews: data?["IdNews"],
+        idPengguna: data?["IdPengguna"],
+        nilaiRating: data?["NilaiRating"],
+        timeRating: data?["TimeRating"],
         publisher: data?["Publisher"],
         author: data?["Author"],
         title: data?["Title"],
@@ -79,10 +83,7 @@ class NewsModel{
         urlNews: data?["UrlNews"],
         publishedTime: data?["PublishedTime"],
         category: data?["Category"],
-        views: data?["Views"],
-        countPeriod: data?["CountPeriod"],
-        nilaiRating: data?["NilaiRating"],
-        jumlahPerating: data?["JumlahPerating"]
     );
   }
+
 }
