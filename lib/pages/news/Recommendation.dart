@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,15 +39,9 @@ class _RecommendationPageState extends State<RecommendationPage> {
   String ? selectedFilter;
   List<String> filters = ['Proses Terbaru', 'Terlama'];
   final detailSearch = TextEditingController();
-
-
   final userController = Get.put(ProfileController());
-
   final ratingController = Get.put(RatingController());
   final recommendationController = Get.put(RecommendationController());
-
-
-
 
   @override
   void initState() {
@@ -379,8 +372,9 @@ class _RecommendationPageState extends State<RecommendationPage> {
             ),
             Positioned(
               bottom: 10,
-              left: (MediaQuery.of(context).size.width - 130) / 2,              child: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
+              left: (MediaQuery.of(context).size.width - 130) / 2,
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
                 isExpanded: true,
                 hint: Row(
                   children: [
@@ -507,11 +501,10 @@ class _RecommendationPageState extends State<RecommendationPage> {
                     var listValue = mapCtrDuplicate.values.toList();
                     var listKeys = mapCtrDuplicate.keys.toList();
                     for(int i=0; i<listValue.length; i++){
-                      if(listValue[i] == listNewsRatingUserTarget.length){
+                      if(listValue[i] >= 3){
                         listIdUserFinal.add(listKeys[i]);
                       }
                     }
-
                     // 6. Cari nilai rating dari kumpulan user final
                     List<int> scoreRatingUser = [];
                     List<List<int>> listScoreRatingUser = [];
@@ -604,14 +597,12 @@ class _RecommendationPageState extends State<RecommendationPage> {
                                 description: tempRatingUser[i].description,
                                 urlImage: tempRatingUser[i].urlImage,
                                 urlNews: tempRatingUser[i].urlNews,
-                                publishedTime: tempRatingUser[i].publishedTime,
+                                // publishedTime: tempRatingUser[i].publishedTime,
                                 category: tempRatingUser[i].category,
                                 recommendationScore: tempNilaiRecommend
                             );
-
                             recommendationController.createRecommendation(recommend);
                             tempIdNews.add(tempRatingUser[i].idNews);
-
                           }
                         }
                       }

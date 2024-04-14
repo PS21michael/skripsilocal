@@ -1,8 +1,8 @@
 import 'dart:math';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skripsilocal/Utils/CategoryUtils.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
@@ -19,14 +19,12 @@ import 'package:skripsilocal/pages/news/FilterExplore.dart';
 import 'package:skripsilocal/pages/news/Recommendation.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
+import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
-
-import '../../Utils/CategoryUtils.dart';
 import '../../controller/rating_controller.dart';
 import '../../models/rating_model.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-import '../../Utils/categoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/rating_repository/rating_repository.dart';
 import 'NewsDetail.dart';
@@ -41,11 +39,12 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   String idBer = "";
   String ? selectedFilter;
-  List<String> filters = ['Recommendation', 'Terlama'];
+  List<String> filters = ['Terbaru', 'Terlama'];
   final controller = Get.put(NewsController());
   final ratingController = Get.put(RatingController());
   late Future<List<NewsModel>> _futureNewsList;
   List<String> userCategoryOver = [];
+  final listCategoryController = Get.put(CategoryListParser());
   // TODO ERRO WHEN MERGE
   // final listCategoryController = Get.put(CategoryListParser());
 
@@ -71,6 +70,7 @@ class _ExplorePageState extends State<ExplorePage> {
     final detailSearch = TextEditingController();
     final userController = Get.put(ProfileController());
     String idUser = userController.getidUser();
+    // final listCategoryController = Get.put(CategoryListParser());
     final historyController = Get.put(HistoryController());
     // final userController = Get.put(ProfileController());
     Future.delayed(Duration(milliseconds: 500));
@@ -81,9 +81,16 @@ class _ExplorePageState extends State<ExplorePage> {
     // temp = BookmarkRepository.instance.isDataAvail();
     // print("isDataAvail $temp");
     String idPengguna = UserRepository.instance.getUserModelId();
+    // HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+    // String temp = "";
+    // temp = HistoryRepository.instance.isDataAvail();
+    Future.delayed(const Duration(seconds: 1));
+    BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+    Future.delayed(const Duration(seconds: 1));
+    RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
+    Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    String temp = "";
-    temp = HistoryRepository.instance.isDataAvail();
+
 
     return SafeArea(
       child: Scaffold(
@@ -203,6 +210,19 @@ class _ExplorePageState extends State<ExplorePage> {
                                                                 fontWeight: FontWeight.normal,
                                                               ),
                                                             ),
+                                                            const SizedBox(width: 8),
+                                                            Icon(
+                                                              Icons.star,
+                                                              size: 20,
+                                                            ),
+                                                            const SizedBox(width: 4),
+                                                            Text(
+                                                              "${(snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2)}",
+                                                              style: const TextStyle(
+                                                                fontSize: 16,
+                                                                fontWeight: FontWeight.normal,
+                                                              ),
+                                                            ),
                                                           ],
                                                         ),
                                                       ],
@@ -226,46 +246,46 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   await Future.delayed(const Duration(milliseconds: 100));
                                                   ratingController.getAllRatingByIdUserAndIdNews(idUser, snapshot.data![index].id.toString());
                                                 }
-
-                                                // Check Score over limit
-                                                userCategoryOver = [];
-                                                await Future.delayed(const Duration(milliseconds: 100));
-                                                String flagCategoryOver = userController.getFlagOverScore();
-                                                await Future.delayed(const Duration(milliseconds: 100));
-                                                List<int> indexOverScore = [];
-                                                indexOverScore = userController.getListIndexOverScoreCategory();
-
-                                                // if(flagCategoryOver == "TRUE"){
-                                                //   userCategoryOver = listCategoryController.parseScoreOverToList(indexOverScore);
+                                                //
+                                                // // Check Score over limit
+                                                // userCategoryOver = [];
+                                                // await Future.delayed(const Duration(milliseconds: 100));
+                                                // String flagCategoryOver = userController.getFlagOverScore();
+                                                // await Future.delayed(const Duration(milliseconds: 100));
+                                                // List<int> indexOverScore = [];
+                                                // indexOverScore = userController.getListIndexOverScoreCategory();
+                                                //
+                                                // // if(flagCategoryOver == "TRUE"){
+                                                // //   userCategoryOver = listCategoryController.parseScoreOverToList(indexOverScore);
+                                                // // }
+                                                //
+                                                // // Data yg over limit dikirim dalam bentuk list string
+                                                //
+                                                // // Ekspetasi dari FE :
+                                                // // Kirim list kategori yang dipilih dan yang tidak dipilih
+                                                //
+                                                // String persetujuan = "";
+                                                // List<String> listKategoriYgMauDiUpdate = [];
+                                                // List<String> listKategoriYgTidakUpdate = userCategoryOver;
+                                                //
+                                                // // Kalau YES ==> Jadi Favorit, Score = 1000
+                                                // // Kalau NO ==> Score kembali jadi 0.
+                                                //
+                                                // if(listKategoriYgMauDiUpdate.length !=0){
+                                                //   await Future.delayed(const Duration(milliseconds: 50));
+                                                //   for(int i=0; i<listKategoriYgMauDiUpdate.length; i++){
+                                                //     await Future.delayed(const Duration(milliseconds: 100));
+                                                //     userController.updateUserScoreOverLimitCategory(listKategoriYgMauDiUpdate[i].toString(), 1000);
+                                                //   }
                                                 // }
-
-                                                // Data yg over limit dikirim dalam bentuk list string
-
-                                                // Ekspetasi dari FE :
-                                                // Kirim list kategori yang dipilih dan yang tidak dipilih
-
-                                                String persetujuan = "";
-                                                List<String> listKategoriYgMauDiUpdate = [];
-                                                List<String> listKategoriYgTidakUpdate = userCategoryOver;
-
-                                                // Kalau YES ==> Jadi Favorit, Score = 1000
-                                                // Kalau NO ==> Score kembali jadi 0.
-
-                                                if(listKategoriYgMauDiUpdate.length !=0){
-                                                  await Future.delayed(const Duration(milliseconds: 50));
-                                                  for(int i=0; i<listKategoriYgMauDiUpdate.length; i++){
-                                                    await Future.delayed(const Duration(milliseconds: 100));
-                                                    userController.updateUserScoreOverLimitCategory(listKategoriYgMauDiUpdate[i].toString(), 1000);
-                                                  }
-                                                }
-
-                                                if(listKategoriYgTidakUpdate.length !=0){
-                                                  await Future.delayed(const Duration(milliseconds: 50));
-                                                  for(int i=0; i<listKategoriYgTidakUpdate.length; i++){
-                                                    await Future.delayed(const Duration(milliseconds: 100));
-                                                    userController.updateUserScoreOverLimitCategory(listKategoriYgTidakUpdate[i].toString(), 0);
-                                                  }
-                                                }
+                                                //
+                                                // if(listKategoriYgTidakUpdate.length !=0){
+                                                //   await Future.delayed(const Duration(milliseconds: 50));
+                                                //   for(int i=0; i<listKategoriYgTidakUpdate.length; i++){
+                                                //     await Future.delayed(const Duration(milliseconds: 100));
+                                                //     userController.updateUserScoreOverLimitCategory(listKategoriYgTidakUpdate[i].toString(), 0);
+                                                //   }
+                                                // }
                                                 if (AuthenticationRepository.instance.firebaseUser != null){
                                                   DateTime now = DateTime.now();
                                                   String formattedDate = DateFormat('dd-MM-yyyy').format(now);
@@ -346,6 +366,7 @@ class _ExplorePageState extends State<ExplorePage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 17,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],
@@ -363,8 +384,8 @@ class _ExplorePageState extends State<ExplorePage> {
                       // print(selectedFilter);
                     });
                     if (selectedFilter == filters[0]) {
-                      Get.to(() => RecommendationPage());
-                      // Get.to(() => FilterExplorePage(inputFilter: "DESC"));
+                      // Get.to(() => RecommendationPage());
+                      Get.to(() => FilterExplorePage(inputFilter: "DESC"));
                     } else if (selectedFilter == filters[1]) {
                       Get.to(() => FilterExplorePage(inputFilter: "ASC"));
                     }
@@ -374,7 +395,7 @@ class _ExplorePageState extends State<ExplorePage> {
                   },
                   buttonStyleData: ButtonStyleData(
                     height: 60,
-                    width: 130,
+                    width: 150,
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -396,7 +417,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     offset: const Offset(0, 110),
                     isOverButton: true,
                     maxHeight: 200,
-                    width: 130,
+                    width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -360,7 +361,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     ),
                     const SizedBox(height: 30),
                     theButton(
-                      text: 'Lanjut',
+                      text: 'Selesai',
                       onTap: () async {
                         if (userNameController.text.trim() != userNameCustomer) {
                           if (!_usernameValidated) {
@@ -376,6 +377,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             // print(userNameController.text.trim());
                             // print("LLLLLL");
                             // print(userNameCustomer);
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            );
                             final user = UserModel(
                               fullName: fullNameController.text.trim() == ""
                                   ? fullNameCustomer
@@ -436,9 +445,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             // UserRepository.instance.resetListScore();
                             await Future.delayed(Duration(seconds: 2));
                             await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-                            Get.to(() => UpdateCategory());
+                            Get.to(() => ProfilePage());
                           }
                         } else if(userNameController.text.trim() == userNameCustomer){
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          );
                           final user = UserModel(
                             fullName: fullNameController.text.trim() == ""
                                 ? fullNameCustomer
@@ -501,7 +518,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           await Future.delayed(Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                           // // List<int> daftarScore = UserRepository.instance.getListScore();
-                          Get.to(() => UpdateCategory());
+                          showCustomSnackbar('Success', 'Update berhasil!', isError: false);
+                          Get.to(() => ProfilePage());
                         }
                       }
                     ),

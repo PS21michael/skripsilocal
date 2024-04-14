@@ -18,7 +18,6 @@ class ProfileController extends GetxController{
   final dateOfBirth = TextEditingController();
   final userName = TextEditingController();
   final phoneNo = TextEditingController();
-
   final _authRepo = Get.put(AuthenticationRepository());
   final _userRepo = Get.put(UserRepository());
 

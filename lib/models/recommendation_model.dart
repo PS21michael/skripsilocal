@@ -13,7 +13,6 @@ class RecommendationModel{
   final String description;
   String urlImage;
   final String urlNews;
-  final String publishedTime;
   final String category;
   final double recommendationScore;
 
@@ -27,7 +26,6 @@ class RecommendationModel{
     required this.description,
     required this.urlImage,
     required this.urlNews,
-    required this.publishedTime,
     required this.category,
     required this.recommendationScore,
   });
@@ -41,7 +39,6 @@ class RecommendationModel{
       description: '',
       urlImage: '',
       urlNews: '',
-      publishedTime: '',
       category: '',
       recommendationScore: 0.0
   );
@@ -57,7 +54,6 @@ class RecommendationModel{
       "Description" : description,
       "UrlImage" : urlImage,
       "UrlNews" : urlNews,
-      "PublishedTime" : publishedTime,
       "Category" : category,
       "RecommendationScore" : recommendationScore,
     };
@@ -75,7 +71,6 @@ class RecommendationModel{
         description: data?["Description"],
         urlImage: data?["UrlImage"],
         urlNews: data?["UrlNews"],
-        publishedTime: data?["PublishedTime"],
         category: data?["Category"],
         recommendationScore: data?["RecommendationScore"]
     );

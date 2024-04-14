@@ -15,7 +15,6 @@ class RatingModel{
   final String description;
   String urlImage;
   final String urlNews;
-  final String publishedTime;
   final String category;
 
   RatingModel({
@@ -30,7 +29,6 @@ class RatingModel{
     required this.description,
     required this.urlImage,
     required this.urlNews,
-    required this.publishedTime,
     required this.category,
   });
 
@@ -45,7 +43,6 @@ class RatingModel{
       description: '',
       urlImage: '',
       urlNews: '',
-      publishedTime: '',
       category: '',
   );
 
@@ -62,7 +59,6 @@ class RatingModel{
       "Description" : description,
       "UrlImage" : urlImage,
       "UrlNews" : urlNews,
-      "PublishedTime" : publishedTime,
       "Category" : category,
     };
   }
@@ -81,7 +77,6 @@ class RatingModel{
         description: data?["Description"],
         urlImage: data?["UrlImage"],
         urlNews: data?["UrlNews"],
-        publishedTime: data?["PublishedTime"],
         category: data?["Category"],
     );
   }

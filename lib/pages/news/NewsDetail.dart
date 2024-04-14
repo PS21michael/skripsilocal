@@ -5,7 +5,6 @@ import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/controller/rating_controller.dart';
 import 'package:skripsilocal/models/bookmark_model.dart';
-import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
@@ -18,6 +17,7 @@ import '../../models/comment_model.dart';
 import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../authentication/login_page.dart';
+import 'package:item_count_number_button/item_count_number_button.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;
@@ -60,6 +60,7 @@ class _NewsDetailState extends State<NewsDetail> {
   late String description;
   late String penulis;
   late String kategori;
+  double _ratingValue = 5;
 
   @override
   void initState() {
@@ -72,6 +73,7 @@ class _NewsDetailState extends State<NewsDetail> {
     description = widget.description;
     penulis = widget.penulis;
     kategori = widget.kategori;
+    _ratingValue = 5;
   }
 
   @override
@@ -86,6 +88,8 @@ class _NewsDetailState extends State<NewsDetail> {
     String emailUser = userController.getUserEmail();
     String userName = userController.getUserName();
     String idUser = userController.getidUser();
+    // num tempValue = 0;
+    // double _ratingValue = 1;
 
     return SafeArea(
       child: Scaffold(
@@ -96,7 +100,7 @@ class _NewsDetailState extends State<NewsDetail> {
             Container(
               padding: const EdgeInsets.all(20),
               width: double.infinity,
-              height: 200,
+              height: 275,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 border: Border(
@@ -106,202 +110,240 @@ class _NewsDetailState extends State<NewsDetail> {
                   ),
                 ),
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 120,
-                    height: 150,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 1.0,
-                        ),
-                      ),
-                      child: ClipRRect(
-                        child: Image.network(
-                          urlImage,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          child: Text(
-                            title,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1.0,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
                           ),
-                          onTap: () async {
-                            String url = urlNews;
-                            if (await canLaunch(url)) {
-                              await launch(url, forceWebView: true, enableJavaScript: true);
-                            } else {
-                              throw 'Could not launch $url';
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          description,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          publisher,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontStyle: FontStyle.italic,
+                          child: ClipRRect(
+                            child: Image.network(
+                              urlImage,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 5),
-                        InkWell(
-                          // TODO RATING : METHOD UNTUK RATING
-                          //   onTap: () async {
-                          //   DateTime now = DateTime.now();
-                          //   String time = "";
-                          //   time = now.toString();
-                          //
-                          //   // TODO : RATING, nilai yang akan disimpan ke DB rating
-                          //   int nilaiRatingInput = 5;
-                          //
-                          //   if(AuthenticationRepository.instance.firebaseUser==null){
-                          //   Get.to(() => const LoginPage());
-                          //   } else {
-                          //   await Future.delayed(const Duration(seconds: 1));
-                          //   await ratingController.getAllRatingByIdUserAndIdNews(idUser, idNews);
-                          //   await Future.delayed(const Duration(milliseconds: 500));
-                          //   String flagRatingAvail = RatingRepository.instance.isDataRatingAvail;
-                          //   await Future.delayed(const Duration(milliseconds: 200));
-                          //   int nilaiRatingUserFromDB = RatingRepository.instance.nilaiRatingUser;
-                          //   await Future.delayed(const Duration(milliseconds: 100));
-                          //   String idRatingDBUser = RatingRepository.instance.idRatingByUserIdAndNewsId;
-                          //
-                          //   // NO ==> Isi data rating
-                          //   if(flagRatingAvail == "NO"){
-                          //   // ISI DATA RATING
-                          //   final rating = RatingModel(
-                          //   idNews: idNews,
-                          //   idPengguna: idUser,
-                          //   nilaiRating: nilaiRatingInput, // TODO : RATING, Di isi nilai rating dari inputan user
-                          //   timeRating: time,
-                          //   publisher: publisher,
-                          //   author: penulis,
-                          //   title: title,
-                          //   description: description,
-                          //   urlImage: urlImage,
-                          //   urlNews: urlNews,
-                          //   publishedTime: "", // TODO : RATING Ambil data published time dari list news
-                          //   category: kategori,
-                          //   );
-                          //
-                          //   await ratingController.createRating(rating);
-                          //
-                          //   await Future.delayed(const Duration(milliseconds: 100));
-                          //   await NewsRepository.instance.tambahNilaiRating(nilaiRatingInput, idNews);
-                          //
-                          //   showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
-                          //
-                          //   RatingRepository.instance.getAllRatingsOnlyUserTarget(idUser);
-                          //   } else{ // YES ==> Data bisa di isi (update nilai rating atau sama sekali nggak di isi)
-                          //
-                          //   // Kalau sama, berarti nggak ada update
-                          //   if(nilaiRatingUserFromDB != nilaiRatingInput) {
-                          //   await Future.delayed(const Duration(milliseconds: 50));
-                          //   ratingController.updateRatingUsers(idRatingDBUser, nilaiRatingInput);
-                          //   showCustomSnackbar("Success", "Rating berhasil diupdate!", isError: false);
-                          //   await Future.delayed(const Duration(milliseconds: 100));
-                          //   await NewsRepository.instance.updateNilaiRating(nilaiRatingInput, idNews);
-                          //   }
-                          //   }
-                          //   }
-                          // },
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              child: Text(
+                                title,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                              ),
+                              onTap: () async {
+                                String url = urlNews;
+                                if (await canLaunch(url)) {
+                                  await launch(url, forceWebView: true, enableJavaScript: true);
+                                } else {
+                                  throw 'Could not launch $url';
+                                }
+                              },
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              description,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              publisher,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            InkWell(
+                              onTap: () async {
+                                if(AuthenticationRepository.instance.firebaseUser==null){
+                                  Get.to(() => const LoginPage());
+                                } else {
+                                  await Future.delayed(const Duration(seconds: 2));
+                                  await bookMarkController.getAllBookmarkOne(idUser, title);
+                                  await Future.delayed(const Duration(seconds: 1));
+                                  String temp = BookmarkRepository.instance.getDataAvail();
+                                  // print("Title-nya " + title);
+                                  // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
+                                  print(BookmarkRepository.instance.getDataAvail());
+                                  if(temp == "NO"){
+                                    final bookmark = BookmarkModel(
+                                      idNews: idNews,
+                                      idPengguna: idUser,
+                                      title: title,
+                                      urlData: urlNews,
+                                      urlGambar: urlImage,
+                                      kategori: kategori,
+                                      publisher: publisher,
+                                      description: description,
+                                      author: penulis,
+                                    );
+                                    await bookMarkController.createBookMark(bookmark);
+                                    print("Data sudah pernah ada");
+                                    showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
+                                    // String idPengguna = UserRepository.instance.getUserModelId();
+                                    BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
+                                    String temp = "";
+                                    temp = BookmarkRepository.instance.isDataAvail();
+                                    print("isDataAvail $temp");
+                                  } else{
+                                    // await Future.delayed(Duration(seconds: 2));
+                                    // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
+                                    // for(int i=0; i<listTitleSave.length;i++){
+                                    //   if(listTitleSave.contains(title)){
+                                    print("Data sudah pernah ada");
+                                    showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
+                                    // }
+                                    // print(listTitleSave)
+                                    // else{
+                                    //   final bookmark = BookmarkModel(
+                                    //       idNews: idNews,
+                                    //       idPengguna: idUser,
+                                    //       title: title,
+                                    //       urlData: urlNews,
+                                    //       urlGambar: urlImage,
+                                    //       kategori: kategori,
+                                    //       publisher: penulis,
+                                    //   );
+                                    //   await bookMarkController.createBookMark(bookmark);
+                                    // }
+                                    // }
+                                  }
+                                }
+                              },
 
-                          onTap: () async {
-                            if(AuthenticationRepository.instance.firebaseUser==null){
-                              Get.to(() => const LoginPage());
-                            } else {
-                              await Future.delayed(const Duration(seconds: 2));
-                              await bookMarkController.getAllBookmarkOne(idUser, title);
-                              await Future.delayed(const Duration(seconds: 1));
-                              String temp = BookmarkRepository.instance.getDataAvail();
-                              // print("Title-nya " + title);
-                              // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
-                              print(BookmarkRepository.instance.getDataAvail());
-                              if(temp == "NO"){
-                                final bookmark = BookmarkModel(
-                                  idNews: idNews,
-                                  idPengguna: idUser,
-                                  title: title,
-                                  urlData: urlNews,
-                                  urlGambar: urlImage,
-                                  kategori: kategori,
-                                  publisher: publisher,
-                                  description: description,
-                                  author: penulis,
-                                );
-                                await bookMarkController.createBookMark(bookmark);
-                                print("Data sudah pernah ada");
-                                showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
-                                // String idPengguna = UserRepository.instance.getUserModelId();
-                                BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
-                                String temp = "";
-                                temp = BookmarkRepository.instance.isDataAvail();
-                                print("isDataAvail $temp");
-                              } else{
-                                // await Future.delayed(Duration(seconds: 2));
-                                // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
-                                // for(int i=0; i<listTitleSave.length;i++){
-                                //   if(listTitleSave.contains(title)){
-                                print("Data sudah pernah ada");
-                                showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
-                                // }
-                                // print(listTitleSave)
-                                // else{
-                                //   final bookmark = BookmarkModel(
-                                //       idNews: idNews,
-                                //       idPengguna: idUser,
-                                //       title: title,
-                                //       urlData: urlNews,
-                                //       urlGambar: urlImage,
-                                //       kategori: kategori,
-                                //       publisher: penulis,
-                                //   );
-                                //   await bookMarkController.createBookMark(bookmark);
-                                // }
-                                // }
-                              }
-                            }
-                          },
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "+ Tambah Bookmark",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        "Kasih rating beritanya dulu yuk :"
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Slider(
+                          value: _ratingValue,
+                          min: 0,
+                          max: 10,
+                          divisions: 10,
+                          onChanged: (double value) {
+                            setState(() {
+                              _ratingValue = value.roundToDouble();
 
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "+ Tambah Bookmark",
+                            });
+                          },
+                          label: '$_ratingValue',
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.send_sharp),
+                        onPressed: () async {
+                          print(_ratingValue);
+                          DateTime now = DateTime.now();
+                          String time = "";
+                          time = now.toString();
+                          double nilaiRatingInput = _ratingValue;
+                          if(AuthenticationRepository.instance.firebaseUser == null){
+                            Get.snackbar(
+                              'Informasi!',
+                              'Login dulu yaa!',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.yellow,
+                              borderRadius: 10.0,
+                              messageText: Text(
+                                'Login dulu yaa!',
                                 style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.red,
+                                  fontSize: 18.0,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                            );
+                            Future.delayed(Duration(seconds: 3));
+                            Get.to(() => const LoginPage());
+                          } else {
+                            await Future.delayed(const Duration(seconds: 1));
+                            await ratingController.getAllRatingByIdUserAndIdNews(idUser, idNews);
+                            await Future.delayed(const Duration(milliseconds: 500));
+                            String flagRatingAvail = RatingRepository.instance.isDataRatingAvail;
+                            await Future.delayed(const Duration(milliseconds: 200));
+                            int nilaiRatingUserFromDB = RatingRepository.instance.nilaiRatingUser;
+                            await Future.delayed(const Duration(milliseconds: 100));
+                            String idRatingDBUser = RatingRepository.instance.idRatingByUserIdAndNewsId;
+                            if(flagRatingAvail == "NO"){
+                              final rating = RatingModel(
+                                idNews: idNews,
+                                idPengguna: idUser,
+                                nilaiRating: nilaiRatingInput.toInt(),
+                                publisher: publisher,
+                                author: penulis,
+                                title: title,
+                                description: description,
+                                urlImage: urlImage,
+                                urlNews: urlNews,
+                                category: kategori,
+                                timeRating: time,
+                              );
+                              await ratingController.createRating(rating);
+                              await Future.delayed(const Duration(milliseconds: 100));
+                              await NewsRepository.instance.tambahNilaiRating(nilaiRatingInput.toInt(), idNews);
+                              showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
+                              RatingRepository.instance.getAllRatingsOnlyUserTarget(idUser);
+                            }
+                            else {
+                              if(nilaiRatingUserFromDB != nilaiRatingInput) {
+                                await Future.delayed(const Duration(milliseconds: 50));
+                                ratingController.updateRatingUsers(idRatingDBUser, nilaiRatingInput.toInt());
+                                showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
+                                await Future.delayed(const Duration(milliseconds: 100));
+                                await NewsRepository.instance.updateNilaiRating(nilaiRatingInput.toInt(), idNews);
+                              }
+                            }
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

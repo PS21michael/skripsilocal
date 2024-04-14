@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -16,7 +18,11 @@ class _LandingPageState extends State<LandingPage> with  SingleTickerProviderSta
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
+    // Future.delayed(const Duration(milliseconds: 100));
+    // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    // Future.delayed(const Duration(milliseconds: 100));
+    // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+    Future.delayed(const Duration(seconds: 10), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (_) => const ExplorePage(),

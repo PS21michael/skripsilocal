@@ -64,16 +64,16 @@ class HistoryModel{
     final data = document.data();
     return HistoryModel(
       id: document.id,
-      idNews: data?["IdNews"],
-      idPengguna: data?["IdPengguna"],
-      title: data?["Title"],
-      urlData: data?["UrlData"],
-      urlGambar: data?["UrlGambar"],
-      kategori: data?["Kategori"],
-      publisher: data?["Publisher"],
-      description: data?["Description"],
-      waktu: data?["Waktu"],
-      author: data?["Author"],
+      idNews: data?["IdNews"] ?? "",
+      idPengguna: data?["IdPengguna"] ?? "",
+      title: data?["Title"] ?? "",
+      urlData: data?["UrlData"] ?? "",
+      urlGambar: data?["UrlGambar"] ?? "",
+      kategori: data?["Kategori"] ?? "",
+      publisher: data?["Publisher"] ?? "",
+      description: data?["Description"] ?? "",
+      waktu: data?["Waktu"] ?? "",
+      author: data?["Author"] ?? "",
     );
   }
 
