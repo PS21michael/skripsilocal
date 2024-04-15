@@ -624,7 +624,7 @@ class _NewsPageState extends State<NewsPage> {
             ),
           ],
         ),
-        bottomNavigationBar: const MyNavBar(index: 1),
+        bottomNavigationBar: const MyNavBar(initialIndex: 1),
       ),
     );
   }

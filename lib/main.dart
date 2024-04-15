@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build (BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [GetObserver()],
       // home: ProfilePage(),
       home: LoginPage(),
       // home: PickCategory(),

@@ -14,11 +14,11 @@ import 'package:skripsilocal/pages/news/bookmark.dart';
 import '../profile/profile_page.dart';
 
 class MyNavBar extends StatefulWidget {
-  final int index;
+  final int initialIndex;
 
   const MyNavBar ({
     super.key,
-    required this.index,
+    required this.initialIndex,
   });
 
   @override
@@ -28,11 +28,13 @@ class MyNavBar extends StatefulWidget {
 class _MyNavBarState extends State<MyNavBar> {
   late int _selectedIndex;
   final controller = Get.put(BookmarkController());
+  late List<int> _pageHistory;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    _selectedIndex = widget.index;
+    _selectedIndex = widget.initialIndex;
+    _pageHistory = [_selectedIndex];
   }
 
   @override
@@ -107,8 +109,24 @@ class _MyNavBarState extends State<MyNavBar> {
     );
   }
 
+  // Future<bool> _onWillPop() async {
+  //   if (_pageHistory.length > 1) {
+  //     _pageHistory.removeLast();
+  //     int previousIndex = _pageHistory.last;
+  //     _tabChange(previousIndex);
+  //     setState(() {
+  //       _selectedIndex = previousIndex;
+  //     });
+  //     return false;
+  //   } else {
+  //     Get.back();
+  //     return true;
+  //   }
+  // }
+
   void _tabChange(int index) async {
     _selectedIndex = index;
+    // setState(() {});
     switch (index) {
       case 0:
         if (AuthenticationRepository.instance.firebaseUser == null) {
@@ -141,7 +159,8 @@ class _MyNavBarState extends State<MyNavBar> {
           //         (context) => const ExplorePage()
           //     )
           // );
-          Get.to(()=> const ExplorePage());
+          // print(_pageHistory);
+          Get.offAll(()=> const ExplorePage());
         }
         break;
       case 1:
@@ -191,7 +210,7 @@ class _MyNavBarState extends State<MyNavBar> {
           // temp = BookmarkRepository.instance.isDataAvail();
           // print("isDataAvail $temp");
           // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
-          Get.to(()=> const NewsPage());
+          Get.offAll(()=> const NewsPage());
         }
         break;
       case 2:
@@ -242,7 +261,7 @@ class _MyNavBarState extends State<MyNavBar> {
           // temp = BookmarkRepository.instance.isDataAvail();
           // print("isDataAvail $temp");
           // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
-          Get.to(()=> const BookmarkPage());
+          Get.offAll(()=> const BookmarkPage());
         }
         break;
       case 3:
@@ -294,7 +313,7 @@ class _MyNavBarState extends State<MyNavBar> {
           await Future.delayed(const Duration(seconds: 1));
           HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
           // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-          Get.to(()=> const ProfilePage());
+          Get.offAll(()=> const ProfilePage());
         }
         break;
     }
