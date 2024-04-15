@@ -2,26 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:skripsilocal/Utils/CategoryUtils.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/rating_controller.dart';
 import 'package:skripsilocal/controller/recommendation_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
-import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/models/recommendation_model.dart';
-import 'package:skripsilocal/pages/components/my_navbar.dart';
-import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/pages/components/recommendDetailHeader.dart';
 import 'package:skripsilocal/pages/news/news.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-
 import '../../controller/profile_controller.dart';
 import 'NewsDetail.dart';
 
@@ -50,7 +43,7 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     super.initState();
     String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    String temp = RecommendationRepository.instance.isDataRecommendAvail;
+    // String temp = RecommendationRepository.instance.isDataRecommendAvail;
     // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
@@ -79,7 +72,7 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     String temp = RecommendationRepository.instance.isDataRecommendAvail;
-    print("isDataAvail $temp");
+    // print("isDataAvail $temp");
     // String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     // HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
@@ -88,8 +81,8 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     temp = RecommendationRepository.instance.isDataRecommendAvail;
     // final controller = Get.put(NewsController());
-    final recommendController = Get.put(RecommendationController());
-    final detailSearch = TextEditingController();
+    // final recommendController = Get.put(RecommendationController());
+    // final detailSearch = TextEditingController();
     // final controller1 = Get.put(CommentController());
     // final userController = Get.put(ProfileController());
     // String idUser = userController.getidUser();
@@ -105,12 +98,12 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
 
     return WillPopScope(
       onWillPop: () async {
-        Get.off(()=> NewsPage());
+        Get.off(()=> const NewsPage());
         return false;
       },
       child: SafeArea(
         child: Scaffold(
-          appBar: RecommendHeader(),
+          appBar: const RecommendHeader(),
           body: temp == "YES" ? buildListWidget(idPengguna) : buildNoData(),
         ),
       ),
@@ -122,8 +115,8 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
           child: Text(
             'Hasil rekomendasi kami',
             style: TextStyle(
@@ -275,24 +268,22 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
   }
 
   Widget buildNoData() {
-    return Container(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Rating beritanya dulu yaaaa, biar kami bisa bantu kasih rekomendasi nya",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Rating beritanya dulu yaaaa, biar kami bisa bantu kasih rekomendasi nya",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
-            ],
-          ),
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
       ),
     );

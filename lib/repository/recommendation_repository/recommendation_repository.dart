@@ -15,9 +15,9 @@ class RecommendationRepository extends GetxController{
   insertRecommendation (RecommendationModel recommendationModel) async{
     await _db.collection("/Recommendation").add(recommendationModel.toJson())
         .catchError((error, stackTrice){
-      print(error.toString());
+      // print(error.toString());
     });
-    print('Recommendation ke ${count+=1}Berhasil dibuat');
+    // print('Recommendation ke ${count+=1}Berhasil dibuat');
   }
 
   List<RecommendationModel> listRecomendModelUser = [];

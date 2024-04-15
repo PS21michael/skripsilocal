@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class theButton extends StatefulWidget {
+class TheButton extends StatefulWidget {
 
   final String text;
   final Function()? onTap;
-  const theButton({
+  const TheButton({
     super.key,
     required this.onTap,
     required this.text,
   });
 
   @override
-  State<theButton> createState() => _theButtonState();
+  State<TheButton> createState() => _TheButtonState();
 }
 
-class _theButtonState extends State<theButton> {
+class _TheButtonState extends State<TheButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

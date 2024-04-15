@@ -8,6 +8,7 @@ import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
 import 'package:skripsilocal/pages/components/custom_list_tile.dart';
 import 'package:skripsilocal/pages/profile/show_user.dart';
+import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
@@ -140,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(height: 20),
           itemCard('Tanggal Lahir', dateOfBirthCustomer, CupertinoIcons.calendar),
           SizedBox(height: 20),
-          theButton(
+          TheButton(
             text: 'Edit Profile',
             onTap: () => Navigator.push(
               context,
@@ -158,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
       widgets.add(
         CustomListTile(
           onTap: () {
-            Get.to(()=> InquiryNews());
+            Get.to(()=> UpdateCategory());
           },
           title: 'Update Favorite Category',
           textColor: Colors.black,

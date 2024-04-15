@@ -182,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(height: 20),
           itemCard('Tanggal Lahir', dateOfBirth, CupertinoIcons.calendar),
           SizedBox(height: 20),
-          theButton(
+          TheButton(
             text: 'Edit Profile',
             onTap: () => Navigator.push(
               context,

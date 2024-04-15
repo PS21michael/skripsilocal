@@ -3,7 +3,7 @@ import 'package:skripsilocal/repository/history_repository/history_repository.da
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
 class DetailHeader extends StatelessWidget implements PreferredSizeWidget {
-  const DetailHeader({Key? key});
+  const DetailHeader({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -13,12 +13,12 @@ class DetailHeader extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back),
         onPressed: () {
           String idPengguna = UserRepository.instance.getUserModelId();
           HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-          String temp = "";
-          temp = HistoryRepository.instance.isDataAvail();
+          // String temp = "";
+          // temp = HistoryRepository.instance.isDataAvail();
           Navigator.of(context).pop();
         },
       ),

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:skripsilocal/pages/authentication/login_page.dart';
-import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/news/history.dart';
-import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 
 class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
-  const BasicHeader({Key? key});
+  const BasicHeader({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -48,7 +45,7 @@ class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
                   snackPosition: SnackPosition.BOTTOM,
                   backgroundColor: Colors.yellow,
                   borderRadius: 10.0,
-                  messageText: Text(
+                  messageText: const Text(
                     'Login dulu yaa!',
                     style: TextStyle(
                       fontSize: 18.0,
@@ -56,13 +53,13 @@ class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ),
                 );
-                Future.delayed(Duration(seconds: 3));
+                Future.delayed(const Duration(seconds: 3));
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
               } else{
                 Get.to(()=>const HistoryPage());
               }
             },
-            icon: Icon(Icons.history),
+            icon: const Icon(Icons.history),
             iconSize: 30,
           ),
         ),

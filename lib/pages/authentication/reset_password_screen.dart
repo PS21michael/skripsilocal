@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/controller/forget_password_controller.dart';
 import 'package:skripsilocal/pages/authentication/login_page.dart';
-import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import '../components/button.dart';
 import '../components/my_textfield.dart';
 
@@ -17,13 +16,13 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final controller = Get.put(ForgetPasswordController());
   final _formkey = GlobalKey<FormState>();
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    print('Screen forget password berhasil didapat');
+    // print('Screen forget password berhasil didapat');
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -56,7 +55,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     obscureText: false,
                   ),
                   const SizedBox(height: 30),
-                  theButton(
+                  TheButton(
                     text: 'Send Email',
                     onTap: () {
                       controller.sendPasswordResetEmail();

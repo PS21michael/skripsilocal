@@ -8,11 +8,12 @@ import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
-import '../../models/user_model.dart';
-
 class UpdateCategory extends StatefulWidget {
+  // @override
+  // _UpdateCategoryState createState() => _UpdateCategoryState();
+  const UpdateCategory({Key? key}) : super(key: key);
   @override
-  _UpdateCategoryState createState() => _UpdateCategoryState();
+  State<UpdateCategory> createState() => _UpdateCategoryState();
 }
 
 class _UpdateCategoryState extends State<UpdateCategory> {
@@ -40,9 +41,9 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       scoreSecure.add(daftarScore[i]);
     }
     listCategoryController.parseScoreToList(scoreSecure);
-    print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
-    this.userCategory = listCategoryController.parseScoreToList(scoreSecure);
-    this.tempCategory = listCategoryController.parseScoreToList(scoreSecure);
+    // print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
+    userCategory = listCategoryController.parseScoreToList(scoreSecure);
+    tempCategory = listCategoryController.parseScoreToList(scoreSecure);
   }
 
   @override
@@ -62,7 +63,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                       fontSize: 22,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 8.0,
@@ -90,26 +91,26 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                         },
                         selectedColor: Colors.grey[400],
                         backgroundColor: Colors.white70,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
-                        visualDensity: VisualDensity(
+                        visualDensity: const VisualDensity(
                           horizontal: 4,
                           vertical: 3,
                         ),
                       );
                     }).toList(),
                   ),
-                  SizedBox(height: 20),
-                  theButton(
+                  const SizedBox(height: 20),
+                  TheButton(
                       onTap: () async{
                         handleSubmit(userCategory);
                       },
                       text: "Selesai"
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -128,7 +129,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         );
       },
     );
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullnameCustomer = UserRepository.instance.getUserModelFullName();
@@ -179,12 +180,12 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     int kategoriCustomer38 = UserRepository.instance.getScoreKategori38();
     int tempIndexFavorit=0;
     int tempIndexRemover=0;
-    print("User Category");
-    print(listKategory);
-    print("Selected Category");
-    print(selectedCategories);
-    print("Temp Category");
-    print(tempCategory);
+    // print("User Category");
+    // print(listKategory);
+    // print("Selected Category");
+    // print(selectedCategories);
+    // print("Temp Category");
+    // print(tempCategory);
     List<String> removeCategories = []; //ToDO Data Hilang
     List<String> filteredCategories = categories.where((category) => tempCategory.contains(category)).toList(); //ToDO Data baru
     // print(filteredCategories);
@@ -205,27 +206,27 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         }else if(tempIndexFavorit == 4){
           kategoriCustomer4 = kategoriCustomer4>=1000?kategoriCustomer4:1000;
         }else if(tempIndexFavorit == 5){
-          kategoriCustomer5 = kategoriCustomer5>=1000?kategoriCustomer5:1000;;
+          kategoriCustomer5 = kategoriCustomer5>=1000?kategoriCustomer5:1000;
         }else if(tempIndexFavorit == 6){
-          kategoriCustomer6 = kategoriCustomer6>=1000?kategoriCustomer6:1000;;
+          kategoriCustomer6 = kategoriCustomer6>=1000?kategoriCustomer6:1000;
         }else if(tempIndexFavorit == 7){
-          kategoriCustomer7 = kategoriCustomer7>=1000?kategoriCustomer7:1000;;
+          kategoriCustomer7 = kategoriCustomer7>=1000?kategoriCustomer7:1000;
         }else if(tempIndexFavorit == 8){
-          kategoriCustomer8 = kategoriCustomer8>=1000?kategoriCustomer8:1000;;
+          kategoriCustomer8 = kategoriCustomer8>=1000?kategoriCustomer8:1000;
         }else if(tempIndexFavorit == 9){
-          kategoriCustomer9 = kategoriCustomer9>=1000?kategoriCustomer9:1000;;
+          kategoriCustomer9 = kategoriCustomer9>=1000?kategoriCustomer9:1000;
         }else if(tempIndexFavorit == 10){
-          kategoriCustomer10 = kategoriCustomer10>=1000?kategoriCustomer10:1000;;
+          kategoriCustomer10 = kategoriCustomer10>=1000?kategoriCustomer10:1000;
         } else if(tempIndexFavorit == 11){
-          kategoriCustomer11 = kategoriCustomer11>=1000?kategoriCustomer11:1000;;
+          kategoriCustomer11 = kategoriCustomer11>=1000?kategoriCustomer11:1000;
         } else if(tempIndexFavorit == 12){
-          kategoriCustomer12 = kategoriCustomer12>=1000?kategoriCustomer12:1000;;
+          kategoriCustomer12 = kategoriCustomer12>=1000?kategoriCustomer12:1000;
         } else if(tempIndexFavorit == 13){
-          kategoriCustomer13 = kategoriCustomer13>=1000?kategoriCustomer13:1000;;
+          kategoriCustomer13 = kategoriCustomer13>=1000?kategoriCustomer13:1000;
         }else if(tempIndexFavorit == 14){
-          kategoriCustomer14 = kategoriCustomer14>=1000?kategoriCustomer14:1000;;
+          kategoriCustomer14 = kategoriCustomer14>=1000?kategoriCustomer14:1000;
         }else if(tempIndexFavorit == 15){
-          kategoriCustomer15 = kategoriCustomer15>=1000?kategoriCustomer15:1000;;
+          kategoriCustomer15 = kategoriCustomer15>=1000?kategoriCustomer15:1000;
         }else if(tempIndexFavorit == 16){
           kategoriCustomer16 = kategoriCustomer16>=1000?kategoriCustomer16:1000;;
         }else if(tempIndexFavorit == 17){
@@ -403,14 +404,14 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         scoreKategori38: kategoriCustomer38<0?0:kategoriCustomer38,
       );
 
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       await UserRepository.instance.updateUserRecord(user, idCustomer);
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
       showCustomSnackbar('Success', 'Update berhasil!', isError: false);
-      print("Data yg di dapat : "+ filteredCategories.toString());
-      print("Data yg di hapus : "+ removeCategories.toString());
-      Get.to(() => ProfilePage());
+      // print("Data yg di dapat : "+ filteredCategories.toString());
+      // print("Data yg di hapus : "+ removeCategories.toString());
+      Get.to(() => const ProfilePage());
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);

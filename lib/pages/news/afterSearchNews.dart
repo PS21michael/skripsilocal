@@ -2,19 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:skripsilocal/Utils/CategoryUtils.dart';
-import 'package:skripsilocal/Utils/CategoryUtils.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -64,9 +59,7 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
-    // final controller1 = Get.put(CommentController());
     final userController = Get.put(ProfileController());
-    // final userController = Get.put(ProfileController());
     String idUser = userController.getidUser();
     final historyController = Get.put(HistoryController());
     Future.delayed(const Duration(seconds: 1));
@@ -75,13 +68,12 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idUser);
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idUser);
-
-    // List<CommentModel>? test = controller1.getAllDataList();
-    // print('Total data : ${test?.length}');
+    List<int> daftarScore = UserRepository.instance.getListScore();
+    userCategory = listCategoryController.parseScoreToList(daftarScore);
 
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
+        appBar: const DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -90,14 +82,16 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
               child: RichText(
                 text: TextSpan(
                   text: 'Hasil pencarian dari ',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,
                   ),
                   children: <TextSpan>[
                     TextSpan(
                       text: "\"$inputSearch\"",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold
+                      ),
                     ),
 
                   ],
@@ -111,9 +105,9 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
                   child: FutureBuilder<List<NewsModel>>(
                     future: controller.getAllNewsFavoritSearching(userCategory, inputSearch),
                     builder: (context, snapshot) {
-                      print(userCategory);
-                      print('Checkpoint News1: ${snapshot.connectionState}');
-                      print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
+                      // print(userCategory);
+                      // print('Checkpoint News1: ${snapshot.connectionState}');
+                      // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
                       if (snapshot.connectionState == ConnectionState.done) {
                         if (snapshot.hasData) {
                           return Column(
@@ -180,26 +174,26 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
                                                   ),
                                                   Row(
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.remove_red_eye,
                                                         size: 20,
                                                       ),
                                                       const SizedBox(width: 4),
                                                       Text(
-                                                        "${snapshot.data![index].views.toString()}",
+                                                        snapshot.data![index].views.toString(),
                                                         style: const TextStyle(
                                                           fontSize: 16,
                                                           fontWeight: FontWeight.normal,
                                                         ),
                                                       ),
                                                       const SizedBox(width: 8),
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.star,
                                                         size: 20,
                                                       ),
                                                       const SizedBox(width: 4),
                                                       Text(
-                                                        "${(snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2)}",
+                                                        (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2),
                                                         style: const TextStyle(
                                                           fontSize: 16,
                                                           fontWeight: FontWeight.normal,

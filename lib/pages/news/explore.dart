@@ -1,32 +1,24 @@
-import 'dart:math';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/Utils/CategoryUtils.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:intl/intl.dart';
-import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
-import 'package:skripsilocal/controller/recommendation_controller.dart';
-import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/models/recommendation_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/news/FilterExplore.dart';
-import 'package:skripsilocal/pages/news/Recommendation.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import '../../controller/rating_controller.dart';
-import '../../models/rating_model.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
-import '../../repository/rating_repository/rating_repository.dart';
 import 'NewsDetail.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -45,15 +37,11 @@ class _ExplorePageState extends State<ExplorePage> {
   late Future<List<NewsModel>> _futureNewsList;
   List<String> userCategoryOver = [];
   final listCategoryController = Get.put(CategoryListParser());
-  // TODO ERRO WHEN MERGE
-  // final listCategoryController = Get.put(CategoryListParser());
-
 
   @override
   void initState() {
     super.initState();
-    _futureNewsList = controller.getAllNews();
-    Get.put(BookmarkRepository());
+    // _futureNewsList = controller.getAllNews();
   }
 
   Future<void> _refreshNewsList() async {
@@ -73,18 +61,8 @@ class _ExplorePageState extends State<ExplorePage> {
     String idUser = userController.getidUser();
     // final listCategoryController = Get.put(CategoryListParser());
     final historyController = Get.put(HistoryController());
-    // final userController = Get.put(ProfileController());
-    Future.delayed(Duration(milliseconds: 500));
-    // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-    // String idPengguna = UserRepository.instance.getUserModelId();
-    // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-    // String temp = "";
-    // temp = BookmarkRepository.instance.isDataAvail();
-    // print("isDataAvail $temp");
+    Future.delayed(const Duration(milliseconds: 500));
     String idPengguna = UserRepository.instance.getUserModelId();
-    // HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    // String temp = "";
-    // temp = HistoryRepository.instance.isDataAvail();
     Future.delayed(const Duration(seconds: 1));
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     Future.delayed(const Duration(seconds: 1));
@@ -92,10 +70,9 @@ class _ExplorePageState extends State<ExplorePage> {
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
 
-
     return SafeArea(
       child: Scaffold(
-        appBar: BasicHeader(),
+        appBar: const BasicHeader(),
         body: Stack(
           children: [
             Column(
@@ -122,11 +99,11 @@ class _ExplorePageState extends State<ExplorePage> {
                   child: RefreshIndicator(
                     onRefresh: _refreshNewsList,
                     child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
+                      physics: const AlwaysScrollableScrollPhysics(),
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                         child: FutureBuilder<List<NewsModel>>(
-                          future: Future.delayed(Duration(seconds: 2), () async {
+                          future: Future.delayed(const Duration(seconds: 2), () async {
                             List<NewsModel> newsList = await controller.getAllNews();
                             newsList.shuffle();
                             return newsList;
@@ -199,26 +176,26 @@ class _ExplorePageState extends State<ExplorePage> {
                                                         ),
                                                         Row(
                                                           children: [
-                                                            Icon(
+                                                            const Icon(
                                                               Icons.remove_red_eye,
                                                               size: 20,
                                                             ),
                                                             const SizedBox(width: 4),
                                                             Text(
-                                                              "${snapshot.data![index].views.toString()}",
+                                                              snapshot.data![index].views.toString(),
                                                               style: const TextStyle(
                                                                 fontSize: 16,
                                                                 fontWeight: FontWeight.normal,
                                                               ),
                                                             ),
                                                             const SizedBox(width: 8),
-                                                            Icon(
+                                                            const Icon(
                                                               Icons.star,
                                                               size: 20,
                                                             ),
                                                             const SizedBox(width: 4),
                                                             Text(
-                                                              "${(snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2)}",
+                                                              (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2),
                                                               style: const TextStyle(
                                                                 fontSize: 16,
                                                                 fontWeight: FontWeight.normal,
@@ -352,11 +329,11 @@ class _ExplorePageState extends State<ExplorePage> {
                   isExpanded: true,
                   hint: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.sort,
                         size: 20,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Expanded(
@@ -386,9 +363,9 @@ class _ExplorePageState extends State<ExplorePage> {
                     });
                     if (selectedFilter == filters[0]) {
                       // Get.to(() => RecommendationPage());
-                      Get.to(() => FilterExplorePage(inputFilter: "DESC"));
+                      Get.to(() => const FilterExplorePage(inputFilter: "DESC"));
                     } else if (selectedFilter == filters[1]) {
-                      Get.to(() => FilterExplorePage(inputFilter: "ASC"));
+                      Get.to(() => const FilterExplorePage(inputFilter: "ASC"));
                     }
                     setState(() {
                       selectedFilter = null;

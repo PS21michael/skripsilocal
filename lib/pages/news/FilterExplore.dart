@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 
@@ -63,7 +59,7 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
+        appBar: const DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -72,18 +68,18 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
               child: RichText(
                 text: TextSpan(
                   text: 'Hasil pencarian ',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,
                   ),
                   children: <TextSpan>[
                     if (inputFilter == "DESC")
-                      TextSpan(
+                      const TextSpan(
                         text: "\"Terbaru\"",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     if (inputFilter == "ASC")
-                      TextSpan(
+                      const TextSpan(
                         text: "\"Terlama\"",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
@@ -98,9 +94,9 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
                   child: FutureBuilder<List<NewsModel>>(
                     future: controller.getAllNewsFilterTime(inputFilter),
                     builder: (context, snapshot) {
-                      print(userCategory);
-                      print('Checkpoint News1: ${snapshot.connectionState}');
-                      print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
+                      // print(userCategory);
+                      // print('Checkpoint News1: ${snapshot.connectionState}');
+                      // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
                       if (snapshot.connectionState == ConnectionState.done) {
                         if (snapshot.hasData) {
                           return Column(
@@ -167,26 +163,26 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
                                                   ),
                                                   Row(
                                                     children: [
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.remove_red_eye,
                                                         size: 20,
                                                       ),
                                                       const SizedBox(width: 4),
                                                       Text(
-                                                        "${snapshot.data![index].views.toString()}",
+                                                        snapshot.data![index].views.toString(),
                                                         style: const TextStyle(
                                                           fontSize: 16,
                                                           fontWeight: FontWeight.normal,
                                                         ),
                                                       ),
                                                       const SizedBox(width: 8),
-                                                      Icon(
+                                                      const Icon(
                                                         Icons.star,
                                                         size: 20,
                                                       ),
                                                       const SizedBox(width: 4),
                                                       Text(
-                                                        "${(snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2)}",
+                                                        (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2),
                                                         style: const TextStyle(
                                                           fontSize: 16,
                                                           fontWeight: FontWeight.normal,

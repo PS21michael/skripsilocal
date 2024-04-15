@@ -62,8 +62,8 @@ class NewsModel{
       "Category" : category,
       "Views" : views,
       "CountPeriod" : countPeriod,
-      "NilaiRating" : countPeriod,
-      "JumlahPerating" : countPeriod,
+      "NilaiRating" : 0,
+      "JumlahPerating" : 0,
     };
   }
 

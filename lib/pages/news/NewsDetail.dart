@@ -17,7 +17,6 @@ import '../../models/comment_model.dart';
 import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../authentication/login_page.dart';
-import 'package:item_count_number_button/item_count_number_button.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;
@@ -93,7 +92,7 @@ class _NewsDetailState extends State<NewsDetail> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
+        appBar: const DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -186,7 +185,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                   String temp = BookmarkRepository.instance.getDataAvail();
                                   // print("Title-nya " + title);
                                   // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
-                                  print(BookmarkRepository.instance.getDataAvail());
+                                  // print(BookmarkRepository.instance.getDataAvail());
                                   if(temp == "NO"){
                                     final bookmark = BookmarkModel(
                                       idNews: idNews,
@@ -200,19 +199,19 @@ class _NewsDetailState extends State<NewsDetail> {
                                       author: penulis,
                                     );
                                     await bookMarkController.createBookMark(bookmark);
-                                    print("Data sudah pernah ada");
+                                    // print("Data sudah pernah ada");
                                     showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
                                     // String idPengguna = UserRepository.instance.getUserModelId();
                                     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
-                                    String temp = "";
-                                    temp = BookmarkRepository.instance.isDataAvail();
-                                    print("isDataAvail $temp");
+                                    // String temp = "";
+                                    // temp = BookmarkRepository.instance.isDataAvail();
+                                    // print("isDataAvail $temp");
                                   } else{
                                     // await Future.delayed(Duration(seconds: 2));
                                     // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
                                     // for(int i=0; i<listTitleSave.length;i++){
                                     //   if(listTitleSave.contains(title)){
-                                    print("Data sudah pernah ada");
+                                    // print("Data sudah pernah ada");
                                     showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
                                     // }
                                     // print(listTitleSave)
@@ -252,7 +251,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         "Kasih rating beritanya dulu yuk :"
@@ -278,9 +277,9 @@ class _NewsDetailState extends State<NewsDetail> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.send_sharp),
+                        icon: const Icon(Icons.send_sharp),
                         onPressed: () async {
-                          print(_ratingValue);
+                          // print(_ratingValue);
                           DateTime now = DateTime.now();
                           String time = "";
                           time = now.toString();
@@ -292,7 +291,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.yellow,
                               borderRadius: 10.0,
-                              messageText: Text(
+                              messageText: const Text(
                                 'Login dulu yaa!',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -300,7 +299,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 ),
                               ),
                             );
-                            Future.delayed(Duration(seconds: 3));
+                            Future.delayed(const Duration(seconds: 3));
                             Get.to(() => const LoginPage());
                           } else {
                             await Future.delayed(const Duration(seconds: 1));
@@ -355,7 +354,7 @@ class _NewsDetailState extends State<NewsDetail> {
                 child: StreamBuilder<List<CommentModel>>(
                   stream: controller.getAllCommentbasedOnIdNews(idNews),
                   builder: (context, snapshot) {
-                    print('Checkpoint Comment: ${snapshot.connectionState}');
+                    // print('Checkpoint Comment: ${snapshot.connectionState}');
                     if (snapshot.hasData) {
                       return ListView.builder(
                         shrinkWrap: true,

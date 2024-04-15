@@ -40,9 +40,16 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   bool _obscureText = true;
-  void _TriggerObscureText() {
+  void _triggerObscureText() {
     setState(() {
       _obscureText = !_obscureText;
+    });
+  }
+
+  bool _obscureText2 = true;
+  void _triggerObscureText2() {
+    setState(() {
+      _obscureText2 = !_obscureText2;
     });
   }
 
@@ -171,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         icon: Icon(
                           _obscureText ? Icons.visibility : Icons.visibility_off,
                         ),
-                        onPressed: _TriggerObscureText,
+                        onPressed: _triggerObscureText,
                       ),
                     ),
                   ),
@@ -181,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: TextField(
                     controller: controller.confirmPassword,
-                    obscureText: _obscureText,
+                    obscureText: _obscureText2,
                     decoration: InputDecoration(
                       enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black54),
@@ -196,15 +203,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'Konfirmasi Password',
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscureText ? Icons.visibility : Icons.visibility_off,
+                          _obscureText2 ? Icons.visibility : Icons.visibility_off,
                         ),
-                        onPressed: _TriggerObscureText,
+                        onPressed: _triggerObscureText2,
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 30),
-                theButton(
+                TheButton(
                   text: 'Sign Up',
                   onTap: (){
 

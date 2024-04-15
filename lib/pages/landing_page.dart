@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
-import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
-import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

@@ -7,7 +7,6 @@ import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
-import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
@@ -40,7 +39,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
 
   Future<bool> validateUsername(String username) async{
-    print("username yg dikirim "+ username);
+    // print("username yg dikirim "+ username);
     await UserRepository.instance.checkListUserName(username);
     String usernameAvail = UserRepository.instance.isUsernameAvail;
     if(usernameAvail == "NO"){
@@ -54,7 +53,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   bool _usernameValidated = false;
   final controller = Get.put(SignInController());
   final _formkey = GlobalKey<FormState>();
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final _provinsiList = ["Nanggroe Aceh Darussalam", "Sumatera Utara", "Sumatera Selatan", "Sumatera Barat","Bengkulu", "Riau", "Kepulauan Riau", "Jambi", "Lampung", "Bangka Belitung", "Kalimantan Barat", "Kalumantan Timur", "Kalimantan Selatan" , "Kalimantan Tengah", "Kalimantan Utara", "Banten", "DKI Jakarta", "Jawa Barat", "Jawa Timur", "JawaTengah", "Daerah Istimewa Yogyakarta", "Bali", "Nusa Tenggara Timur", "Nusa Tenggara Barat", "Gorontalo", "Sulawesi Barat", "Sulawesi Tengah", "Sulawesi Utara", "Sulawesi Tenggara", "Sulawesi Selatan", "Maluku Utara", "Maluku", "Papua Barat", "Papua", "Papua Tengah", "Papua Pegunungan", "Papua Selatan", "Papua Barat Daya"];
   String? _provinsiVal = "";
   final emailController = TextEditingController();
@@ -64,7 +63,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   final dateOfBirthController = TextEditingController();
   final joinDateController = TextEditingController();
   final passwordController = TextEditingController();
-  TextEditingController _date = TextEditingController();
+  // TextEditingController _date = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -92,7 +91,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   @override
   Widget build(BuildContext context) {
-    var i = 0;
+    // var i = 0;
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
@@ -159,7 +158,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 50),
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
                       child: Text(
                         'Update data diri anda!',
@@ -185,7 +184,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           ),
                           fillColor: Colors.grey[300],
                           filled: true,
-                          icon: Icon(CupertinoIcons.person),
+                          icon: const Icon(CupertinoIcons.person),
                           labelText: "Nama Lengkap",
                           hintText: "Masukkan nama lengkap Anda",
                         ),
@@ -217,7 +216,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   ),
                                   fillColor: Colors.grey[300],
                                   filled: true,
-                                  icon: Icon(CupertinoIcons.person_alt_circle_fill),
+                                  icon: const Icon(CupertinoIcons.person_alt_circle_fill),
                                   labelText: "Username",
                                   hintText: "bbbb",
                                 ),
@@ -242,8 +241,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               //   print("Username yang diinput: $inputUsername");
                               // },
                               onTap: _validateUsername,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   'Cek username',
                                   style: TextStyle(
@@ -264,7 +263,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         textFieldConfiguration: TextFieldConfiguration(
                           controller: TextEditingController(text: _provinsiVal ?? ""),
                           decoration: InputDecoration(
-                            icon: Icon(CupertinoIcons.home),
+                            icon: const Icon(CupertinoIcons.home),
                             enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black54),
                               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -291,7 +290,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         },
                         onSuggestionSelected: (suggestion) {
                           setState(() {
-                            _provinsiVal = suggestion as String;
+                            _provinsiVal = suggestion;
                             // print("Provinsi yang dipilih: $_provinsiVal");
                           });
                         },
@@ -329,7 +328,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               ),
                               fillColor: Colors.grey[300],
                               filled: true,
-                              icon: Icon(CupertinoIcons.calendar),
+                              icon: const Icon(CupertinoIcons.calendar),
                               labelText: "Tanggal Lahir",
                             ),
                             onTap: () async {
@@ -360,7 +359,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    theButton(
+                    TheButton(
                       text: 'Selesai',
                       onTap: () async {
                         if (userNameController.text.trim() != userNameCustomer) {
@@ -438,14 +437,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               scoreKategori37: kategoriCustomer37,
                               scoreKategori38: kategoriCustomer38,
                             );
-                            await Future.delayed(Duration(seconds: 1));
+                            await Future.delayed(const Duration(seconds: 1));
                             await UserRepository.instance.updateUserRecord(user, idCustomer);
-                            await Future.delayed(Duration(seconds: 2));
+                            await Future.delayed(const Duration(seconds: 2));
                             await UserRepository.instance.getSingelUserDetails(emailCustomer);
                             // UserRepository.instance.resetListScore();
-                            await Future.delayed(Duration(seconds: 2));
+                            await Future.delayed(const Duration(seconds: 2));
                             await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-                            Get.to(() => ProfilePage());
+                            Get.to(() => const ProfilePage());
                           }
                         } else if(userNameController.text.trim() == userNameCustomer){
                           showDialog(
@@ -509,17 +508,17 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             scoreKategori37: kategoriCustomer37,
                             scoreKategori38: kategoriCustomer38,
                           );
-                          await Future.delayed(Duration(seconds: 1));
+                          await Future.delayed(const Duration(seconds: 1));
                           await UserRepository.instance.updateUserRecord(user, idCustomer);
-                          await Future.delayed(Duration(seconds: 2));
+                          await Future.delayed(const Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(emailCustomer);
 
                           // UserRepository.instance.resetListScore();
-                          await Future.delayed(Duration(seconds: 2));
+                          await Future.delayed(const Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                           // // List<int> daftarScore = UserRepository.instance.getListScore();
                           showCustomSnackbar('Success', 'Update berhasil!', isError: false);
-                          Get.to(() => ProfilePage());
+                          Get.to(() => const ProfilePage());
                         }
                       }
                     ),

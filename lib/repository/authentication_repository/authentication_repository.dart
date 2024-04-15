@@ -7,10 +7,8 @@ import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
-import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
-import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
@@ -55,12 +53,12 @@ class AuthenticationRepository extends GetxController{
     if(user == null){
       Get.offAll(()=> const ExplorePage());
     } else if(user != null){
-      print("object : $AuthenticationRepository.instance.getUserEmail");
+      // print("object : $AuthenticationRepository.instance.getUserEmail");
       await Future.delayed(const Duration(milliseconds: 100));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
       await Future.delayed(const Duration(milliseconds: 100));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-      print("object2 : $AuthenticationRepository.instance.getUserEmail");
+      // print("object2 : $AuthenticationRepository.instance.getUserEmail");
       // String idPengguna = UserRepository.instance.getUserModelId();
       if(user.emailVerified){
         await Future.delayed(const Duration(milliseconds: 100));
@@ -69,7 +67,7 @@ class AuthenticationRepository extends GetxController{
         Get.offAll(() => const ExplorePage());
       } else{
         // Get.offAll(const MailVerification());
-        Get.offAll(() => MailVerification());
+        Get.offAll(() => const MailVerification());
       }
     }
     // print('user authenticated : ${user?.emailVerified}');
@@ -230,7 +228,7 @@ class AuthenticationRepository extends GetxController{
         final ex = SignupEmailAndPasswordFailure.code(e.code);
         isSuccessCreateUser = "False";
 
-        showCustomSnackbar("Error", "${ex.message}");
+        showCustomSnackbar("Error", ex.message);
         // print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
@@ -253,7 +251,7 @@ class AuthenticationRepository extends GetxController{
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
           Get.to(()=>const FillProfile());
         } else if(UserRepository.instance.getUserModelInitScore() == "NO"){
-          Get.offAll(()=> PickCategory());
+          Get.offAll(()=> const PickCategory());
         } else{
           Get.offAll(()=>const ExplorePage());
         }
@@ -262,7 +260,7 @@ class AuthenticationRepository extends GetxController{
       }
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
-      showCustomSnackbar("Error", "${ex.message}");
+      showCustomSnackbar("Error", ex.message);
       // print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
@@ -331,7 +329,7 @@ class AuthenticationRepository extends GetxController{
           accessToken: googleSignInAuthentication.accessToken);
 
       // Getting users credential
-      UserCredential result = await auth.signInWithCredential(authCredential);
+      // UserCredential result = await auth.signInWithCredential(authCredential);
       // User? user = result.user;
 
       // Get.offAll(()=>ExplorePage());

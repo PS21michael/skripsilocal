@@ -108,159 +108,195 @@ class _MyNavBarState extends State<MyNavBar> {
     );
   }
 
-  void _tabChange(int index) {
-    setState(() async {
+  void _tabChange(int index) async {
+    _selectedIndex = index;
+    switch (index) {
+      case 0:
+        if (AuthenticationRepository.instance.firebaseUser == null) {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder:
+                  (context) => const ExplorePage()
+              )
+          );
+        }
+        else{
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+          // print("object : $AuthenticationRepository.instance.getUserEmail");
+          // print("object2 : ${AuthenticationRepository.instance.getUserEmail}");
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder:
+                  (context) => const ExplorePage()
+              )
+          );
+        }
+        break;
+      case 1:
+        if (AuthenticationRepository.instance.firebaseUser == null) {
+          Get.snackbar(
+            'Informasi!',
+            'Login dulu yaa!',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.yellow,
+            borderRadius: 10.0,
+            messageText: Text(
+              'Login dulu yaa!',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
+            ),
+          );
+          Future.delayed(Duration(seconds: 3));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        }
+        else {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+          // Future.delayed(Duration(milliseconds: 500));
+          // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          // print("object : $AuthenticationRepository.instance.getUserEmail");
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          // print("object2 : $AuthenticationRepository.instance.getUserEmail");
+          String idPengguna = UserRepository.instance.getUserModelId();
+          await Future.delayed(const Duration(seconds: 1));
+          BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+          // String temp = "";
+          // temp = BookmarkRepository.instance.isDataAvail();
+          // print("isDataAvail $temp");
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
+        }
+        break;
+      case 2:
+        if (AuthenticationRepository.instance.firebaseUser == null) {
+          Get.snackbar(
+            'Informasi!',
+            'Login dulu yaa!',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.yellow,
+            borderRadius: 10.0,
+            messageText: Text(
+              'Login dulu yaa!',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
+            ),
+          );
+          Future.delayed(Duration(seconds: 3));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        }
+        else {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          Future.delayed(Duration(milliseconds: 500));
+          UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          String idPengguna = UserRepository.instance.getUserModelId();
+          await Future.delayed(const Duration(seconds: 1));
+          BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+          // String temp = "";
+          // temp = BookmarkRepository.instance.isDataAvail();
+          // print("isDataAvail $temp");
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
+        }
+        break;
+      case 3:
+        if (AuthenticationRepository.instance.firebaseUser == null) {
+          Get.snackbar(
+            'Informasi!',
+            'Login dulu yaa!',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.yellow,
+            borderRadius: 10.0,
+            messageText: Text(
+              'Login dulu yaa!',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
+            ),
+          );
+          Future.delayed(Duration(seconds: 3));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        }
+        else {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          await Future.delayed(const Duration(milliseconds: 100));
+          Future.delayed(Duration(milliseconds: 500));
+          UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+          String idPengguna = UserRepository.instance.getUserModelId();
+          // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+          // String temp = "";
+          // temp = BookmarkRepository.instance.isDataAvail();
+          // print("isDataAvail $temp");
+          await Future.delayed(const Duration(seconds: 1));
+          BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
+          await Future.delayed(const Duration(seconds: 1));
+          HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+        }
+        break;
+    }
+    setState(() {
       _selectedIndex = index;
-      switch (index) {
-        case 0:
-          if (AuthenticationRepository.instance.firebaseUser == null) {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder:
-                    (context) => const ExplorePage()
-                )
-            );
-          }
-          else{
-      // print("object : $AuthenticationRepository.instance.getUserEmail");
-      // print("object2 : ${AuthenticationRepository.instance.getUserEmail}");
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder:
-                    (context) => const ExplorePage()
-                )
-            );
-          }
-          break;
-        case 1:
-          if (AuthenticationRepository.instance.firebaseUser == null) {
-            Get.snackbar(
-              'Informasi!',
-              'Login dulu yaa!',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.yellow,
-              borderRadius: 10.0,
-              messageText: Text(
-                'Login dulu yaa!',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
-              ),
-            );
-            Future.delayed(Duration(seconds: 3));
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          } else {
-            // Future.delayed(Duration(milliseconds: 500));
-            // UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            print("object : $AuthenticationRepository.instance.getUserEmail");
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            print("object2 : $AuthenticationRepository.instance.getUserEmail");
-            String idPengguna = UserRepository.instance.getUserModelId();
-            await Future.delayed(const Duration(seconds: 1));
-            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-            // String temp = "";
-            // temp = BookmarkRepository.instance.isDataAvail();
-            // print("isDataAvail $temp");
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
-          }
-          break;
-        case 2:
-          if (AuthenticationRepository.instance.firebaseUser == null) {
-            Get.snackbar(
-              'Informasi!',
-              'Login dulu yaa!',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.yellow,
-              borderRadius: 10.0,
-              messageText: Text(
-                'Login dulu yaa!',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
-              ),
-            );
-            Future.delayed(Duration(seconds: 3));
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          } else {
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            Future.delayed(Duration(milliseconds: 500));
-            UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            String idPengguna = UserRepository.instance.getUserModelId();
-            await Future.delayed(const Duration(seconds: 1));
-            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-            // String temp = "";
-            // temp = BookmarkRepository.instance.isDataAvail();
-            // print("isDataAvail $temp");
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
-          }
-          break;
-        case 3:
-          if (AuthenticationRepository.instance.firebaseUser == null) {
-            Get.snackbar(
-              'Informasi!',
-              'Login dulu yaa!',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.yellow,
-              borderRadius: 10.0,
-              messageText: Text(
-                'Login dulu yaa!',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                ),
-              ),
-            );
-            Future.delayed(Duration(seconds: 3));
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-          } else {
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            await Future.delayed(const Duration(milliseconds: 100));
-            Future.delayed(Duration(milliseconds: 500));
-            UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            String idPengguna = UserRepository.instance.getUserModelId();
-            // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-            // String temp = "";
-            // temp = BookmarkRepository.instance.isDataAvail();
-            // print("isDataAvail $temp");
-            await Future.delayed(const Duration(seconds: 1));
-            BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-            await Future.delayed(const Duration(seconds: 1));
-            HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
-          }
-          break;
-      }
     });
   }
 

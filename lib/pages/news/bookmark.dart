@@ -14,7 +14,6 @@ import 'package:skripsilocal/repository/authentication_repository/authentication
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../controller/bookmark_controller.dart';
 import '../../models/bookmark_model.dart';
 
@@ -51,7 +50,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: BasicHeader(),
+        appBar: const BasicHeader(),
         body: temp == "YES" ? buildListWidget(idPengguna) : buildNoDataWidget(),
         bottomNavigationBar: const MyNavBar(index: 2),
       ),
@@ -64,8 +63,8 @@ class _BookmarkPageState extends State<BookmarkPage> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text(
                 'Bookmark anda : ',
                 style: TextStyle(
@@ -269,8 +268,8 @@ class _BookmarkPageState extends State<BookmarkPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text("Konfirmasi"),
-                      content: Text(
+                      title: const Text("Konfirmasi"),
+                      content: const Text(
                         "Apakah Anda yakin ingin menghapus semua data ini?",
                         style: TextStyle(
                           fontSize: 16,
@@ -281,13 +280,13 @@ class _BookmarkPageState extends State<BookmarkPage> {
                           onPressed: () {
                             Navigator.of(context).pop(false);
                           },
-                          child: Text("No"),
+                          child: const Text("No"),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(true);
                           },
-                          child: Text("Yes"),
+                          child: const Text("Yes"),
                         ),
                       ],
                     );
@@ -302,25 +301,25 @@ class _BookmarkPageState extends State<BookmarkPage> {
                         );
                       },
                     );
-                    await Future.delayed(Duration(milliseconds: 500));
+                    await Future.delayed(const Duration(milliseconds: 500));
                     bookMarkController.getAllBookmarkfromSingleUser(idPengguna);
-                    await Future.delayed(Duration(milliseconds: 1000));
+                    await Future.delayed(const Duration(milliseconds: 1000));
                     List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
-                    await Future.delayed(Duration(milliseconds: 500));
-                    print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
+                    await Future.delayed(const Duration(milliseconds: 500));
+                    // print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
                     for(int i=0; i<listIdBookmark.length; i++){
-                      await Future.delayed(Duration(milliseconds: 50));
-                      print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
+                      await Future.delayed(const Duration(milliseconds: 50));
+                      // print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
                       bookMarkController.deleteBookmark(listIdBookmark[i]);
                     }
                   }
-                  Get.to(() => ExplorePage());
+                  Get.to(() => const ExplorePage());
                 });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
-              child: SizedBox(
+              child: const SizedBox(
                 width: 110,
                 height: 50,
                 child: Center(
@@ -341,21 +340,19 @@ class _BookmarkPageState extends State<BookmarkPage> {
   }
 
   Widget buildNoDataWidget() {
-    return Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Belum ada yang disimpan nih...",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Belum ada yang disimpan nih...",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

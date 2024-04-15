@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget{
                   ),
                   const SizedBox(height: 40,),
                   const SizedBox(height: 40,),
-                  theButton(
+                  TheButton(
                     text: 'Update Profile Picture',
                     onTap: () async {
                       await controller.uploadProfilePicture();
@@ -76,7 +76,7 @@ class ProfileScreen extends StatelessWidget{
                   ),
                   const SizedBox(height: 40),
                   const SizedBox(height: 40),
-                  theButton(
+                  TheButton(
                     text: 'Reload',
                     onTap: (){
                       // FirebaseAuth.instance.currentUser?.reload();

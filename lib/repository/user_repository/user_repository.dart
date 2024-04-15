@@ -70,8 +70,6 @@ class UserRepository extends GetxController{
     // print('User Berhasil dibuat');
   }
 
-
-  // Username
   String isUserNull = "";
   List<String> listUsernameRegistered = [];
   String isUsernameAvail = "";
@@ -238,7 +236,6 @@ class UserRepository extends GetxController{
     }
 
     isSuccesGetData = "True";
-    // print('Data profil url udah di assign');
     return userData;
   }
 

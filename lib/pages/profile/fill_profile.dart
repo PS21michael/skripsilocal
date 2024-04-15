@@ -7,7 +7,7 @@ import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
-import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+// import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
 import '../news/explore.dart';
@@ -40,7 +40,7 @@ class _FillProfileState extends State<FillProfile> {
   }
 
   Future<bool> validateUsername(String username) async{
-    print("username yg dikirim "+ username);
+    // print("username yg dikirim "+ username);
     await UserRepository.instance.checkListUserName(username);
     String usernameAvail = UserRepository.instance.isUsernameAvail;
     if(usernameAvail == "NO"){
@@ -55,7 +55,7 @@ class _FillProfileState extends State<FillProfile> {
   bool _usernameValidated = false;
   final controller = Get.put(SignInController());
   final _formkey = GlobalKey<FormState>();
-  final _authRepo = Get.put(AuthenticationRepository());
+  // final _authRepo = Get.put(AuthenticationRepository());
   final _provinsiList = ["Nanggroe Aceh Darussalam", "Sumatera Utara", "Sumatera Selatan", "Sumatera Barat","Bengkulu", "Riau", "Kepulauan Riau", "Jambi", "Lampung", "Bangka Belitung", "Kalimantan Barat", "Kalumantan Timur", "Kalimantan Selatan" , "Kalimantan Tengah", "Kalimantan Utara", "Banten", "DKI Jakarta", "Jawa Barat", "Jawa Timur", "JawaTengah", "Daerah Istimewa Yogyakarta", "Bali", "Nusa Tenggara Timur", "Nusa Tenggara Barat", "Gorontalo", "Sulawesi Barat", "Sulawesi Tengah", "Sulawesi Utara", "Sulawesi Tenggara", "Sulawesi Selatan", "Maluku Utara", "Maluku", "Papua Barat", "Papua", "Papua Tengah", "Papua Pegunungan", "Papua Selatan", "Papua Barat Daya"];
   String? _provinsiVal = "";
   final emailController = TextEditingController();
@@ -65,12 +65,12 @@ class _FillProfileState extends State<FillProfile> {
   final dateOfBirthController = TextEditingController();
   final joinDateController = TextEditingController();
   final passwordController = TextEditingController();
-  TextEditingController _date = TextEditingController();
+  // TextEditingController _date = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    var i = 0;
+    // var i = 0;
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullNameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
@@ -137,7 +137,7 @@ class _FillProfileState extends State<FillProfile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 50),
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
                       child: Text(
                         'Isi data diri anda!',
@@ -167,7 +167,7 @@ class _FillProfileState extends State<FillProfile> {
                               ),
                               fillColor: Colors.grey[300],
                               filled: true,
-                              icon: Icon(CupertinoIcons.person),
+                              icon: const Icon(CupertinoIcons.person),
                               labelText: "Nama Lengkap",
                               // hintText: fullNameCustomer,
                             ),
@@ -204,7 +204,7 @@ class _FillProfileState extends State<FillProfile> {
                                   ),
                                   fillColor: Colors.grey[300],
                                   filled: true,
-                                  icon: Icon(CupertinoIcons.person_alt_circle_fill),
+                                  icon: const Icon(CupertinoIcons.person_alt_circle_fill),
                                   labelText: "Username",
                                   // hintText: userNameCustomer,
                                 ),
@@ -229,8 +229,8 @@ class _FillProfileState extends State<FillProfile> {
                               //   print("Username yang diinput: $inputUsername");
                               // },
                               onTap: _validateUsername,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: Text(
                                   'Cek username',
                                   style: TextStyle(
@@ -251,7 +251,7 @@ class _FillProfileState extends State<FillProfile> {
                         textFieldConfiguration: TextFieldConfiguration(
                           controller: TextEditingController(text: _provinsiVal ?? ""),
                           decoration: InputDecoration(
-                            icon: Icon(CupertinoIcons.home),
+                            icon: const Icon(CupertinoIcons.home),
                             enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black54),
                               borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -278,7 +278,7 @@ class _FillProfileState extends State<FillProfile> {
                         },
                         onSuggestionSelected: (suggestion) {
                           setState(() {
-                            _provinsiVal = suggestion as String;
+                            _provinsiVal = suggestion;
                             // print("Provinsi yang dipilih: $_provinsiVal");
                           });
                         },
@@ -316,7 +316,7 @@ class _FillProfileState extends State<FillProfile> {
                               ),
                               fillColor: Colors.grey[300],
                               filled: true,
-                              icon: Icon(CupertinoIcons.calendar),
+                              icon: const Icon(CupertinoIcons.calendar),
                               labelText: "Tanggal Lahir",
                             ),
                             onTap: () async {
@@ -347,7 +347,7 @@ class _FillProfileState extends State<FillProfile> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    theButton(
+                    TheButton(
                       text: 'Isi Data',
                       onTap: () async {
 
@@ -422,28 +422,27 @@ class _FillProfileState extends State<FillProfile> {
                                 scoreKategori36: kategoriCustomer36,
                                 scoreKategori37: kategoriCustomer37,
                                 scoreKategori38: kategoriCustomer38,                            );
-                            print('fullName yg di input: ${user.fullName}');
-                            print('email yg di input: ${user.email}');
-                            print('userName yg di input: ${user.userName}');
-                            print('province yg di input: ${user.province}');
-                            print('dateOfBirth yg di input: ${user.dateOfBirth}');
-
-                            print("user Id yang dikirim :"+ idCustomer);
-                            await Future.delayed(Duration(seconds: 1));
+                            // print('fullName yg di input: ${user.fullName}');
+                            // print('email yg di input: ${user.email}');
+                            // print('userName yg di input: ${user.userName}');
+                            // print('province yg di input: ${user.province}');
+                            // print('dateOfBirth yg di input: ${user.dateOfBirth}');
+                            // print("user Id yang dikirim :"+ idCustomer);
+                            await Future.delayed(const Duration(seconds: 1));
                             await UserRepository.instance.updateUserRecord(
                                 user, idCustomer);
-                            await Future.delayed(Duration(seconds: 1));
+                            await Future.delayed(const Duration(seconds: 1));
                             await UserRepository.instance.getSingelUserDetails(
                                 user.email);
 
-                            await Future.delayed(Duration(milliseconds: 200));
+                            await Future.delayed(const Duration(milliseconds: 200));
                             if(UserRepository.instance.getUserModelInitScore() == "NO"){
                               Navigator.pop(context);
                               Get.offAll(()=> PickCategory());
                             } else{
-                              await Future.delayed(Duration(milliseconds: 200));
+                              await Future.delayed(const Duration(milliseconds: 200));
                               Navigator.pop(context);
-                              Get.to(() => ExplorePage());
+                              Get.to(() => const ExplorePage());
                             }
 
                           }

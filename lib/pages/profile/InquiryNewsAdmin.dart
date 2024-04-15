@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:skripsilocal/pages/components/InquiryAdminHeader.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/bola/InquiryNewsAntaraBola.dart';
 import 'package:skripsilocal/src/NewsDirect/Antara/dunia/InquiryNewsAntaraDunia.dart';
@@ -83,7 +84,6 @@ import 'package:skripsilocal/src/NewsDirect/Tempo/otomotif/inquiryNewsTempoOtomo
 import 'package:skripsilocal/src/NewsDirect/Tempo/seleb/inquiryNewsTempoSeleb.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/tekno/inquiryNewsTempoTekno.dart';
 import 'package:skripsilocal/src/NewsDirect/Tempo/travel/inquiryNewsTempoTravel.dart';
-
 import '../../Utils/timeSavedNews.dart';
 import '../../controller/signin_controller.dart';
 import '../../src/NewsDirect/Antara/Core/antara_news_repository.dart';
@@ -139,15 +139,16 @@ class _InquiryNewsState extends State<InquiryNews> {
   Widget build(BuildContext context) {
     DateTime tets = DateTime.now();
     String montValue = dateTimecontroller.montParser(tets.month.toInt());
-    String tanggalToday = tets.day.toString()+" "+montValue+" "+tets.year.toString();
+    String tanggalToday = "${tets.day} $montValue ${tets.year}";
     int monthNumber = dateTimecontroller.periodSaver(tanggalToday);
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: const InquiryAdminHeader(),
+        body: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -330,7 +331,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                     ),
                   ),
                 const SizedBox(height: 20),
-                theButton(
+                TheButton(
                     text: 'Lanjut',
                     onTap: (){
                       handleSubmit(selectedIndex, selectedSecondIndex, monthNumber);
@@ -349,660 +350,660 @@ class _InquiryNewsState extends State<InquiryNews> {
     // print(secondIndex);
     if(firstIndex == 0){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsPolitik());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsOtomotif());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsOlahraga());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsLifeStyle());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsHumaniora());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsHukum());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsHiburan());
       }
       else if(secondIndex == 7){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsEkonomi());
       }
       else if(secondIndex == 8){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsInternasional());
       }
       else if(secondIndex == 9){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsBola());
       }
       else if(secondIndex == 10){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         AntaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryAntaraNewsTeknologi());
       }
     }
     else if(firstIndex == 1){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsNasional());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsInternasional());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsEkonomi());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsOlahraga());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsTeknologi());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNNNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNNNewsHiburan());
       }
     }
     else if(firstIndex == 2){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsNews());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsMarket());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsEntrepreneur());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsSyariah());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsTech());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsLifeStyle());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         CNBCNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryCNBCNewsOpini());
       }
     }
     else if(firstIndex == 3){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsJakarta());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsDunia());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsGaya());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsOlahraga());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsTeknologi());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsOtomotif());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsKhas());
       }
       else if(secondIndex == 7){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsSehat());
       }
       else if(secondIndex == 8){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         MerdekaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryMerdekaNewsJateng());
       }
     }
     else if(firstIndex == 4){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsCelebrity());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsSports());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsOtomotif());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsEconomy());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsTechno());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         OkezoneNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryOkezoneNewsLifeStyle());
       }
     }
     else if(firstIndex == 5){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsNews());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsDaerah());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsKhazanah());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsIslam());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsInternasional());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsBola());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryRepublikaNewsLeisure());
       }
     }
     else if(firstIndex == 6){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsNasional());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsMetro());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsEkbis());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsInternational());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsDaerah());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsSports());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsOtomotif());
       }
       else if(secondIndex == 7){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsTekno());
       }
       else if(secondIndex == 8){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsSains());
       }
       else if(secondIndex == 9){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsEdukasi());
       }
       else if(secondIndex == 10){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsLifeStyle());
       }
       else if(secondIndex == 11){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SindoNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         RepublikaNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySindoNewsKalam());
       }
     }
     else if(firstIndex == 7){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsBisnis());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsBola());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsLifeStyle());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsEntertainment());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsOtomotif());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsTekno());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriodNull();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         SuaraNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquirySuaraNewsHealth());
       }
     }
     else if(firstIndex == 8){
       if(secondIndex == 0){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsNasional());
       }
       else if(secondIndex == 1){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsBisnis());
       }
       else if(secondIndex == 2){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsMetro());
       }
       else if(secondIndex == 3){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsDunia());
       }
       else if(secondIndex == 4){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsBola());
       }
       else if(secondIndex == 5){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsCantik());
       }
       else if(secondIndex == 6){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsTekno());
       }
       else if(secondIndex == 7){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsOtomotif());
       }
       else if(secondIndex == 8){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsSeleb());
       }
       else if(secondIndex == 9){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
 
         Get.to(()=> const InquiryTempoNewsGaya());
       }
       else if(secondIndex == 10){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsTravel());
       }
       else if(secondIndex == 11){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsDifabel());
       }
       else if(secondIndex == 12){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsCreativeLab());
       }
       else if(secondIndex == 13){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsInforial());
       }
       else if(secondIndex == 14){
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriodNULL();
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         TempoNewsRepository.instance.setCountPeriod(monthNumber);
-        await Future.delayed(Duration(milliseconds: 100));
+        await Future.delayed(const Duration(milliseconds: 100));
         Get.to(()=> const InquiryTempoNewsEvent());
       }
     }

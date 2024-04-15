@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:skripsilocal/pages/authentication/dummy.dart';
 import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
 
-class InquiryHeader extends StatelessWidget implements PreferredSizeWidget {
-  const InquiryHeader({super.key});
+class InquiryAdminHeader extends StatelessWidget implements PreferredSizeWidget {
+  const InquiryAdminHeader({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -26,7 +27,7 @@ class InquiryHeader extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         InkWell(
           onTap: () {
-            Get.to(()=> const InquiryNews());
+            Get.to(()=> const ProfilePage());
           },
           child: const Padding(
             padding: EdgeInsets.all(15),

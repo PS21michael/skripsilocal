@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/news/news.dart';
-
 import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/user_repository/user_repository.dart';
 
 class PickCategory extends StatefulWidget {
+  const PickCategory({Key? key}) : super(key: key);
   @override
-  _PickCategoryState createState() => _PickCategoryState();
+  State<PickCategory> createState() => _PickCategoryState();
 }
 
 class _PickCategoryState extends State<PickCategory> {
@@ -39,7 +38,7 @@ class _PickCategoryState extends State<PickCategory> {
                       fontSize: 22,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 8.0,
@@ -58,20 +57,20 @@ class _PickCategoryState extends State<PickCategory> {
                         },
                         selectedColor: Colors.grey[400],
                         backgroundColor: Colors.white70,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
-                        visualDensity: VisualDensity(
+                        visualDensity: const VisualDensity(
                           horizontal: 4,
                           vertical: 3,
                         ),
                       );
                     }).toList(),
                   ),
-                  SizedBox(height: 20),
-                  theButton(
+                  const SizedBox(height: 20),
+                  TheButton(
                       // List<String> filteredCategories = categories.where((category) => selectedCategories.contains(category)).toList();
                       // Get.to(() => HomePage(selectedCategories: filteredCategories));
                       // print('filteredCategories');
@@ -80,7 +79,7 @@ class _PickCategoryState extends State<PickCategory> {
                       },
                       text: "Selesai"
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Text('Kategori yang Dipilih:'),
                   // SizedBox(height: 10),
                   // Column(
@@ -109,14 +108,14 @@ class _PickCategoryState extends State<PickCategory> {
       },
     );
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullnameCustomer = UserRepository.instance.getUserModelFullName();
     String emailCustomer = UserRepository.instance.getUserModelEmail();
     String usernameCustomer = UserRepository.instance.getUserModelUserName();
     String provinceCustomer = UserRepository.instance.getUserModelProvince();
-    String DOBCustomer = UserRepository.instance.getUserModelDateOfBirth();
+    String dobCustomer = UserRepository.instance.getUserModelDateOfBirth();
     String joinDateCustomer = UserRepository.instance.getUserModelJoinDate();
     String profilPicturePathCustomer = UserRepository.instance.getUserModelProfilePicture();
 
@@ -164,7 +163,7 @@ class _PickCategoryState extends State<PickCategory> {
     if (selectedCategories.length >= 3) {
       List<String> filteredCategories = categories.where((category) =>
           selectedCategories.contains(category)).toList();
-      print(filteredCategories);
+      // print(filteredCategories);
       // Get.to(() => HomePage(selectedCategories: filteredCategories));
       for(int i=0; i<filteredCategories.length; i++){
         tempIndex = listCategoryController.listToScore(filteredCategories[i]);
@@ -245,8 +244,6 @@ class _PickCategoryState extends State<PickCategory> {
         }else if(tempIndex == 38){
           kategoriCustomer38 = 1000;
         }
-
-        // Batas for
       }
 
       final user = UserModel(
@@ -254,7 +251,7 @@ class _PickCategoryState extends State<PickCategory> {
           email: emailCustomer,
           userName: usernameCustomer,
           province: provinceCustomer,
-          dateOfBirth: DOBCustomer,
+          dateOfBirth: dobCustomer,
           joinDate: joinDateCustomer,
           profilePicture: profilPicturePathCustomer,
           scoreKategori1: kategoriCustomer1,
@@ -297,20 +294,19 @@ class _PickCategoryState extends State<PickCategory> {
           scoreKategori38: kategoriCustomer38,
       );
 
-      await Future.delayed(Duration(seconds: 4));
+      await Future.delayed(const Duration(seconds: 4));
       await UserRepository.instance.updateUserRecord(user, idCustomer);
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
-
       showCustomSnackbar('SUCCES', 'Data berhasil disimpan', isError: false);
 
-      await Future.delayed(Duration(milliseconds: 300));
+      // await Future.delayed(Duration(milliseconds: 300));
       // UserRepository.instance.resetListScore();
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
       Navigator.pop(context);
-      Get.to(() => NewsPage());
+      Get.to(() => const NewsPage());
     }
     else{
       showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);

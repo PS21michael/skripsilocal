@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/mail_verification_controller.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 
@@ -23,14 +22,14 @@ class MailVerification extends StatelessWidget{
                     CupertinoIcons.mail,
                     size: 130,
                 ),
-                Text(
+                const Text(
                   'Check your email inbox!',
                   style: TextStyle(
                     fontSize: 25,
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
+                const Text(
                   "Please  verify your email before click 'Continue'",
                   style: TextStyle(
                     fontSize: 18,
@@ -38,7 +37,7 @@ class MailVerification extends StatelessWidget{
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 20),
-                theButton(
+                TheButton(
                     onTap: ()=>controller.manuallyCheckEmailVerificationStatus(),
                     text: 'Continue',
                 ),
@@ -80,8 +79,7 @@ class MailVerification extends StatelessWidget{
           ),
       ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
+    // throw UnimplementedError();
   }
 
 }

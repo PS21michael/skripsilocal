@@ -33,11 +33,11 @@ class _ShowUserState extends State<ShowUser> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
+        appBar: const DetailHeader(),
         body: RefreshIndicator(
           onRefresh: _refreshListUser,
           child: SingleChildScrollView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Container(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -109,27 +109,27 @@ class _ShowUserState extends State<ShowUser> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Center(
                 child: Text(
-                  "${user.userName}",
-                  style: TextStyle(
+                  user.userName,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.account_circle,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Flexible(
                     child: Text(
-                      "${user.fullName}",
+                      user.fullName,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -138,17 +138,17 @@ class _ShowUserState extends State<ShowUser> {
                   ),
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.home_filled,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Flexible(
                     child: Text(
-                      "${user.province}",
+                      user.province,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -157,17 +157,17 @@ class _ShowUserState extends State<ShowUser> {
                   ),
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.email,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Flexible(
                     child: Text(
-                      "${user.email}",
+                      user.email,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -176,17 +176,17 @@ class _ShowUserState extends State<ShowUser> {
                   ),
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.email,
                     size: 16,
                   ),
                   const SizedBox(width: 4),
                   Flexible(
                     child: Text(
-                      "${user.email}",
+                      user.email,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,

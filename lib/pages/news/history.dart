@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
-import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
-import 'package:skripsilocal/pages/news/news.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -42,7 +36,7 @@ class _HistoryPageState extends State<HistoryPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String idPengguna = UserRepository.instance.getUserModelId();
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    String temp = HistoryRepository.instance.isDataAvail();
+    // String temp = HistoryRepository.instance.isDataAvail();
     // final userController = Get.put(ProfileController());
     // String idUser = userController.getidUser();
     // final historyController = Get.put(HistoryController());
@@ -54,11 +48,10 @@ class _HistoryPageState extends State<HistoryPage> {
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
 
-
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
-        body: HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna) == "YES" ? buildHistory(idPengguna) : buildNoData(),
+        appBar: const DetailHeader(),
+        body: HistoryRepository.instance.isDataAvail() == "YES" ? buildHistory(idPengguna) : buildNoData(),
       ),
     );
   }
@@ -69,8 +62,8 @@ class _HistoryPageState extends State<HistoryPage> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text(
                 'Riwayat anda : ',
                 style: TextStyle(
@@ -86,9 +79,9 @@ class _HistoryPageState extends State<HistoryPage> {
                   child: FutureBuilder<List<HistoryModel>>(
                     future: controller.getAllHistoryFromSingleUser(idPengguna),
                     builder: (context, snapshot) {
-                      print(userCategory);
-                      print('Checkpoint News1: ${snapshot.connectionState}');
-                      print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
+                      // print(userCategory);
+                      // print('Checkpoint News1: ${snapshot.connectionState}');
+                      // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
                       if (snapshot.connectionState == ConnectionState.done) {
                         if (snapshot.hasData) {
                           return Column(
@@ -281,8 +274,8 @@ class _HistoryPageState extends State<HistoryPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text("Konfirmasi"),
-                      content: Text(
+                      title: const Text("Konfirmasi"),
+                      content: const Text(
                         "Apakah Anda yakin ingin menghapus semua data ini?",
                         style: TextStyle(
                           fontSize: 16,
@@ -293,13 +286,13 @@ class _HistoryPageState extends State<HistoryPage> {
                           onPressed: () {
                             Navigator.of(context).pop(false);
                           },
-                          child: Text("No"),
+                          child: const Text("No"),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(true);
                           },
-                          child: Text("Yes"),
+                          child: const Text("Yes"),
                         ),
                       ],
                     );
@@ -314,15 +307,15 @@ class _HistoryPageState extends State<HistoryPage> {
                         );
                       },
                     );
-                    await Future.delayed(Duration(milliseconds: 500));
+                    await Future.delayed(const Duration(milliseconds: 500));
                     historyController.getAllHistoryFromSingleUser(idPengguna);
-                    await Future.delayed(Duration(milliseconds: 800));
+                    await Future.delayed(const Duration(milliseconds: 800));
                     List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
-                    await Future.delayed(Duration(milliseconds: 500));
-                    print("list history yg ada di db: ${listIdHistory.toString()}");
+                    await Future.delayed(const Duration(milliseconds: 500));
+                    // print("list history yg ada di db: ${listIdHistory.toString()}");
                     for(int i=0; i<listIdHistory.length; i++){
-                      await Future.delayed(Duration(milliseconds: 50));
-                      print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
+                      await Future.delayed(const Duration(milliseconds: 50));
+                      // print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
                       historyController.deleteHistory(listIdHistory[i]);
                     }
                   }
@@ -333,7 +326,7 @@ class _HistoryPageState extends State<HistoryPage> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
-              child: SizedBox(
+              child: const SizedBox(
                 width: 110,
                 height: 50,
                 child: Center(
@@ -354,21 +347,19 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Widget buildNoData() {
-    return Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Belum ada history nih...",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+    return const Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Belum ada history nih...",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

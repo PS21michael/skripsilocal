@@ -74,7 +74,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                             child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network(userData.profilePicture)),
                           ),
                           const SizedBox(height: 40,),
-                          theButton(
+                          TheButton(
                             text: 'Update Profile Picture',
                             onTap: () async {
                               await controller.uploadProfilePicture();
@@ -138,7 +138,7 @@ class _UpdateProfileScreenState extends State<UpdateProfile> {
                             ),
                           ),
                           const SizedBox(height: 10,),
-                          theButton(
+                          TheButton(
                             text: 'Back',
                             onTap: (){
                               // controller.updateRecord(user);
