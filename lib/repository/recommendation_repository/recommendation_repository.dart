@@ -29,13 +29,16 @@ class RecommendationRepository extends GetxController{
     for(int i=0; i<recommendationData.length; i++){
       listRecomendModelUser.add(recommendationData[i]);
     }
-
-    if(recommendationData.length == 0){
+    if(recommendationData.isEmpty){
       isDataRecommendAvail = "NO";
     } else {
       isDataRecommendAvail = "YES";
     }
     return recommendationData;
+  }
+
+  String isDataAvail(){
+    return isDataRecommendAvail;
   }
 
   Future<void> updateNilaiRecommend(Map<String, dynamic> json, String id) async{

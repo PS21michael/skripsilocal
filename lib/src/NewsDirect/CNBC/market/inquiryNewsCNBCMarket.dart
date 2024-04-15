@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/src/NewsDirect/CNBC/core/cnbc_news_repository.dart';
 import '../../../../models/berita_model.dart';
@@ -26,10 +27,10 @@ class _InquiryCNBCNewsMarketState extends State<InquiryCNBCNewsMarket> {
   @override
   void initState() {
     super.initState();
-    _futureData = _getData();
+    _futureData = getData();
   }
 
-  Future<BeritaModel?> _getData() async {
+  Future<BeritaModel?> getData() async {
     try {
       String url = 'https://api-berita-indonesia.vercel.app/cnbc/market';
       http.Response res = await http.get(Uri.parse(url));
@@ -43,6 +44,40 @@ class _InquiryCNBCNewsMarketState extends State<InquiryCNBCNewsMarket> {
     return null;
   }
 
+  void processData(BeritaModel data) async {
+    await Future.delayed(const Duration(milliseconds: 100));
+    CNBCNewsRepository.instance.setNullListJudulMarketCNBCNews();
+    await Future.delayed(const Duration(milliseconds: 100));
+    int tempCtr = CNBCNewsRepository.instance.getCountPeriod();
+    await CNBCNewsRepository.instance.getAllNewsCNBCMarket(tempCtr);
+    await CNBCNewsRepository.instance.getAllNewsCNBCMarket(tempCtr-1);
+    await CNBCNewsRepository.instance.getAllNewsCNBCMarket(tempCtr-2);
+    await CNBCNewsRepository.instance.getAllNewsCNBCMarket(tempCtr-3);
+    List<String> listJudul = CNBCNewsRepository.instance.getListJudulMarketCNBCNews();
+    for(int i=0; i<data.data!.posts.length;i++){
+      if(listJudul.contains(data.data!.posts[i].title)){
+        // print('Data yang duplikat ada sebanyak ${i}');
+        continue;
+      } else{
+        final news = NewsModel(
+          publisher: publisher,
+          author: author,
+          title: data.data!.posts[i].title.toString(),
+          description: data.data!.posts[i].description.toString(),
+          urlImage: data.data!.posts[i].thumbnail.toString(),
+          urlNews: data.data!.posts[i].link.toString(),
+          publishedTime: data.data!.posts[i].pubDate.toString(),
+          category: category,
+          views: 0,
+          countPeriod: tempCtr==0?CNBCNewsRepository.instance.getCountPeriod():tempCtr,
+          nilaiRating: 0,
+          jumlahPerating: 0,
+        );
+        await newsRepo.saveNewsCNBC(news);
+      }
+    }
+  }
+
   void showCustomSnackbar(String title, String message, {bool isError = true}) {
     SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
   }
@@ -52,7 +87,7 @@ class _InquiryCNBCNewsMarketState extends State<InquiryCNBCNewsMarket> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return SafeArea(
       child: Scaffold(
-        appBar: InquiryHeader(),
+        appBar: const InquiryHeader(),
         body: FutureBuilder<BeritaModel?>(
           future: _futureData,
           builder: (context, snapshot) {
@@ -61,7 +96,8 @@ class _InquiryCNBCNewsMarketState extends State<InquiryCNBCNewsMarket> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (snapshot.hasData && snapshot.data != null) {
-              return _buildNewsList(snapshot.data!);
+              processData(snapshot.data!);
+              return buildNewsList(snapshot.data!);
             } else {
               return const Center(child: Text('No data available.'));
             }
@@ -71,7 +107,7 @@ class _InquiryCNBCNewsMarketState extends State<InquiryCNBCNewsMarket> {
     );
   }
 
-  Widget _buildNewsList(BeritaModel data) {
+  Widget buildNewsList(BeritaModel data) {
     return ListView.builder(
       itemCount: data.data?.posts.length ?? 0,
       itemBuilder: (context, index) {

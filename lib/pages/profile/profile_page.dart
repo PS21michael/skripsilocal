@@ -160,6 +160,21 @@ class _ProfilePageState extends State<ProfilePage> {
           onTap: () {
             Get.to(()=> InquiryNews());
           },
+          title: 'Update Favorite Category',
+          textColor: Colors.black,
+          icon: LineAwesomeIcons.edit,
+          iconColor: Colors.black,
+        ),
+      );
+      widgets.add(SizedBox(height: 5));
+    }
+
+    if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
+      widgets.add(
+        CustomListTile(
+          onTap: () {
+            Get.to(()=> InquiryNews());
+          },
           title: 'Inquiry News',
           textColor: Colors.black,
           icon: LineAwesomeIcons.upload,
@@ -177,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
           },
           title: 'List Registered User',
           textColor: Colors.black,
-          icon: LineAwesomeIcons.upload,
+          icon: CupertinoIcons.person_2_fill,
           iconColor: Colors.black,
         ),
       );

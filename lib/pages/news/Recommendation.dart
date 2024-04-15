@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,24 +35,18 @@ class RecommendationPage extends StatefulWidget {
 
 class _RecommendationPageState extends State<RecommendationPage> {
 
-  // final listCategoryController = Get.put(CategoryListParser());
+  final listCategoryController = Get.put(CategoryListParser());
   String ? selectedFilter;
   List<String> filters = ['Proses Terbaru', 'Terlama'];
   final detailSearch = TextEditingController();
-
-
   final userController = Get.put(ProfileController());
-
   final ratingController = Get.put(RatingController());
   final recommendationController = Get.put(RecommendationController());
-
-
-
 
   @override
   void initState() {
     super.initState();
-    // fetchData();
+    fetchData();
   }
 
   Future<void> fetchData() async {
@@ -175,7 +168,7 @@ class _RecommendationPageState extends State<RecommendationPage> {
     // await Future.delayed(Duration(seconds: 1));
     // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     // await Future.delayed(Duration(seconds: 2));
-    // List<int> daftarScore = UserRepository.instance.getListScore();
+    List<int> daftarScore = UserRepository.instance.getListScore();
     // print(daftarScore);
     // await Future.delayed(Duration(milliseconds: 500));
     // userCategory = listCategoryController.parseScoreToList(daftarScore);
@@ -379,8 +372,9 @@ class _RecommendationPageState extends State<RecommendationPage> {
             ),
             Positioned(
               bottom: 10,
-              left: (MediaQuery.of(context).size.width - 130) / 2,              child: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
+              left: (MediaQuery.of(context).size.width - 130) / 2,
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
                 isExpanded: true,
                 hint: Row(
                   children: [
@@ -420,28 +414,12 @@ class _RecommendationPageState extends State<RecommendationPage> {
                   });
                   if (selectedFilter == filters[0]) {
 
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
-                    );
-
                     // TEST RECCOMEND
                     await Future.delayed(const Duration(seconds: 1));
-
-                    // TEST REKOMEN
-                    List<List<String>> listIdUser = []; // List dari list idUser yang rating news yg sama dengan pengguna target
-                    List<String> idNewsUser =[]; // List dari idUser yang pernah rating news yang sama dengan pengguna target- berurut
-                    List<String> allIdUser =[]; // List dari semua idUser yang pernaha rating news yang sama dengan pengguna target - nggak berurut
-
 
                     // Id User Target
                     await Future.delayed(Duration(milliseconds: 50));
                     String idUser = userController.getidUser();
-                    // String idUser = "swPRhrOd2xgIBUhcINQp";
                     print("Nilai id User : ${idUser}");
                     await Future.delayed(Duration(milliseconds: 100));
 
@@ -472,8 +450,6 @@ class _RecommendationPageState extends State<RecommendationPage> {
                     listscoreRatingUserTarget = [];
                     await Future.delayed(Duration(milliseconds: 200));
                     listscoreRatingUserTarget = RatingRepository.instance.getListScoreUserTarget();
-                    print("List Id idnews User : ${listNewsRatingUserTarget}");
-                    print("List Score rating User : ${listscoreRatingUserTarget}");
 
                     var tempListDuplicateRecommend = [];
                     await Future.delayed(Duration(seconds: 1));
@@ -492,14 +468,9 @@ class _RecommendationPageState extends State<RecommendationPage> {
                     await Future.delayed(Duration(milliseconds: 300));
                     // 2. Inquiry ke DB Rating, semua data user kecuali user target
                     List<RatingModel> listRatingUser = []; // List Rating semua pengguna kecuali pengguna target
-                    await Future.delayed(Duration(milliseconds: 400));
                     ratingController.getAllRatingExceptUserTarget(idUser);
                     await Future.delayed(Duration(milliseconds: 300));
                     listRatingUser = RatingRepository.instance.listAllRatingModel;
-                    print("All data rating User : ${listRatingUser[0].title}");
-
-                    print("Ukuran data list rating model : ${listRatingUser.length}");
-                    print("Ukuran data list id news target : ${listNewsRatingUserTarget.length}");
 
                     // 3. Cari data yang sama dan hiraukan duplikat.
                     List<String> listIdUserFromAllSameNews = [];
@@ -514,12 +485,6 @@ class _RecommendationPageState extends State<RecommendationPage> {
                       }
                     }
 
-                    print("Ukuran data list rating model after : ${listRatingUserFromAllSameNews.length}");
-                    print("Ukuran data list id news target after : ${listIdUserFromAllSameNews.length}");
-
-
-                    print("list Id semua : ${listIdUserFromAllSameNews}");
-
                     // 4. Hitung duplikat
                     var mapCtrDuplicate = Map();
                     listIdUserFromAllSameNews.forEach((element) {
@@ -529,8 +494,6 @@ class _RecommendationPageState extends State<RecommendationPage> {
                         mapCtrDuplicate[element] +=1;
                       }
                     });
-
-                    print("Nilai Map : ${mapCtrDuplicate}");
 
                     // 5. Cek dari list user tadi, mana yg duplikatnya sama dengan total news yang udah dirating pengguna target
                     List<String> listIdUserFinal = [];
@@ -542,10 +505,6 @@ class _RecommendationPageState extends State<RecommendationPage> {
                         listIdUserFinal.add(listKeys[i]);
                       }
                     }
-
-                    print("Nilai id user final : ${listIdUserFinal}");
-
-
                     // 6. Cari nilai rating dari kumpulan user final
                     List<int> scoreRatingUser = [];
                     List<List<int>> listScoreRatingUser = [];
@@ -557,13 +516,10 @@ class _RecommendationPageState extends State<RecommendationPage> {
                           if(listIdUserFinal[i] == listRatingUserFromAllSameNews[k].idPengguna &&
                               listNewsRatingUserTarget[j] == listRatingUserFromAllSameNews[k].idNews){
                             scoreRatingUser.add(listRatingUserFromAllSameNews[k].nilaiRating);
-                            print("Nilai score saat iterasi ke : ${scoreRatingUser}");
                           }
                         }
                       }
-                      print("Nilai score per user : ${scoreRatingUser}");
                       listScoreRatingUser.add(scoreRatingUser);
-                      print("Nilai score semua user : ${listScoreRatingUser}");
                     }
 
 
@@ -586,16 +542,12 @@ class _RecommendationPageState extends State<RecommendationPage> {
                       listRatingUserFromDifferentNews.add(ratingUserFromDifferentNews);
                     }
 
-                    print("Nilai news yg beda : ${ratingUserFromDifferentNews.length}");
-                    print("Nilai list news yg beda : ${listRatingUserFromDifferentNews.length}");
-
                     // 7. Cari nilai kemiripan (Nilai euclidean distance)
                     // List Score Rating user target : listscoreRatingUserTarget
                     // List score dari list user yang rating news yang sama dengan user target : listScoreRatingUser
                     var nilaiEuclideanUser = [];
                     int tempTotal =0;
                     List<int> tempRatingUser = [];
-                    print("Nilai score user target : ${listscoreRatingUserTarget}");
                     for(int i=0; i<listScoreRatingUser.length; i++){
                       tempRatingUser = listScoreRatingUser[i];
                       tempTotal =0;
@@ -606,7 +558,6 @@ class _RecommendationPageState extends State<RecommendationPage> {
                       nilaiEuclideanUser.add(sqrt(tempTotal));
                     }
 
-                    print("Nilai euclidena yg ada : ${nilaiEuclideanUser.toString()}");
 
                     // 8. Hitung nilai colaborative filtering
                     var nilaiColaborativeFiltering = [];
@@ -614,21 +565,11 @@ class _RecommendationPageState extends State<RecommendationPage> {
                       nilaiColaborativeFiltering.add(1/(1+nilaiEuclideanUser[i]));
                     }
 
-                    print("Nilai Colaborative filtering yg ada : ${nilaiColaborativeFiltering.toString()}");
-
                     // 9. Simpan data ke db recommend
                     List<String> tempIdNews = [];
                     double tempNilaiRecommend=0;
                     tempIdNews = [];
 
-                    print("Isi list user : ${listIdUserFinal}");
-
-                    for(int i=0; i<ratingUserFromDifferentNews.length; i++){
-                      print("Isi list rating model : ${ratingUserFromDifferentNews[i].idNews}");
-                    }
-
-                    print("Ukuran 1 list id user finall : ${listIdUserFinal.length}");
-                    print("Ukuran 2 list id rating model : ${listRatingUserFromDifferentNews.length}");
                     // CARA 1
                     await Future.delayed(Duration(seconds: 5));
                     for(int j=0; j<listRatingUserFromDifferentNews.length; j++){
@@ -656,24 +597,20 @@ class _RecommendationPageState extends State<RecommendationPage> {
                                 description: tempRatingUser[i].description,
                                 urlImage: tempRatingUser[i].urlImage,
                                 urlNews: tempRatingUser[i].urlNews,
-                                publishedTime: tempRatingUser[i].publishedTime,
+                                // publishedTime: tempRatingUser[i].publishedTime,
                                 category: tempRatingUser[i].category,
                                 recommendationScore: tempNilaiRecommend
                             );
-
                             recommendationController.createRecommendation(recommend);
                             tempIdNews.add(tempRatingUser[i].idNews);
-
                           }
                         }
                       }
 
                     }
 
-
                     print("Id News yg ada di db recommend : ${tempIdNews}");
 
-                    Navigator.pop(context);
                     Get.to(() => RecommendationPage());
                     // TEST REKOMEN
 

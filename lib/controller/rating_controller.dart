@@ -34,7 +34,7 @@ class RatingController extends GetxController{
     return await _ratingRepo.getAllRatingsByUserIdAndNewsId(idPengguna, idNews);
   }
 
-  Future<void> updateRatingUsers(String id, int nilaiRatingBaru)async{
+  Future<void> updateRatingUsers(String id, int nilaiRatingBaru) async{
     Map<String, dynamic> json = {'NilaiRating' : nilaiRatingBaru};
     await _ratingRepo.updateRatingUsers(json, id);
   }

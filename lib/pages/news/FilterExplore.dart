@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:skripsilocal/controller/comment_controller.dart';
+import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/comment_model.dart';
+import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
+import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
+import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 
 import '../../controller/profile_controller.dart';
 import 'NewsDetail.dart';
@@ -40,7 +47,17 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
     // final controller1 = Get.put(CommentController());
+    // final userController = Get.put(ProfileController());
     final userController = Get.put(ProfileController());
+    String idUser = userController.getidUser();
+    final historyController = Get.put(HistoryController());
+    Future.delayed(const Duration(seconds: 1));
+    BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
+    Future.delayed(const Duration(seconds: 1));
+    RecommendationRepository.instance.getAllRecomendationForUserTarget(idUser);
+    Future.delayed(const Duration(seconds: 1));
+    HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idUser);
+
     // List<CommentModel>? test = controller1.getAllDataList();
     // print('Total data : ${test?.length}');
 
@@ -148,6 +165,35 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
                                                       ),
                                                     ],
                                                   ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.remove_red_eye,
+                                                        size: 20,
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      Text(
+                                                        "${snapshot.data![index].views.toString()}",
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(width: 8),
+                                                      Icon(
+                                                        Icons.star,
+                                                        size: 20,
+                                                      ),
+                                                      const SizedBox(width: 4),
+                                                      Text(
+                                                        "${(snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2)}",
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.normal,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -159,6 +205,23 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
                                           controller.updateViews(snapshot.data![index].id.toString());
                                           await Future.delayed(const Duration(milliseconds: 100));
                                           userController.updateUserScoreCategory(snapshot.data![index].category);
+                                          if (AuthenticationRepository.instance.firebaseUser != null){
+                                            DateTime now = DateTime.now();
+                                            String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                            final history = HistoryModel(
+                                              idNews: snapshot.data![index].id.toString(),
+                                              idPengguna: idUser,
+                                              title: snapshot.data![index].title,
+                                              urlData: snapshot.data![index].urlNews,
+                                              urlGambar: snapshot.data![index].urlImage,
+                                              kategori: snapshot.data![index].category,
+                                              publisher: snapshot.data![index].publisher,
+                                              description: snapshot.data![index].description,
+                                              author: snapshot.data![index].author,
+                                              waktu: formattedDate,
+                                            );
+                                            await historyController.createHistory(history);
+                                          }
                                           Get.to(() => NewsDetail(
                                             id: snapshot.data![index].id.toString(),
                                             title: snapshot.data![index].title,

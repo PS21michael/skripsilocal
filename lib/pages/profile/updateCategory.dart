@@ -120,7 +120,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
   }
 
   Future<void> handleSubmit(List<String> listKategory) async {
-
     showDialog(
       context: context,
       builder: (context) {
@@ -129,7 +128,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         );
       },
     );
-
     await Future.delayed(Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
@@ -275,12 +273,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         }else if(tempIndexFavorit == 38){
           kategoriCustomer38 = kategoriCustomer38>=1000?kategoriCustomer38:1000;;
         }
-
-
-        // Batas for
       }
-
-      // List hilang
       for(int i=0; i<removeCategories.length; i++){
         tempIndexRemover = listCategoryController.listToScore(removeCategories[i]);
         if(tempIndexRemover == 1){
@@ -360,9 +353,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         }else if(tempIndexRemover == 38){
           kategoriCustomer38-=1000;
         }
-
-
-        // Batas for
       }
 
       final user = UserModel(
@@ -420,7 +410,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       showCustomSnackbar('Success', 'Update berhasil!', isError: false);
       print("Data yg di dapat : "+ filteredCategories.toString());
       print("Data yg di hapus : "+ removeCategories.toString());
-      Navigator.pop(context);
       Get.to(() => ProfilePage());
     }
     else{

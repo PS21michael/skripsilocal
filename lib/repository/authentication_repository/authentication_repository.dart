@@ -49,13 +49,25 @@ class AuthenticationRepository extends GetxController{
   }
 
   setInitialScreen (User ? user) async{
+    Get.put(UserRepository());
     if(user == null){
       Get.offAll(()=> const ExplorePage());
     } else if(user != null){
+      print("object : $AuthenticationRepository.instance.getUserEmail");
+      await Future.delayed(const Duration(milliseconds: 100));
+      await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+      await Future.delayed(const Duration(milliseconds: 100));
+      await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+      print("object2 : $AuthenticationRepository.instance.getUserEmail");
+      // String idPengguna = UserRepository.instance.getUserModelId();
       if(user.emailVerified){
-        Get.offAll(const ExplorePage());
+        await Future.delayed(const Duration(milliseconds: 100));
+        await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+        // Get.offAll(const ExplorePage());
+        Get.offAll(() => const ExplorePage());
       } else{
-        Get.offAll(const MailVerification());
+        // Get.offAll(const MailVerification());
+        Get.offAll(() => MailVerification());
       }
     }
     // print('user authenticated : ${user?.emailVerified}');
