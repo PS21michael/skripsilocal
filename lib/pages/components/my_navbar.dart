@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skripsilocal/controller/bookmark_controller.dart';
 import 'package:skripsilocal/pages/authentication/login_page.dart';
-import 'package:skripsilocal/pages/home_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/news/news.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
@@ -137,11 +136,12 @@ class _MyNavBarState extends State<MyNavBar> {
           await Future.delayed(const Duration(milliseconds: 100));
           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
           await Future.delayed(const Duration(milliseconds: 100));
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder:
-                  (context) => const ExplorePage()
-              )
-          );
+          // Navigator.pushReplacement(context,
+          //     MaterialPageRoute(builder:
+          //         (context) => const ExplorePage()
+          //     )
+          // );
+          Get.to(()=> const ExplorePage());
         }
         break;
       case 1:
@@ -152,7 +152,7 @@ class _MyNavBarState extends State<MyNavBar> {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
-            messageText: Text(
+            messageText: const Text(
               'Login dulu yaa!',
               style: TextStyle(
                 fontSize: 18.0,
@@ -160,7 +160,7 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             ),
           );
-          Future.delayed(Duration(seconds: 3));
+          Future.delayed(const Duration(seconds: 3));
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
         }
         else {
@@ -190,7 +190,8 @@ class _MyNavBarState extends State<MyNavBar> {
           // String temp = "";
           // temp = BookmarkRepository.instance.isDataAvail();
           // print("isDataAvail $temp");
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
+          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const NewsPage()));
+          Get.to(()=> const NewsPage());
         }
         break;
       case 2:
@@ -201,7 +202,7 @@ class _MyNavBarState extends State<MyNavBar> {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
-            messageText: Text(
+            messageText: const Text(
               'Login dulu yaa!',
               style: TextStyle(
                 fontSize: 18.0,
@@ -209,7 +210,7 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             ),
           );
-          Future.delayed(Duration(seconds: 3));
+          Future.delayed(const Duration(seconds: 3));
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
         }
         else {
@@ -228,7 +229,7 @@ class _MyNavBarState extends State<MyNavBar> {
           await Future.delayed(const Duration(milliseconds: 100));
           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
           await Future.delayed(const Duration(milliseconds: 100));
-          Future.delayed(Duration(milliseconds: 500));
+          Future.delayed(const Duration(milliseconds: 500));
           UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
           String idPengguna = UserRepository.instance.getUserModelId();
           await Future.delayed(const Duration(seconds: 1));
@@ -240,7 +241,8 @@ class _MyNavBarState extends State<MyNavBar> {
           // String temp = "";
           // temp = BookmarkRepository.instance.isDataAvail();
           // print("isDataAvail $temp");
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
+          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BookmarkPage()));
+          Get.to(()=> const BookmarkPage());
         }
         break;
       case 3:
@@ -251,7 +253,7 @@ class _MyNavBarState extends State<MyNavBar> {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
-            messageText: Text(
+            messageText: const Text(
               'Login dulu yaa!',
               style: TextStyle(
                 fontSize: 18.0,
@@ -259,7 +261,7 @@ class _MyNavBarState extends State<MyNavBar> {
               ),
             ),
           );
-          Future.delayed(Duration(seconds: 3));
+          Future.delayed(const Duration(seconds: 3));
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
         }
         else {
@@ -278,7 +280,7 @@ class _MyNavBarState extends State<MyNavBar> {
           await Future.delayed(const Duration(milliseconds: 100));
           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
           await Future.delayed(const Duration(milliseconds: 100));
-          Future.delayed(Duration(milliseconds: 500));
+          Future.delayed(const Duration(milliseconds: 500));
           UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
           String idPengguna = UserRepository.instance.getUserModelId();
           // BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
@@ -291,7 +293,8 @@ class _MyNavBarState extends State<MyNavBar> {
           RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
           await Future.delayed(const Duration(seconds: 1));
           HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+          Get.to(()=> const ProfilePage());
         }
         break;
     }
