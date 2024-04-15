@@ -410,7 +410,7 @@ class _ExplorePageState extends State<ExplorePage> {
             ),
           ],
         ),
-        bottomNavigationBar: const MyNavBar(index: 0),
+        bottomNavigationBar: const MyNavBar(initialIndex: 0),
       ),
     );
   }

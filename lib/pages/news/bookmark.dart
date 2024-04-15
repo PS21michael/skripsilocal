@@ -52,7 +52,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
       child: Scaffold(
         appBar: const BasicHeader(),
         body: temp == "YES" ? buildListWidget(idPengguna) : buildNoDataWidget(),
-        bottomNavigationBar: const MyNavBar(index: 2),
+        bottomNavigationBar: const MyNavBar(initialIndex: 2),
       ),
     );
   }

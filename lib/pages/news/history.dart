@@ -5,6 +5,7 @@ import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
+import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
@@ -206,7 +207,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                           controller1.updateViews(snapshot.data![index].id.toString());
                                           await Future.delayed(const Duration(milliseconds: 100));
                                           userController.updateUserScoreCategory(snapshot.data![index].kategori);
-                                          if (AuthenticationRepository.instance.firebaseUser != null){
+                                          // if (AuthenticationRepository.instance.firebaseUser != null){
                                             DateTime now = DateTime.now();
                                             String formattedDate = DateFormat('dd-MM-yyyy').format(now);
                                             final history = HistoryModel(
@@ -222,7 +223,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                               waktu: formattedDate,
                                             );
                                             await historyController.createHistory(history);
-                                          }
+                                          // }
                                           Get.to(() => NewsDetail(
                                             id: snapshot.data![index].id.toString(),
                                             title: snapshot.data![index].title,
@@ -274,7 +275,12 @@ class _HistoryPageState extends State<HistoryPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text("Konfirmasi"),
+                      title: const Text(
+                        "Konfirmasi",
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
                       content: const Text(
                         "Apakah Anda yakin ingin menghapus semua data ini?",
                         style: TextStyle(
@@ -286,13 +292,24 @@ class _HistoryPageState extends State<HistoryPage> {
                           onPressed: () {
                             Navigator.of(context).pop(false);
                           },
-                          child: const Text("No"),
+                          child: const Text(
+                            "Tidak",
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(true);
                           },
-                          child: const Text("Yes"),
+                          child: const Text(
+                            "Ya",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.red,
+                            ),
+                          ),
                         ),
                       ],
                     );
@@ -318,9 +335,11 @@ class _HistoryPageState extends State<HistoryPage> {
                       // print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
                       historyController.deleteHistory(listIdHistory[i]);
                     }
+                    Get.to(()=> const ExplorePage());
                   }
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
                 });
               },
               style: ElevatedButton.styleFrom(

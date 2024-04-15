@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        bottomNavigationBar: const MyNavBar(index: 3),
+        bottomNavigationBar: const MyNavBar(initialIndex: 3),
       ),
     );
   }
@@ -215,56 +215,122 @@ class _ProfilePageState extends State<ProfilePage> {
 
     widgets.add(
       CustomListTile(
+        // onTap: () async{
+        //   // AUTH
+        //   await Future.delayed(Duration(milliseconds: 100));
+        //   userController.deleteUserAuth();
+        //
+        //   // DB
+        //   await Future.delayed(Duration(seconds: 1));
+        //   String id = idCustomer;
+        //   await Future.delayed(Duration(milliseconds: 300));
+        //   userController.deleteUserDBByID(id);
+        //
+        //   // BOOKMARK
+        //   await Future.delayed(Duration(milliseconds: 500));
+        //   bookMarkController.getAllBookmarkfromSingleUser(id);
+        //   await Future.delayed(Duration(milliseconds: 1000));
+        //   List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+        //   await Future.delayed(Duration(milliseconds: 500));
+        //   print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
+        //   for(int i=0; i<listIdBookmark.length; i++){
+        //     await Future.delayed(Duration(milliseconds: 50));
+        //     print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
+        //     bookMarkController.deleteBookmark(listIdBookmark[i]);
+        //   }
+        //
+        //
+        //   // HISTORY
+        //   await Future.delayed(Duration(milliseconds: 500));
+        //   historyController.getAllHistoryFromSingleUser(id);
+        //   await Future.delayed(Duration(milliseconds: 800));
+        //   List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+        //   await Future.delayed(Duration(milliseconds: 500));
+        //   print("list history yg ada di db: ${listIdHistory.toString()}");
+        //   for(int i=0; i<listIdHistory.length; i++){
+        //     await Future.delayed(Duration(milliseconds: 50));
+        //     print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
+        //     historyController.deleteHistory(listIdHistory[i]);
+        //   }
+        //
+        //
+        //   // RATING
+        //
+        //
+        //   // RECOMMEND
+        //
+        //
+        //
+        //   await Future.delayed(Duration(seconds: 1));
+        //   print("User Berhasil di delete");
+        //   userController.logout();
+        //
+        // },
         onTap: () async{
-          // AUTH
-          await Future.delayed(Duration(milliseconds: 100));
-          userController.deleteUserAuth();
+          TextEditingController passwordController = TextEditingController();
 
-          // DB
-          await Future.delayed(Duration(seconds: 1));
-          String id = idCustomer;
-          await Future.delayed(Duration(milliseconds: 300));
-          userController.deleteUserDBByID(id);
-
-          // BOOKMARK
-          await Future.delayed(Duration(milliseconds: 500));
-          bookMarkController.getAllBookmarkfromSingleUser(id);
-          await Future.delayed(Duration(milliseconds: 1000));
-          List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
-          await Future.delayed(Duration(milliseconds: 500));
-          print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
-          for(int i=0; i<listIdBookmark.length; i++){
-            await Future.delayed(Duration(milliseconds: 50));
-            print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
-            bookMarkController.deleteBookmark(listIdBookmark[i]);
-          }
-
-
-          // HISTORY
-          await Future.delayed(Duration(milliseconds: 500));
-          historyController.getAllHistoryFromSingleUser(id);
-          await Future.delayed(Duration(milliseconds: 800));
-          List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
-          await Future.delayed(Duration(milliseconds: 500));
-          print("list history yg ada di db: ${listIdHistory.toString()}");
-          for(int i=0; i<listIdHistory.length; i++){
-            await Future.delayed(Duration(milliseconds: 50));
-            print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
-            historyController.deleteHistory(listIdHistory[i]);
-          }
-
-
-          // RATING
-
-
-          // RECOMMEND
-
-
-
-          await Future.delayed(Duration(seconds: 1));
-          print("User Berhasil di delete");
-          userController.logout();
-
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'Konfirmasi Penghapusan Akun',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Dengan mengisi kembali password anda maka akun Baca Berita anda akan dihapuskan',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: 'Input password anda ....'
+                      ),
+                    ),
+                  ],
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      'Batal',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      String password = passwordController.text;
+                      print('User password: $password');
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      'Kirim',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
         },
         textColor: Colors.red,
         title: 'Delete Account',
