@@ -13,6 +13,7 @@ import 'package:skripsilocal/pages/profile/pickCategory.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
+import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import '../../../pages/profile/fill_profile.dart';
 import '../user_repository/user_repository.dart';
 
@@ -44,6 +45,7 @@ class AuthenticationRepository extends GetxController{
   void onReady() {
     _firebaseUser = Rx<User?>(_auth.currentUser);
     _firebaseUser.bindStream(_auth.userChanges());
+    Get.put(BookmarkRepository());
     // screenRedirect();
     setInitialScreen(_firebaseUser.value);
   }

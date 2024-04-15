@@ -53,6 +53,7 @@ class _ExplorePageState extends State<ExplorePage> {
   void initState() {
     super.initState();
     _futureNewsList = controller.getAllNews();
+    Get.put(BookmarkRepository());
   }
 
   Future<void> _refreshNewsList() async {

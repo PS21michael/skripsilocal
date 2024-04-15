@@ -7,17 +7,23 @@ import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/history_repository/history_repository.dart';
+import 'package:skripsilocal/repository/rating_repository/rating_repository.dart';
+import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
+
+import 'repository/bookmark_repository/bookmark_repository.dart';
 
 Future<void> main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   await GetStorage.init();
-
-  // WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).
   then((value) => Get.put(AuthenticationRepository()));
+  await Get.put(BookmarkRepository());
+  await Get.put(HistoryRepository());
+  await Get.put(RatingRepository());
+  await Get.put(RecommendationRepository());
   runApp(const MyApp());
 }
 
