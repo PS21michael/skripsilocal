@@ -207,6 +207,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 theButton(
                   text: 'Sign Up',
                   onTap: (){
+
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    );
+
                     final user = UserModel(
                         fullName: randomNames.manFullName(),
                         email: controller.email.text.trim(),
@@ -255,6 +265,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         scoreKategori38: 0,
                         //Adding
                     );
+
+                    Navigator.pop(context);
+
                     SignUpController.instace.registerAndCreateUser(controller.email.text.trim(), controller.password.text.trim(),
                         controller.confirmPassword.text.trim(), user);
                   },

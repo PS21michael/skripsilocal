@@ -350,8 +350,19 @@ class _FillProfileState extends State<FillProfile> {
                     theButton(
                       text: 'Isi Data',
                       onTap: () async {
+
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        );
+
                         if(_formKey.currentState!.validate()) {
                           if(!_usernameValidated) {
+                            Navigator.pop(context);
                             showCustomSnackbar(
                               "Error!",
                               "Please validate the username first!",
@@ -427,14 +438,17 @@ class _FillProfileState extends State<FillProfile> {
 
                             await Future.delayed(Duration(milliseconds: 200));
                             if(UserRepository.instance.getUserModelInitScore() == "NO"){
+                              Navigator.pop(context);
                               Get.offAll(()=> PickCategory());
                             } else{
                               await Future.delayed(Duration(milliseconds: 200));
+                              Navigator.pop(context);
                               Get.to(() => ExplorePage());
                             }
 
                           }
                         } else {
+                          Navigator.pop(context);
                           showCustomSnackbar(
                             "Error!",
                             "Please fill in all required fields!",

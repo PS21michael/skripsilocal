@@ -231,7 +231,18 @@ class _NewsDetailState extends State<NewsDetail> {
                           // },
 
                           onTap: () async {
+
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            );
+
                             if(AuthenticationRepository.instance.firebaseUser==null){
+                              Navigator.pop(context);
                               Get.to(() => const LoginPage());
                             } else {
                               await Future.delayed(const Duration(seconds: 2));
@@ -255,6 +266,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 );
                                 await bookMarkController.createBookMark(bookmark);
                                 print("Data sudah pernah ada");
+                                Navigator.pop(context);
                                 showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
                                 // String idPengguna = UserRepository.instance.getUserModelId();
                                 BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
@@ -267,6 +279,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 // for(int i=0; i<listTitleSave.length;i++){
                                 //   if(listTitleSave.contains(title)){
                                 print("Data sudah pernah ada");
+                                Navigator.pop(context);
                                 showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
                                 // }
                                 // print(listTitleSave)

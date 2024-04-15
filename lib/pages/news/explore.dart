@@ -26,7 +26,7 @@ import '../../controller/rating_controller.dart';
 import '../../models/rating_model.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-import '../../Utils/categoryUtils.dart';
+import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/rating_repository/rating_repository.dart';
 import 'NewsDetail.dart';

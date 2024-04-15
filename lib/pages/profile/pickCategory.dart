@@ -6,7 +6,7 @@ import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/news/news.dart';
 
-import '../../Utils/categoryUtils.dart';
+import '../../Utils/CategoryUtils.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../../repository/user_repository/user_repository.dart';
 
@@ -99,6 +99,16 @@ class _PickCategoryState extends State<PickCategory> {
   }
 
   void handleSubmit() async{
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
     await Future.delayed(Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
@@ -299,6 +309,7 @@ class _PickCategoryState extends State<PickCategory> {
       await Future.delayed(Duration(milliseconds: 300));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
       await Future.delayed(Duration(milliseconds: 300));
+      Navigator.pop(context);
       Get.to(() => NewsPage());
     }
     else{

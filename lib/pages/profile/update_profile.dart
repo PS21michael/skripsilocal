@@ -362,8 +362,19 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     theButton(
                       text: 'Lanjut',
                       onTap: () async {
+
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        );
+
                         if (userNameController.text.trim() != userNameCustomer) {
                           if (!_usernameValidated) {
+                            Navigator.pop(context);
                             showCustomSnackbar(
                               "Error!",
                               "Please validate the username first!",
@@ -436,6 +447,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             // UserRepository.instance.resetListScore();
                             await Future.delayed(Duration(seconds: 2));
                             await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+                            Navigator.pop(context);
                             Get.to(() => UpdateCategory());
                           }
                         } else if(userNameController.text.trim() == userNameCustomer){
@@ -501,6 +513,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           await Future.delayed(Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                           // // List<int> daftarScore = UserRepository.instance.getListScore();
+                          Navigator.pop(context);
                           Get.to(() => UpdateCategory());
                         }
                       }

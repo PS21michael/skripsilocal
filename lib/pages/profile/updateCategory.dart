@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/Utils/categoryUtils.dart';
+import 'package:skripsilocal/Utils/CategoryUtils.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
@@ -120,6 +120,15 @@ class _UpdateCategoryState extends State<UpdateCategory> {
   }
 
   Future<void> handleSubmit(List<String> listKategory) async {
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
     await Future.delayed(Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
@@ -411,6 +420,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       showCustomSnackbar('Success', 'Update berhasil!', isError: false);
       print("Data yg di dapat : "+ filteredCategories.toString());
       print("Data yg di hapus : "+ removeCategories.toString());
+      Navigator.pop(context);
       Get.to(() => ProfilePage());
     }
     else{

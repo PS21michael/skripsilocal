@@ -17,6 +17,7 @@ import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
 import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
+import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
 
@@ -139,6 +140,16 @@ class _LoginPageState extends State<LoginPage> {
                 theButton(
                   text: 'Sign In',
                   onTap: (){
+
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    );
+
                     print('CheckPoint login 1');
                     UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
                     SignInController.instance.loginUser(controller.email.text.trim(), controller.password.text.trim());
@@ -184,6 +195,17 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     SquareTile(
                         onTap: () async {
+
+                          // TEST CODING
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          );
+
                           var i=0;
                           var j=0;
                           String emailTemp = "";
@@ -191,6 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                           emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
                           FirebaseAuth.instance.currentUser?.reload();
                           if(emailTemp == "") {
+                            Navigator.pop(context);
                             showCustomSnackbar(
                               "Maaf!",
                               "Terjadi kesalahan \nSilahkan tekan sekali lagi \n Untuk melanjutkan",
@@ -216,13 +239,19 @@ class _LoginPageState extends State<LoginPage> {
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
                                 print('ChekpointGoogle 6');
+
+                                Navigator.pop(context);
                                 Get.to(()=>const FillProfile());
                               } if(UserRepository.instance.getUserModelInitScore() == "NO"){
+
+                                Navigator.pop(context);
                                 Get.offAll(()=> PickCategory());
                               }else{
                                 print('ChekpointGoogle 7');
                                 await Future.delayed(Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp!);
+
+                                Navigator.pop(context);
                                 Get.to(()=>const ExplorePage());
                               }
                             } else{
@@ -307,6 +336,7 @@ class _LoginPageState extends State<LoginPage> {
                                 await Future.delayed(Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
 
+                                Navigator.pop(context);
                                 Get.to(()=>const FillProfile());
                                 print('ChekpointGoogle 11');
 
@@ -316,6 +346,8 @@ class _LoginPageState extends State<LoginPage> {
                                 await Future.delayed(Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
 
+                                // TEST CODING
+                                Navigator.pop(context);
                                 Get.to(()=>const ExplorePage());
                               }
 
@@ -360,6 +392,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void showCustomSnackbar(String title, String message, {bool isError = true}) {
+    RecommendationRepository.instance.isDataRecommendAvail;
     SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
   }
 
