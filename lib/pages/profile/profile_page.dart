@@ -6,18 +6,23 @@ import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/profile_controller.dart';
+import 'package:skripsilocal/controller/recommendation_controller.dart';
 import 'package:skripsilocal/pages/components/custom_list_tile.dart';
 import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/pages/profile/updateCategory.dart';
 import 'package:skripsilocal/pages/profile/update_profile.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
+import 'package:skripsilocal/repository/rating_repository/rating_repository.dart';
+import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
 import '../../controller/bookmark_controller.dart';
+import '../../controller/rating_controller.dart';
 import '../../repository/bookmark_repository/bookmark_repository.dart';
 import '../components/button.dart';
 import '../components/my_navbar.dart';
+import '../components/snackbar_utils.dart';
 import 'fill_profile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -28,12 +33,15 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  String flagLoginGoogle = "";
   late ProfileController controller;
   late UpdateProfileController updateController;
 
   final bookMarkController = Get.put(BookmarkController());
   final userController = Get.put(ProfileController());
   final historyController = Get.put(HistoryController());
+  final ratingController = Get.put(RatingController());
+  final recommendController = Get.put(RecommendationController());
 
   @override
   void initState() {
@@ -216,54 +224,188 @@ class _ProfilePageState extends State<ProfilePage> {
     widgets.add(
       CustomListTile(
         onTap: () async{
-          // AUTH
-          await Future.delayed(Duration(milliseconds: 100));
-          userController.deleteUserAuth();
+          final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
+          String password = "12345@Bc";
 
-          // DB
-          await Future.delayed(Duration(seconds: 1));
-          String id = idCustomer;
-          await Future.delayed(Duration(milliseconds: 300));
-          userController.deleteUserDBByID(id);
+          if(EmailAuthProvider.PROVIDER_ID == providerData?.providerId){
+            if(password != ""){
 
-          // BOOKMARK
-          await Future.delayed(Duration(milliseconds: 500));
-          bookMarkController.getAllBookmarkfromSingleUser(id);
-          await Future.delayed(Duration(milliseconds: 1000));
-          List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
-          await Future.delayed(Duration(milliseconds: 500));
-          print("list bookmark yg ada di db: ${listIdBookmark.toString()}");
-          for(int i=0; i<listIdBookmark.length; i++){
-            await Future.delayed(Duration(milliseconds: 50));
-            print("data bookmark ke ${i+1} dengan id ${listIdBookmark[i]} berhail di hapus");
-            bookMarkController.deleteBookmark(listIdBookmark[i]);
+              // AUTH
+              await Future.delayed(Duration(milliseconds: 1000));
+              await Future.delayed(Duration(milliseconds: 100));
+              userController.deleteUserAuth(password);
+
+              String flagHapusAuth = "";
+              await Future.delayed(Duration(milliseconds: 800));
+              await Future.delayed(Duration(milliseconds: 100));
+              flagHapusAuth = AuthenticationRepository.instance.getFlagAuthDelete();
+
+
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+
+              if(flagHapusAuth == "TRUE"){
+                // DB
+                await Future.delayed(Duration(seconds: 1));
+                String id = idCustomer;
+                await Future.delayed(Duration(milliseconds: 300));
+                userController.deleteUserDBByID(id);
+
+                // BOOKMARK
+                await Future.delayed(Duration(milliseconds: 500));
+                bookMarkController.getAllBookmarkfromSingleUser(id);
+                await Future.delayed(Duration(milliseconds: 1000));
+                List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+                await Future.delayed(Duration(milliseconds: 500));
+                for(int i=0; i<listIdBookmark.length; i++){
+                  await Future.delayed(Duration(milliseconds: 50));
+                  bookMarkController.deleteBookmark(listIdBookmark[i]);
+                }
+
+
+                // HISTORY
+                await Future.delayed(Duration(milliseconds: 500));
+                historyController.getAllHistoryFromSingleUser(id);
+                await Future.delayed(Duration(milliseconds: 800));
+                List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+                await Future.delayed(Duration(milliseconds: 500));
+                for(int i=0; i<listIdHistory.length; i++){
+                  await Future.delayed(Duration(milliseconds: 50));
+                  historyController.deleteHistory(listIdHistory[i]);
+                }
+
+
+                // RATING
+                await Future.delayed(Duration(milliseconds: 500));
+                ratingController.getAllRatingOnlyUserTarget(id);
+                await Future.delayed(Duration(milliseconds: 1500));
+                List<String> listIdRating = [];
+                listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
+                await Future.delayed(Duration(milliseconds: 500));
+                for(int i=0; i<listIdRating.length; i++){
+                  await Future.delayed(Duration(milliseconds: 50));
+                  ratingController.deleteRating(listIdRating[i]);
+                }
+
+
+                // RECOMMEND
+                await Future.delayed(Duration(milliseconds: 500));
+                recommendController.getAllRecommendationFromUserTarget(id);
+                await Future.delayed(Duration(milliseconds: 1500));
+                List<String> listIdRecommend = [];
+                listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
+                await Future.delayed(Duration(milliseconds: 500));
+                for(int i=0; i<listIdRecommend.length; i++){
+                  await Future.delayed(Duration(milliseconds: 50));
+                  recommendController.deleteRecommendation(listIdRecommend[i]);
+
+                }
+
+                await Future.delayed(Duration(seconds: 1));
+                Navigator.pop(context);
+                await Future.delayed(Duration(milliseconds: 300));
+                showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+                userController.logout();
+
+              } else {
+                Navigator.pop(context);
+                showCustomSnackbar("Gagal", "Password Salah!", isError: true);
+              }
+
+            } else {
+              // Navigator.pop(context);
+              showCustomSnackbar("Gagal", "Silahkan masukkan Password!", isError: true);
+            }
+          }
+
+          if(GoogleAuthProvider().providerId == providerData?.providerId){
+
+            // AUTH
+            await Future.delayed(Duration(milliseconds: 1000));
+            await Future.delayed(Duration(milliseconds: 100));
+            userController.deleteUserAuthGoogle();
+
+            showDialog(
+              context: context,
+              builder: (context) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            );
+
+            // DB
+            await Future.delayed(Duration(seconds: 1));
+            String id = idCustomer;
+            await Future.delayed(Duration(milliseconds: 300));
+            userController.deleteUserDBByID(id);
+
+            // BOOKMARK
+            await Future.delayed(Duration(milliseconds: 500));
+            bookMarkController.getAllBookmarkfromSingleUser(id);
+            await Future.delayed(Duration(milliseconds: 1000));
+            List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdBookmark.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              bookMarkController.deleteBookmark(listIdBookmark[i]);
+            }
+
+
+            // HISTORY
+            await Future.delayed(Duration(milliseconds: 500));
+            historyController.getAllHistoryFromSingleUser(id);
+            await Future.delayed(Duration(milliseconds: 800));
+            List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdHistory.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              historyController.deleteHistory(listIdHistory[i]);
+            }
+
+
+            // RATING
+            await Future.delayed(Duration(milliseconds: 500));
+            ratingController.getAllRatingOnlyUserTarget(id);
+            await Future.delayed(Duration(milliseconds: 1500));
+            List<String> listIdRating = [];
+            listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdRating.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              ratingController.deleteRating(listIdRating[i]);
+            }
+
+
+            // RECOMMEND
+            await Future.delayed(Duration(milliseconds: 500));
+            recommendController.getAllRecommendationFromUserTarget(id);
+            await Future.delayed(Duration(milliseconds: 1500));
+            List<String> listIdRecommend = [];
+            listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdRecommend.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              recommendController.deleteRecommendation(listIdRecommend[i]);
+
+            }
+
+            await Future.delayed(Duration(seconds: 1));
+            Navigator.pop(context);
+            await Future.delayed(Duration(milliseconds: 300));
+            Navigator.pop(context);
+            showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+            userController.logout();
           }
 
 
-          // HISTORY
-          await Future.delayed(Duration(milliseconds: 500));
-          historyController.getAllHistoryFromSingleUser(id);
-          await Future.delayed(Duration(milliseconds: 800));
-          List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
-          await Future.delayed(Duration(milliseconds: 500));
-          print("list history yg ada di db: ${listIdHistory.toString()}");
-          for(int i=0; i<listIdHistory.length; i++){
-            await Future.delayed(Duration(milliseconds: 50));
-            print("data history ke ${i+1} dengan id ${listIdHistory[i]} berhasil di hapus");
-            historyController.deleteHistory(listIdHistory[i]);
-          }
 
-
-          // RATING
-
-
-          // RECOMMEND
-
-
-
-          await Future.delayed(Duration(seconds: 1));
-          print("User Berhasil di delete");
-          userController.logout();
 
         },
         textColor: Colors.red,
@@ -299,6 +441,10 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+}
+
+void showCustomSnackbar(String title, String message, {bool isError = true}) {
+  SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
 }
 
 class UpdateProfileController {

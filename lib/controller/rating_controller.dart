@@ -39,5 +39,9 @@ class RatingController extends GetxController{
     await _ratingRepo.updateRatingUsers(json, id);
   }
 
+  Future<void> deleteRating(String id) async{
+    await _ratingRepo.deleteRating(id);
+  }
+
 
 }

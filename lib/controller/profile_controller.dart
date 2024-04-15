@@ -66,7 +66,7 @@ class ProfileController extends GetxController{
 
   uploadProfilePicture() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70,
-    maxHeight: 512, maxWidth: 512);
+        maxHeight: 512, maxWidth: 512);
     // print("CheckPoint LALA Controller1");
     if(image!=null){
       final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image);
@@ -129,9 +129,17 @@ class ProfileController extends GetxController{
   }
 
 
-  Future<void> deleteUserAuth() async{
+  Future<void> deleteUserAuth(String password) async{
     try{
-      await AuthenticationRepository.instance.deleteUser();
+      await AuthenticationRepository.instance.deleteUser(password);
+    } catch(e){
+      // print('Error In Login : $e');
+    }
+  }
+
+  Future<void> deleteUserAuthGoogle() async{
+    try{
+      await AuthenticationRepository.instance.deleteUserGoogle();
     } catch(e){
       // print('Error In Login : $e');
     }

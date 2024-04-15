@@ -7,8 +7,10 @@ import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/authentication/mail_verification.dart';
 import 'package:skripsilocal/pages/authentication/register_page.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
+import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
+import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/Signin_email_password_failure.dart';
 import 'package:skripsilocal/repository/authentication_repository/exception/signup_email_password_failure.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
@@ -53,21 +55,26 @@ class AuthenticationRepository extends GetxController{
     if(user == null){
       Get.offAll(()=> const ExplorePage());
     } else if(user != null){
-      // print("object : $AuthenticationRepository.instance.getUserEmail");
+      print("object : $AuthenticationRepository.instance.getUserEmail");
       await Future.delayed(const Duration(milliseconds: 100));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
       await Future.delayed(const Duration(milliseconds: 100));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-      // print("object2 : $AuthenticationRepository.instance.getUserEmail");
+      print("object2 : $AuthenticationRepository.instance.getUserEmail");
       // String idPengguna = UserRepository.instance.getUserModelId();
       if(user.emailVerified){
-        await Future.delayed(const Duration(milliseconds: 100));
+        await Future.delayed(const Duration(seconds: 500));
         await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+        await Future.delayed(const Duration(seconds: 500));
+        await UserRepository.instance.getSingelUserDetails(firebaseUser!.email.toString());
+        await Future.delayed(const Duration(seconds: 500));
+        await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
+
         // Get.offAll(const ExplorePage());
         Get.offAll(() => const ExplorePage());
       } else{
         // Get.offAll(const MailVerification());
-        Get.offAll(() => const MailVerification());
+        Get.offAll(() => MailVerification());
       }
     }
     // print('user authenticated : ${user?.emailVerified}');
@@ -196,9 +203,9 @@ class AuthenticationRepository extends GetxController{
     } else if(password.length<8){
       // showToast(message:'Password should at least 8 character');
       showCustomSnackbar("Error", "Password harus terdiri dari 8 karakter atau lebih");
-    // } else if(password.length>16){
-    //   // showToast(message:'Password should maksimum 8 character');
-    //   showCustomSnackbar("Error", "Password can't more than 16 character");
+      // } else if(password.length>16){
+      //   // showToast(message:'Password should maksimum 8 character');
+      //   showCustomSnackbar("Error", "Password can't more than 16 character");
     } else if (!isHasUpperCase(password)){
       // showToast(message:'Password should have at least one upper case');
       showCustomSnackbar("Error", "Password harus mengandung 1 huruf kapital");
@@ -228,7 +235,7 @@ class AuthenticationRepository extends GetxController{
         final ex = SignupEmailAndPasswordFailure.code(e.code);
         isSuccessCreateUser = "False";
 
-        showCustomSnackbar("Error", ex.message);
+        showCustomSnackbar("Error", "${ex.message}");
         // print('FIREBASE EXCEPTION - ${e.code}');
       } catch(_){
         const ex = SignupEmailAndPasswordFailure();
@@ -251,7 +258,7 @@ class AuthenticationRepository extends GetxController{
         if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
           Get.to(()=>const FillProfile());
         } else if(UserRepository.instance.getUserModelInitScore() == "NO"){
-          Get.offAll(()=> const PickCategory());
+          Get.offAll(()=> PickCategory());
         } else{
           Get.offAll(()=>const ExplorePage());
         }
@@ -260,7 +267,7 @@ class AuthenticationRepository extends GetxController{
       }
     } on FirebaseAuthException catch(e){
       final ex = SigninEmailAndPasswordFailure.code(e.code);
-      showCustomSnackbar("Error", ex.message);
+      showCustomSnackbar("Error", "${ex.message}");
       // print('FIREBASE AUTH EXCEPTION - ${e.code}');
     } catch(_){
       const ex = SigninEmailAndPasswordFailure();
@@ -329,7 +336,7 @@ class AuthenticationRepository extends GetxController{
           accessToken: googleSignInAuthentication.accessToken);
 
       // Getting users credential
-      // UserCredential result = await auth.signInWithCredential(authCredential);
+      UserCredential result = await auth.signInWithCredential(authCredential);
       // User? user = result.user;
 
       // Get.offAll(()=>ExplorePage());
@@ -356,15 +363,82 @@ class AuthenticationRepository extends GetxController{
     // print("User Berhasil keluar");
   }
 
-  Future<void> deleteUser() async {
+  Future<void> reauthenticateAndDelete(String password) async {
     try {
-      await FirebaseAuth.instance.currentUser?.delete();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'requires-recent-login') {
-        // print('The user must reauthenticate before this operation can be executed.');
+
+      print("email 1 : ${getUserEmail}");
+      print("Password 1 : ${password}");
+
+
+      await _auth.signInWithEmailAndPassword(email: getUserEmail, password: password);
+
+      final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
+      print("Data email 1 : ${EmailAuthProvider.PROVIDER_ID}");
+      print("Data email 2 : ${providerData!.providerId}");
+      print("email 1 : ${providerData!.providerId}");
+
+      if (EmailAuthProvider.PROVIDER_ID == providerData!.providerId) {
+        print("Checkpoint email 1");
+        await FirebaseAuth.instance.currentUser!
+            .reauthenticateWithProvider(EmailAuthProvider as AuthProvider);
+      } else if (GoogleAuthProvider().providerId == providerData.providerId) {
+        print("Checkpoint email 2");
+        await FirebaseAuth.instance.currentUser!
+            .reauthenticateWithProvider(GoogleAuthProvider());
       }
+
+      await FirebaseAuth.instance.currentUser?.delete();
+    } catch (e) {
+      print("Error yang didapat : ${e}");
+      showCustomSnackbar("Gagal", "Db Auth belum terhapus!", isError: true);
+      Get.to(()=> LoginPage());
+      return;
     }
   }
+
+  Future<void> deleteUserGoogle() async {
+
+    final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
+    if (GoogleAuthProvider().providerId == providerData?.providerId) {
+      await signup();
+      await FirebaseAuth.instance.currentUser?.delete();
+      try{
+        await FirebaseAuth.instance.currentUser?.delete();
+      } catch(e){
+
+      }
+    }
+    await FirebaseAuth.instance.currentUser?.delete();
+  }
+
+  String flagHapusAuth ="";
+  Future<void> deleteUser(String password) async {
+    flagHapusAuth ="";
+    try{
+      await _auth.signInWithEmailAndPassword(email: getUserEmail, password: password);
+      try {
+        flagHapusAuth = "TRUE";
+        await Future.delayed(Duration(milliseconds: 200));
+        await FirebaseAuth.instance.currentUser!.delete();
+        flagHapusAuth = "TRUE";
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'requires-recent-login') {
+          showCustomSnackbar("Gagal", "Db Auth belum terhapus!", isError: true);
+        }
+      }
+    } on FirebaseAuthException catch(e){
+      flagHapusAuth = "FALSE";
+      flagHapusAuth = "FALSE";
+      flagHapusAuth = "FALSE";
+      final ex = SigninEmailAndPasswordFailure.code(e.code);
+    }
+
+  }
+
+  String getFlagAuthDelete(){
+    return flagHapusAuth;
+  }
+
 
   void showCustomSnackbar(String title, String message, {bool isError = true}) {
     SnackbarUtils.showCustomSnackbar(title, message, isError: isError);

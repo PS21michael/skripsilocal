@@ -17,6 +17,7 @@ import '../../models/comment_model.dart';
 import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../authentication/login_page.dart';
+import 'package:item_count_number_button/item_count_number_button.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;
@@ -92,7 +93,7 @@ class _NewsDetailState extends State<NewsDetail> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: const DetailHeader(),
+        appBar: DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -176,7 +177,18 @@ class _NewsDetailState extends State<NewsDetail> {
                             const SizedBox(height: 5),
                             InkWell(
                               onTap: () async {
+
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                );
+
                                 if(AuthenticationRepository.instance.firebaseUser==null){
+                                  Navigator.pop(context);
                                   Get.to(() => const LoginPage());
                                 } else {
                                   await Future.delayed(const Duration(seconds: 2));
@@ -185,7 +197,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                   String temp = BookmarkRepository.instance.getDataAvail();
                                   // print("Title-nya " + title);
                                   // print("Data ada : " + BookmarkRepository.instance.isDataAvail());
-                                  // print(BookmarkRepository.instance.getDataAvail());
+                                  print(BookmarkRepository.instance.getDataAvail());
                                   if(temp == "NO"){
                                     final bookmark = BookmarkModel(
                                       idNews: idNews,
@@ -199,19 +211,21 @@ class _NewsDetailState extends State<NewsDetail> {
                                       author: penulis,
                                     );
                                     await bookMarkController.createBookMark(bookmark);
-                                    // print("Data sudah pernah ada");
+                                    print("Data sudah pernah ada");
+                                    Navigator.pop(context);
                                     showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
                                     // String idPengguna = UserRepository.instance.getUserModelId();
                                     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
-                                    // String temp = "";
-                                    // temp = BookmarkRepository.instance.isDataAvail();
-                                    // print("isDataAvail $temp");
+                                    String temp = "";
+                                    temp = BookmarkRepository.instance.isDataAvail();
+                                    print("isDataAvail $temp");
                                   } else{
                                     // await Future.delayed(Duration(seconds: 2));
                                     // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
                                     // for(int i=0; i<listTitleSave.length;i++){
                                     //   if(listTitleSave.contains(title)){
-                                    // print("Data sudah pernah ada");
+                                    print("Data sudah pernah ada");
+                                    Navigator.pop(context);
                                     showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
                                     // }
                                     // print(listTitleSave)
@@ -251,10 +265,10 @@ class _NewsDetailState extends State<NewsDetail> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  const Row(
+                  Row(
                     children: [
                       Text(
-                        "Kasih rating beritanya dulu yuk :"
+                          "Kasih rating beritanya dulu yuk :"
                       ),
                     ],
                   ),
@@ -277,21 +291,32 @@ class _NewsDetailState extends State<NewsDetail> {
                         ),
                       ),
                       IconButton(
-                        icon: const Icon(Icons.send_sharp),
+                        icon: Icon(Icons.send_sharp),
                         onPressed: () async {
-                          // print(_ratingValue);
+
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          );
+
+                          print(_ratingValue);
                           DateTime now = DateTime.now();
                           String time = "";
                           time = now.toString();
                           double nilaiRatingInput = _ratingValue;
                           if(AuthenticationRepository.instance.firebaseUser == null){
+                            Navigator.pop(context);
                             Get.snackbar(
                               'Informasi!',
                               'Login dulu yaa!',
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.yellow,
                               borderRadius: 10.0,
-                              messageText: const Text(
+                              messageText: Text(
                                 'Login dulu yaa!',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -299,7 +324,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 ),
                               ),
                             );
-                            Future.delayed(const Duration(seconds: 3));
+                            Future.delayed(Duration(seconds: 3));
                             Get.to(() => const LoginPage());
                           } else {
                             await Future.delayed(const Duration(seconds: 1));
@@ -327,16 +352,25 @@ class _NewsDetailState extends State<NewsDetail> {
                               await ratingController.createRating(rating);
                               await Future.delayed(const Duration(milliseconds: 100));
                               await NewsRepository.instance.tambahNilaiRating(nilaiRatingInput.toInt(), idNews);
+                              Navigator.pop(context);
                               showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
                               RatingRepository.instance.getAllRatingsOnlyUserTarget(idUser);
                             }
                             else {
                               if(nilaiRatingUserFromDB != nilaiRatingInput) {
+                                double newsRatingNewValue = (nilaiRatingUserFromDB-nilaiRatingInput);
                                 await Future.delayed(const Duration(milliseconds: 50));
                                 ratingController.updateRatingUsers(idRatingDBUser, nilaiRatingInput.toInt());
+                                Navigator.pop(context);
                                 showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
                                 await Future.delayed(const Duration(milliseconds: 100));
-                                await NewsRepository.instance.updateNilaiRating(nilaiRatingInput.toInt(), idNews);
+                                String flag = "";
+                                if(newsRatingNewValue<0){
+                                  flag = "MORE";
+                                } else {
+                                  flag = "LESS";
+                                }
+                                await NewsRepository.instance.updateNilaiRating(newsRatingNewValue.toInt(), idNews, flag);
                               }
                             }
                           }
@@ -354,7 +388,7 @@ class _NewsDetailState extends State<NewsDetail> {
                 child: StreamBuilder<List<CommentModel>>(
                   stream: controller.getAllCommentbasedOnIdNews(idNews),
                   builder: (context, snapshot) {
-                    // print('Checkpoint Comment: ${snapshot.connectionState}');
+                    print('Checkpoint Comment: ${snapshot.connectionState}');
                     if (snapshot.hasData) {
                       return ListView.builder(
                         shrinkWrap: true,

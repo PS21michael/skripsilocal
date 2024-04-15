@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:skripsilocal/models/news_model.dart';
 
 class NewsRepository extends GetxController{
-  
+
   var count = 0;
   static NewsRepository get instance => Get.find();
   final _db = FirebaseFirestore.instance;
@@ -28,11 +28,11 @@ class NewsRepository extends GetxController{
   insertNews(NewsModel newsModel) async{
     await _db.collection("/News").add(newsModel.toJson())
         .catchError((error, stackTrice){
-          // print(error.toString());
+      // print(error.toString());
     });
     // print('News ke ${count+=1}Berhasil dibuat');
   }
-  
+
   Future<NewsModel> getSingelNewsDetails (String title) async{
     final snapshot = await _db.collection("/News").where("Title", isEqualTo: title).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).single;
@@ -139,7 +139,6 @@ class NewsRepository extends GetxController{
 
   // List Favorit
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
-    print("List kategori : ${listFavorit}");
     final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).orderBy("Views",descending: true)
         .where("Category", whereIn: listFavorit).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
@@ -235,12 +234,15 @@ class NewsRepository extends GetxController{
   }
 
   Future<void> tambahNilaiRating(int nilaiRating, String id) async{
-    Map<String, dynamic> json = {'NilaiRating' : nilaiRating, 'JumlahPerating' : FieldValue.increment(1)};
+    Map<String, dynamic> json = {'NilaiRating' : FieldValue.increment(nilaiRating), 'JumlahPerating' : FieldValue.increment(1)};
     await _db.collection("/News").doc(id).update(json);
   }
 
-  Future<void> updateNilaiRating(int nilaiRating, String id) async{
-    Map<String, dynamic> json = {'NilaiRating' : nilaiRating};
+  Future<void> updateNilaiRating(int nilaiRating, String id, String flag) async{
+    if(flag == "MORE"){
+      nilaiRating = nilaiRating * -1;
+    }
+    Map<String, dynamic> json = {'NilaiRating' : FieldValue.increment(nilaiRating)};
     await _db.collection("/News").doc(id).update(json);
   }
 

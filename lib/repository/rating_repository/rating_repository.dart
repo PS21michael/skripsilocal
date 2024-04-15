@@ -14,9 +14,9 @@ class RatingRepository extends GetxController{
   insertRating(RatingModel ratingModel) async{
     await _db.collection("/Rating").add(ratingModel.toJson())
         .catchError((error, stackTrice){
-      // print(error.toString());
+      print(error.toString());
     });
-    // print('Rating ke ${count+=1}Berhasil dibuat');
+    print('Rating ke ${count+=1}Berhasil dibuat');
   }
 
 
@@ -48,7 +48,7 @@ class RatingRepository extends GetxController{
   Future<List<RatingModel>> getAllRatingsByUserIdAndNewsId(String idUser, String idNews) async{
     final snapshot = await _db.collection("/Rating").where("IdPengguna", isEqualTo: idUser).where("IdNews", isEqualTo: idNews).get();
     final ratingData = snapshot.docs.map((e) => RatingModel.fromSnapshot(e)).toList();
-    if(ratingData.isEmpty ){
+    if(ratingData.length == 0 ){
       isDataRatingAvail = "NO";
     } else {
       isDataRatingAvail = "YES";
@@ -64,17 +64,24 @@ class RatingRepository extends GetxController{
   List<String> listIdNews = [];
   List<int> litScoreRatingUserTarget = [];
   List<RatingModel> listRatingModelUser = [];
+  List<String> listIdRatingFromSingelUserId = [];
   Future<List<RatingModel>> getAllRatingsOnlyUserTarget(String idUser) async{
     final snapshot = await _db.collection("/Rating").where("IdPengguna", isEqualTo: idUser).get();
     final ratingData = snapshot.docs.map((e) => RatingModel.fromSnapshot(e)).toList();
     listIdNews = [];
     litScoreRatingUserTarget = [];
+    listIdRatingFromSingelUserId = [];
     for(int i=0; i<ratingData.length; i++){
+      listIdRatingFromSingelUserId.add(ratingData[i].id.toString());
       listIdNews.add(ratingData[i].idNews);
       litScoreRatingUserTarget.add(ratingData[i].nilaiRating);
     }
 
     return ratingData;
+  }
+
+  List<String> getListIdRatingFromSingelUserId(){
+    return listIdRatingFromSingelUserId;
   }
 
   List<String> getListIdNewsUserTarget(){
@@ -87,6 +94,10 @@ class RatingRepository extends GetxController{
 
   Future<void> updateRatingUsers(Map<String, dynamic> json, String id) async{
     await _db.collection("/Rating").doc(id).update(json);
+  }
+
+  Future<void> deleteRating(String id) async{
+    await _db.collection("/Rating").doc(id).delete();
   }
 
 

@@ -15,18 +15,21 @@ class RecommendationRepository extends GetxController{
   insertRecommendation (RecommendationModel recommendationModel) async{
     await _db.collection("/Recommendation").add(recommendationModel.toJson())
         .catchError((error, stackTrice){
-      // print(error.toString());
+      print(error.toString());
     });
-    // print('Recommendation ke ${count+=1}Berhasil dibuat');
+    print('Recommendation ke ${count+=1}Berhasil dibuat');
   }
 
   List<RecommendationModel> listRecomendModelUser = [];
   String isDataRecommendAvail = "";
+  List<String> listIdRecommendFromSingelUserId = [];
   Future<List<RecommendationModel>> getAllRecomendationForUserTarget(String idPengguna) async{
     final snapshot = await _db.collection("/Recommendation").where("IdPengguna", isEqualTo: idPengguna).orderBy("RecommendationScore", descending: true).get();
     final recommendationData = snapshot.docs.map((e) => RecommendationModel.fromSnapshot(e)).toList();
     isDataRecommendAvail = "";
+    listIdRecommendFromSingelUserId = [];
     for(int i=0; i<recommendationData.length; i++){
+      listIdRecommendFromSingelUserId.add(recommendationData[i].id.toString());
       listRecomendModelUser.add(recommendationData[i]);
     }
     if(recommendationData.isEmpty){
@@ -39,6 +42,10 @@ class RecommendationRepository extends GetxController{
 
   String isDataAvail(){
     return isDataRecommendAvail;
+  }
+
+  List<String> getListIdRecommendFromSingelUserId(){
+    return listIdRecommendFromSingelUserId;
   }
 
   Future<void> updateNilaiRecommend(Map<String, dynamic> json, String id) async{
@@ -60,9 +67,9 @@ class RecommendationRepository extends GetxController{
   }
 
   // Delete single reccomendation
-Future<void> deleteSingleRecommendation(String id) async{
+  Future<void> deleteSingleRecommendation(String id) async{
     await _db.collection("/Recommendation").doc(id).delete();
-}
+  }
 
 
 }

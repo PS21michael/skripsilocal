@@ -35,18 +35,18 @@ class NewsModel{
   });
 
   static NewsModel empty() => NewsModel(
-      publisher: '',
-      author: '',
-      title: '',
-      description: '',
-      urlImage: '',
-      urlNews: '',
-      publishedTime: '',
-      category: '',
-      views: 0,
-      countPeriod: 0,
-      nilaiRating: 0,
-      jumlahPerating: 0,
+    publisher: '',
+    author: '',
+    title: '',
+    description: '',
+    urlImage: '',
+    urlNews: '',
+    publishedTime: '',
+    category: '',
+    views: 0,
+    countPeriod: 0,
+    nilaiRating: 0,
+    jumlahPerating: 0,
   );
 
   // Json parse To
@@ -62,8 +62,8 @@ class NewsModel{
       "Category" : category,
       "Views" : views,
       "CountPeriod" : countPeriod,
-      "NilaiRating" : 0,
-      "JumlahPerating" : 0,
+      "NilaiRating" : nilaiRating,
+      "JumlahPerating" : jumlahPerating,
     };
   }
 
