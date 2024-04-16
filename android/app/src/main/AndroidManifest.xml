@@ -26,7 +26,7 @@
 
 
     <application
-        android:label="skripsilocal"
+        android:label="BacaBerita"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
