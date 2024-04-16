@@ -28,13 +28,16 @@ class _TheButtonState extends State<TheButton> {
           color : Colors.black,
           borderRadius: BorderRadius.circular(20),
         ),
-        child: Center(
-          child: Text(
-            widget.text,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Center(
+            child: Text(
+              widget.text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

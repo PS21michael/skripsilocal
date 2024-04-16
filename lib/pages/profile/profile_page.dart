@@ -177,20 +177,18 @@ class _ProfilePageState extends State<ProfilePage> {
       widgets.add(SizedBox(height: 5));
     }
 
-    if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
-      widgets.add(
-        CustomListTile(
-          onTap: () {
-            Get.to(()=> InquiryNews());
-          },
-          title: 'Inquiry News',
-          textColor: Colors.black,
-          icon: LineAwesomeIcons.upload,
-          iconColor: Colors.black,
-        ),
-      );
-      widgets.add(SizedBox(height: 5));
-    }
+    widgets.add(
+      CustomListTile(
+        onTap: () {
+          Get.to(()=> InquiryNews());
+        },
+        title: 'Inquiry News',
+        textColor: Colors.black,
+        icon: LineAwesomeIcons.upload,
+        iconColor: Colors.black,
+      ),
+    );
+    widgets.add(SizedBox(height: 5));
 
     if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
       widgets.add(
