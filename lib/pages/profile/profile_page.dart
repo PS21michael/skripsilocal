@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     ];
 
-    if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
+
       widgets.add(
         CustomListTile(
           onTap: () {
@@ -175,7 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
       widgets.add(SizedBox(height: 5));
-    }
+
 
     widgets.add(
       CustomListTile(
@@ -221,70 +223,249 @@ class _ProfilePageState extends State<ProfilePage> {
     widgets.add(
       CustomListTile(
         onTap: () async{
-          TextEditingController passwordController = TextEditingController();
+          final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
+          if(GoogleAuthProvider().providerId == providerData?.providerId){
 
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(
-                  'Konfirmasi Penghapusan Akun',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            // AUTH
+            await Future.delayed(Duration(milliseconds: 1000));
+            await Future.delayed(Duration(milliseconds: 100));
+            userController.deleteUserAuthGoogle();
+
+            showDialog(
+              context: context,
+              builder: (context) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
+            );
+
+            // DB
+            await Future.delayed(Duration(seconds: 1));
+            String id = idCustomer;
+            await Future.delayed(Duration(milliseconds: 300));
+            userController.deleteUserDBByID(id);
+
+            // BOOKMARK
+            await Future.delayed(Duration(milliseconds: 500));
+            bookMarkController.getAllBookmarkfromSingleUser(id);
+            await Future.delayed(Duration(milliseconds: 1000));
+            List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdBookmark.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              bookMarkController.deleteBookmark(listIdBookmark[i]);
+            }
+
+
+            // HISTORY
+            await Future.delayed(Duration(milliseconds: 500));
+            historyController.getAllHistoryFromSingleUser(id);
+            await Future.delayed(Duration(milliseconds: 800));
+            List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdHistory.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              historyController.deleteHistory(listIdHistory[i]);
+            }
+
+
+            // RATING
+            await Future.delayed(Duration(milliseconds: 500));
+            ratingController.getAllRatingOnlyUserTarget(id);
+            await Future.delayed(Duration(milliseconds: 1500));
+            List<String> listIdRating = [];
+            listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdRating.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              ratingController.deleteRating(listIdRating[i]);
+            }
+
+
+            // RECOMMEND
+            await Future.delayed(Duration(milliseconds: 500));
+            recommendController.getAllRecommendationFromUserTarget(id);
+            await Future.delayed(Duration(milliseconds: 1500));
+            List<String> listIdRecommend = [];
+            listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
+            await Future.delayed(Duration(milliseconds: 500));
+            for(int i=0; i<listIdRecommend.length; i++){
+              await Future.delayed(Duration(milliseconds: 50));
+              recommendController.deleteRecommendation(listIdRecommend[i]);
+
+            }
+
+            await Future.delayed(Duration(seconds: 1));
+            Navigator.pop(context);
+            await Future.delayed(Duration(milliseconds: 300));
+            Navigator.pop(context);
+            showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+            userController.logout();
+            exit(0);
+          } else{
+            TextEditingController passwordController = TextEditingController();
+
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(
+                    'Konfirmasi Penghapusan Akun',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Dengan mengisi kembali password anda maka akun Baca Berita anda akan dihapuskan',
-                      style: TextStyle(
-                        fontSize: 18,
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Dengan mengisi kembali password anda maka akun Baca Berita anda akan dihapuskan',
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      TextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            hintText: 'Input password anda ....'
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Batal',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 8),
-                    TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          hintText: 'Input password anda ....'
+                    ElevatedButton(
+                      onPressed: () async {
+                        final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
+                        String password = passwordController.text;
+                        if(EmailAuthProvider.PROVIDER_ID == providerData?.providerId){
+                          if(password != ""){
+                            // AUTH
+                            await Future.delayed(Duration(milliseconds: 1000));
+                            await Future.delayed(Duration(milliseconds: 100));
+                            userController.deleteUserAuth(password);
+
+                            String flagHapusAuth = "";
+                            await Future.delayed(Duration(milliseconds: 800));
+                            await Future.delayed(Duration(milliseconds: 100));
+                            flagHapusAuth = AuthenticationRepository.instance.getFlagAuthDelete();
+
+
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              },
+                            );
+
+                            if(flagHapusAuth == "TRUE"){
+                              // DB
+                              await Future.delayed(Duration(seconds: 1));
+                              String id = idCustomer;
+                              await Future.delayed(Duration(milliseconds: 300));
+                              userController.deleteUserDBByID(id);
+
+                              // BOOKMARK
+                              await Future.delayed(Duration(milliseconds: 500));
+                              bookMarkController.getAllBookmarkfromSingleUser(id);
+                              await Future.delayed(Duration(milliseconds: 1000));
+                              List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
+                              await Future.delayed(Duration(milliseconds: 500));
+                              for(int i=0; i<listIdBookmark.length; i++){
+                                await Future.delayed(Duration(milliseconds: 50));
+                                bookMarkController.deleteBookmark(listIdBookmark[i]);
+                              }
+
+
+                              // HISTORY
+                              await Future.delayed(Duration(milliseconds: 500));
+                              historyController.getAllHistoryFromSingleUser(id);
+                              await Future.delayed(Duration(milliseconds: 800));
+                              List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
+                              await Future.delayed(Duration(milliseconds: 500));
+                              for(int i=0; i<listIdHistory.length; i++){
+                                await Future.delayed(Duration(milliseconds: 50));
+                                historyController.deleteHistory(listIdHistory[i]);
+                              }
+
+
+                              // RATING
+                              await Future.delayed(Duration(milliseconds: 500));
+                              ratingController.getAllRatingOnlyUserTarget(id);
+                              await Future.delayed(Duration(milliseconds: 1500));
+                              List<String> listIdRating = [];
+                              listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
+                              await Future.delayed(Duration(milliseconds: 500));
+                              for(int i=0; i<listIdRating.length; i++){
+                                await Future.delayed(Duration(milliseconds: 50));
+                                ratingController.deleteRating(listIdRating[i]);
+                              }
+
+
+                              // RECOMMEND
+                              await Future.delayed(Duration(milliseconds: 500));
+                              recommendController.getAllRecommendationFromUserTarget(id);
+                              await Future.delayed(Duration(milliseconds: 1500));
+                              List<String> listIdRecommend = [];
+                              listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
+                              await Future.delayed(Duration(milliseconds: 500));
+                              for(int i=0; i<listIdRecommend.length; i++){
+                                await Future.delayed(Duration(milliseconds: 50));
+                                recommendController.deleteRecommendation(listIdRecommend[i]);
+
+                              }
+
+                              await Future.delayed(Duration(seconds: 1));
+                              Navigator.pop(context);
+                              await Future.delayed(Duration(milliseconds: 300));
+                              showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+                              userController.logout();
+
+                            } else {
+                              Navigator.pop(context);
+                              showCustomSnackbar("Gagal", "Password Salah!", isError: true);
+                            }
+
+                          } else {
+                            // Navigator.pop(context);
+                            showCustomSnackbar("Gagal", "Silahkan masukkan Password!", isError: true);
+                          }
+                        }
+                        // print('User password: $password');
+                        // Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Kirim',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ],
-                ),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Batal',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      String password = passwordController.text;
-                      print('User password: $password');
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Kirim',
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
-          );
+                );
+              },
+            );
+
+          }
         },
         textColor: Colors.red,
         title: 'Delete Account',

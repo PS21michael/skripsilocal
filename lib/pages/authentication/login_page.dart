@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 20),
                 TheButton(
                   text: 'Sign In',
-                  onTap: (){
+                  onTap: () async {
 
                     showDialog(
                       context: context,
@@ -149,6 +149,8 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                     );
+                    await Future.delayed(Duration(milliseconds: 1500));
+                    Navigator.pop(context);
 
                     print('CheckPoint login 1');
                     UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
@@ -209,9 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                           var i=0;
                           var j=0;
                           String emailTemp = "";
-                          await Future.delayed(Duration(milliseconds: 1200));
                           SignInController.instance.googleSignIn();
-                          await Future.delayed(Duration(milliseconds: 200));
                           await Future.delayed(Duration(milliseconds: 200));
                           emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
                           FirebaseAuth.instance.currentUser?.reload();
