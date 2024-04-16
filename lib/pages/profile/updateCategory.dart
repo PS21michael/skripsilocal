@@ -16,7 +16,7 @@ class UpdateCategory extends StatefulWidget {
 }
 
 class _UpdateCategoryState extends State<UpdateCategory> {
-  List<String> categories = ['Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahraga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Enterpreneur', 'Event'];
+  List<String> categories = ['Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahraga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Entrepreneur', 'Event'];
   List<String> selectedCategories = [];
   final listCategoryController = Get.put(CategoryListParser());
   List<String> userCategory = [];
