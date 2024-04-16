@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorObservers: [GetObserver()],
       // home: ProfilePage(),
-      home: LoginPage(),
+      home: LandingPage(),
       // home: PickCategory(),
       // home: UpdateCategory(),
       // home: UpdateProfile_New(),

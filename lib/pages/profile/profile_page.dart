@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -302,6 +304,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Navigator.pop(context);
             showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
             userController.logout();
+            exit(0);
           } else{
             TextEditingController passwordController = TextEditingController();
 
