@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/controller/forget_password_controller.dart';
 import 'package:skripsilocal/pages/authentication/login_page.dart';
+import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import '../components/button.dart';
 import '../components/my_textfield.dart';
 
@@ -56,9 +57,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                   const SizedBox(height: 30),
                   TheButton(
-                    text: 'Send Email',
+                    text: 'Kirim Email',
                     onTap: () {
                       controller.sendPasswordResetEmail();
+                      showCustomSnackbar('Success', 'Email berhasil dikirim', isError: false);
+                      Future.delayed(const Duration(seconds: 5));
                       Get.to(() => const LoginPage());
                     },
                   ),
@@ -70,5 +73,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  void showCustomSnackbar(String title, String message, {bool isError = true}) {
+    SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
   }
 }
