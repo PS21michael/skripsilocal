@@ -31,7 +31,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   String idBer = "";
   String ? selectedFilter;
-  List<String> filters = ['Terbaru', 'Terlama'];
+  List<String> filters = ['Latest', 'Oldest'];
   final controller = Get.put(NewsController());
   final ratingController = Get.put(RatingController());
   late Future<List<NewsModel>> _futureNewsList;

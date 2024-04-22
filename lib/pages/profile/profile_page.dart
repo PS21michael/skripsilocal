@@ -25,7 +25,6 @@ import '../../repository/bookmark_repository/bookmark_repository.dart';
 import '../components/button.dart';
 import '../components/my_navbar.dart';
 import '../components/snackbar_utils.dart';
-import 'fill_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -58,13 +57,13 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Scaffold(
         body: RefreshIndicator(
           onRefresh: () async {
-            await Future.delayed(Duration(seconds: 5));
+            await Future.delayed(const Duration(seconds: 5));
             await updateController.reloadProfileData();
             setState(() {});
           },
           child: SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.only(top: 70),
+              padding: const EdgeInsets.only(top: 70),
               child: buildProfileSection(),
             ),
           ),
@@ -92,6 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 200,
                 height: 200,
                 child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
                   child: Image(
                     image: NetworkImage(
                       profilePictureCustomer == ""
@@ -99,7 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           : profilePictureCustomer,
                     ),
                   ),
-                  borderRadius: BorderRadius.circular(100),
                 ),
               ),
               Positioned(
@@ -122,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 2,
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       LineAwesomeIcons.camera,
                       color: Colors.black,
                       size: 20,
@@ -132,24 +131,24 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             'Hi, $userNameCustomer',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           itemCard('Username', userNameCustomer, CupertinoIcons.person_alt_circle_fill),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           itemCard('Nama Lengkap', fullNameCustomer, CupertinoIcons.person),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           itemCard('Provinsi Tempat Tinggal', provinceCustomer, CupertinoIcons.home),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           itemCard('Tanggal Lahir', dateOfBirthCustomer, CupertinoIcons.calendar),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TheButton(
             text: 'Edit Profile',
             onTap: () => Navigator.push(
@@ -157,9 +156,9 @@ class _ProfilePageState extends State<ProfilePage> {
               MaterialPageRoute(builder: (context) => const UpdateProfile()),
             ).then((value) {}),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           const Divider(),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     ];
@@ -167,7 +166,7 @@ class _ProfilePageState extends State<ProfilePage> {
       widgets.add(
         CustomListTile(
           onTap: () {
-            Get.to(()=> UpdateCategory());
+            Get.to(()=> const UpdateCategory());
           },
           title: 'Update Favorite Category',
           textColor: Colors.black,
@@ -175,13 +174,13 @@ class _ProfilePageState extends State<ProfilePage> {
           iconColor: Colors.black,
         ),
       );
-      widgets.add(SizedBox(height: 5));
+      widgets.add(const SizedBox(height: 5));
 
     if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
       widgets.add(
         CustomListTile(
           onTap: () {
-            Get.to(()=> InquiryNews());
+            Get.to(()=> const InquiryNews());
           },
           title: 'Inquiry News',
           textColor: Colors.black,
@@ -189,14 +188,14 @@ class _ProfilePageState extends State<ProfilePage> {
           iconColor: Colors.black,
         ),
       );
-      widgets.add(SizedBox(height: 5));
+      widgets.add(const SizedBox(height: 5));
     }
 
     if (emailCustomer == 'snackmaknyo@gmail.com' || emailCustomer == 'jardaniserpi@gmail.com') {
       widgets.add(
         CustomListTile(
           onTap: () {
-            Get.to(()=> ShowUser());
+            Get.to(()=> const ShowUser());
           },
           title: 'List Registered User',
           textColor: Colors.black,
@@ -204,7 +203,7 @@ class _ProfilePageState extends State<ProfilePage> {
           iconColor: Colors.black,
         ),
       );
-      widgets.add(SizedBox(height: 5));
+      widgets.add(const SizedBox(height: 5));
     }
 
     widgets.add(
@@ -218,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
         iconColor: Colors.red,
       ),
     );
-    widgets.add(SizedBox(height: 5));
+    widgets.add(const SizedBox(height: 5));
 
     widgets.add(
       CustomListTile(
@@ -227,8 +226,8 @@ class _ProfilePageState extends State<ProfilePage> {
           if(GoogleAuthProvider().providerId == providerData?.providerId){
 
             // AUTH
-            await Future.delayed(Duration(milliseconds: 1000));
-            await Future.delayed(Duration(milliseconds: 100));
+            await Future.delayed(const Duration(milliseconds: 1000));
+            await Future.delayed(const Duration(milliseconds: 100));
             userController.deleteUserAuthGoogle();
 
             showDialog(
@@ -241,66 +240,66 @@ class _ProfilePageState extends State<ProfilePage> {
             );
 
             // DB
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             String id = idCustomer;
-            await Future.delayed(Duration(milliseconds: 300));
+            await Future.delayed(const Duration(milliseconds: 300));
             userController.deleteUserDBByID(id);
 
             // BOOKMARK
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             bookMarkController.getAllBookmarkfromSingleUser(id);
-            await Future.delayed(Duration(milliseconds: 1000));
+            await Future.delayed(const Duration(milliseconds: 1000));
             List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             for(int i=0; i<listIdBookmark.length; i++){
-              await Future.delayed(Duration(milliseconds: 50));
+              await Future.delayed(const Duration(milliseconds: 50));
               bookMarkController.deleteBookmark(listIdBookmark[i]);
             }
 
 
             // HISTORY
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             historyController.getAllHistoryFromSingleUser(id);
-            await Future.delayed(Duration(milliseconds: 800));
+            await Future.delayed(const Duration(milliseconds: 800));
             List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             for(int i=0; i<listIdHistory.length; i++){
-              await Future.delayed(Duration(milliseconds: 50));
+              await Future.delayed(const Duration(milliseconds: 50));
               historyController.deleteHistory(listIdHistory[i]);
             }
 
 
             // RATING
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             ratingController.getAllRatingOnlyUserTarget(id);
-            await Future.delayed(Duration(milliseconds: 1500));
+            await Future.delayed(const Duration(milliseconds: 1500));
             List<String> listIdRating = [];
             listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             for(int i=0; i<listIdRating.length; i++){
-              await Future.delayed(Duration(milliseconds: 50));
+              await Future.delayed(const Duration(milliseconds: 50));
               ratingController.deleteRating(listIdRating[i]);
             }
 
 
             // RECOMMEND
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             recommendController.getAllRecommendationFromUserTarget(id);
-            await Future.delayed(Duration(milliseconds: 1500));
+            await Future.delayed(const Duration(milliseconds: 1500));
             List<String> listIdRecommend = [];
             listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
-            await Future.delayed(Duration(milliseconds: 500));
+            await Future.delayed(const Duration(milliseconds: 500));
             for(int i=0; i<listIdRecommend.length; i++){
-              await Future.delayed(Duration(milliseconds: 50));
+              await Future.delayed(const Duration(milliseconds: 50));
               recommendController.deleteRecommendation(listIdRecommend[i]);
 
             }
 
-            await Future.delayed(Duration(seconds: 1));
+            await Future.delayed(const Duration(seconds: 1));
             Navigator.pop(context);
-            await Future.delayed(Duration(milliseconds: 300));
+            await Future.delayed(const Duration(milliseconds: 300));
             Navigator.pop(context);
-            showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+            showCustomSnackbar("Success", "Account successfully deleted!", isError: false);
             userController.logout();
             exit(0);
           } else{
@@ -310,7 +309,7 @@ class _ProfilePageState extends State<ProfilePage> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text(
+                  title: const Text(
                     'Konfirmasi Penghapusan Akun',
                     style: TextStyle(
                       fontSize: 20,
@@ -321,17 +320,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Dengan mengisi kembali password anda maka akun Baca Berita anda akan dihapuskan',
                         style: TextStyle(
                           fontSize: 18,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       TextField(
                         controller: passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: 'Input password anda ....'
                         ),
                       ),
@@ -342,7 +341,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text(
+                      child: const Text(
                         'Batal',
                         style: TextStyle(
                           color: Colors.black,
@@ -357,13 +356,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         if(EmailAuthProvider.PROVIDER_ID == providerData?.providerId){
                           if(password != ""){
                             // AUTH
-                            await Future.delayed(Duration(milliseconds: 1000));
-                            await Future.delayed(Duration(milliseconds: 100));
+                            await Future.delayed(const Duration(milliseconds: 1000));
+                            await Future.delayed(const Duration(milliseconds: 100));
                             userController.deleteUserAuth(password);
 
                             String flagHapusAuth = "";
-                            await Future.delayed(Duration(milliseconds: 800));
-                            await Future.delayed(Duration(milliseconds: 100));
+                            await Future.delayed(const Duration(milliseconds: 800));
+                            await Future.delayed(const Duration(milliseconds: 100));
                             flagHapusAuth = AuthenticationRepository.instance.getFlagAuthDelete();
 
 
@@ -378,81 +377,81 @@ class _ProfilePageState extends State<ProfilePage> {
 
                             if(flagHapusAuth == "TRUE"){
                               // DB
-                              await Future.delayed(Duration(seconds: 1));
+                              await Future.delayed(const Duration(seconds: 1));
                               String id = idCustomer;
-                              await Future.delayed(Duration(milliseconds: 300));
+                              await Future.delayed(const Duration(milliseconds: 300));
                               userController.deleteUserDBByID(id);
 
                               // BOOKMARK
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               bookMarkController.getAllBookmarkfromSingleUser(id);
-                              await Future.delayed(Duration(milliseconds: 1000));
+                              await Future.delayed(const Duration(milliseconds: 1000));
                               List<String> listIdBookmark = BookmarkRepository.instance.getListIdBookmarkFromSingelUser();
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               for(int i=0; i<listIdBookmark.length; i++){
-                                await Future.delayed(Duration(milliseconds: 50));
+                                await Future.delayed(const Duration(milliseconds: 50));
                                 bookMarkController.deleteBookmark(listIdBookmark[i]);
                               }
 
 
                               // HISTORY
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               historyController.getAllHistoryFromSingleUser(id);
-                              await Future.delayed(Duration(milliseconds: 800));
+                              await Future.delayed(const Duration(milliseconds: 800));
                               List<String> listIdHistory = HistoryRepository.instance.getListIdHistoryFromSingelUser();
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               for(int i=0; i<listIdHistory.length; i++){
-                                await Future.delayed(Duration(milliseconds: 50));
+                                await Future.delayed(const Duration(milliseconds: 50));
                                 historyController.deleteHistory(listIdHistory[i]);
                               }
 
 
                               // RATING
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               ratingController.getAllRatingOnlyUserTarget(id);
-                              await Future.delayed(Duration(milliseconds: 1500));
+                              await Future.delayed(const Duration(milliseconds: 1500));
                               List<String> listIdRating = [];
                               listIdRating = RatingRepository.instance.getListIdRatingFromSingelUserId();
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               for(int i=0; i<listIdRating.length; i++){
-                                await Future.delayed(Duration(milliseconds: 50));
+                                await Future.delayed(const Duration(milliseconds: 50));
                                 ratingController.deleteRating(listIdRating[i]);
                               }
 
 
                               // RECOMMEND
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               recommendController.getAllRecommendationFromUserTarget(id);
-                              await Future.delayed(Duration(milliseconds: 1500));
+                              await Future.delayed(const Duration(milliseconds: 1500));
                               List<String> listIdRecommend = [];
                               listIdRecommend = RecommendationRepository.instance.getListIdRecommendFromSingelUserId();
-                              await Future.delayed(Duration(milliseconds: 500));
+                              await Future.delayed(const Duration(milliseconds: 500));
                               for(int i=0; i<listIdRecommend.length; i++){
-                                await Future.delayed(Duration(milliseconds: 50));
+                                await Future.delayed(const Duration(milliseconds: 50));
                                 recommendController.deleteRecommendation(listIdRecommend[i]);
 
                               }
 
-                              await Future.delayed(Duration(seconds: 1));
+                              await Future.delayed(const Duration(seconds: 1));
                               Navigator.pop(context);
-                              await Future.delayed(Duration(milliseconds: 300));
-                              showCustomSnackbar("Berhasil", "Account Berhasil dihapus!", isError: false);
+                              await Future.delayed(const Duration(milliseconds: 300));
+                              showCustomSnackbar("Success", "Account successfully deleted!", isError: false);
                               userController.logout();
 
                             } else {
                               Navigator.pop(context);
-                              showCustomSnackbar("Gagal", "Password Salah!", isError: true);
+                              showCustomSnackbar("Error", "Wrong password!", isError: true);
                             }
 
                           } else {
                             // Navigator.pop(context);
-                            showCustomSnackbar("Gagal", "Silahkan masukkan Password!", isError: true);
+                            showCustomSnackbar("Error", "Please provide your password!!", isError: true);
                           }
                         }
                         // print('User password: $password');
                         // Navigator.of(context).pop();
                       },
-                      child: Text(
+                      child: const Text(
                         'Kirim',
                         style: TextStyle(
                           color: Colors.red,
@@ -473,7 +472,7 @@ class _ProfilePageState extends State<ProfilePage> {
         iconColor: Colors.red,
       ),
     );
-    widgets.add(SizedBox(height: 5));
+    widgets.add(const SizedBox(height: 5));
 
     return Column(
       children: widgets,

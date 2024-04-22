@@ -81,7 +81,7 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
               child: RichText(
                 text: TextSpan(
-                  text: 'Hasil pencarian dari ',
+                  text: 'Search result from ',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,

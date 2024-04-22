@@ -118,7 +118,7 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
         const Padding(
           padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
           child: Text(
-            'Hasil rekomendasi kami',
+            'Our recommendation :',
             style: TextStyle(
               color: Colors.black,
               fontSize: 22,
@@ -275,7 +275,7 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Rating beritanya dulu yaaaa, biar kami bisa bantu kasih rekomendasi nya",
+              "Please rating the news, so we can give you recommendation!",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

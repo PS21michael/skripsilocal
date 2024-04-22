@@ -33,9 +33,9 @@ class _FillProfileState extends State<FillProfile> {
       setState(() {
         _usernameValidated = true;
       });
-      showCustomSnackbar("Success", "Username bisa digunakan!", isError: false);
+      showCustomSnackbar("Success", "Username available!", isError: false);
     } else {
-      showCustomSnackbar("Error", "Username sudah digunakan orang lain!", isError: true);
+      showCustomSnackbar("Error", "Username is not available!", isError: true);
     }
   }
 
@@ -348,7 +348,7 @@ class _FillProfileState extends State<FillProfile> {
                     ),
                     const SizedBox(height: 30),
                     TheButton(
-                      text: 'Isi Data',
+                      text: 'Submit',
                       onTap: () async {
 
                         showDialog(
@@ -438,7 +438,7 @@ class _FillProfileState extends State<FillProfile> {
                             await Future.delayed(const Duration(milliseconds: 200));
                             if(UserRepository.instance.getUserModelInitScore() == "NO"){
                               Navigator.pop(context);
-                              Get.offAll(()=> PickCategory());
+                              Get.offAll(()=> const PickCategory());
                             } else{
                               await Future.delayed(const Duration(milliseconds: 200));
                               Navigator.pop(context);

@@ -48,7 +48,7 @@ class RatingRepository extends GetxController{
   Future<List<RatingModel>> getAllRatingsByUserIdAndNewsId(String idUser, String idNews) async{
     final snapshot = await _db.collection("/Rating").where("IdPengguna", isEqualTo: idUser).where("IdNews", isEqualTo: idNews).get();
     final ratingData = snapshot.docs.map((e) => RatingModel.fromSnapshot(e)).toList();
-    if(ratingData.length == 0 ){
+    if(ratingData.isEmpty ){
       isDataRatingAvail = "NO";
     } else {
       isDataRatingAvail = "YES";

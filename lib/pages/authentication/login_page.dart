@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:random_name_generator/random_name_generator.dart';
 import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
@@ -11,11 +10,8 @@ import 'package:skripsilocal/pages/components/button.dart';
 import 'package:skripsilocal/pages/components/my_textfield.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/components/square_tile.dart';
-import 'package:skripsilocal/pages/home_page.dart';
-import 'package:skripsilocal/pages/landing_page.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/pages/profile/fill_profile.dart';
-import 'package:skripsilocal/pages/profile/show_user.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -69,11 +65,11 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 const SizedBox(height: 10),
                 Container(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10),
                   alignment: Alignment.topLeft,
                   child: GestureDetector(
-                    child: Text(
-                      "Langsung baca berita!",
+                    child: const Text(
+                      "Explore news!",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
@@ -92,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // const SizedBox(height: 10),
                 const Text(
-                  'Selamat datang kembali!',
+                  'Welcome back!',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -113,12 +109,12 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 10),
                 // Forget Password
                 Padding(
-                  padding: EdgeInsets.only(right: 30),
+                  padding: const EdgeInsets.only(right: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const Text(
-                          'Lupa Password?'
+                          'Forget Password?'
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
@@ -126,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                             Get.to(()=>const ResetPasswordScreen());
                           },
                           child : const Text(
-                            'Ganti Password',
+                            'Change Password',
                             style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontWeight: FontWeight.bold
@@ -149,10 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                     );
-                    await Future.delayed(Duration(milliseconds: 1500));
+                    await Future.delayed(const Duration(milliseconds: 1500));
                     Navigator.pop(context);
-
-                    print('CheckPoint login 1');
+                    // print('CheckPoint login 1');
                     UserRepository.instance.getSingelUserDetails(controller.email.text.trim());
                     SignInController.instance.loginUser(controller.email.text.trim(), controller.password.text.trim());
                   },
@@ -176,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                           horizontal: 15,
                         ),
                         child: Text(
-                          'Atau lanjutkan dengan',
+                          'Or continue with',
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -212,73 +207,73 @@ class _LoginPageState extends State<LoginPage> {
                           var j=0;
                           String emailTemp = "";
                           SignInController.instance.googleSignIn();
-                          await Future.delayed(Duration(milliseconds: 200));
+                          await Future.delayed(const Duration(milliseconds: 200));
                           emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
                           FirebaseAuth.instance.currentUser?.reload();
-                          print("Email google : ${emailTemp}");
+                          print("Email google : $emailTemp");
                           if(emailTemp == "") {
                             Navigator.pop(context);
                             showCustomSnackbar(
-                              "Maaf!",
-                              "Terjadi kesalahan \nSilahkan tekan sekali lagi \n Untuk melanjutkan",
+                              "Sorry!",
+                              "Something went wrong! Please try again!",
                               isError: true,
                             );
                           } else{
-                            print('Email sudah tidak null ${j+=1}');
+                            // print('Email sudah tidak null ${j+=1}');
                             try{
-                              print('ChekpointGoogle 1');
+                              // print('ChekpointGoogle 1');
                               UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getEmailGoogleSingIn());
-                              print('ChekpointGoogle 2');
+                              // print('ChekpointGoogle 2');
                             } catch (e){
-                              print('ChekpointGoogle 3');
-                              print('Ada error $e');
+                              // print('ChekpointGoogle 3');
+                              // print('Ada error $e');
                             }
 
                             if(UserRepository.instance.getIsSuccessGetData() == "True"){
-                              print('ChekpointGoogle 4');
+                              // print('ChekpointGoogle 4');
                               if(UserRepository.instance.getUserModelEmail() == ""){
-                                print('ChekpointGoogle 5');
+                                // print('ChekpointGoogle 5');
                                 Map<String, dynamic> json = {'Email' : AuthenticationRepository.instance.getEmailGoogleSingIn()};
                                 userRepo.updateSingelRecord(json);
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
-                                print('ChekpointGoogle 6');
+                                // print('ChekpointGoogle 6');
 
                                 Navigator.pop(context);
                                 Get.to(()=>const FillProfile());
                               } if(UserRepository.instance.getUserModelInitScore() == "NO"){
 
                                 Navigator.pop(context);
-                                Get.offAll(()=> PickCategory());
+                                Get.offAll(()=> const PickCategory());
                               }else{
-                                print('ChekpointGoogle 7');
-                                await Future.delayed(Duration(seconds: 1));
-                                UserRepository.instance.getSingelUserDetails(emailTemp!);
+                                // print('ChekpointGoogle 7');
+                                await Future.delayed(const Duration(seconds: 1));
+                                UserRepository.instance.getSingelUserDetails(emailTemp);
 
                                 Navigator.pop(context);
                                 Get.to(()=>const ExplorePage());
                               }
                             } else{
-                              print('ChekpointGoogle 8');
-                              await Future.delayed(Duration(seconds: 1));
-                              UserRepository.instance.getSingelUserDetails(emailTemp!);
-                              print("Email dari DB : "+UserRepository.instance.getUserModelEmail());
-                              print("Status dari DB : "+UserRepository.instance.getIsSuccessGetData());
+                              // print('ChekpointGoogle 8');
+                              await Future.delayed(const Duration(seconds: 1));
+                              UserRepository.instance.getSingelUserDetails(emailTemp);
+                              // print("Email dari DB : ${UserRepository.instance.getUserModelEmail()}");
+                              // print("Status dari DB : ${UserRepository.instance.getIsSuccessGetData()}");
 
-                              print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
-                              print('Email yang diterima page1 : ${emailTemp}');
+                              // print('Email yang diterima page : ${AuthenticationRepository.instance.getEmailGoogleSingIn()}');
+                              // print('Email yang diterima page1 : $emailTemp');
 
-                              await Future.delayed(Duration(seconds: 1));
+                              await Future.delayed(const Duration(seconds: 1));
                               UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
 
-                              await Future.delayed(Duration(milliseconds: 200));
+                              await Future.delayed(const Duration(milliseconds: 200));
                               String isUserDBExist = UserRepository.instance.isUserEmailAvail;
-                              print('Status yang diterima page : ${isUserDBExist}');
+                              // print('Status yang diterima page : $isUserDBExist');
                               if(isUserDBExist==""){
-                                await Future.delayed(Duration(seconds: 1));
+                                await Future.delayed(const Duration(seconds: 1));
                                 UserRepository.instance.getSingelAllUserFromEmail(emailTemp);
 
-                                await Future.delayed(Duration(milliseconds: 200));
+                                await Future.delayed(const Duration(milliseconds: 200));
                                 isUserDBExist = UserRepository.instance.isUserEmailAvail;
                               }
                               if(isUserDBExist=="NO"){
@@ -332,22 +327,22 @@ class _LoginPageState extends State<LoginPage> {
                                   scoreKategori38: 0,
                                   //Adding
                                 );
-                                print('ChekpointGoogle 9');
-                                await Future.delayed(Duration(seconds: 2));
+                                // print('ChekpointGoogle 9');
+                                await Future.delayed(const Duration(seconds: 2));
                                 await userRepo.createUer(user);
-                                print('ChekpointGoogle 10');
+                                // print('ChekpointGoogle 10');
 
-                                await Future.delayed(Duration(seconds: 1));
+                                await Future.delayed(const Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
 
                                 Navigator.pop(context);
                                 Get.to(()=>const FillProfile());
-                                print('ChekpointGoogle 11');
+                                // print('ChekpointGoogle 11');
 
 
                               } else {
-                                print("Checkpoint login 15");
-                                await Future.delayed(Duration(seconds: 1));
+                                // print("Checkpoint login 15");
+                                await Future.delayed(const Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
 
                                 // TEST CODING
@@ -367,7 +362,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                        'Belum punya akun?'
+                        "Don't have an account yet?",
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
@@ -377,7 +372,7 @@ class _LoginPageState extends State<LoginPage> {
                                   (context)=> const RegisterPage()));
                         },
                         child : const Text(
-                          'Daftar dulu!',
+                          'Register!',
                           style: TextStyle(
                               color: Colors.blueAccent,
                               fontWeight: FontWeight.bold

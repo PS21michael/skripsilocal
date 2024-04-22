@@ -41,7 +41,7 @@ class _NewsPageState extends State<NewsPage> {
   final ratingController = Get.put(RatingController());
   final recommendationController = Get.put(RecommendationController());
   String ? selectedFilter;
-  List<String> filters = ['Rekomendasi', 'Terbaru', 'Terlama'];
+  List<String> filters = ['Recommendation', 'Latest', 'Oldest'];
   final detailSearch = TextEditingController();
 
   @override
@@ -434,14 +434,14 @@ class _NewsPageState extends State<NewsPage> {
                     // print("list Id semua : ${listIdUserFromAllSameNews}");
 
                     // 4. Hitung duplikat
-                    var mapCtrDuplicate = Map();
-                    listIdUserFromAllSameNews.forEach((element) {
+                    var mapCtrDuplicate = {};
+                    for (var element in listIdUserFromAllSameNews) {
                       if(!mapCtrDuplicate.containsKey(element)){
                         mapCtrDuplicate[element] = 1;
                       } else{
                         mapCtrDuplicate[element] +=1;
                       }
-                    });
+                    }
 
                     // 5. Cek dari list user tadi, mana yg duplikatnya sama dengan total news yang udah dirating pengguna target
                     List<String> listIdUserFinal = [];

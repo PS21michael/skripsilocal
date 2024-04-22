@@ -77,7 +77,7 @@ class _PickCategoryState extends State<PickCategory> {
                       onTap: () async{
                         handleSubmit();
                       },
-                      text: "Selesai"
+                      text: "Submit"
                   ),
                   const SizedBox(height: 20),
                   // Text('Kategori yang Dipilih:'),
@@ -298,7 +298,7 @@ class _PickCategoryState extends State<PickCategory> {
       await UserRepository.instance.updateUserRecord(user, idCustomer);
       await Future.delayed(const Duration(seconds: 2));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
-      showCustomSnackbar('SUCCES', 'Data berhasil disimpan', isError: false);
+      showCustomSnackbar('Success', 'Data saved successfully', isError: false);
 
       // await Future.delayed(Duration(milliseconds: 300));
       // UserRepository.instance.resetListScore();
@@ -309,7 +309,7 @@ class _PickCategoryState extends State<PickCategory> {
       Get.to(() => const NewsPage());
     }
     else{
-      showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
+      showCustomSnackbar('Error', 'Please select at least 3 categories!', isError: true);
     }
   }
 

@@ -85,7 +85,7 @@ class _FilterNewsPageState extends State<FilterNewsPage> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
               child: RichText(
                 text: TextSpan(
-                  text: 'Hasil pencarian ',
+                  text: 'Filter results ',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,
@@ -93,12 +93,12 @@ class _FilterNewsPageState extends State<FilterNewsPage> {
                   children: <TextSpan>[
                     if (inputFilter == "DESC")
                       const TextSpan(
-                        text: "\"Terbaru\"",
+                        text: "\"Latest\"",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     if (inputFilter == "ASC")
                       const TextSpan(
-                        text: "\"Terlama\"",
+                        text: "\"Oldest\"",
                         style: TextStyle(fontStyle: FontStyle.italic),
                       ),
                   ],

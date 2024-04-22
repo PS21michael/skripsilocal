@@ -8,9 +8,10 @@ import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 
-import '../../models/user_model.dart';
 
 class UpdateCategory extends StatefulWidget {
+  const UpdateCategory({super.key});
+
   @override
   _UpdateCategoryState createState() => _UpdateCategoryState();
 }
@@ -40,9 +41,9 @@ class _UpdateCategoryState extends State<UpdateCategory> {
       scoreSecure.add(daftarScore[i]);
     }
     listCategoryController.parseScoreToList(scoreSecure);
-    print("List kategori favorit : "+ listCategoryController.parseScoreToList(scoreSecure).toString());
-    this.userCategory = listCategoryController.parseScoreToList(scoreSecure);
-    this.tempCategory = listCategoryController.parseScoreToList(scoreSecure);
+    print("List kategori favorit : ${listCategoryController.parseScoreToList(scoreSecure)}");
+    userCategory = listCategoryController.parseScoreToList(scoreSecure);
+    tempCategory = listCategoryController.parseScoreToList(scoreSecure);
   }
 
   @override
@@ -62,7 +63,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                       fontSize: 22,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 8.0,
@@ -90,26 +91,26 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                         },
                         selectedColor: Colors.grey[400],
                         backgroundColor: Colors.white70,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                         ),
-                        visualDensity: VisualDensity(
+                        visualDensity: const VisualDensity(
                           horizontal: 4,
                           vertical: 3,
                         ),
                       );
                     }).toList(),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TheButton(
                       onTap: () async{
                         handleSubmit(userCategory);
                       },
-                      text: "Selesai"
+                      text: "Submit"
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -128,7 +129,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         );
       },
     );
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     String idCustomer = UserRepository.instance.getUserModelId();
     String fullnameCustomer = UserRepository.instance.getUserModelFullName();
@@ -403,17 +404,17 @@ class _UpdateCategoryState extends State<UpdateCategory> {
         scoreKategori38: kategoriCustomer38<0?0:kategoriCustomer38,
       );
 
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       await UserRepository.instance.updateUserRecord(user, idCustomer);
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
       UserRepository.instance.getSingelUserDetails(emailCustomer);
-      showCustomSnackbar('Success', 'Update berhasil!', isError: false);
-      print("Data yg di dapat : "+ filteredCategories.toString());
-      print("Data yg di hapus : "+ removeCategories.toString());
-      Get.to(() => ProfilePage());
+      showCustomSnackbar('Success', 'Update success!', isError: false);
+      print("Data yg di dapat : $filteredCategories");
+      print("Data yg di hapus : $removeCategories");
+      Get.to(() => const ProfilePage());
     }
     else{
-      showCustomSnackbar('Error', 'Pilih setidaknya 3 kategori', isError: true);
+      showCustomSnackbar('Error', 'Please select at least 3 categories!', isError: true);
     }
   }
 

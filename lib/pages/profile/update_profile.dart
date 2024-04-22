@@ -32,9 +32,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
       setState(() {
         _usernameValidated = true;
       });
-      showCustomSnackbar("Success", "Username bisa digunakan!", isError: false);
+      showCustomSnackbar("Success", "Username available!", isError: false);
     } else {
-      showCustomSnackbar("Error", "Username sudah digunakan orang lain!", isError: true);
+      showCustomSnackbar("Error", "Username is not available!", isError: true);
     }
   }
 
@@ -360,7 +360,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     ),
                     const SizedBox(height: 30),
                     TheButton(
-                      text: 'Selesai',
+                      text: 'Submit',
                       onTap: () async {
                         if (userNameController.text.trim() != userNameCustomer) {
                           if (!_usernameValidated) {
@@ -517,7 +517,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           await Future.delayed(const Duration(seconds: 2));
                           await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                           // // List<int> daftarScore = UserRepository.instance.getListScore();
-                          showCustomSnackbar('Success', 'Update berhasil!', isError: false);
+                          showCustomSnackbar('Success', 'Update success!', isError: false);
                           Get.to(() => const ProfilePage());
                         }
                       }

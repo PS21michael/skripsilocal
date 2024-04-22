@@ -288,7 +288,7 @@ class NewsRepository extends GetxController{
   // }
 
   Future<List<NewsModel>> getSearchDescriptionNews(String id) async{
-    final snapshot = await _db.collection("/News").orderBy("Description").startAt([id,]).endAt([id+'\uf8ff',]).get();
+    final snapshot = await _db.collection("/News").orderBy("Description").startAt([id,]).endAt(['$id\uf8ff',]).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     return newsData;
   }

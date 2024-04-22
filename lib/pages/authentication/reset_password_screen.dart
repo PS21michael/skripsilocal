@@ -57,10 +57,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                   const SizedBox(height: 30),
                   TheButton(
-                    text: 'Kirim Email',
+                    text: 'Send Email',
                     onTap: () {
                       controller.sendPasswordResetEmail();
-                      showCustomSnackbar('Success', 'Email berhasil dikirim', isError: false);
+                      showCustomSnackbar('Success', 'Email sent successfully', isError: false);
                       Future.delayed(const Duration(seconds: 5));
                       Get.to(() => const LoginPage());
                     },

@@ -66,7 +66,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text(
-                'Bookmark anda : ',
+                'Your bookmark : ',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -324,7 +324,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
                 height: 50,
                 child: Center(
                   child: Text(
-                    'Delete Semua',
+                    'Delete All',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -345,7 +345,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Belum ada yang disimpan nih...",
+            "You don't have a bookmark...",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,

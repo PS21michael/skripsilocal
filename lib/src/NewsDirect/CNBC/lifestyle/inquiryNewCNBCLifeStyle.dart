@@ -34,7 +34,7 @@ class _InquiryCNBCNewsLifeStyleState extends State<InquiryCNBCNewsLifeStyle> {
       String url = 'https://api-berita-indonesia.vercel.app/cnbc/lifestyle';
       http.Response res = await http.get(Uri.parse(url));
       if (res.statusCode == 200) {
-        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} berita berhasil disimpan!', isError: false);
+        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} news saved successfully!', isError: false);
         return BeritaModel.fromJson(json.decode(res.body));
       }
     } catch (e) {
@@ -110,7 +110,7 @@ class _InquiryCNBCNewsLifeStyleState extends State<InquiryCNBCNewsLifeStyle> {
     return ListView.builder(
       itemCount: data.data?.posts.length ?? 0,
       itemBuilder: (context, index) {
-        var post = data.data!.posts![index];
+        var post = data.data!.posts[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Material(

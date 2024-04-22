@@ -34,7 +34,7 @@ class _InquiryAntaraNewsHumanioraState extends State<InquiryAntaraNewsHumaniora>
       String url = 'https://api-berita-indonesia.vercel.app/antara/humaniora';
       http.Response res = await http.get(Uri.parse(url));
       if (res.statusCode == 200) {
-        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} berita berhasil disimpan!', isError: false);
+        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} news saved successfully!', isError: false);
         return BeritaModel.fromJson(json.decode(res.body));
       }
     } catch (e) {

@@ -166,13 +166,13 @@ class _MyNavBarState extends State<MyNavBar> {
       case 1:
         if (AuthenticationRepository.instance.firebaseUser == null) {
           Get.snackbar(
-            'Informasi!',
-            'Login dulu yaa!',
+            'Information!',
+            'Please login first!',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
             messageText: const Text(
-              'Login dulu yaa!',
+              'Please login first!',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,
@@ -216,13 +216,13 @@ class _MyNavBarState extends State<MyNavBar> {
       case 2:
         if (AuthenticationRepository.instance.firebaseUser == null) {
           Get.snackbar(
-            'Informasi!',
-            'Login dulu yaa!',
+            'Information!',
+            'Please login first!',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
             messageText: const Text(
-              'Login dulu yaa!',
+              'Please login first!',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,
@@ -267,13 +267,13 @@ class _MyNavBarState extends State<MyNavBar> {
       case 3:
         if (AuthenticationRepository.instance.firebaseUser == null) {
           Get.snackbar(
-            'Informasi!',
-            'Login dulu yaa!',
+            'Information!',
+            'Please login first!',
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.yellow,
             borderRadius: 10.0,
             messageText: const Text(
-              'Login dulu yaa!',
+              'Please login first!',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,

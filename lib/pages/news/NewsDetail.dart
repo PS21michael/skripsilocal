@@ -17,7 +17,6 @@ import '../../models/comment_model.dart';
 import '../../models/rating_model.dart';
 import '../../repository/authentication_repository/authentication_repository.dart';
 import '../authentication/login_page.dart';
-import 'package:item_count_number_button/item_count_number_button.dart';
 
 class NewsDetail extends StatefulWidget {
   final String id;
@@ -93,7 +92,7 @@ class _NewsDetailState extends State<NewsDetail> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: DetailHeader(),
+        appBar: const DetailHeader(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -211,22 +210,22 @@ class _NewsDetailState extends State<NewsDetail> {
                                       author: penulis,
                                     );
                                     await bookMarkController.createBookMark(bookmark);
-                                    print("Data sudah pernah ada");
+                                    // print("Data sudah pernah ada");
                                     Navigator.pop(context);
-                                    showCustomSnackbar("Success", "Berita berhasil ditambahkan!", isError: false);
+                                    showCustomSnackbar("Success", "Bookmark added successfully!", isError: false);
                                     // String idPengguna = UserRepository.instance.getUserModelId();
                                     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
                                     String temp = "";
                                     temp = BookmarkRepository.instance.isDataAvail();
-                                    print("isDataAvail $temp");
+                                    // print("isDataAvail $temp");
                                   } else{
                                     // await Future.delayed(Duration(seconds: 2));
                                     // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
                                     // for(int i=0; i<listTitleSave.length;i++){
                                     //   if(listTitleSave.contains(title)){
-                                    print("Data sudah pernah ada");
+                                    // print("Data sudah pernah ada");
                                     Navigator.pop(context);
-                                    showCustomSnackbar("Error", "Berita sudah pernah ditambahkan!", isError: true);
+                                    showCustomSnackbar("Error", "Bookmark has benn added!", isError: true);
                                     // }
                                     // print(listTitleSave)
                                     // else{
@@ -265,7 +264,7 @@ class _NewsDetailState extends State<NewsDetail> {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                           "Kasih rating beritanya dulu yuk :"
@@ -291,7 +290,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.send_sharp),
+                        icon: const Icon(Icons.send_sharp),
                         onPressed: () async {
 
                           showDialog(
@@ -311,20 +310,20 @@ class _NewsDetailState extends State<NewsDetail> {
                           if(AuthenticationRepository.instance.firebaseUser == null){
                             Navigator.pop(context);
                             Get.snackbar(
-                              'Informasi!',
-                              'Login dulu yaa!',
+                              'Information!',
+                              'Please login first!',
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.yellow,
                               borderRadius: 10.0,
-                              messageText: Text(
-                                'Login dulu yaa!',
+                              messageText: const Text(
+                                'Please login first!',
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black,
                                 ),
                               ),
                             );
-                            Future.delayed(Duration(seconds: 3));
+                            Future.delayed(const Duration(seconds: 3));
                             Get.to(() => const LoginPage());
                           } else {
                             await Future.delayed(const Duration(seconds: 1));
@@ -353,7 +352,7 @@ class _NewsDetailState extends State<NewsDetail> {
                               await Future.delayed(const Duration(milliseconds: 100));
                               await NewsRepository.instance.tambahNilaiRating(nilaiRatingInput.toInt(), idNews);
                               Navigator.pop(context);
-                              showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
+                              showCustomSnackbar("Success", "Rating added successfully!", isError: false);
                               RatingRepository.instance.getAllRatingsOnlyUserTarget(idUser);
                             }
                             else {
@@ -362,7 +361,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 await Future.delayed(const Duration(milliseconds: 50));
                                 ratingController.updateRatingUsers(idRatingDBUser, nilaiRatingInput.toInt());
                                 Navigator.pop(context);
-                                showCustomSnackbar("Success", "Rating berhasil ditambahkan!", isError: false);
+                                showCustomSnackbar("Success", "Rating added successfully!", isError: false);
                                 await Future.delayed(const Duration(milliseconds: 100));
                                 String flag = "";
                                 if(newsRatingNewValue<0){

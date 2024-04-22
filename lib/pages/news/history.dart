@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:skripsilocal/controller/comment_controller.dart';
 import 'package:skripsilocal/controller/history_controller.dart';
 import 'package:skripsilocal/controller/news_controller.dart';
-import 'package:skripsilocal/models/comment_model.dart';
 import 'package:skripsilocal/models/history_model.dart';
-import 'package:skripsilocal/models/news_model.dart';
-import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/components/newsDetailHeader.dart';
-import 'package:skripsilocal/pages/news/news.dart';
 import 'package:skripsilocal/pages/news/explore.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
@@ -72,7 +66,7 @@ class _HistoryPageState extends State<HistoryPage> {
             const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: Text(
-                'Riwayat anda : ',
+                'Your history : ',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -356,7 +350,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 height: 50,
                 child: Center(
                   child: Text(
-                    'Delete Semua',
+                    'Delete All',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -377,7 +371,7 @@ class _HistoryPageState extends State<HistoryPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Belum ada history nih...",
+            "You don't have a history...",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,

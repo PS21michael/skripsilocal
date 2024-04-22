@@ -73,31 +73,31 @@ class _RegisterPageState extends State<RegisterPage> {
           backgroundColor: Colors.white,
           child: Container(
             width: MediaQuery.of(context).size.width * 0.8,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Informasi',
+                const Text(
+                  'Information',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Password harus terdiri dari satu special character, satu angka, satu huruf besar, satu huruf kecil dan lebih dari 8 karakter!',
+                const SizedBox(height: 10),
+                const Text(
+                  'The password must consist of one special character, one number, one uppercase letter, one lowercase letter and more than 8 characters!',
                   style: TextStyle(fontSize: 18),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Align(
                   alignment: Alignment.center,
                   child: TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text('Oke, paham!'),
+                    child: const Text('Okey!'),
                   ),
                 ),
               ],
@@ -123,11 +123,11 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 const SizedBox(height: 30),
                 Container(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 10),
                   alignment: Alignment.topLeft,
                   child: GestureDetector(
-                    child: Text(
-                      "Langsung baca berita!",
+                    child: const Text(
+                      "Explore news",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
@@ -144,7 +144,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 200,
                 ),
                 const Text(
-                  'Daftar dulu yuk !',
+                  'Lets register!',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -200,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       fillColor: Colors.grey[300],
                       filled: true,
-                      hintText: 'Konfirmasi Password',
+                      hintText: 'Confirm Password',
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscureText2 ? Icons.visibility : Icons.visibility_off,
@@ -284,7 +284,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Sudah punya akun?'
+                      'Already have account?'
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
@@ -294,7 +294,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 (context)=> const LoginPage()));
                       },
                       child : const Text(
-                        'Login yuk!',
+                        'Login!',
                         style: TextStyle(
                             color: Colors.blueAccent,
                             fontWeight: FontWeight.bold

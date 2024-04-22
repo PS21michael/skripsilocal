@@ -332,7 +332,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                   ),
                 const SizedBox(height: 20),
                 TheButton(
-                    text: 'Lanjut',
+                    text: 'Submit',
                     onTap: (){
                       handleSubmit(selectedIndex, selectedSecondIndex, monthNumber);
                     }

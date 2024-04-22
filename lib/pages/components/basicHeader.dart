@@ -40,13 +40,13 @@ class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               if (AuthenticationRepository.instance.firebaseUser == null) {
                 Get.snackbar(
-                  'Informasi!',
-                  'Login dulu yaa!',
+                  'Information!',
+                  'Please login first!',
                   snackPosition: SnackPosition.BOTTOM,
                   backgroundColor: Colors.yellow,
                   borderRadius: 10.0,
                   messageText: const Text(
-                    'Login dulu yaa!',
+                    'Please login first!',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.black,

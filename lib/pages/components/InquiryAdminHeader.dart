@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skripsilocal/pages/authentication/dummy.dart';
-import 'package:skripsilocal/pages/profile/InquiryNewsAdmin.dart';
 import 'package:skripsilocal/pages/profile/profile_page.dart';
 
 class InquiryAdminHeader extends StatelessWidget implements PreferredSizeWidget {

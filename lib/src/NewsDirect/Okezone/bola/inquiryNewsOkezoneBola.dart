@@ -34,7 +34,7 @@ class _InquiryOkezoneNewsBolaState extends State<InquiryOkezoneNewsBola> {
       String url = 'https://api-berita-indonesia.vercel.app/okezone/bola';
       http.Response res = await http.get(Uri.parse(url));
       if (res.statusCode == 200) {
-        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} berita berhasil disimpan!', isError: false);
+        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} news saved successfully!', isError: false);
         return BeritaModel.fromJson(json.decode(res.body));
       }
     } catch (e) {

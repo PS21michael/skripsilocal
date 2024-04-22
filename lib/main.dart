@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:skripsilocal/firebase_options.dart';
-import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/landing_page.dart';
-import 'package:skripsilocal/pages/news/explore.dart';
-import 'package:skripsilocal/pages/profile/profile_page.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:skripsilocal/repository/rating_repository/rating_repository.dart';
@@ -21,10 +18,10 @@ Future<void> main() async {
   await GetStorage.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).
   then((value) => Get.put(AuthenticationRepository()));
-  await Get.put(BookmarkRepository());
-  await Get.put(HistoryRepository());
-  await Get.put(RatingRepository());
-  await Get.put(RecommendationRepository());
+  Get.put(BookmarkRepository());
+  Get.put(HistoryRepository());
+  Get.put(RatingRepository());
+  Get.put(RecommendationRepository());
   runApp(const MyApp());
 }
 
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       navigatorObservers: [GetObserver()],
       // home: ProfilePage(),
-      home: LandingPage(),
+      home: const LandingPage(),
       // home: PickCategory(),
       // home: UpdateCategory(),
       // home: UpdateProfile_New(),

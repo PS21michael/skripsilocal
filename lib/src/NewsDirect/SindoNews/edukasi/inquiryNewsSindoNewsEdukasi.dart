@@ -34,7 +34,7 @@ class _InquirySindoNewsEdukasiState extends State<InquirySindoNewsEdukasi> {
       String url = 'https://api-berita-indonesia.vercel.app/sindonews/edukasi';
       http.Response res = await http.get(Uri.parse(url));
       if (res.statusCode == 200) {
-        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} berita berhasil disimpan!', isError: false);
+        showCustomSnackbar('Success', '${json.decode(res.body)['data']['posts'].length} news saved successfully!', isError: false);
         return BeritaModel.fromJson(json.decode(res.body));
       }
     } catch (e) {
