@@ -161,7 +161,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Update data diri anda!',
+                        'Update your profile!',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 25,
@@ -185,8 +185,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           fillColor: Colors.grey[300],
                           filled: true,
                           icon: const Icon(CupertinoIcons.person),
-                          labelText: "Nama Lengkap",
-                          hintText: "Masukkan nama lengkap Anda",
+                          labelText: "Fullname",
+                          // hintText: "Masukkan nama lengkap Anda",
                         ),
                         // Tambahkan initialValue di sini
                         // initialValue: "AAAA",
@@ -218,7 +218,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                   filled: true,
                                   icon: const Icon(CupertinoIcons.person_alt_circle_fill),
                                   labelText: "Username",
-                                  hintText: "bbbb",
+                                  // hintText: "bbbb",
                                 ),
                                 onChanged: (value) {
                                   state.didChange(value);
@@ -244,9 +244,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               child: const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Cek username',
+                                  'Check username',
                                   style: TextStyle(
-                                    color: Colors.blue, // Ganti warna sesuai keinginan Anda
+                                    color: Colors.blue,
                                     decoration: TextDecoration.underline,
                                   ),
                                 ),
@@ -274,13 +274,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             ),
                             fillColor: Colors.grey[300],
                             filled: true,
-                            labelText: "Provinsi Tempat Tinggal",
+                            labelText: "Province of residence",
                           ),
                         ),
                         suggestionsCallback: (pattern) {
                           var filteredSuggestions = _provinsiList.where(
                                 (provinsi) => provinsi.toLowerCase().contains(pattern.toLowerCase()),
-                          ).toList(); // Limit the suggestions to the first 5
+                          ).toList();
                           return filteredSuggestions;
                         },
                         itemBuilder: (context, suggestion) {
@@ -329,14 +329,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               fillColor: Colors.grey[300],
                               filled: true,
                               icon: const Icon(CupertinoIcons.calendar),
-                              labelText: "Tanggal Lahir",
+                              labelText: "Date of birth",
                             ),
                             onTap: () async {
                               DateTime? pickDate = await showDatePicker(
                                 context: context,
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(1945),
-                                lastDate: DateTime.now(), // Mengatur lastDate menjadi hari ini
+                                lastDate: DateTime.now(),
                                 selectableDayPredicate: (DateTime date) {
                                   return date.isBefore(DateTime.now()) || date.isAtSameMomentAs(DateTime.now());
                                 },

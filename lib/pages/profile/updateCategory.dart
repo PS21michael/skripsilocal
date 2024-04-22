@@ -57,7 +57,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
               child: Column(
                 children: [
                   const Text(
-                    'Update kategori beritamu dulu yuk!',
+                    'Choose your favorite news category!',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,

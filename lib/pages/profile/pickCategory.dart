@@ -32,7 +32,7 @@ class _PickCategoryState extends State<PickCategory> {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Pilih kategori beritamu dulu yuk!',
+                    'Choose your favorite news category!',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 22,

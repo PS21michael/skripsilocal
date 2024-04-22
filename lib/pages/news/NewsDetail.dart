@@ -249,7 +249,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "+ Tambah Bookmark",
+                                    "+ Add Bookmark",
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.red,
@@ -484,7 +484,7 @@ class _NewsDetailState extends State<NewsDetail> {
                       child: TextField(
                         controller: detailComment,
                         decoration: InputDecoration(
-                          hintText: 'Masukkan Komentar',
+                          hintText: 'Input your comment',
                           hintStyle: const TextStyle(color: Colors.grey),
                           fillColor: Colors.white,
                           filled: true,

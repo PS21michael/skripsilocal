@@ -158,7 +158,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                   height: 200,
                 ),
                 const Text(
-                  'Update news dulu!',
+                  'Catch up more news!',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24,
@@ -171,7 +171,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Portal Berita :',
+                      'News Publisher :',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -253,7 +253,7 @@ class _InquiryNewsState extends State<InquiryNews> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Kategori Berita :',
+                      'News Category :',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
