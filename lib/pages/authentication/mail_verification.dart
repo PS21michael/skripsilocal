@@ -51,10 +51,10 @@ class MailVerification extends StatelessWidget{
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
-                      onTap: ()=> (
-                          showCustomSnackbar('Success', 'Email sent successfully', isError: false),
-                          controller.sendVerificationEmail(),
-                      ),
+                      onTap: (){
+                        showCustomSnackbar('Success', 'Email sent successfully', isError: false);
+                        controller.sendVerificationEmail();
+                      },
                       child : const Text(
                         'Resend email',
                         style: TextStyle(
