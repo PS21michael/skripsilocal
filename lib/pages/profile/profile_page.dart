@@ -310,7 +310,7 @@ class _ProfilePageState extends State<ProfilePage> {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: const Text(
-                    'Konfirmasi Penghapusan Akun',
+                    'Delete Account Confirmation',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -321,7 +321,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const Text(
-                        'Dengan mengisi kembali password anda maka akun Baca Berita anda akan dihapuskan',
+                        'By refilling your password, your Baca Berita account will be deleted',
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -331,7 +331,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         controller: passwordController,
                         obscureText: true,
                         decoration: const InputDecoration(
-                            hintText: 'Input password anda ....'
+                            hintText: 'Input your password ....'
                         ),
                       ),
                     ],
@@ -342,7 +342,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.of(context).pop();
                       },
                       child: const Text(
-                        'Batal',
+                        'No',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -452,7 +452,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         // Navigator.of(context).pop();
                       },
                       child: const Text(
-                        'Kirim',
+                        'Yes',
                         style: TextStyle(
                           color: Colors.red,
                           fontSize: 16,

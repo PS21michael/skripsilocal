@@ -67,7 +67,7 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
               child: RichText(
                 text: TextSpan(
-                  text: 'Filter results ',
+                  text: 'Filter results for',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,

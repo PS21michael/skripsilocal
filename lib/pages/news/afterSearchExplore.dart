@@ -68,7 +68,7 @@ class _ExploreSearchPageState extends State<ExploreSearchPage> {
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
               child: RichText(
                 text: TextSpan(
-                  text: 'Search result from ',
+                  text: 'Search result for ',
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 22,

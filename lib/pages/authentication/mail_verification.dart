@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/controller/mail_verification_controller.dart';
 import 'package:skripsilocal/pages/components/button.dart';
+import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 
 class MailVerification extends StatelessWidget{
   const MailVerification ({Key? key}) : super(key: key);
@@ -50,7 +51,10 @@ class MailVerification extends StatelessWidget{
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
-                      onTap: ()=> controller.sendVerificationEmail(),
+                      onTap: ()=> (
+                          showCustomSnackbar('Success', 'Email sent successfully', isError: false),
+                          controller.sendVerificationEmail(),
+                      ),
                       child : const Text(
                         'Resend email',
                         style: TextStyle(
@@ -82,4 +86,7 @@ class MailVerification extends StatelessWidget{
     // throw UnimplementedError();
   }
 
+  void showCustomSnackbar(String title, String message, {bool isError = true}) {
+    SnackbarUtils.showCustomSnackbar(title, message, isError: isError);
+  }
 }
