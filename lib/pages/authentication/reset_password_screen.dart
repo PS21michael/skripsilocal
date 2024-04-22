@@ -42,7 +42,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                   const SizedBox(height: 20),
                   const Text(
-                    'Isi email untuk melakukan mengganti password!',
+                    'Fill your email to change your password!',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
