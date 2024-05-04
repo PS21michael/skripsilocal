@@ -177,24 +177,6 @@ class _ShowUserState extends State<ShowUser> {
                 ],
               ),
               const SizedBox(height: 5),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.email,
-                    size: 16,
-                  ),
-                  const SizedBox(width: 4),
-                  Flexible(
-                    child: Text(
-                      user.email,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             ],
           ),
         ),

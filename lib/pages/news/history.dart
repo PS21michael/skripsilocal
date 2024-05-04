@@ -276,13 +276,13 @@ class _HistoryPageState extends State<HistoryPage> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Text(
-                        "Konfirmasi",
+                        "Confirmation",
                         style: TextStyle(
                           fontSize: 18,
                         ),
                       ),
                       content: const Text(
-                        "Apakah Anda yakin ingin menghapus semua data ini?",
+                        "Are you sure to delete all the data??",
                         style: TextStyle(
                           fontSize: 16,
                         ),

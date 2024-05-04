@@ -267,7 +267,7 @@ class _NewsDetailState extends State<NewsDetail> {
                   const Row(
                     children: [
                       Text(
-                          "Kasih rating beritanya dulu yuk :"
+                          "Please give the news rating :"
                       ),
                     ],
                   ),

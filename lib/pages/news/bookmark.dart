@@ -268,9 +268,9 @@ class _BookmarkPageState extends State<BookmarkPage> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text("Konfirmasi"),
+                      title: const Text("Confirmation"),
                       content: const Text(
-                        "Apakah Anda yakin ingin menghapus semua data ini?",
+                        "Are you sure to delete all the data?",
                         style: TextStyle(
                           fontSize: 16,
                         ),
