@@ -449,7 +449,7 @@ class _NewsPageState extends State<NewsPage> {
                     var listValue = mapCtrDuplicate.values.toList();
                     var listKeys = mapCtrDuplicate.keys.toList();
                     for(int i=0; i<listValue.length; i++){
-                      if(listValue[i] >= 3){
+                      if(listValue[i] >= 1){
                         listIdUserFinal.add(listKeys[i]);
                       }
                     }
