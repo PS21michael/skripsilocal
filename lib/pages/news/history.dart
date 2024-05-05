@@ -162,7 +162,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    "Diakses pada : ${snapshot.data![index].waktu}",
+                                                    "Accessed on : ${snapshot.data![index].waktu}",
                                                     style: const TextStyle(
                                                       fontSize: 15,
                                                       fontWeight: FontWeight.normal,
