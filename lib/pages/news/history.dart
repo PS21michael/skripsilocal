@@ -293,7 +293,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             Navigator.of(context).pop(false);
                           },
                           child: const Text(
-                            "Tidak",
+                            "No",
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -304,7 +304,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             Navigator.of(context).pop(true);
                           },
                           child: const Text(
-                            "Ya",
+                            "Yes",
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.red,
