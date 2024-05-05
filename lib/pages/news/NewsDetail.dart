@@ -225,7 +225,7 @@ class _NewsDetailState extends State<NewsDetail> {
                                     //   if(listTitleSave.contains(title)){
                                     // print("Data sudah pernah ada");
                                     Navigator.pop(context);
-                                    showCustomSnackbar("Error", "Bookmark has benn added!", isError: true);
+                                    showCustomSnackbar("Error", "Bookmark has been added!", isError: true);
                                     // }
                                     // print(listTitleSave)
                                     // else{

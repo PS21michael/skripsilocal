@@ -110,7 +110,7 @@ class _NewsPageState extends State<NewsPage> {
                   child: TextField(
                     controller: detailSearch,
                     decoration: InputDecoration(
-                      hintText: 'Cari berita anda...',
+                      hintText: 'Search your news...',
                       prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -314,7 +314,7 @@ class _NewsPageState extends State<NewsPage> {
                     ),
                     Expanded(
                       child: Text(
-                        selectedFilter != null ? selectedFilter! : 'Urutkan',
+                        selectedFilter != null ? selectedFilter! : 'Sort',
                         style: TextStyle(
                           color: selectedFilter != null ? Colors.black : Colors.black,
                           fontWeight: FontWeight.bold,
