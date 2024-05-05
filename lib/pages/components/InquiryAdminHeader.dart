@@ -32,7 +32,7 @@ class InquiryAdminHeader extends StatelessWidget implements PreferredSizeWidget 
             padding: EdgeInsets.all(15),
             child: Center(
               child: Text(
-                'Selesai',
+                'Done',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
