@@ -29,17 +29,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = Get.put(SignInController());
-
   final _formkey = GlobalKey<FormState>();
-
   final userRepo = Get.put(UserRepository());
-
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
-
   void SignInUser(){}
-
   var randomNames = RandomNames(Zone.us);
 
   static String generateUserName(fullName){
@@ -50,6 +44,13 @@ class _LoginPageState extends State<LoginPage> {
     String camelCaseUsername = "$firstName$lastName";
     String usernameWithPrefix = "User_$camelCaseUsername";
     return usernameWithPrefix;
+  }
+
+  bool _obscureText = true;
+  void _triggerObscureText() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 
   @override
@@ -101,10 +102,36 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: false,
                 ),
                 const SizedBox(height: 25),
-                MyTextField(
-                  controller: controller.password,
-                  hintText: 'Password',
-                  obscureText: true,
+                // MyTextField(
+                //   controller: controller.password,
+                //   hintText: 'Password',
+                //   obscureText: true,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: TextField(
+                    controller: controller.password,
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      fillColor: Colors.grey[300],
+                      filled: true,
+                      hintText: 'Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: _triggerObscureText,
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10),
                 // Forget Password
