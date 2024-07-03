@@ -12,7 +12,6 @@ import 'package:skripsilocal/repository/history_repository/history_repository.da
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
-
 import '../../controller/profile_controller.dart';
 import 'NewsDetail.dart';
 

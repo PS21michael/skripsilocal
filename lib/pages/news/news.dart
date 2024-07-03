@@ -300,31 +300,32 @@ class _NewsPageState extends State<NewsPage> {
             ),
             Positioned(
               bottom: 10,
-              left: (MediaQuery.of(context).size.width - 130) / 2,              child: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
-                isExpanded: true,
-                hint: Row(
-                  children: [
-                    const Icon(
-                      Icons.sort,
-                      size: 20,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Expanded(
-                      child: Text(
-                        selectedFilter != null ? selectedFilter! : 'Sort',
-                        style: TextStyle(
-                          color: selectedFilter != null ? Colors.black : Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                        textAlign: TextAlign.center,
+              left: (MediaQuery.of(context).size.width - 130) / 2,
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
+                  isExpanded: true,
+                  hint: Row(
+                    children: [
+                      const Icon(
+                        Icons.sort,
+                        size: 20,
                       ),
-                    ),
-                  ],
-                ),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Expanded(
+                        child: Text(
+                          selectedFilter != null ? selectedFilter! : 'Sort',
+                          style: TextStyle(
+                            color: selectedFilter != null ? Colors.black : Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
                 value: selectedFilter,
                 items: filters.map((String filter) {
                   return DropdownMenuItem<String>(
@@ -405,7 +406,6 @@ class _NewsPageState extends State<NewsPage> {
                       }
                     }
 
-
                     await Future.delayed(const Duration(milliseconds: 300));
                     // 2. Inquiry ke DB Rating, semua data user kecuali user target
                     List<RatingModel> listRatingUser = []; // List Rating semua pengguna kecuali pengguna target
@@ -474,8 +474,6 @@ class _NewsPageState extends State<NewsPage> {
                       // print("Nilai score semua user : ${listScoreRatingUser}");
                     }
 
-
-                    // TODO : SEBAGAI PENGINGAT
                     List<RatingModel> ratingUserFromDifferentNews =[]; // List Rating user lain dengan id berita yang beda dengan rating user target
                     List<List<RatingModel>> listRatingUserFromDifferentNews = [];
 

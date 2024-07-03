@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/recommendation_model.dart';
@@ -23,7 +21,7 @@ class RecommendationController extends GetxController{
     return await _recommendationRepo.getAllRecomendationForUserTarget(idPengguna);
   }
 
-  Future<void> updateNilaiRecommend(double nilaiRecommend, String id)async{
+  Future<void> updateNilaiRecommend(double nilaiRecommend, String id) async{
     Map<String, dynamic> json = {'RecommendationScore' : FieldValue.increment(nilaiRecommend)};
     await _recommendationRepo.updateNilaiRecommend(json, id);
   }
@@ -36,7 +34,7 @@ class RecommendationController extends GetxController{
     await _recommendationRepo.deleteSingleRecommendation(id);
   }
 
-  Future<void> updateViewsRecommendation(String id)async{
+  Future<void> updateViewsRecommendation(String id) async{
     Map<String, dynamic> json = {'Views' : FieldValue.increment(1)};
     await _recommendationRepo.updateViewsRecommendation(json, id);
   }

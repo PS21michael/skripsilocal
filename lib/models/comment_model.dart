@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class CommentModel{
   final String? id;
   final String idNews;
@@ -29,7 +28,6 @@ class CommentModel{
       komen: '',
   );
 
-  // Json Parse To
   toJson(){
     return{
       "IdNews" : idNews,

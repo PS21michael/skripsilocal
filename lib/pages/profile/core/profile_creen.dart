@@ -139,9 +139,7 @@ class ProfileScreen extends StatelessWidget{
                 onPress: (){
                   AuthenticationRepository.instance.logout();
                 },
-
               ),
-
             ],
           ),
         ),

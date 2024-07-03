@@ -71,7 +71,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
                   color: Colors.black,
                   fontSize: 20,
                 ),
-
               ),
             ),
             Expanded(

@@ -1,4 +1,3 @@
-
 class SignupEmailAndPasswordFailure{
   final String message;
 

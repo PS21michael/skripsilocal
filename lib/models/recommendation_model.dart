@@ -43,7 +43,6 @@ class RecommendationModel{
       recommendationScore: 0.0
   );
 
-  // Parser
   toJson(){
     return {
       "IdNews" : idNews,
@@ -74,7 +73,6 @@ class RecommendationModel{
         category: data?["Category"],
         recommendationScore: data?["RecommendationScore"]
     );
-
   }
 
 }

@@ -26,7 +26,6 @@ class SignUpController extends GetxController{
 
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
-  // Loader
   final isLoading = false.obs;
 
   Future<void> registerUser(String email, String password, String confirmPassword) async {

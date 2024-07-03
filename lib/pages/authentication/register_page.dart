@@ -270,7 +270,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         scoreKategori36: 0,
                         scoreKategori37: 0,
                         scoreKategori38: 0,
-                        //Adding
                     );
 
                     Navigator.pop(context);

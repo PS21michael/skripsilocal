@@ -14,8 +14,6 @@ class SignInController extends GetxController{
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   final userRepo = Get.put(UserRepository());
-
-  // Loader
   final isLoading = false.obs;
   final isGoogleLoading = false.obs;
 

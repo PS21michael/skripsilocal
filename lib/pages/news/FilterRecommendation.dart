@@ -95,7 +95,6 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
 
-
     return WillPopScope(
       onWillPop: () async {
         Get.off(()=> const NewsPage());
@@ -108,7 +107,6 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
         ),
       ),
     );
-
   }
 
   Widget buildListWidget(String idPengguna) {
@@ -237,7 +235,6 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
                                     ));
                                   },
                                 ),
-
                                 ),
                                 const SizedBox(height: 20),
                               ],

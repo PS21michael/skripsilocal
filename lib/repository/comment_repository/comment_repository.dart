@@ -36,7 +36,6 @@ class CommentRepository extends GetxController{
   Future<CommentModel> getSingelCommentDetails(String idNews) async{
     final snapshot = await _db.collection("/Comment").where("IdNews", isEqualTo: idNews).get();
     final commentData = snapshot.docs.map((e) => CommentModel.fromSnapshot(e)).single;
-
     return commentData;
   }
 

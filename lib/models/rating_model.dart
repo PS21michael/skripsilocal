@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 var temp=0;
@@ -46,7 +45,6 @@ class RatingModel{
       category: '',
   );
 
-  // Parser
   toJson(){
     return{
       "IdNews" : idNews,

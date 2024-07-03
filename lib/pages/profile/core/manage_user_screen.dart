@@ -37,7 +37,6 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
           child: FutureBuilder<List<UserModel>>(
             future : controller.getAllUser(),
             builder: (context, snapshot){
-              // done means data completly fetch
               print('Checkpoint 2: ${snapshot.connectionState}');
 
               if(snapshot.connectionState == ConnectionState.done){
@@ -65,7 +64,6 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                                   height: 120,
                                   child: ClipRRect(borderRadius : BorderRadius.circular(100),child: Image.network(snapshot.data![index].profilePicture)),
                                 ),
-
                               ],
                             ),
                           ),

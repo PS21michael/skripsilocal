@@ -197,28 +197,20 @@ class AuthenticationRepository extends GetxController{
   Future<void> createUserWithEmailAndPassword(String email, String password, String confirmPassword) async {
     if(!isEmailValid(email)){
       // print('Email must be valid');
-      // showToast(message:'Email must be valid');
       showCustomSnackbar("Error", "Email not valid");
     } else if(password.length<8){
-      // showToast(message:'Password should at least 8 character');
       showCustomSnackbar("Error", "Password should at least 8 character");
       // } else if(password.length>16){
-      //   // showToast(message:'Password should maksimum 8 character');
       //   showCustomSnackbar("Error", "Password can't more than 16 character");
     } else if (!isHasUpperCase(password)){
-      // showToast(message:'Password should have at least one upper case');
       showCustomSnackbar("Error", "Password should have at least one upper case");
     }else if (!isHasLowerCase(password)){
-      // showToast(message:'Password should have at least one Lower case');
       showCustomSnackbar("Error", "Password should have at least one Lower case");
     }else if (!isHasDigit(password)){
-      // showToast(message:'Password should have at least one Number');
       showCustomSnackbar("Error", "Password should have at least one Number");
     }else if (!isHasSpecialCharacter(password)){
-      // showToast(message:'Password should have at least one Special Character');
       showCustomSnackbar("Error", "Password should have at least one Special Character");
     } else if(password != confirmPassword){
-      // showToast(message:'Confirm Password Should be same with Passowrd');
       showCustomSnackbar("Error", "Confirm Password Should be same with Passowrd");
 
     } else {
@@ -317,9 +309,6 @@ class AuthenticationRepository extends GetxController{
 
   }
 
-  // function to implement the google signin
-
-// creating firebase instance
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> signup() async {
@@ -334,7 +323,6 @@ class AuthenticationRepository extends GetxController{
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);
 
-    // Getting users credential
     UserCredential result = await auth.signInWithCredential(authCredential);
     // User? user = result.user;
 
@@ -343,8 +331,7 @@ class AuthenticationRepository extends GetxController{
     // if (result != null) {
     //   Navigator.pushReplacement(
     //       context, MaterialPageRoute(builder: (context) => ExplorePage()));
-    // } // if result not null we simply call the MaterialpageRoute,
-    // for go to the ExplorePage screen
+    // }
     }
 
   String getEmailGoogleSingIn(){

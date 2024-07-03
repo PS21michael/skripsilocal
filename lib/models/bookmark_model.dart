@@ -39,7 +39,6 @@ class BookmarkModel{
     author: '',
   );
 
-  // Json Parser
   toJson(){
     return{
       "IdNews" : idNews,

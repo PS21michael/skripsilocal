@@ -188,10 +188,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           labelText: "Fullname",
                           // hintText: "Masukkan nama lengkap Anda",
                         ),
-                        // Tambahkan initialValue di sini
                         // initialValue: "AAAA",
                         // onChanged: (value) {
-                        //   // Lakukan sesuatu ketika nilai berubah
                         //   state.didChange(value);
                         // },
                       ),

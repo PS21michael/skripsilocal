@@ -190,8 +190,6 @@ class NewsRepository extends GetxController{
     }
   }
 
-
-
   // PENTING
   Future<List<NewsModel>> getAllNewsANTARAHumaniora(int time) async{
     final snapshot = await _db.collection("/News").where("Category", isEqualTo: "Humaniora").where("CountPeriod", isEqualTo: time).get();
@@ -214,7 +212,6 @@ class NewsRepository extends GetxController{
         // print("Data yang ke 46 : ${newsData[i].title}");
       }
     }
-
     return newsData;
   }
 

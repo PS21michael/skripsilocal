@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:skripsilocal/models/history_model.dart';
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
-// import '../repository/authentication_repository/authentication_repository.dart';
 
 class HistoryController extends GetxController{
 

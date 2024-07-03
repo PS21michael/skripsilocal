@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 var temp=0;
@@ -49,7 +48,6 @@ class NewsModel{
     jumlahPerating: 0,
   );
 
-  // Json parse To
   toJson(){
     return {
       "Publisher" : publisher,

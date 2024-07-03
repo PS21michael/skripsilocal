@@ -149,7 +149,6 @@ class UserModel{
       scoreKategori38: 0
   );
 
-  // Sent to Json
   toJson(){
     return {
       "FullName" : fullName,

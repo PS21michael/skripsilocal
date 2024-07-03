@@ -441,8 +441,6 @@ class UserRepository extends GetxController{
     return scoreKategori38;
   }
 
-
-
   Future<void> updateUserRecord(UserModel user, String id) async{
     // getSingelUserDetails(email);
     // print('User Id yang mau di update : ${user.id}');
@@ -645,11 +643,11 @@ class UserRepository extends GetxController{
 
   Future<void> refreshUserData() async {
     try {
-      // Ambil data terbaru dari Firebase
+      //Ambil data terbaru dari Firebase
       final email = getUserModelEmail();
       final userData = await getSingelUserDetails(email);
 
-      // Perbarui data di UserRepository
+      //Perbarui data di UserRepository
       userModelID = userData.id!;
       userModelFullName = userData.fullName;
       userModelEmail = userData.email;
@@ -659,18 +657,13 @@ class UserRepository extends GetxController{
       userModelJoinDate = userData.joinDate;
       userModelProfilePicture = userData.profilePicture;
 
-      // Perbarui data kategori
-      // Tambahkan perbaruan untuk setiap kategori yang Anda miliki
       scoreKategori1 = userData.scoreKategori1;
       scoreKategori2 = userData.scoreKategori2;
-      // ... (dan seterusnya untuk kategori lainnya)
 
       isSuccesGetData = "True";
 
-      // Perbarui state GetX
       update();
     } catch (e) {
-      // Tangani kesalahan jika terjadi
       // print('Error refreshing user data: $e');
     }
   }

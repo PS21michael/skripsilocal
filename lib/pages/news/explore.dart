@@ -216,9 +216,6 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   await Future.delayed(const Duration(milliseconds: 100));
                                                   userController.updateUserScoreCategory(snapshot.data![index].category);
                                                 }
-
-
-                                                // TODO : Panggil method ini sebelum ke news Detail
                                                 // Ambil data rataing by user id dan news id
                                                 if(idUser.isNotEmpty){
                                                   await Future.delayed(const Duration(milliseconds: 100));

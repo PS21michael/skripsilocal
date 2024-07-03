@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -225,7 +224,6 @@ class _ProfilePageState extends State<ProfilePage> {
           final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
           if(GoogleAuthProvider().providerId == providerData?.providerId){
 
-            // AUTH
             await Future.delayed(const Duration(milliseconds: 1000));
             await Future.delayed(const Duration(milliseconds: 100));
             userController.deleteUserAuthGoogle();

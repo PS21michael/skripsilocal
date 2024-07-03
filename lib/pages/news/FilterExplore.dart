@@ -11,7 +11,6 @@ import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.
 import 'package:skripsilocal/repository/history_repository/history_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
-
 import '../../controller/profile_controller.dart';
 import 'NewsDetail.dart';
 
@@ -53,7 +52,6 @@ class _FilterExplorePageState extends State<FilterExplorePage> {
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idUser);
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idUser);
-
     // List<CommentModel>? test = controller1.getAllDataList();
     // print('Total data : ${test?.length}');
 

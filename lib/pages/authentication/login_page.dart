@@ -219,8 +219,6 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     SquareTile(
                         onTap: () async {
-
-                          // TEST CODING
                           showDialog(
                             context: context,
                             builder: (context) {
@@ -372,7 +370,6 @@ class _LoginPageState extends State<LoginPage> {
                                 await Future.delayed(const Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
 
-                                // TEST CODING
                                 Navigator.pop(context);
                                 Get.to(()=>const ExplorePage());
                               }

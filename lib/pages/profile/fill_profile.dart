@@ -7,7 +7,6 @@ import 'package:skripsilocal/controller/signin_controller.dart';
 import 'package:skripsilocal/models/user_model.dart';
 import 'package:skripsilocal/pages/components/snackbar_utils.dart';
 import 'package:skripsilocal/pages/profile/pickCategory.dart';
-// import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import '../components/button.dart';
 import '../news/explore.dart';
@@ -48,7 +47,6 @@ class _FillProfileState extends State<FillProfile> {
     } else if(usernameAvail == "YES"){
       return true;
     }
-    // logika validasi username di sini
     return false;
   }
 
@@ -82,7 +80,6 @@ class _FillProfileState extends State<FillProfile> {
     String profilePictureCustomer = UserRepository.instance
         .getUserModelProfilePicture();
 
-    // List Score
     int kategoriCustomer1 = UserRepository.instance.getScoreKategori1();
     int kategoriCustomer2 = UserRepository.instance.getScoreKategori2();
     int kategoriCustomer3 = UserRepository.instance.getScoreKategori3();
@@ -421,7 +418,8 @@ class _FillProfileState extends State<FillProfile> {
                                 scoreKategori35: kategoriCustomer35,
                                 scoreKategori36: kategoriCustomer36,
                                 scoreKategori37: kategoriCustomer37,
-                                scoreKategori38: kategoriCustomer38,                            );
+                                scoreKategori38: kategoriCustomer38,
+                            );
                             // print('fullName yg di input: ${user.fullName}');
                             // print('email yg di input: ${user.email}');
                             // print('userName yg di input: ${user.userName}');
@@ -444,7 +442,6 @@ class _FillProfileState extends State<FillProfile> {
                               Navigator.pop(context);
                               Get.to(() => const ExplorePage());
                             }
-
                           }
                         } else {
                           Navigator.pop(context);

@@ -33,7 +33,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             child: Form(
               key: _formkey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Untuk menyusun elemen secara vertikal di tengah halaman
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     'assets/logo.jpg',
