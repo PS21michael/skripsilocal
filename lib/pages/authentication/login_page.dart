@@ -16,7 +16,6 @@ import 'package:skripsilocal/repository/authentication_repository/authentication
 import 'package:skripsilocal/repository/recommendation_repository/recommendation_repository.dart';
 import 'package:skripsilocal/repository/user_repository/user_repository.dart';
 import 'package:skripsilocal/pages/authentication/reset_password_screen.dart';
-
 import '../profile/pickCategory.dart';
 
 class LoginPage extends StatefulWidget {
@@ -57,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Center(
           key : _formkey,
@@ -230,12 +229,23 @@ class _LoginPageState extends State<LoginPage> {
 
                           var i=0;
                           var j=0;
+                          // String emailTemp = "";
+                          // SignInController.instance.googleSignIn();
+                          // await Future.delayed(const Duration(milliseconds: 200));
+                          // emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
+                          // FirebaseAuth.instance.currentUser?.reload();
+                          // print("Email google : $emailTemp");
                           String emailTemp = "";
-                          SignInController.instance.googleSignIn();
-                          await Future.delayed(const Duration(milliseconds: 200));
-                          emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
-                          FirebaseAuth.instance.currentUser?.reload();
-                          print("Email google : $emailTemp");
+                          try {
+                            await SignInController.instance.googleSignIn();
+                            await Future.delayed(const Duration(milliseconds: 500));
+                            emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
+                            FirebaseAuth.instance.currentUser?.reload();
+                            // print(AuthenticationRepository.instance.getEmailGoogleSingIn());
+                          } catch (e) {
+                            // print("Error retrieving email: $e");
+                            emailTemp = "";
+                          }
                           if(emailTemp == "") {
                             Navigator.pop(context);
                             showCustomSnackbar(

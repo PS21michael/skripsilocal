@@ -320,7 +320,7 @@ class _ExplorePageState extends State<ExplorePage> {
             ),
             Positioned(
               bottom: 10,
-              left: (MediaQuery.of(context).size.width - 130) / 2,
+              left: (MediaQuery.of(context).size.width - 150) / 2,
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2<String>(
                   isExpanded: true,

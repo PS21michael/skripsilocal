@@ -43,11 +43,22 @@ class _NewsPageState extends State<NewsPage> {
   String ? selectedFilter;
   List<String> filters = ['Recommendation', 'Latest', 'Oldest'];
   final detailSearch = TextEditingController();
+  late Future<List<NewsModel>> _futureNewsList;
+  final controller = Get.put(NewsController());
 
   @override
   void initState() {
     super.initState();
     fetchData();
+  }
+
+  Future<void> _refreshNewsList() async {
+    setState(() {
+      _futureNewsList = controller.getAllNewsFavorit(userCategory).then((newsList) {
+        newsList.shuffle();
+        return newsList;
+      });
+    });
   }
 
   Future<void> fetchData() async {
@@ -126,172 +137,181 @@ class _NewsPageState extends State<NewsPage> {
                   ),
                 ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                      child: FutureBuilder<List<NewsModel>>(
-                        future: controller.getAllNewsFavorit(userCategory),
-                        // future: controller.getAllNewsFavoritFilterTime(userCategory, "ASC"),
-                        // future: controller.getAllNewsFavoritSearching(userCategory, "Yg mau di search"),
-                        builder: (context, snapshot) {
-                          // print(userCategory);
-                          // print('Checkpoint News1: ${snapshot.connectionState}');
-                          // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
-                          if (snapshot.connectionState == ConnectionState.done) {
-                            if (snapshot.hasData) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  for (var index = 0; index < snapshot.data!.length; index++)
-                                    Column(
-                                      children: [
-                                        Material(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(15.0),
-                                              side: const BorderSide(
-                                                color: Colors.black,
-                                              )
-                                          ),
-                                          color: index.isOdd ? Colors.grey.shade300 : Colors.grey.shade500,child: ListTile(
-                                            title: Row(
-                                              children: [
-                                                SizedBox(
-                                                  width: 80,
-                                                  height: 80,
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      border: Border.all(
-                                                        width: 1.0,
+                  child: RefreshIndicator(
+                    onRefresh: _refreshNewsList,
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                        child: FutureBuilder<List<NewsModel>>(
+                          future: Future.delayed(const Duration(seconds: 2), () async {
+                            List<NewsModel> newsList = await controller.getAllNewsFavorit(userCategory);
+                            newsList.shuffle();
+                            return newsList;
+                          }),
+                          // future: controller.getAllNewsFavorit(userCategory),
+                          // future: controller.getAllNewsFavoritFilterTime(userCategory, "ASC"),
+                          // future: controller.getAllNewsFavoritSearching(userCategory, "Yg mau di search"),
+                          builder: (context, snapshot) {
+                            // print(userCategory);
+                            // print('Checkpoint News1: ${snapshot.connectionState}');
+                            // print('Ini list judul yang didapat : ${NewsRepository.instance.getlistTitle()}');
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              if (snapshot.hasData) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    for (var index = 0; index < snapshot.data!.length; index++)
+                                      Column(
+                                        children: [
+                                          Material(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(15.0),
+                                                side: const BorderSide(
+                                                  color: Colors.black,
+                                                )
+                                            ),
+                                            color: index.isOdd ? Colors.grey.shade300 : Colors.grey.shade500,child: ListTile(
+                                              title: Row(
+                                                children: [
+                                                  SizedBox(
+                                                    width: 80,
+                                                    height: 80,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        border: Border.all(
+                                                          width: 1.0,
+                                                        ),
                                                       ),
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(8),
-                                                      child: Image.network(
-                                                        snapshot.data![index].urlImage,
-                                                        fit: BoxFit.cover,
+                                                      child: ClipRRect(
+                                                        borderRadius: BorderRadius.circular(8),
+                                                        child: Image.network(
+                                                          snapshot.data![index].urlImage,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                const SizedBox(width: 10),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        snapshot.data![index].title,
-                                                        style: const TextStyle(
-                                                          fontSize: 18,
-                                                          fontWeight: FontWeight.bold,
+                                                  const SizedBox(width: 10),
+                                                  Expanded(
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          snapshot.data![index].title,
+                                                          style: const TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                          maxLines: 2,
                                                         ),
-                                                        overflow: TextOverflow.ellipsis,
-                                                        maxLines: 2,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Text(
-                                                              snapshot.data![index].publisher,
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                snapshot.data![index].publisher,
+                                                                style: const TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight: FontWeight.normal,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            const Icon(
+                                                              Icons.remove_red_eye,
+                                                              size: 20,
+                                                            ),
+                                                            const SizedBox(width: 4),
+                                                            Text(
+                                                              snapshot.data![index].views.toString(),
                                                               style: const TextStyle(
-                                                                fontSize: 14,
+                                                                fontSize: 16,
                                                                 fontWeight: FontWeight.normal,
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          const Icon(
-                                                            Icons.remove_red_eye,
-                                                            size: 20,
-                                                          ),
-                                                          const SizedBox(width: 4),
-                                                          Text(
-                                                            snapshot.data![index].views.toString(),
-                                                            style: const TextStyle(
-                                                              fontSize: 16,
-                                                              fontWeight: FontWeight.normal,
+                                                            const SizedBox(width: 8),
+                                                            const Icon(
+                                                              Icons.star,
+                                                              size: 20,
                                                             ),
-                                                          ),
-                                                          const SizedBox(width: 8),
-                                                          const Icon(
-                                                            Icons.star,
-                                                            size: 20,
-                                                          ),
-                                                          const SizedBox(width: 4),
-                                                          Text(
-                                                            (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2),
-                                                            style: const TextStyle(
-                                                              fontSize: 16,
-                                                              fontWeight: FontWeight.normal,
+                                                            const SizedBox(width: 4),
+                                                            Text(
+                                                              (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).isNaN ? '0' : (snapshot.data![index].nilaiRating / snapshot.data![index].jumlahPerating).toStringAsFixed(2),
+                                                              style: const TextStyle(
+                                                                fontSize: 16,
+                                                                fontWeight: FontWeight.normal,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            onTap: () async{
-                                              controller.getNewsData(snapshot.data![index].title);
-                                              await Future.delayed(const Duration(milliseconds: 100));
-                                              controller.updateViews(snapshot.data![index].id.toString());
-                                              if(AuthenticationRepository.instance.firebaseUser!=null){
+                                                ],
+                                              ),
+                                              onTap: () async{
+                                                controller.getNewsData(snapshot.data![index].title);
                                                 await Future.delayed(const Duration(milliseconds: 100));
-                                                userController.updateUserScoreCategory(snapshot.data![index].category);
-                                              }
-                                              DateTime now = DateTime.now();
-                                              String formattedDate = DateFormat('dd-MM-yyyy').format(now);
-                                              final history = HistoryModel(
-                                                idNews: snapshot.data![index].id.toString(),
-                                                idPengguna: idUser,
-                                                title: snapshot.data![index].title,
-                                                urlData: snapshot.data![index].urlNews,
-                                                urlGambar: snapshot.data![index].urlImage,
-                                                kategori: snapshot.data![index].category,
-                                                publisher: snapshot.data![index].publisher,
-                                                description: snapshot.data![index].description,
-                                                author: snapshot.data![index].author,
-                                                waktu: formattedDate,
-                                              );
-                                              await historyController.createHistory(history);
-                                              Get.to(() => NewsDetail(
-                                                id: snapshot.data![index].id.toString(),
-                                                title: snapshot.data![index].title,
-                                                publisher: snapshot.data![index].publisher,
-                                                urlImage: snapshot.data![index].urlImage,
-                                                urlNews: snapshot.data![index].urlNews,
-                                                description: snapshot.data![index].description,
-                                                penulis: snapshot.data![index].author,
-                                                kategori: snapshot.data![index].category,
-                                              ));
-                                            },
-                                          ),
+                                                controller.updateViews(snapshot.data![index].id.toString());
+                                                if(AuthenticationRepository.instance.firebaseUser!=null){
+                                                  await Future.delayed(const Duration(milliseconds: 100));
+                                                  userController.updateUserScoreCategory(snapshot.data![index].category);
+                                                }
+                                                DateTime now = DateTime.now();
+                                                String formattedDate = DateFormat('dd-MM-yyyy').format(now);
+                                                final history = HistoryModel(
+                                                  idNews: snapshot.data![index].id.toString(),
+                                                  idPengguna: idUser,
+                                                  title: snapshot.data![index].title,
+                                                  urlData: snapshot.data![index].urlNews,
+                                                  urlGambar: snapshot.data![index].urlImage,
+                                                  kategori: snapshot.data![index].category,
+                                                  publisher: snapshot.data![index].publisher,
+                                                  description: snapshot.data![index].description,
+                                                  author: snapshot.data![index].author,
+                                                  waktu: formattedDate,
+                                                );
+                                                await historyController.createHistory(history);
+                                                Get.to(() => NewsDetail(
+                                                  id: snapshot.data![index].id.toString(),
+                                                  title: snapshot.data![index].title,
+                                                  publisher: snapshot.data![index].publisher,
+                                                  urlImage: snapshot.data![index].urlImage,
+                                                  urlNews: snapshot.data![index].urlNews,
+                                                  description: snapshot.data![index].description,
+                                                  penulis: snapshot.data![index].author,
+                                                  kategori: snapshot.data![index].category,
+                                                ));
+                                              },
+                                            ),
 
-                                        ),
-                                        const SizedBox(height: 20),
-                                      ],
-                                    ),
-                                ],
-                              );
-                            } else if (snapshot.hasError) {
-                              return Center(
-                                child: Text(snapshot.error.toString()),
-                              );
+                                          ),
+                                          const SizedBox(height: 20),
+                                        ],
+                                      ),
+                                  ],
+                                );
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Text(snapshot.error.toString()),
+                                );
+                              } else {
+                                return const Center(
+                                  child: Text("Something Went Wrong"),
+                                );
+                              }
                             } else {
                               return const Center(
-                                child: Text("Something Went Wrong"),
+                                child: CircularProgressIndicator(),
                               );
                             }
-                          } else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        },
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -300,7 +320,7 @@ class _NewsPageState extends State<NewsPage> {
             ),
             Positioned(
               bottom: 10,
-              left: (MediaQuery.of(context).size.width - 130) / 2,
+              left: (MediaQuery.of(context).size.width - 180) / 2,
               child: DropdownButtonHideUnderline(
                 child: DropdownButton2<String>(
                   isExpanded: true,
@@ -585,7 +605,7 @@ class _NewsPageState extends State<NewsPage> {
                 },
                 buttonStyleData: ButtonStyleData(
                   height: 60,
-                  width: 150,
+                  width: 180,
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -607,7 +627,7 @@ class _NewsPageState extends State<NewsPage> {
                   offset: const Offset(0, 160),
                   isOverButton: true,
                   maxHeight: 200,
-                  width: 150,
+                  width: 180,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,

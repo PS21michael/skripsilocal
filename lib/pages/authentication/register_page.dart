@@ -114,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // resizeToAvoidBottomInset: false,
       // backgroundColor: Colors.white,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Center(
           key: _formKey,
@@ -269,7 +269,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         scoreKategori35: 0,
                         scoreKategori36: 0,
                         scoreKategori37: 0,
-                        scoreKategori38: 0,
+                        scoreKategori38: 0
                     );
 
                     Navigator.pop(context);
