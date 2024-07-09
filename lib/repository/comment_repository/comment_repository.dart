@@ -8,7 +8,6 @@ import 'package:skripsilocal/models/comment_model.dart';
 class CommentRepository extends GetxController{
   
   static CommentRepository get instance => Get.find();
-  
   final _db = FirebaseFirestore.instance;
   
   insertComment(CommentModel commentModel) async{

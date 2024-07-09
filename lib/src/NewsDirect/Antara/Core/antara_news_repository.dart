@@ -9,12 +9,9 @@ class AntaraNewsRepository extends GetxController{
   static AntaraNewsRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
-
   final String publisher = "ANTARA News";
-
-
-  // UTILS
   int countPeriod=0;
+
   int getCountPeriod(){
     return countPeriod;
   }
@@ -30,8 +27,7 @@ class AntaraNewsRepository extends GetxController{
   List<String> listJudulPolitik =[];
   String categoryPolitik = "Politik";
   Future<List<NewsModel>> getAllNewsAntaraPolitik(int time) async{
-    final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).
-    where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
+    final snapshot = await _db.collection("/News").where("Category", isEqualTo: categoryPolitik).where("Publisher", isEqualTo: publisher).where("CountPeriod", isEqualTo: time).get();
     final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
     for(int i=0; i<newsData.length; i++){
       listJudulPolitik.add(newsData[i].title);

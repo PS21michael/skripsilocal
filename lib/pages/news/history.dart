@@ -36,10 +36,6 @@ class _HistoryPageState extends State<HistoryPage> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String idPengguna = UserRepository.instance.getUserModelId();
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    // String temp = HistoryRepository.instance.isDataAvail();
-    // final userController = Get.put(ProfileController());
-    // String idUser = userController.getidUser();
-    // final historyController = Get.put(HistoryController());
     // print("isDataAvail $temp");
     Future.delayed(const Duration(seconds: 1));
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);

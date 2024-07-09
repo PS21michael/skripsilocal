@@ -232,15 +232,9 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                           );
-
                           var i=0;
                           var j=0;
-                          // String emailTemp = "";
-                          // SignInController.instance.googleSignIn();
-                          // await Future.delayed(const Duration(milliseconds: 200));
-                          // emailTemp = AuthenticationRepository.instance.getEmailGoogleSingIn();
-                          // FirebaseAuth.instance.currentUser?.reload();
-                          // print("Email google : $emailTemp");
+                          //Awal mula Login Google
                           String emailTemp = "";
                           try {
                             await SignInController.instance.googleSignIn();
@@ -269,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
                               // print('ChekpointGoogle 3');
                               // print('Ada error $e');
                             }
-
+                            //Cek apa user exist atau tidak
                             if(UserRepository.instance.getIsSuccessGetData() == "True"){
                               // print('ChekpointGoogle 4');
                               if(UserRepository.instance.getUserModelEmail() == ""){
@@ -279,21 +273,19 @@ class _LoginPageState extends State<LoginPage> {
                               }
                               if(UserRepository.instance.getUserModelProvince() == "ProvinsiUtama"){
                                 // print('ChekpointGoogle 6');
-
                                 Navigator.pop(context);
                                 Get.to(()=>const FillProfile());
                               } if(UserRepository.instance.getUserModelInitScore() == "NO"){
-
                                 Navigator.pop(context);
                                 Get.offAll(()=> const PickCategory());
                               }else{
                                 // print('ChekpointGoogle 7');
                                 await Future.delayed(const Duration(seconds: 1));
                                 UserRepository.instance.getSingelUserDetails(emailTemp);
-
                                 Navigator.pop(context);
                                 Get.to(()=>const ExplorePage());
                               }
+                              //user baru
                             } else{
                               // print('ChekpointGoogle 8');
                               await Future.delayed(const Duration(seconds: 1));

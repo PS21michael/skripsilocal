@@ -24,7 +24,6 @@ class BookmarkRepository extends GetxController{
     return bookmarkData;
   }
 
-// AVoid Redundant
   List<String> listBookMarkTitle = [];
   String isDataExisst = "null";
   List<String> listIdBookmarkFromSingelIdUser = [];
@@ -60,6 +59,7 @@ class BookmarkRepository extends GetxController{
     await _db.collection("/Bookmark").doc(id).delete();
   }
 
+  //Avoid redundat
   String dataAvail = "";
   Future<List<BookmarkModel>> getAllBookmarksOne(userId, title) async{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: userId).where("Title", isEqualTo: title).get();

@@ -65,19 +65,6 @@ class MailVerification extends StatelessWidget{
                     ),
                   ],
                 ),
-                // TextButton(onPressed: ()=> controller.sendVerificationEmail(),
-                //     child: Text("Resend Email".tr),
-                // ),
-                // TextButton(onPressed: ()=> AuthenticationRepository.instance.logout(),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         const Icon(LineAwesomeIcons.alternate_long_arrow_left),
-                //         const SizedBox(width: 5,),
-                //         Text("Back To Login".tr.toLowerCase()),
-                //       ],
-                //     )
-                // )
               ],
             ),
           ),

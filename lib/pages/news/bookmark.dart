@@ -30,20 +30,17 @@ class _BookmarkPageState extends State<BookmarkPage> {
   final userController = Get.put(ProfileController());
   final historyController = Get.put(HistoryController());
   final bookMarkController = Get.put(BookmarkController());
-  // final userController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String idPengguna = UserRepository.instance.getUserModelId();
-    // String idUser = userController.getidUser();
     Future.delayed(const Duration(seconds: 1));
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     Future.delayed(const Duration(seconds: 1));
     String temp = BookmarkRepository.instance.isDataAvail();
     Future.delayed(const Duration(seconds: 1));
     // print("isDataAvail $temp");
-    // String idPengguna = UserRepository.instance.getUserModelId();
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
     // String temp1 = "";
     // temp1 = HistoryRepository.instance.isDataAvail();

@@ -43,51 +43,20 @@ class _FilterRecommendationPageState extends State<FilterRecommendationPage> {
     super.initState();
     String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // String temp = RecommendationRepository.instance.isDataRecommendAvail;
-    // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // fetchData();
   }
-
-  // Future<void> fetchData() async {
-  //   // UserRepository.instance.resetListScore();
-  //   // await Future.delayed(Duration(seconds: 1));
-  //   // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-  //   // await Future.delayed(Duration(seconds: 2));
-  //   List<int> daftarScore = UserRepository.instance.getListScore();
-  //   // print(daftarScore);
-  //   // await Future.delayed(Duration(milliseconds: 500));
-  //   userCategory = listCategoryController.parseScoreToList(daftarScore);
-  //   // print(userCategory);
-  //   // print("Kategori yg dikirim :1 "+ userCategory.toString());
-  // }
 
   @override
   Widget build(BuildContext context) {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    // String idPengguna = UserRepository.instance.getUserModelId();
-    // String idUser = userController.getidUser();
     String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     String temp = RecommendationRepository.instance.isDataRecommendAvail;
     // print("isDataAvail $temp");
-    // String idPengguna = UserRepository.instance.getUserModelId();
-    RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    temp = RecommendationRepository.instance.isDataRecommendAvail;
-    // String idPengguna = UserRepository.instance.getUserModelId();
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     temp = RecommendationRepository.instance.isDataRecommendAvail;
-    // final controller = Get.put(NewsController());
-    // final recommendController = Get.put(RecommendationController());
-    // final detailSearch = TextEditingController();
-    // final controller1 = Get.put(CommentController());
-    // final userController = Get.put(ProfileController());
-    // String idUser = userController.getidUser();
-    // List<CommentModel>? test = controller1.getAllDataList();
-    // print('Total data : ${test?.length}');
+    RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
+    temp = RecommendationRepository.instance.isDataRecommendAvail;
     Future.delayed(const Duration(seconds: 1));
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     Future.delayed(const Duration(seconds: 1));

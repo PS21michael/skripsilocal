@@ -41,13 +41,8 @@ class _FilterNewsPageState extends State<FilterNewsPage> {
   }
 
   Future<void> fetchData() async {
-    // UserRepository.instance.resetListScore();
-    // await Future.delayed(Duration(seconds: 1));
-    // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-    // await Future.delayed(Duration(seconds: 2));
     List<int> daftarScore = UserRepository.instance.getListScore();
     // print(daftarScore);
-    // await Future.delayed(Duration(milliseconds: 500));
     userCategory = listCategoryController.parseScoreToList(daftarScore);
     // print(userCategory);
     // print("Kategori yg dikirim :1 "+ userCategory.toString());
@@ -58,8 +53,6 @@ class _FilterNewsPageState extends State<FilterNewsPage> {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
-    // final controller1 = Get.put(CommentController());
-    // final userController = Get.put(ProfileController());
     final userController = Get.put(ProfileController());
     String idUser = userController.getidUser();
     final historyController = Get.put(HistoryController());
@@ -71,8 +64,6 @@ class _FilterNewsPageState extends State<FilterNewsPage> {
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idUser);
     List<int> daftarScore = UserRepository.instance.getListScore();
     userCategory = listCategoryController.parseScoreToList(daftarScore);
-    // List<CommentModel>? test = controller1.getAllDataList();
-    // print('Total data : ${test?.length}');
 
     return SafeArea(
       child: Scaffold(

@@ -35,7 +35,6 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  // String idBer = "";
   List<String> userCategory = [];
   final listCategoryController = Get.put(CategoryListParser());
   final ratingController = Get.put(RatingController());
@@ -62,7 +61,6 @@ class _NewsPageState extends State<NewsPage> {
   }
 
   Future<void> fetchData() async {
-    // UserRepository.instance.resetListScore();
     await Future.delayed(const Duration(seconds: 1));
     await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     await Future.delayed(const Duration(seconds: 2));
@@ -82,12 +80,6 @@ class _NewsPageState extends State<NewsPage> {
     String idUser = userController.getidUser();
     String idPengguna = UserRepository.instance.getUserModelId();
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
-    // String temp = "";
-    // temp = HistoryRepository.instance.isDataAvail();
-    // String idPengguna = UserRepository.instance.getUserModelId();
-    // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
-    // temp = RecommendationRepository.instance.isDataAvail();
-    // RecommendationRepository.instance.getAllRecomendationForUserTarget(idPengguna);
     Future.delayed(const Duration(seconds: 1));
     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
     Future.delayed(const Duration(seconds: 1));
@@ -102,11 +94,6 @@ class _NewsPageState extends State<NewsPage> {
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
     List<int> daftarScore = UserRepository.instance.getListScore();
     userCategory = listCategoryController.parseScoreToList(daftarScore);
-    // print(userCategory);
-    // final controller1 = Get.put(CommentController());
-    // final userController = Get.put(ProfileController());
-    // List<CommentModel>? test = controller1.getAllDataList();
-    // print('Total data : ${test?.length}');
 
     return SafeArea(
       child: Scaffold(
@@ -128,7 +115,6 @@ class _NewsPageState extends State<NewsPage> {
                       ),
                     ),
                     onSubmitted: (value) async {
-                      // UserRepository.instance.resetListScore();
                       await Future.delayed(const Duration(milliseconds: 500));
                       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                       String inputSearh = detailSearch.text;
@@ -149,9 +135,6 @@ class _NewsPageState extends State<NewsPage> {
                             newsList.shuffle();
                             return newsList;
                           }),
-                          // future: controller.getAllNewsFavorit(userCategory),
-                          // future: controller.getAllNewsFavoritFilterTime(userCategory, "ASC"),
-                          // future: controller.getAllNewsFavoritSearching(userCategory, "Yg mau di search"),
                           builder: (context, snapshot) {
                             // print(userCategory);
                             // print('Checkpoint News1: ${snapshot.connectionState}');
@@ -354,7 +337,6 @@ class _NewsPageState extends State<NewsPage> {
                   );
                 }).toList(),
                 onChanged: (String? newValue) async {
-                  // UserRepository.instance.resetListScore();
                   await Future.delayed(const Duration(milliseconds: 500));
                   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
                   setState(() {
@@ -376,10 +358,6 @@ class _NewsPageState extends State<NewsPage> {
                     await Future.delayed(const Duration(seconds: 1));
 
                     // TEST REKOMEN
-                    // List<List<String>> listIdUser = []; // List dari list idUser yang rating news yg sama dengan pengguna target
-                    // List<String> idNewsUser =[]; // List dari idUser yang pernah rating news yang sama dengan pengguna target- berurut
-                    // List<String> allIdUser =[]; // List dari semua idUser yang pernaha rating news yang sama dengan pengguna target - nggak berurut
-
                     await Future.delayed(const Duration(milliseconds: 50));
                     String idUser = userController.getidUser();
                     // print("Nilai id User : ${idUser}");
@@ -388,7 +366,6 @@ class _NewsPageState extends State<NewsPage> {
                     //0 Inquiry ke DB Reccomend
                     List<RecommendationModel> listUserTargetRecommend = [];
                     List<RatingModel> listUserTargetRating = [];
-
                     await Future.delayed(const Duration(seconds: 2));
                     recommendationController.getAllRecommendationFromUserTarget(idUser);
                     await Future.delayed(const Duration(milliseconds: 100));
@@ -425,8 +402,8 @@ class _NewsPageState extends State<NewsPage> {
                         tempListDuplicateRecommend.add(listUserTargetRecommend[i].idNews);
                       }
                     }
-
                     await Future.delayed(const Duration(milliseconds: 300));
+
                     // 2. Inquiry ke DB Rating, semua data user kecuali user target
                     List<RatingModel> listRatingUser = []; // List Rating semua pengguna kecuali pengguna target
                     ratingController.getAllRatingExceptUserTarget(idUser);
@@ -448,7 +425,6 @@ class _NewsPageState extends State<NewsPage> {
                         }
                       }
                     }
-
                     // print("Ukuran data list rating model after : ${listRatingUserFromAllSameNews.length}");
                     // print("Ukuran data list id news target after : ${listIdUserFromAllSameNews.length}");
                     // print("list Id semua : ${listIdUserFromAllSameNews}");
@@ -466,8 +442,8 @@ class _NewsPageState extends State<NewsPage> {
                     // 5. Cek dari list user tadi, mana yg duplikatnya sama dengan total news yang udah dirating pengguna target
                     List<String> listIdUserFinal = [];
                     await Future.delayed(const Duration(seconds: 1));
-                    var listValue = mapCtrDuplicate.values.toList();
-                    var listKeys = mapCtrDuplicate.keys.toList();
+                    var listValue = mapCtrDuplicate.values.toList(); //berapa kali sama
+                    var listKeys = mapCtrDuplicate.keys.toList(); // apa yang sama
                     for(int i=0; i<listValue.length; i++){
                       if(listValue[i] >= 1){
                         listIdUserFinal.add(listKeys[i]);

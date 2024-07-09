@@ -41,13 +41,7 @@ class _NewsSearchPageState extends State<NewsSearchPage> {
   }
 
   Future<void> fetchData() async {
-    // UserRepository.instance.resetListScore();
-    // await Future.delayed(Duration(seconds: 1));
-    // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-    // await Future.delayed(Duration(seconds: 2));
     List<int> daftarScore = UserRepository.instance.getListScore();
-    // print(daftarScore);
-    // await Future.delayed(Duration(milliseconds: 500));
     userCategory = listCategoryController.parseScoreToList(daftarScore);
     // print(userCategory);
     // print("Kategori yg dikirim :1 "+ userCategory.toString());

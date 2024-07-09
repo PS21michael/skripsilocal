@@ -5,7 +5,6 @@ import 'package:skripsilocal/models/rating_model.dart';
 class RatingRepository extends GetxController{
 
   static RatingRepository get instance => Get.find();
-
   final _db = FirebaseFirestore.instance;
 
   insertRating(RatingModel ratingModel) async{

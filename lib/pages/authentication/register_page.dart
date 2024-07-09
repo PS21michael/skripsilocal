@@ -271,9 +271,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         scoreKategori37: 0,
                         scoreKategori38: 0
                     );
-
                     Navigator.pop(context);
-
                     SignUpController.instace.registerAndCreateUser(controller.email.text.trim(), controller.password.text.trim(),
                         controller.confirmPassword.text.trim(), user);
                   },

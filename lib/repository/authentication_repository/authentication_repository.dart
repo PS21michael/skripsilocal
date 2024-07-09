@@ -32,9 +32,7 @@ class AuthenticationRepository extends GetxController{
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> _firebaseUser;
   var verificationId = ''.obs;
-
   User? get firebaseUser => _firebaseUser.value;
-
   String get getUserEmail => firebaseUser?.email?? "";
 
   @override
@@ -66,8 +64,6 @@ class AuthenticationRepository extends GetxController{
       await UserRepository.instance.getSingelUserDetails(firebaseUser!.email.toString());
       await Future.delayed(const Duration(seconds: 500));
       await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-
-      // Get.offAll(const ExplorePage());
       Get.offAll(() => const ExplorePage());
     } else{
       // Get.offAll(const MailVerification());
@@ -106,7 +102,7 @@ class AuthenticationRepository extends GetxController{
   // }
 
 
-  Future<void> sendEmailVerification()async {
+  Future<void> sendEmailVerification() async {
     try{
       await _auth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch(e){
@@ -118,7 +114,7 @@ class AuthenticationRepository extends GetxController{
     }
   }
 
-  Future<void> sendEmailForgetPassword(String email)async {
+  Future<void> sendEmailForgetPassword(String email) async {
     try{
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch(e){
@@ -158,8 +154,6 @@ class AuthenticationRepository extends GetxController{
   String getisSuccessCreateUser(){
     return isSuccessCreateUser;
   }
-
-
 
   Future<void> createUserWithEmailAndPassword(String email, String password, String confirmPassword) async {
     if(!isEmailValid(email)){
@@ -243,8 +237,7 @@ class AuthenticationRepository extends GetxController{
     emailGoogleSignIn = "";
     emailGoogleSignIn = googleSignInAccount!.email;
     // print('CheckPointGoogle 1, Email udah di assign $emailGoogleSignIn');
-    final GoogleSignInAuthentication googleSignInAuthentication =
-    await googleSignInAccount.authentication;
+    final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
     final AuthCredential authCredential = GoogleAuthProvider.credential(
         idToken: googleSignInAuthentication.idToken,
         accessToken: googleSignInAuthentication.accessToken);

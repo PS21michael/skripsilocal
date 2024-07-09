@@ -117,9 +117,7 @@ class UserRepository extends GetxController{
     // final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).elementAt(0);
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     // print('CheckPoint login 4');
-
     isSuccesGetData = "";
-
     userModelID = userData.id!;
     userModelFullName = userData.fullName;
     userModelEmail = userData.email;
@@ -168,7 +166,6 @@ class UserRepository extends GetxController{
     scoreKategori36 = userData.scoreKategori36;
     scoreKategori37 = userData.scoreKategori37;
     scoreKategori38 = userData.scoreKategori38;
-
     listScore = [];
     listScore.add(scoreKategori1);
     listScore.add(scoreKategori2);
@@ -538,11 +535,8 @@ class UserRepository extends GetxController{
 
   Future<void> refreshUserData() async {
     try {
-      //Ambil data terbaru dari Firebase
       final email = getUserModelEmail();
       final userData = await getSingelUserDetails(email);
-
-      //Perbarui data di UserRepository
       userModelID = userData.id!;
       userModelFullName = userData.fullName;
       userModelEmail = userData.email;
@@ -551,12 +545,9 @@ class UserRepository extends GetxController{
       userModelDateOfBirth = userData.dateOfBirth;
       userModelJoinDate = userData.joinDate;
       userModelProfilePicture = userData.profilePicture;
-
       scoreKategori1 = userData.scoreKategori1;
       scoreKategori2 = userData.scoreKategori2;
-
       isSuccesGetData = "True";
-
       update();
     } catch (e) {
       // print('Error refreshing user data: $e');

@@ -45,9 +45,6 @@ class NewsDetail extends StatefulWidget {
 }
 
 class _NewsDetailState extends State<NewsDetail> {
-  // String url1 = NewsRepository.instance.getUrl();
-  // String newsPicture = NewsRepository.instance.getNewsPicture();
-  // String kategori = NewsRepository.instance.getNewsCategory();
   final detailComment = TextEditingController();
   final dateTimecontroller = Get.put(PeriodSavedParser());
   final userController = Get.put(ProfileController());
@@ -213,34 +210,14 @@ class _NewsDetailState extends State<NewsDetail> {
                                     // print("Data sudah pernah ada");
                                     Navigator.pop(context);
                                     showCustomSnackbar("Success", "Bookmark added successfully!", isError: false);
-                                    // String idPengguna = UserRepository.instance.getUserModelId();
                                     BookmarkRepository.instance.getAllBookmarksFromSingleUser(idUser);
                                     String temp = "";
                                     temp = BookmarkRepository.instance.isDataAvail();
                                     // print("isDataAvail $temp");
                                   } else{
-                                    // await Future.delayed(Duration(seconds: 2));
-                                    // List<String> listTitleSave = BookmarkRepository.instance.getListTitleBookmark();
-                                    // for(int i=0; i<listTitleSave.length;i++){
-                                    //   if(listTitleSave.contains(title)){
                                     // print("Data sudah pernah ada");
                                     Navigator.pop(context);
                                     showCustomSnackbar("Error", "Bookmark has been added!", isError: true);
-                                    // }
-                                    // print(listTitleSave)
-                                    // else{
-                                    //   final bookmark = BookmarkModel(
-                                    //       idNews: idNews,
-                                    //       idPengguna: idUser,
-                                    //       title: title,
-                                    //       urlData: urlNews,
-                                    //       urlGambar: urlImage,
-                                    //       kategori: kategori,
-                                    //       publisher: penulis,
-                                    //   );
-                                    //   await bookMarkController.createBookMark(bookmark);
-                                    // }
-                                    // }
                                   }
                                 }
                               },
@@ -301,7 +278,6 @@ class _NewsDetailState extends State<NewsDetail> {
                               );
                             },
                           );
-
                           print(_ratingValue);
                           DateTime now = DateTime.now();
                           String time = "";
@@ -514,7 +490,8 @@ class _NewsDetailState extends State<NewsDetail> {
                             emailPengguna: emailUser,
                             userNamePengguna: userName,
                             waktu: waktu,
-                            komen: usercomment,);
+                            komen: usercomment,
+                          );
                           await controller.createComment(comment);
                           detailComment.clear();
                         }

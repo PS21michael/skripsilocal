@@ -29,7 +29,6 @@ class _ExploreSearchPageState extends State<ExploreSearchPage> {
 
   List<String> userCategory = [];
   late String inputSearch;
-  // final userController = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -42,7 +41,6 @@ class _ExploreSearchPageState extends State<ExploreSearchPage> {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final controller = Get.put(NewsController());
-    // final controller1 = Get.put(CommentController());
     final userController = Get.put(ProfileController());
     String idUser = userController.getidUser();
     final historyController = Get.put(HistoryController());
@@ -52,8 +50,6 @@ class _ExploreSearchPageState extends State<ExploreSearchPage> {
     RecommendationRepository.instance.getAllRecomendationForUserTarget(idUser);
     Future.delayed(const Duration(seconds: 1));
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idUser);
-    // List<CommentModel>? test = controller1.getAllDataList();
-    // print('Total data : ${test?.length}');
 
     return SafeArea(
       child: Scaffold(
