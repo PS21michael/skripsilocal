@@ -4,8 +4,6 @@ import 'package:skripsilocal/models/recommendation_model.dart';
 
 class RecommendationRepository extends GetxController{
 
-  var count = 0;
-
   static RecommendationRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
@@ -15,7 +13,6 @@ class RecommendationRepository extends GetxController{
         .catchError((error, stackTrice){
       print(error.toString());
     });
-    print('Recommendation ke ${count+=1}Berhasil dibuat');
   }
 
   List<RecommendationModel> listRecomendModelUser = [];
@@ -47,10 +44,6 @@ class RecommendationRepository extends GetxController{
   }
 
   Future<void> updateNilaiRecommend(Map<String, dynamic> json, String id) async{
-    await _db.collection("/Recommendation").doc(id).update(json);
-  }
-
-  Future<void> updateViewsRecommendation (Map<String, dynamic> json, String id) async{
     await _db.collection("/Recommendation").doc(id).update(json);
   }
 

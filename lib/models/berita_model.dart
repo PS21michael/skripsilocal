@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-BeritaModel newsModelFromJson(String str) => BeritaModel.fromJson(json.decode(str));
-
-String newsModelToJson(BeritaModel data) => json.encode(data.toJson());
-
 class BeritaModel {
   BeritaModel({
     required this.success,
@@ -14,18 +10,6 @@ class BeritaModel {
   final bool? success;
   final dynamic message;
   final Data? data;
-
-  BeritaModel copyWith({
-    bool? success,
-    dynamic message,
-    Data? data,
-  }) {
-    return BeritaModel(
-      success: success ?? this.success,
-      message: message ?? this.message,
-      data: data ?? this.data,
-    );
-  }
 
   factory BeritaModel.fromJson(Map<String, dynamic> json){
     return BeritaModel(
@@ -41,10 +25,6 @@ class BeritaModel {
     "data": data?.toJson(),
   };
 
-  @override
-  String toString(){
-    return "$success, $message, $data, ";
-  }
 }
 
 class Data {
@@ -61,22 +41,6 @@ class Data {
   final String? title;
   final String? image;
   final List<Post> posts;
-
-  Data copyWith({
-    String? link,
-    String? description,
-    String? title,
-    String? image,
-    List<Post>? posts,
-  }) {
-    return Data(
-      link: link ?? this.link,
-      description: description ?? this.description,
-      title: title ?? this.title,
-      image: image ?? this.image,
-      posts: posts ?? this.posts,
-    );
-  }
 
   factory Data.fromJson(Map<String, dynamic> json){
     return Data(
@@ -96,10 +60,6 @@ class Data {
     "posts": posts.map((x) => x.toJson()).toList(),
   };
 
-  @override
-  String toString(){
-    return "$link, $description, $title, $image, $posts, ";
-  }
 }
 
 class Post {
@@ -116,22 +76,6 @@ class Post {
   final DateTime? pubDate;
   final String? description;
   final String? thumbnail;
-
-  Post copyWith({
-    String? link,
-    String? title,
-    DateTime? pubDate,
-    String? description,
-    String? thumbnail,
-  }) {
-    return Post(
-      link: link ?? this.link,
-      title: title ?? this.title,
-      pubDate: pubDate ?? this.pubDate,
-      description: description ?? this.description,
-      thumbnail: thumbnail ?? this.thumbnail,
-    );
-  }
 
   factory Post.fromJson(Map<String, dynamic> json){
     return Post(
@@ -151,8 +95,4 @@ class Post {
     "thumbnail": thumbnail,
   };
 
-  @override
-  String toString(){
-    return "$link, $title, $pubDate, $description, $thumbnail, ";
-  }
 }

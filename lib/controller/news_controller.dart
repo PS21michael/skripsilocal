@@ -6,8 +6,6 @@ import 'package:skripsilocal/repository/news_repository/news_repository.dart';
 class NewsController extends GetxController{
   static NewsController get instance => Get.find();
 
-  Rx<NewsModel> news = NewsModel.empty().obs;
-
   // final _authRepo = Get.put(AuthenticationRepository());
   final _newsRepo = Get.put(NewsRepository());
 
@@ -16,15 +14,6 @@ class NewsController extends GetxController{
 
   getNewsData(String title1)async{
     return await _newsRepo.getSingelNewsDetails(title1);
-  }
-
-  getSingleNewsDetail(String title) async{
-    return await _newsRepo.getSingelNewsDetails(title);
-  }
-
-  String getTitle(){
-    String titile = _newsRepo.getTitle();
-    return titile;
   }
 
   Future<List<NewsModel>> getAllNews() async{
@@ -51,47 +40,14 @@ class NewsController extends GetxController{
     return await _newsRepo.getAllNewsFavorit(listFavorit);
   }
 
-  Future<void> createNews(NewsModel news) async{
-    await _newsRepo.insertNews(news);
-  }
-
   Future<void> updateViews(String id)async{
     Map<String, dynamic> json = {'Views' : FieldValue.increment(1)};
     await _newsRepo.updateViewsNews(json, id);
-  }
-
-  // Future<List<NewsModel>> getAllNewsAntaraHumaniora(int time) async{
-  //   return await _newsRepo.getAllNewsANTARAHumaniora(time);
-  // }
-
-  // Future<void> updateFlagDislikeNews(int dislike, String id) async{
-  //   await _newsRepo.updateDislikeRecord(dislike, id);
-  // }
-  //
-  // Future<void> updateFlagLikeNews(int like, String id) async{
-  //   await _newsRepo.updateLikeRecord(like, id);
-  // }
-
-// Advanced -- FF - Heavy Work
-  List<NewsModel> getAllSearchAdvanced(String key) {
-    _newsRepo.getAllNewsSearchAdvanced(key);
-    return  _newsRepo.getAllSearchTempNewsModel();
-  }
-
-  void setAllSearchAdvancedNull(){
-    _newsRepo.setAllSearchTempNewsModelNull();
   }
 
 // Title
   Future<List<NewsModel>> getAllSearchTitleNews(String id) async{
     return await _newsRepo.getSearchTitleNews(id);
   }
-
-// Description
-  Future<List<NewsModel>> getAllSearchDescriptionNews(String id) async{
-    return await _newsRepo.getSearchDescriptionNews(id);
-  }
-
-
 
 }

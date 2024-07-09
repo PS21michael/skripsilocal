@@ -22,32 +22,7 @@ class SignUpController extends GetxController{
 
   final userRepo = Get.put(UserRepository());
 
-  Rx<UserModel> user = UserModel.empty().obs;
-
-  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
-
   final isLoading = false.obs;
-
-  Future<void> registerUser(String email, String password, String confirmPassword) async {
-    try{
-      final auth = AuthenticationRepository.instance;
-      await auth.createUserWithEmailAndPassword(email, password, confirmPassword);
-    } catch(e){
-      isLoading.value = false;
-      // print('Errror in Register $e');
-    }
-  }
-
-  uploadImageByLink(String link) async{
-    final image = link;
-    // print("CheckPoint Upload Image Baru 2");
-    final imageUrl = await userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
-    // print("CheckPoint Upload Image Baru 2");
-    Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
-    await userRepo.updateSingelRecord(json);
-    user.value.profilePicture = imageUrl;
-    // print("CheckPoint Upload Image Baru 3");
-  }
 
   Future<void> registerAndCreateUser(String email, String password, String confirmPassword, UserModel user) async {
     try{
@@ -63,30 +38,4 @@ class SignUpController extends GetxController{
     }
   }
 
-  void loginUser(String email, String password){
-    AuthenticationRepository.instance.loginUserWithEmailAndPassword(email, password);
-  }
-
-  void phoneAuthentication(String phoneNo){
-    AuthenticationRepository.instance.phoneAuthentication(phoneNo);
-  }
-
-  Future<void> createUser(UserModel user) async {
-    // print('Befire user : $user');
-    await userRepo.createUer(user);
-    // print('after user : $user');
-    registerUser(user.email, "", "test");
-  }
-
-  Future<void> createUserDefault(UserModel user) async {
-    // print('User Akan Dibuat');
-    await userRepo.createUer(user);
-  }
-
-
-
-  void logout(){
-    AuthenticationRepository.instance.logout();
-    // print('User : ${AuthenticationRepository.instance.firebaseUser}');
-  }
 }

@@ -8,9 +8,6 @@ class RecommendationController extends GetxController{
 
   static RecommendationController get instance => Get.find();
 
-  Rx<RecommendationModel> recommendation = RecommendationModel.empty().obs;
-
-  final _authRepo = Get.put(AuthenticationRepository());
   final _recommendationRepo = Get.put(RecommendationRepository());
 
   Future<void> createRecommendation(RecommendationModel recommendation) async{
@@ -32,11 +29,6 @@ class RecommendationController extends GetxController{
 
   Future<void> deleteRecommendation(String id) async{
     await _recommendationRepo.deleteSingleRecommendation(id);
-  }
-
-  Future<void> updateViewsRecommendation(String id) async{
-    Map<String, dynamic> json = {'Views' : FieldValue.increment(1)};
-    await _recommendationRepo.updateViewsRecommendation(json, id);
   }
 
 }

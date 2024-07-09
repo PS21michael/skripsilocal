@@ -7,7 +7,6 @@ import 'package:skripsilocal/models/bookmark_model.dart';
 
 class BookmarkRepository extends GetxController{
 
-  var count = 0;
   static BookmarkRepository get instance => Get.find();
   final _db = FirebaseFirestore.instance;
 
@@ -22,12 +21,6 @@ class BookmarkRepository extends GetxController{
   Future<BookmarkModel> getSingelBookmarkDetails(String idPengguna) async{
     final snapshot = await _db.collection("/Bookmark").where("IdPengguna", isEqualTo: idPengguna).get();
     final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).single;
-    return bookmarkData;
-  }
-  
-  Future<List<BookmarkModel>> getAllBookmarks() async{
-    final snapshot = await _db.collection("/Bookmark").get();
-    final bookmarkData = snapshot.docs.map((e) => BookmarkModel.fromSnapshot(e)).toList();
     return bookmarkData;
   }
 
@@ -59,30 +52,10 @@ class BookmarkRepository extends GetxController{
     return isDataExisst;
   }
 
-  List<String> getListTitleBookmark(){
-    return listBookMarkTitle;
-  }
-  void setNullListTitleBookmark(){
-    listBookMarkTitle = [];
-  }
-
   List<String> getListIdBookmarkFromSingelUser(){
     return listIdBookmarkFromSingelIdUser;
   }
   
-  Future<void> updateBookmarkRecord(BookmarkModel bookmarkModel, String id) async{
-    await _db.collection("/Bookmark").doc(id).update(bookmarkModel.toJson()).catchError((error, stackTrice){
-      // print(error.toString());
-    });
-  }
-
-  Future<String> uploadImage (String path, XFile image) async{
-    final ref = FirebaseStorage.instance.ref(path).child(image.name);
-    await ref.putFile(File(image.path));
-    final url = await ref.getDownloadURL();
-    return url;
-  }
-
   Future<void> deleteBookMark(String id) async {
     await _db.collection("/Bookmark").doc(id).delete();
   }

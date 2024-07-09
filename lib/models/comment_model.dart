@@ -19,15 +19,6 @@ class CommentModel{
     required this.komen,
   });
 
-  static CommentModel empty() => CommentModel(
-      idNews: '',
-      pathFoto: '',
-      emailPengguna: '',
-      userNamePengguna: '',
-      waktu: '',
-      komen: '',
-  );
-
   toJson(){
     return{
       "IdNews" : idNews,

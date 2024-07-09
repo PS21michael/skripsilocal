@@ -29,14 +29,11 @@ class AuthenticationRepository extends GetxController{
       ]
   );
 
-  final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> _firebaseUser;
   var verificationId = ''.obs;
 
   User? get firebaseUser => _firebaseUser.value;
-
-  String get getUserID => firebaseUser?.uid??"";
 
   String get getUserEmail => firebaseUser?.email?? "";
 
@@ -135,37 +132,6 @@ class AuthenticationRepository extends GetxController{
       const ex = SigninEmailAndPasswordFailure();
       throw ex.message;
     }
-  }
-
-
-  Future<void> phoneAuthentication(String phoneNo) async {
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNo,
-      verificationCompleted: (credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      codeSent: (verificationId, resendToken){
-        this.verificationId.value = verificationId;
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId.value = verificationId;
-      },
-      verificationFailed: (e){
-        if(e.code == 'invalid-phone-number'){
-          Get.snackbar('Error', 'The provided phone number is not valid.');
-        } else{
-          Get.snackbar('Error', 'Something went wrong, try again.');
-        }
-      },
-    );
-  }
-
-  Future<bool> verifyOTP(String otp) async{
-    var credentials = await _auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
-        smsCode: otp));
-
-    return credentials.user != null ? true : false;
   }
 
   bool isHasUpperCase(String password){
@@ -269,47 +235,6 @@ class AuthenticationRepository extends GetxController{
 
   }
 
-  Future<UserCredential?> signInWithGoogle() async {
-    try{
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch(e){
-      // print('checkError2 : ');
-      // isGoogleLoading.value=false;
-      // showToast(message:'Error Happend : $e');
-      showCustomSnackbar("Error", "Something went wrong");
-    }
-    return null;
-  }
-
-  void _loginWithGoogle() async{
-    try{
-      final GoogleSignInAccount ? googleSignInAccount = await _googleSignIn.signIn();
-      if(googleSignInAccount != null){
-        final GoogleSignInAuthentication googleSignInAuthentication = await
-        googleSignInAccount.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-        );
-        await _firebaseAuth.signInWithCredential(credential);
-        Get.offAll(()=>const ExplorePage());
-      }
-
-    } catch (e){
-      // print('Some error accurred $e');
-    }
-
-  }
-
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<void> signup() async {
@@ -347,39 +272,6 @@ class AuthenticationRepository extends GetxController{
     await _auth.signOut();
     Get.to(()=>const LoginPage());
     // print("User Berhasil keluar");
-  }
-
-  Future<void> reauthenticateAndDelete(String password) async {
-    try {
-
-      // print("email 1 : $getUserEmail");
-      // print("Password 1 : $password");
-
-
-      await _auth.signInWithEmailAndPassword(email: getUserEmail, password: password);
-
-      final providerData = FirebaseAuth.instance.currentUser?.providerData.first;
-      // print("Data email 1 : ${EmailAuthProvider.PROVIDER_ID}");
-      // print("Data email 2 : ${providerData!.providerId}");
-      // print("email 1 : ${providerData.providerId}");
-
-      if (providerData != null && EmailAuthProvider.PROVIDER_ID == providerData.providerId) {
-        print("Checkpoint email 1");
-        await FirebaseAuth.instance.currentUser!
-            .reauthenticateWithProvider(EmailAuthProvider as AuthProvider);
-      } else if (providerData != null && GoogleAuthProvider().providerId == providerData.providerId) {
-        print("Checkpoint email 2");
-        await FirebaseAuth.instance.currentUser!
-            .reauthenticateWithProvider(GoogleAuthProvider());
-      }
-
-      await FirebaseAuth.instance.currentUser?.delete();
-    } catch (e) {
-      // print("Error yang didapat : $e");
-      showCustomSnackbar("Error", "DB Auth hasn't been deleted!", isError: true);
-      Get.to(()=> const LoginPage());
-      return;
-    }
   }
 
   Future<void> deleteUserGoogle() async {

@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
-
 class RatingModel{
   final String? id;
   final String idNews;
@@ -30,20 +28,6 @@ class RatingModel{
     required this.urlNews,
     required this.category,
   });
-
-  static RatingModel empty() => RatingModel(
-      idNews: '',
-      idPengguna: '',
-      nilaiRating: 0,
-      timeRating: '',
-      publisher: '',
-      author: '',
-      title: '',
-      description: '',
-      urlImage: '',
-      urlNews: '',
-      category: '',
-  );
 
   toJson(){
     return{

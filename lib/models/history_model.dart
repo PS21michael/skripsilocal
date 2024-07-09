@@ -30,19 +30,6 @@ class HistoryModel{
     required this.author,
   });
 
-  static HistoryModel empty() => HistoryModel(
-    idNews: '',
-    idPengguna: '',
-    title: '',
-    urlData: '',
-    urlGambar: '',
-    kategori: '',
-    publisher: '',
-    description: '',
-    waktu: '',
-    author: '',
-  );
-
   toJson(){
     return{
       "IdNews" : idNews,

@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
-
 class NewsModel{
   final String? id;
   final String publisher;
@@ -32,21 +30,6 @@ class NewsModel{
     required this.nilaiRating,
     required this.jumlahPerating
   });
-
-  static NewsModel empty() => NewsModel(
-    publisher: '',
-    author: '',
-    title: '',
-    description: '',
-    urlImage: '',
-    urlNews: '',
-    publishedTime: '',
-    category: '',
-    views: 0,
-    countPeriod: 0,
-    nilaiRating: 0,
-    jumlahPerating: 0,
-  );
 
   toJson(){
     return {

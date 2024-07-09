@@ -4,8 +4,6 @@ import 'package:skripsilocal/models/rating_model.dart';
 
 class RatingRepository extends GetxController{
 
-  var count = 0;
-
   static RatingRepository get instance => Get.find();
 
   final _db = FirebaseFirestore.instance;
@@ -15,15 +13,6 @@ class RatingRepository extends GetxController{
         .catchError((error, stackTrice){
       print(error.toString());
     });
-    print('Rating ke ${count+=1}Berhasil dibuat');
-  }
-
-
-  Future<List<RatingModel>> getAllRatings() async{
-    final snapshot = await _db.collection("/Rating").get();
-    final ratingData = snapshot.docs.map((e) => RatingModel.fromSnapshot(e)).toList();
-
-    return ratingData;
   }
 
   List<RatingModel> listAllRatingModel = [];
@@ -98,7 +87,5 @@ class RatingRepository extends GetxController{
   Future<void> deleteRating(String id) async{
     await _db.collection("/Rating").doc(id).delete();
   }
-
-
 
 }

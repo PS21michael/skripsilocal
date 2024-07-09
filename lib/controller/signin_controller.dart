@@ -7,21 +7,10 @@ class SignInController extends GetxController{
 
   static SignInController get instance => Get.find();
 
-  String emailGoogle = "";
-
   final email = TextEditingController();
   final password = TextEditingController();
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   final userRepo = Get.put(UserRepository());
-  final isLoading = false.obs;
-  final isGoogleLoading = false.obs;
-
-  void signGoogle()async{
-    final auth = AuthenticationRepository.instance;
-    await auth.signInWithGoogle();
-  }
-
 
   Future<void> googleSignIn() async{
     try{
@@ -37,24 +26,14 @@ class SignInController extends GetxController{
     }
   }
 
-  String getEmailGoogle(){
-    return emailGoogle;
-  }
-
   Future<void> loginUser(String email, String password) async {
 
     try{
       final auth = AuthenticationRepository.instance;
       await auth.loginUserWithEmailAndPassword(email, password);
     } catch(e){
-      isLoading.value = false;
       print('Error In Login : $e');
     }
   }
-
-  void logout(){
-    AuthenticationRepository.instance.logout();
-  }
-
 
 }

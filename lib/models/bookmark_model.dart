@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
-
 class BookmarkModel{
   final String? id;
   final String idNews;
@@ -26,18 +24,6 @@ class BookmarkModel{
     required this.description,
     required this.author,
   });
-
-  static BookmarkModel empty() => BookmarkModel(
-    idNews: '',
-    idPengguna: '',
-    title: '',
-    urlData: '',
-    urlGambar: '',
-    kategori: '',
-    publisher: '',
-    description: '',
-    author: '',
-  );
 
   toJson(){
     return{

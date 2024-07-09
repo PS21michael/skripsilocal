@@ -59,10 +59,6 @@ class ProfileController extends GetxController{
     await _userRepo.updateUserRecord(user, email!);
   }
 
-  Future<void> updateUserOverLimitCategory(Map<String, dynamic> json)async{
-    await _userRepo.updateUserOverLimitCategoryRecord(json);
-  }
-
   uploadProfilePicture() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70,
         maxHeight: 512, maxWidth: 512);
@@ -78,15 +74,6 @@ class ProfileController extends GetxController{
       user.value.profilePicture = imageUrl;
       // print("CheckPoint LALA Controller4");
     }
-  }
-
-  uploadImageByLink(String link) async {
-    final image = link;
-    final imageUrl = await _userRepo.uploadImage("/Users/Images/Profile/", image as XFile);
-    Map<String, dynamic> json = {'ProfilePicture' : imageUrl};
-    await _userRepo.updateSingelRecord(json);
-    user.value.profilePicture = imageUrl;
-    // print("CheckPoint Upload Image Baru");
   }
 
   String getprofileUrl(){
@@ -111,22 +98,9 @@ class ProfileController extends GetxController{
     return _userRepo.getUserModelId();
   }
 
-  String getFlagOverScore(){
-    return _userRepo.getUserOverScoreCategory();
-  }
-
-  List<int> getListIndexOverScoreCategory(){
-    return _userRepo.getListScoreOverCategory();
-  }
-
   Future<void> updateUserScoreCategory(String category) async {
     await _userRepo.updateSingelScore(category);
   }
-
-  Future<void> updateUserScoreOverLimitCategory(String category, int score) async {
-    await _userRepo.updateSingelScoreOverLimit(category, score);
-  }
-
 
   Future<void> deleteUserAuth(String password) async{
     try{

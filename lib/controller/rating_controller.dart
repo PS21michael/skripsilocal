@@ -7,14 +7,7 @@ class RatingController extends GetxController{
 
   static RatingController get instance => Get.find();
 
-  Rx<RatingModel> rating = RatingModel.empty().obs;
-
-  final _authRepo = Get.put(AuthenticationRepository());
   final _ratingRepo = Get.put(RatingRepository());
-
-  Future<List<RatingModel>> getAllRating() async{
-    return await _ratingRepo.getAllRatings();
-  }
 
   Future<List<RatingModel>> getAllRatingExceptUserTarget(String idPengguna) async{
     return await _ratingRepo.getAllRatingsExceptUserTarget(idPengguna);

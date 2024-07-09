@@ -10,7 +10,6 @@ import 'package:skripsilocal/models/user_model.dart';
 class UserRepository extends GetxController{
   static UserRepository get instance => Get.find();
 
-  var ctr =0;
   String userModelID = "";
   String userModelFullName = "";
   String userModelEmail = "";
@@ -110,8 +109,6 @@ class UserRepository extends GetxController{
 
 
   List<int> initScoreAwal = [];
-  String flagOverCategory = "";
-  List<int> indexCategoryOver = [];
   Future<UserModel> getSingelUserDetails(String email) async{
     // print('CheckPoint login 2');
     // print('DB telah dipanggil ke ${ctr+=1}');
@@ -215,17 +212,10 @@ class UserRepository extends GetxController{
     // listScore.sort();
     await Future.delayed(const Duration(milliseconds: 100));
     initScoreAwal = [];
-    indexCategoryOver = [];
-    flagOverCategory = "";
     for(int i=0; i<listScore.length; i++){
       if(listScore[i]>999){
         initScoreAwal.add(listScore[i]);
       }
-      if(listScore[i]>=960 && listScore[i]<= 998){
-        indexCategoryOver.add(i);
-        flagOverCategory = "TRUE";
-      }
-
     }
     initKategori = "";
     await Future.delayed(const Duration(milliseconds: 100));
@@ -237,14 +227,6 @@ class UserRepository extends GetxController{
 
     isSuccesGetData = "True";
     return userData;
-  }
-
-  String getUserOverScoreCategory(){
-    return flagOverCategory;
-  }
-
-  List<int> getListScoreOverCategory(){
-    return indexCategoryOver;
   }
 
   Future<List<UserModel>> getAllUserDetails() async{
@@ -462,10 +444,6 @@ class UserRepository extends GetxController{
     await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
   }
 
-  Future<void> updateUserOverLimitCategoryRecord(Map<String, dynamic> json) async{
-    await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
-  }
-
   // Inc News Read
   Future<void> updateSingelScore(String kategori) async{
     Map<String, dynamic> json = {'scoreKategori1' : FieldValue.increment(0)};
@@ -548,89 +526,6 @@ class UserRepository extends GetxController{
     }
     await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
   }
-
-  Future<void> updateSingelScoreOverLimit(String kategori, int score) async{
-    Map<String, dynamic> json = {'scoreKategori1' : FieldValue.increment(0)};
-    if(kategori == "Nasional"){
-      json = {'scoreKategori1' : score};
-    } else if(kategori == "Bisnis"){
-      json = {'scoreKategori2' : score};
-    }else if(kategori == "Politik"){
-      json = {'scoreKategori3' : score};
-    } else if(kategori == "Hukum"){
-      json = {'scoreKategori4' : score};
-    } else if(kategori == "Ekonomi"){
-      json = {'scoreKategori5' : score};
-    } else if(kategori == "Olahraga"){
-      json = {'scoreKategori6' : score};
-    }else if(kategori == "Teknologi"){
-      json = {'scoreKategori7' : score};
-    }else if(kategori == "Otomotif"){
-      json = {'scoreKategori8' : score};
-    }else if(kategori == "Internasional"){
-      json = {'scoreKategori9' : score};
-    } else if(kategori == "Bola"){
-      json = {'scoreKategori10' : score};
-    }else if(kategori == "Selebritis"){
-      json = {'scoreKategori11' : score};
-    }else if(kategori == "Lifestyle"){
-      json = {'scoreKategori12' : score};
-    }else if(kategori == "Hiburan"){
-      json = {'scoreKategori13' : score};
-    }else if(kategori == "Jakarta"){
-      json = {'scoreKategori14' : score};
-    }else if(kategori == "Market"){
-      json = {'scoreKategori15' : score};
-    }else if(kategori == "News"){
-      json = {'scoreKategori16' : score};
-    }else if(kategori == "Cantik"){
-      json = {'scoreKategori17' : score};
-    }else if(kategori == "Travel"){
-      json = {'scoreKategori18' : score};
-    }else if(kategori == "Syariah"){
-      json = {'scoreKategori19' : score};
-    }else if(kategori == "Islam"){
-      json = {'scoreKategori20' : score};
-    }else if(kategori == "Sains"){
-      json = {'scoreKategori21' : score};
-    }else if(kategori == "Edukasi"){
-      json = {'scoreKategori22' : score};
-    }else if(kategori == "Kesehatan"){
-      json = {'scoreKategori23' : score};
-    }else if(kategori == "Humaniora"){
-      json = {'scoreKategori24' : score};
-    }else if(kategori == "Entrepreneur"){
-      json = {'scoreKategori25' : score};
-    }else if(kategori == "Opini"){
-      json = {'scoreKategori26' : score};
-    }else if(kategori == "Khas"){
-      json = {'scoreKategori27' : score};
-    }else if(kategori == "Jateng"){
-      json = {'scoreKategori28' : score};
-    }else if(kategori == "Daerah"){
-      json = {'scoreKategori29' : score};
-    }else if(kategori == "Khazanah"){
-      json = {'scoreKategori30' : score};
-    }else if(kategori == "Leisure"){
-      json = {'scoreKategori31' : score};
-    }else if(kategori == "Metro"){
-      json = {'scoreKategori32' : score};
-    }else if(kategori == "Ekbis"){
-      json = {'scoreKategori33' : score};
-    }else if(kategori == "Kalam"){
-      json = {'scoreKategori34' : score};
-    }else if(kategori == "Difabel"){
-      json = {'scoreKategori35' : score};
-    }else if(kategori == "Creativelab"){
-      json = {'scoreKategori36' : score};
-    }else if(kategori == "Inforial"){
-      json = {'scoreKategori37' : score};
-    }else if(kategori == "Event"){
-      json = {'scoreKategori38' : score};
-    }
-    await _db.collection("/Users").doc(UserRepository.instance.getUserModelId()).update(json);
-  }
-
 
   Future<String> uploadImage (String path, XFile image) async{
     // print('Path yang diterima : $path');

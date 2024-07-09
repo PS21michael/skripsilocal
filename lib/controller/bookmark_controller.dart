@@ -6,14 +6,8 @@ class BookmarkController extends GetxController{
 
   static BookmarkController get instance => Get.find();
 
-  Rx<BookmarkModel> bookmark = BookmarkModel.empty().obs;
-
   // final _authRepo = Get.put(AuthenticationRepository());
   final _bookmarkRepo = Get.put(BookmarkRepository());
-
-  Future<List<BookmarkModel>> getAllBookmark() async{
-    return await _bookmarkRepo.getAllBookmarks();
-  }
 
   Future<List<BookmarkModel>> getAllBookmarkfromSingleUser(String userId) async{
     return await _bookmarkRepo.getAllBookmarksFromSingleUser(userId);

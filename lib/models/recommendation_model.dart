@@ -1,8 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
-
 class RecommendationModel{
   final String? id;
   final String idNews;
@@ -29,19 +27,6 @@ class RecommendationModel{
     required this.category,
     required this.recommendationScore,
   });
-
-  static RecommendationModel empty() => RecommendationModel(
-      idNews: '',
-      idPengguna: '',
-      publisher: '',
-      author: '',
-      title: '',
-      description: '',
-      urlImage: '',
-      urlNews: '',
-      category: '',
-      recommendationScore: 0.0
-  );
 
   toJson(){
     return {

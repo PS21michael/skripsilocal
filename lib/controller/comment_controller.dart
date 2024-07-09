@@ -6,37 +6,15 @@ import 'package:url_launcher/url_launcher.dart';
 class CommentController extends GetxController{
   static CommentController get instance => Get.find();
 
-  Rx<CommentModel> comment = CommentModel.empty().obs;
-
   // final _authRepo     = Get.put(AuthenticationRepository());
   final _commentRepo  = Get.put(CommentRepository());
-
-  getCommentData(String idNews) async{
-    return await _commentRepo.getSingelCommentDetails(idNews);
-  }
-
-  Future<List<CommentModel>> getAllComment() async{
-    return await _commentRepo.getAllComment();
-  }
 
   Stream<List<CommentModel>> getAllCommentbasedOnIdNews(String idNews){
     return _commentRepo.getAllCommentBasedOnIdNews(idNews);
   }
 
-  List<CommentModel>? getAllDataList(){
-    getAllComment();
-    return _commentRepo.getLstComment();
-  }
-
   Future<void>createComment(CommentModel commentModel) async{
     await _commentRepo.insertComment(commentModel);
-  }
-
-  launchURL() async {
-    final Uri url = Uri.parse('https://flutter.dev');
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
-    }
   }
 
 }

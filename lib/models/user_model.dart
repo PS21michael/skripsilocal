@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var temp=0;
-
 class UserModel{
   final String? id;
   final String fullName;
