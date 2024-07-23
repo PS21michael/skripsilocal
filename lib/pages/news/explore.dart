@@ -44,6 +44,7 @@ class _ExplorePageState extends State<ExplorePage> {
     // _futureNewsList = controller.getAllNews();
   }
 
+  // Untuk nampilin random
   Future<void> _refreshNewsList() async {
     setState(() {
       _futureNewsList = controller.getAllNews().then((newsList) {
@@ -73,13 +74,15 @@ class _ExplorePageState extends State<ExplorePage> {
     return SafeArea(
       child: Scaffold(
         appBar: const BasicHeader(),
-        body: Stack(
+        body: Stack( // widget untuk numpuk
           children: [
+            // body satu
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  // Untuk nampilin search bar
                   child: TextField(
                     controller: detailSearch,
                     decoration: InputDecoration(
@@ -140,6 +143,8 @@ class _ExplorePageState extends State<ExplorePage> {
                                                       ),
                                                       child: ClipRRect(
                                                         borderRadius: BorderRadius.circular(8),
+                                                        // Untuk nampilin image url
+                                                        // Didalam widget ClipRRect,
                                                         child: Image.network(
                                                           snapshot.data![index].urlImage,
                                                           fit: BoxFit.cover,
@@ -238,6 +243,7 @@ class _ExplorePageState extends State<ExplorePage> {
                                                   );
                                                   await historyController.createHistory(history);
                                                 }
+                                                // Berpindah halaman ==> lempar parameter
                                                 Get.to(() => NewsDetail(
                                                   id: snapshot.data![index].id.toString(),
                                                   title: snapshot.data![index].title,
@@ -278,6 +284,9 @@ class _ExplorePageState extends State<ExplorePage> {
                 ),
               ],
             ),
+
+            // body 2
+            // Untuk nampilin floating button (bertumpuk)
             Positioned(
               bottom: 10,
               left: (MediaQuery.of(context).size.width - 150) / 2,

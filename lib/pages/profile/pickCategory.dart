@@ -43,6 +43,7 @@ class _PickCategoryState extends State<PickCategory> {
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: categories.map((category) {
+                      // ubah warna yg dipilih disimpan di widget choiceChip
                       return ChoiceChip(
                         label: Text(category),
                         selected: selectedCategories.contains(category),

@@ -4,6 +4,8 @@ import 'package:skripsilocal/pages/authentication/login_page.dart';
 import 'package:skripsilocal/pages/news/history.dart';
 import 'package:skripsilocal/repository/authentication_repository/authentication_repository.dart';
 
+
+// Nggak pakai parameter karena gagal
 class BasicHeader extends StatelessWidget implements PreferredSizeWidget {
   const BasicHeader({super.key});
 

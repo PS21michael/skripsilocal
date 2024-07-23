@@ -46,6 +46,7 @@ class _MyNavBarState extends State<MyNavBar> {
           horizontal: 20,
           vertical: 8,
         ),
+        // Untuk ketika diklik keterangannya muncul
         child: GNav(
           backgroundColor: Colors.black,
           tabBackgroundColor: Colors.white,
@@ -53,33 +54,6 @@ class _MyNavBarState extends State<MyNavBar> {
           padding: const EdgeInsets.all(10),
           selectedIndex: _selectedIndex,
           onTabChange : (index) async{
-            // if(AuthenticationRepository.instance.firebaseUser==null){
-            //   Get.snackbar(
-            //     'Informasi!',
-            //     'Login dulu yaa!',
-            //     snackPosition: SnackPosition.BOTTOM,
-            //     backgroundColor: Colors.yellow,
-            //     borderRadius: 10.0,
-            //     messageText: Text(
-            //       'Login dulu yaa!',
-            //       style: TextStyle(
-            //         fontSize: 18.0,
-            //         color: Colors.black, // Customize as needed
-            //       ),
-            //     ),
-            //   );
-            //   await Future.delayed(Duration(seconds: 3));
-            //   Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-            // } else {
-            //   UserRepository.instance.resetListScore();
-            //   await Future.delayed(Duration(milliseconds: 500));
-            //   await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
-            //   String idPengguna = UserRepository.instance.getUserModelId();
-            //   BookmarkRepository.instance.getAllBookmarksFromSingleUser(idPengguna);
-            //   String temp = "";
-            //   temp = BookmarkRepository.instance.isDataAvail();
-            //   print("isDataAvail $temp");
-            // }
             _tabChange(index);
           },
           tabs: const [
@@ -137,6 +111,7 @@ class _MyNavBarState extends State<MyNavBar> {
           );
         }
         else{
+          // untuk file loading saat pindah halaman
           showDialog(
             context: context,
             builder: (context) {
@@ -165,6 +140,7 @@ class _MyNavBarState extends State<MyNavBar> {
         break;
       case 1:
         if (AuthenticationRepository.instance.firebaseUser == null) {
+          // untuk menampilkan pop up pertama kali login
           Get.snackbar(
             'Information!',
             'Please login first!',

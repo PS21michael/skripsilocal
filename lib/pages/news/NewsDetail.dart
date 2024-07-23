@@ -19,6 +19,8 @@ import '../../repository/authentication_repository/authentication_repository.dar
 import '../authentication/login_page.dart';
 
 class NewsDetail extends StatefulWidget {
+
+  // Untuk akses variabel param dari halaman lain
   final String id;
   final String title;
   final String publisher;
@@ -58,6 +60,8 @@ class _NewsDetailState extends State<NewsDetail> {
   late String kategori;
   double _ratingValue = 5;
 
+  // setiap iniState, setiap sekali widget dibuat, iniState akan dijalanin dulu baru build
+  // setiap lempar parameter by widget
   @override
   void initState() {
     super.initState();

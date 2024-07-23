@@ -92,6 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image(
+                    // nampilan gambar
                     image: NetworkImage(
                       profilePictureCustomer == ""
                           ? 'assets/desktop-wallpaper-abstract-square-blue-aesthetic-square-thumbnail.jpg'

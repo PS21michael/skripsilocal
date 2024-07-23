@@ -33,6 +33,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    // untuk tampilan atas warna terang, supaya icon dari hp terlihat
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     String idPengguna = UserRepository.instance.getUserModelId();
     HistoryRepository.instance.getAllHistoryDetailsFromIdUser(idPengguna);
@@ -84,6 +85,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               for (var index = 0; index < snapshot.data!.length; index++)
+                                // untuk slide hapus satu data
                                 Dismissible(
                                   key: UniqueKey(),
                                   direction: DismissDirection.startToEnd,
@@ -116,6 +118,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                       ),
                                     ),
                                   ),
+                                  // ketika di klik/slide data terhapus
                                   onDismissed: (direction) {
                                     String id = snapshot.data![index].id.toString();
                                     controller.deleteHistory(id);
@@ -259,6 +262,7 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ],
         ),
+        // untuk menampilkan pop up konfirmasi
         Positioned(
           bottom: 10,
           left: 0,

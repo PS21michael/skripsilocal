@@ -246,6 +246,7 @@ class _NewsPageState extends State<NewsPage> {
                                                   userController.updateUserScoreCategory(snapshot.data![index].category);
                                                 }
                                                 DateTime now = DateTime.now();
+                                                // untuk dapetin data tanggal saat history di klik
                                                 String formattedDate = DateFormat('dd-MM-yyyy').format(now);
                                                 final history = HistoryModel(
                                                   idNews: snapshot.data![index].id.toString(),

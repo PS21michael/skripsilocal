@@ -18,6 +18,7 @@ class UpdateCategory extends StatefulWidget {
 
 class _UpdateCategoryState extends State<UpdateCategory> {
   List<String> categories = ['Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahraga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Entrepreneur', 'Event'];
+  // For debugging only
   List<String> selectedCategories = [];
   final listCategoryController = Get.put(CategoryListParser());
   List<String> userCategory = [];
@@ -32,9 +33,6 @@ class _UpdateCategoryState extends State<UpdateCategory> {
 
   Future<void> fetchData() async {
 
-    // UserRepository.instance.resetListScore();
-    // await Future.delayed(Duration(seconds: 2));
-    // await UserRepository.instance.getSingelUserDetails(AuthenticationRepository.instance.getUserEmail);
     List<int> daftarScore = UserRepository.instance.getListScore();
     List<int> scoreSecure = [];
     for(int i=0; i<38; i++){
@@ -42,8 +40,8 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     }
     listCategoryController.parseScoreToList(scoreSecure);
     print("List kategori favorit : ${listCategoryController.parseScoreToList(scoreSecure)}");
-    userCategory = listCategoryController.parseScoreToList(scoreSecure);
-    tempCategory = listCategoryController.parseScoreToList(scoreSecure);
+    userCategory = listCategoryController.parseScoreToList(scoreSecure); // List score
+    tempCategory = listCategoryController.parseScoreToList(scoreSecure); // List score dari db
   }
 
   @override
@@ -69,21 +67,26 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                     runSpacing: 8.0,
                     children: categories.map((category) {
                       // final lowercaseCategory = category;
+                      // widget untuk ubah warna
                       return ChoiceChip(
                         label: Text(category),
-                        selected: tempCategory.contains(category),
+                        selected: tempCategory.contains(category), // ==> TempCategory : Nyimpen kategori yg dipilih user skarang
+                        // ketika diselect akan milih kategori
                         onSelected: (bool selected) async {
                           setState(() {
                             if (selected) {
                               if (!tempCategory.contains(category)) {
                                 setState(() {
+                                  // semua dalam temp kategori akan di highlight
                                   tempCategory.add(category);
+                                  // For debugging only
                                   selectedCategories.add(category);
                                 });
                               }
                             } else {
                               setState(() {
                                 tempCategory.remove(category);
+                                // For debugging only
                                 selectedCategories.remove(category);
                               });
                             }
@@ -106,7 +109,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
                   const SizedBox(height: 20),
                   TheButton(
                       onTap: () async{
-                        handleSubmit(userCategory);
+                        handleSubmit(userCategory); // kondis awal kategori
                       },
                       text: "Submit"
                   ),
@@ -189,7 +192,7 @@ class _UpdateCategoryState extends State<UpdateCategory> {
     List<String> removeCategories = []; //ToDO Data Hilang
     List<String> filteredCategories = categories.where((category) => tempCategory.contains(category)).toList(); //ToDO Data baru
     // print(filteredCategories);
-    if (tempCategory.length >= 3) {
+    if (tempCategory.length >= 3) { // kategori yg sekarang dipilih
       for (String category in userCategory) {
         if (!filteredCategories.contains(category)) {
           removeCategories.add(category);
