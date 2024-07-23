@@ -35,6 +35,9 @@ class NewsController extends GetxController{
     return await _newsRepo.getSearchTitleNewsFavorit(listFavorit, id);
   }
 
+  Future<List<NewsModel>> getAllNewsCategory(String category) async{
+    return await _newsRepo.getAllNewsByCategory(category);
+  }
 
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
     return await _newsRepo.getAllNewsFavorit(listFavorit);

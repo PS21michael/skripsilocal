@@ -52,6 +52,14 @@ class NewsRepository extends GetxController{
     }
   }
 
+  Future<List<NewsModel>> getAllNewsByCategory(String category) async{
+    final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true)
+        .where("Category", isEqualTo: category).get();
+    final newsData = snapshot.docs.map((e) => NewsModel.fromSnapshot(e)).toList();
+
+    return newsData;
+  }
+
   // List Favorit
   Future<List<NewsModel>> getAllNewsFavorit(List<String> listFavorit) async{
     final snapshot = await _db.collection("/News").orderBy("PublishedTime", descending: true).orderBy("Views",descending: true)
