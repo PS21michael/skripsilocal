@@ -364,7 +364,7 @@ class _NewsPageState extends State<NewsPage> {
                     // print("Nilai id User : ${idUser}");
                     await Future.delayed(const Duration(milliseconds: 100));
 
-                    //0 Inquiry ke DB Reccomend
+                    //0 Inquiry ke DB Reccomend --> mengambil data rekomendasi dan rating dari db untuk user target
                     List<RecommendationModel> listUserTargetRecommend = [];
                     List<RatingModel> listUserTargetRating = [];
                     await Future.delayed(const Duration(seconds: 2));
@@ -376,7 +376,8 @@ class _NewsPageState extends State<NewsPage> {
                     await Future.delayed(const Duration(milliseconds: 100));
                     listUserTargetRating = RatingRepository.instance.listRatingModelUser;
 
-                    //1.  Inquiry ke DB Rating berdasarkan idUser trget
+                    //1.  Inquiry ke DB Rating berdasarkan idUser trget ->
+                    // mengambil daftar berita yang dirating oleh user target
                     List<String> listNewsRatingUserTarget = []; // List IdNews yang dirating pengguna target
                     List<int> listscoreRatingUserTarget = []; // List Score Rating pengguna target
                     ratingController.getAllRatingOnlyUserTarget(idUser);
@@ -391,6 +392,7 @@ class _NewsPageState extends State<NewsPage> {
                     // print("List Id idnews User : ${listNewsRatingUserTarget}");
                     // print("List Score rating User : ${listscoreRatingUserTarget}");
 
+                    //menghapus rekomendasi yang duplikat atau sudah dirating oleh user target
                     var tempListDuplicateRecommend = [];
                     await Future.delayed(const Duration(seconds: 1));
                     for(int i=0; i<listUserTargetRecommend.length; i++){
@@ -405,7 +407,8 @@ class _NewsPageState extends State<NewsPage> {
                     }
                     await Future.delayed(const Duration(milliseconds: 300));
 
-                    // 2. Inquiry ke DB Rating, semua data user kecuali user target
+                    // 2. Inquiry ke DB Rating, semua data user kecuali user target -->
+                    // mengambil semua data rating kecuali user target
                     List<RatingModel> listRatingUser = []; // List Rating semua pengguna kecuali pengguna target
                     ratingController.getAllRatingExceptUserTarget(idUser);
                     await Future.delayed(const Duration(milliseconds: 300));
@@ -414,7 +417,9 @@ class _NewsPageState extends State<NewsPage> {
                     // print("Ukuran data list rating model : ${listRatingUser.length}");
                     // print("Ukuran data list id news target : ${listNewsRatingUserTarget.length}");
 
-                    // 3. Cari data yang sama dan hiraukan duplikat.
+                    // 3. Cari data yang sama dan hiraukan duplikat. -->
+                    // mencari data yang sama dan mengabaikan duplikat
+                    // (mencari dan mengumpulkan data rating dari user lain yang memiliki rating pada berita yang sama dengan berita yang telah dirating oleh user target)
                     List<String> listIdUserFromAllSameNews = [];
                     List<RatingModel> listRatingUserFromAllSameNews =[];
                     await Future.delayed(const Duration(seconds: 1));
@@ -430,7 +435,8 @@ class _NewsPageState extends State<NewsPage> {
                     // print("Ukuran data list id news target after : ${listIdUserFromAllSameNews.length}");
                     // print("list Id semua : ${listIdUserFromAllSameNews}");
 
-                    // 4. Hitung duplikat
+                    // 4. Hitung duplikat -->
+                    // menghitung berapa kali setiap user lain telah memberikan rating pada berita yang sama dengan user target
                     var mapCtrDuplicate = {};
                     for (var element in listIdUserFromAllSameNews) {
                       if(!mapCtrDuplicate.containsKey(element)){
@@ -441,6 +447,7 @@ class _NewsPageState extends State<NewsPage> {
                     }
 
                     // 5. Cek dari list user tadi, mana yg duplikatnya sama dengan total news yang udah dirating pengguna target
+                    // memilih pengguna yang memiliki rating sama dengan user target
                     List<String> listIdUserFinal = [];
                     await Future.delayed(const Duration(seconds: 1));
                     var listValue = mapCtrDuplicate.values.toList(); //berapa kali sama
@@ -453,6 +460,7 @@ class _NewsPageState extends State<NewsPage> {
                     // print("Nilai id user final : ${listIdUserFinal}");
 
                     // 6. Cari nilai rating dari kumpulan user final
+                    // mengambil rating dari user terpilih
                     List<int> scoreRatingUser = [];
                     List<List<int>> listScoreRatingUser = [];
                     await Future.delayed(const Duration(milliseconds: 500));
@@ -527,7 +535,6 @@ class _NewsPageState extends State<NewsPage> {
                     // }
                     // print("Ukuran 1 list id user finall : ${listIdUserFinal.length}");
                     // print("Ukuran 2 list id rating model : ${listRatingUserFromDifferentNews.length}");
-                    // CARA 1
                     await Future.delayed(const Duration(seconds: 5));
                     for(int j=0; j<listRatingUserFromDifferentNews.length; j++){
                       List<RatingModel> tempRatingUser = listRatingUserFromDifferentNews[j];

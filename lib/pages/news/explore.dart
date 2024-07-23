@@ -11,6 +11,7 @@ import 'package:skripsilocal/models/news_model.dart';
 import 'package:skripsilocal/pages/components/basicHeader.dart';
 import 'package:skripsilocal/pages/components/my_navbar.dart';
 import 'package:skripsilocal/pages/news/FilterExplore.dart';
+import 'package:skripsilocal/pages/news/FilterExploreCategory.dart';
 import 'package:skripsilocal/pages/news/afterSearchExplore.dart';
 import 'package:flutter/services.dart';
 import 'package:skripsilocal/repository/bookmark_repository/bookmark_repository.dart';
@@ -31,7 +32,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage> {
   String idBer = "";
   String ? selectedFilter;
-  List<String> filters = ['Latest', 'Oldest'];
+  List<String> filters = ['Latest', 'Oldest', 'Nasional', 'Bisnis', 'Politik', 'Hukum', 'Ekonomi', 'Olahraga', 'Teknologi', 'Otomotif', 'Internasional', 'Lifestyle', 'Hiburan', 'Travel', 'Sains', 'Edukasi', 'Kesehatan', 'Bola', 'Entrepreneur', 'Event'];
   final controller = Get.put(NewsController());
   final ratingController = Get.put(RatingController());
   late Future<List<NewsModel>> _futureNewsList;
@@ -332,6 +333,8 @@ class _ExplorePageState extends State<ExplorePage> {
                       Get.to(() => const FilterExplorePage(inputFilter: "DESC"));
                     } else if (selectedFilter == filters[1]) {
                       Get.to(() => const FilterExplorePage(inputFilter: "ASC"));
+                    } else if (selectedFilter == filters[10]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Internasional"));
                     }
                     setState(() {
                       selectedFilter = null;
@@ -360,7 +363,7 @@ class _ExplorePageState extends State<ExplorePage> {
                   dropdownStyleData: DropdownStyleData(
                     offset: const Offset(0, 110),
                     isOverButton: true,
-                    maxHeight: 200,
+                    maxHeight: 110,
                     width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
