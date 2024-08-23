@@ -329,12 +329,45 @@ class _ExplorePageState extends State<ExplorePage> {
                       // print(selectedFilter);
                     });
                     if (selectedFilter == filters[0]) {
-                      // Get.to(() => RecommendationPage());
                       Get.to(() => const FilterExplorePage(inputFilter: "DESC"));
                     } else if (selectedFilter == filters[1]) {
                       Get.to(() => const FilterExplorePage(inputFilter: "ASC"));
+                    } else if (selectedFilter == filters[2]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Nasional"));
+                    } else if (selectedFilter == filters[3]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Bisnis"));
+                    } else if (selectedFilter == filters[4]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Politik"));
+                    } else if (selectedFilter == filters[5]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Hukum"));
+                    } else if (selectedFilter == filters[6]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Ekonomi"));
+                    } else if (selectedFilter == filters[7]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Olahraga"));
+                    } else if (selectedFilter == filters[8]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Teknologi"));
+                    } else if (selectedFilter == filters[9]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Otomotif"));
                     } else if (selectedFilter == filters[10]) {
                       Get.to(() => const FilterExploreCategoryPage(inputFilter: "Internasional"));
+                    } else if (selectedFilter == filters[11]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Lifestyle"));
+                    } else if (selectedFilter == filters[12]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Hiburan"));
+                    } else if (selectedFilter == filters[13]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Travel"));
+                    } else if (selectedFilter == filters[14]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Sains"));
+                    } else if (selectedFilter == filters[15]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Edukasi"));
+                    } else if (selectedFilter == filters[16]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Kesehatan"));
+                    } else if (selectedFilter == filters[17]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Bola"));
+                    } else if (selectedFilter == filters[18]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Entrepreneur"));
+                    } else if (selectedFilter == filters[19]) {
+                      Get.to(() => const FilterExploreCategoryPage(inputFilter: "Event"));
                     }
                     setState(() {
                       selectedFilter = null;

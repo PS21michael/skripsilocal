@@ -63,34 +63,35 @@ class _FilterExploreCategoryPageState extends State<FilterExploreCategoryPage> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 30, 20, 10),
-              child: RichText(
-                text: TextSpan(
-                  text: 'Filter results for',
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 22,
-                  ),
-                  children: <TextSpan>[
-                    // if (inputFilter == "DESC")
-                    //   const TextSpan(
-                    //     text: "\"Latest\"",
-                    //     style: TextStyle(fontWeight: FontWeight.bold),
-                    //   ),
-                    // if (inputFilter == "ASC")
-                      const TextSpan(
-                        text: "\"Internasional\"",
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ),
-                  ],
+              child: Text(
+                'Filter results for "$inputFilter"',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
                 ),
               ),
+              // child: RichText(
+              //   text: TextSpan(
+              //     text: 'Filter results for',
+              //     style: const TextStyle(
+              //       color: Colors.black,
+              //       fontSize: 22,
+              //     ),
+              //     children: <TextSpan>[
+              //         const TextSpan(
+              //           text: "\"{$inputFilter}\"",
+              //           style: TextStyle(fontStyle: FontStyle.italic),
+              //         ),
+              //     ],
+              //   ),
+              // ),
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                   child: FutureBuilder<List<NewsModel>>(
-                    future: controller.getAllNewsCategory("Internasional"),
+                    future: controller.getAllNewsCategory(inputFilter),
                     builder: (context, snapshot) {
                       // print(userCategory);
                       // print('Checkpoint News1: ${snapshot.connectionState}');
